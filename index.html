@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTCDecoded - Decentralizing the Decentralizers</title>
+    <meta name="description" content="Bitcoin governance solved through mathematical specification, cryptographic enforcement, and economic sustainability. Complete 6-tier implementation stack.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="BTCDecoded - Decentralizing the Decentralizers">
+    <meta property="og:description" content="Bitcoin governance solved through mathematical specification, cryptographic enforcement, and economic sustainability.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://btcdecoded.org">
+    <meta property="og:image" content="https://btcdecoded.org/assets/og-image.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="BTCDecoded - Decentralizing the Decentralizers">
+    <meta name="twitter:description" content="Bitcoin governance solved through mathematical specification, cryptographic enforcement, and economic sustainability.">
+    <meta name="twitter:image" content="https://btcdecoded.org/assets/og-image.png">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#hero">BTCDecoded</a>
+            </div>
+            <div class="nav-links">
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#orange-paper">Orange Paper</a>
+                <a href="#repositories">Repositories</a>
+                <a href="#governance">Governance</a>
+                <a href="#book">Book</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>BTCDecoded</h1>
+            <p class="tagline">Decentralizing the Decentralizers</p>
+            <p class="subtitle">Bitcoin governance solved through mathematical specification, cryptographic enforcement, and economic sustainability</p>
+            
+            <div class="hero-ctas">
+                <a href="#book" class="btn btn-primary">Read the Book</a>
+                <a href="#repositories" class="btn btn-secondary">Explore Repositories</a>
+                <a href="https://github.com/BTCDecoded/the-orange-paper" class="btn btn-outline" target="_blank">Read the Orange Paper</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="section">
+        <div class="container">
+            <h2>Bitcoin's Governance Crisis</h2>
+            <div class="content">
+                <p>Bitcoin solved the Byzantine Generals' Problem for transactions, but it never solved the Byzantine Generals' Problem for development. At a $2 trillion market cap, humanity's hardest money is controlled by a handful of developers with no systematic governance.</p>
+                
+                <p>The asymmetry is stark: Bitcoin's technical consensus is bulletproof, but its social consensus is fragile. Five people with write access to the code repository control a $2 trillion project. This creates a single point of failure that threatens Bitcoin's future.</p>
+                
+                <p>Gavin Andresen warned us about this in 2014. He said Bitcoin needed "three or four or five robust re-implementations" to give confidence that the system wouldn't have "some horrible bug that we manage to miss." But the governance problem had to be solved first.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="section">
+        <div class="container">
+            <h2>The BTCDecoded System</h2>
+            <div class="content">
+                <p>BTCDecoded is a complete solution to Bitcoin's governance crisis through a 6-tier implementation stack that makes governance 6x harder to capture:</p>
+                
+                <div class="architecture">
+                    <div class="layer">
+                        <div class="layer-number">Layer 1</div>
+                        <div class="layer-content">
+                            <h3>Orange Paper</h3>
+                            <p>Mathematical Foundation</p>
+                            <p>Complete mathematical specification of Bitcoin consensus extracted from Bitcoin Core using AI-assisted analysis</p>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-number">Layer 2</div>
+                        <div class="layer-content">
+                            <h3>consensus-proof</h3>
+                            <p>Pure Math Implementation</p>
+                            <p>Side-effect-free Rust implementation of Orange Paper functions with exact version pinning</p>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-number">Layer 3</div>
+                        <div class="layer-content">
+                            <h3>protocol-engine</h3>
+                            <p>Bitcoin Abstraction</p>
+                            <p>Protocol abstraction supporting multiple Bitcoin variants (mainnet, testnet, regtest) and evolution</p>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-number">Layer 4</div>
+                        <div class="layer-content">
+                            <h3>reference-node</h3>
+                            <p>Full Node Implementation</p>
+                            <p>Complete Bitcoin node using protocol-engine and consensus-proof with storage, networking, RPC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-number">Layer 5</div>
+                        <div class="layer-content">
+                            <h3>developer-sdk</h3>
+                            <p>Governance Infrastructure</p>
+                            <p>Cryptographic primitives for governance operations: key management, multisig, message signing</p>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-number">Layer 6</div>
+                        <div class="layer-content">
+                            <h3>governance + app</h3>
+                            <p>Cryptographic Enforcement</p>
+                            <p>GitHub App enforcing governance rules through signature verification and review periods</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orange Paper Section -->
+    <section id="orange-paper" class="section">
+        <div class="container">
+            <h2>The Orange Paper</h2>
+            <h3>Mathematical Specification of Bitcoin Consensus</h3>
+            <div class="content">
+                <p>The Orange Paper is the first complete mathematical specification of Bitcoin's consensus protocol. Unlike previous descriptions, this specification is derived entirely from the current Bitcoin Core codebase and represents the protocol as it exists today.</p>
+                
+                <p>Using AI-assisted extraction, we've formalized Bitcoin's consensus rules into mathematical functions that can be used to build alternative implementations without consensus risk.</p>
+                
+                <div class="excerpt">
+                    <h4>Supply Convergence Proof</h4>
+                    <p><strong>Theorem 6.1</strong> (Supply Convergence): The total supply converges to exactly 21 million BTC.</p>
+                    <p><em>Proof:</em> The total supply can be expressed as a sum of geometric series. For each halving period k, the subsidy is 50 × C × 2^(-k) for H consecutive blocks. The total supply is:</p>
+                    <code>TotalSupply(∞) = H × 50 × C × Σ(k=0 to 63) 2^(-k) ≈ 21 × 10^6 × C</code>
+                </div>
+                
+                <a href="https://github.com/BTCDecoded/the-orange-paper" class="btn btn-primary" target="_blank">Read Full Paper</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Repositories Section -->
+    <section id="repositories" class="section">
+        <div class="container">
+            <h2>Open Source Repositories</h2>
+            <div class="repos-grid">
+                <div class="repo-card">
+                    <h3>the-orange-paper</h3>
+                    <p class="repo-description">Mathematical Bitcoin specification</p>
+                    <ul class="repo-features">
+                        <li>Complete mathematical formalization</li>
+                        <li>AI-assisted extraction from Bitcoin Core</li>
+                        <li>14 sections covering all consensus rules</li>
+                        <li>Formal verification ready</li>
+                    </ul>
+                    <a href="https://github.com/BTCDecoded/the-orange-paper" class="btn btn-outline" target="_blank">View Repository</a>
+                </div>
+                
+                <div class="repo-card">
+                    <h3>consensus-proof</h3>
+                    <p class="repo-description">Pure mathematical implementation (Rust)</p>
+                    <ul class="repo-features">
+                        <li>Side-effect-free functions</li>
+                        <li>Exact version pinning</li>
+                        <li>Comprehensive test coverage</li>
+                        <li>Direct Orange Paper implementation</li>
+                    </ul>
+                    <a href="https://github.com/BTCDecoded/consensus-proof" class="btn btn-outline" target="_blank">View Repository</a>
+                </div>
+                
+                <div class="repo-card">
+                    <h3>protocol-engine</h3>
+                    <p class="repo-description">Bitcoin variant abstraction</p>
+                    <ul class="repo-features">
+                        <li>Multiple Bitcoin variants</li>
+                        <li>Protocol evolution support</li>
+                        <li>Network parameter abstraction</li>
+                        <li>Feature flag management</li>
+                    </ul>
+                    <a href="https://github.com/BTCDecoded/protocol-engine" class="btn btn-outline" target="_blank">View Repository</a>
+                </div>
+                
+                <div class="repo-card">
+                    <h3>reference-node</h3>
+                    <p class="repo-description">Full node implementation</p>
+                    <ul class="repo-features">
+                        <li>Complete Bitcoin node</li>
+                        <li>Storage layer (sled database)</li>
+                        <li>P2P networking</li>
+                        <li>RPC interface</li>
+                    </ul>
+                    <a href="https://github.com/BTCDecoded/reference-node" class="btn btn-outline" target="_blank">View Repository</a>
+                </div>
+                
+                <div class="repo-card">
+                    <h3>developer-sdk</h3>
+                    <p class="repo-description">Governance cryptographic primitives</p>
+                    <ul class="repo-features">
+                        <li>Key generation and management</li>
+                        <li>Multisig threshold logic</li>
+                        <li>Message signing and verification</li>
+                        <li>CLI tools for governance</li>
+                    </ul>
+                    <a href="https://github.com/BTCDecoded/developer-sdk" class="btn btn-outline" target="_blank">View Repository</a>
+                </div>
+                
+                <div class="repo-card governance-card">
+                    <h3>governance</h3>
+                    <p class="repo-description">Cryptographic governance system</p>
+                    <ul class="repo-features">
+                        <li>Layer-based signature thresholds</li>
+                        <li>Emergency tier system</li>
+                        <li>Cross-layer validation rules</li>
+                        <li>GitHub App enforcement</li>
+                    </ul>
+                    <a href="https://github.com/BTCDecoded/governance" class="btn btn-outline" target="_blank">View Repository</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Governance Section -->
+    <section id="governance" class="section">
+        <div class="container">
+            <h2>Cryptographic Governance</h2>
+            <div class="content">
+                <p>BTCDecoded implements a governance system that makes Bitcoin governance 6x harder to capture through graduated thresholds, transparent audit trails, and cryptographic enforcement.</p>
+                
+                <div class="governance-details">
+                    <div class="governance-item">
+                        <h3>Layer Thresholds</h3>
+                        <ul>
+                            <li><strong>Constitutional (L1-2):</strong> 6-of-7 maintainers, 180 days</li>
+                            <li><strong>Implementation (L3):</strong> 4-of-5 maintainers, 90 days</li>
+                            <li><strong>Application (L4):</strong> 3-of-5 maintainers, 60 days</li>
+                            <li><strong>Extension (L5):</strong> 2-of-3 maintainers, 14 days</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="governance-item">
+                        <h3>Emergency Tiers</h3>
+                        <ul>
+                            <li><strong>Tier 1 (Critical):</strong> 0 days, 4-of-7 signatures, 7 days max</li>
+                            <li><strong>Tier 2 (Urgent):</strong> 7 days, 5-of-7 signatures, 30 days max</li>
+                            <li><strong>Tier 3 (Elevated):</strong> 30 days, 6-of-7 signatures, 90 days max</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="governance-item">
+                        <h3>Consensus Changes</h3>
+                        <ul>
+                            <li><strong>Repository Approval:</strong> 6-of-7 signatures, 365 days</li>
+                            <li><strong>Requirements:</strong> BIP specification, security audit, equivalence proof</li>
+                            <li><strong>User Activation:</strong> Advisory guidance for network adoption</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://github.com/BTCDecoded/governance" class="btn btn-primary" target="_blank">Read Governance Docs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Section -->
+    <section id="book" class="section">
+        <div class="container">
+            <h2>The Book</h2>
+            <div class="book-content">
+                <div class="book-info">
+                    <h3>BTCDecoded: Decentralizing the Decentralizers</h3>
+                    <p class="author">by Josh Swift (@secsovereign)</p>
+                    <p class="book-tagline">Bitcoin solved trust in transactions. Now we must solve trust in development.</p>
+                    
+                    <div class="book-toc">
+                        <h4>Table of Contents</h4>
+                        <ul>
+                            <li><strong>Part I: Recovery and Discovery</strong> - The governance crisis Gavin Andresen predicted</li>
+                            <li><strong>Part II: The Framework</strong> - Ostrom's commons principles and the cypherpunk blind spot</li>
+                            <li><strong>Part III: The Solution Built</strong> - Orange Paper, 6-tier stack, governance system</li>
+                            <li><strong>Part IV: The Path Forward</strong> - How to build uncapturable governance institutions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="book-learn">
+                        <h4>What You'll Learn</h4>
+                        <ul>
+                            <li>The governance crisis Gavin Andresen predicted in 2014</li>
+                            <li>Why cypherpunks missed social consensus</li>
+                            <li>How Ostrom's commons principles solve Bitcoin governance</li>
+                            <li>The complete BTCDecoded technical solution</li>
+                            <li>How to build governance institutions that can't be captured</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="book-purchase">
+                    <div class="book-cover">
+                        <h3>BTCDecoded</h3>
+                        <p>Decentralizing the Decentralizers</p>
+                    </div>
+                    
+                    <div class="price">$10</div>
+                    
+                    <div class="purchase-buttons">
+                        <a href="#" class="btn btn-primary btn-large" onclick="alert('Amazon Kindle version coming soon!')">Buy on Amazon Kindle</a>
+                        <button id="bitcoin-pay" class="btn btn-secondary btn-large">Pay with Bitcoin</button>
+                    </div>
+                    
+                    <p class="coming-soon">Amazon Kindle version coming soon</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <h4>Follow</h4>
+                    <p>@secsovereign on <a href="https://x.com/secsovereign" target="_blank">X</a> | <a href="https://t.me/secsovereign" target="_blank">Telegram</a> | <a href="https://github.com/secsovereign" target="_blank">GitHub</a></p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Repositories</h4>
+                    <p><a href="https://github.com/BTCDecoded" target="_blank">github.com/BTCDecoded</a></p>
+                </div>
+                
+                <div class="footer-legal">
+                    <p><a href="https://github.com/BTCDecoded/website/blob/main/LICENSE" target="_blank">MIT License</a></p>
+                    <p>© 2025 BTCDecoded</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bitcoin Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Pay with Bitcoin</h3>
+            <div id="invoice-content">
+                <p>Creating invoice...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/scroll.js"></script>
+    <script src="js/opennode.js"></script>
+</body>
+</html>

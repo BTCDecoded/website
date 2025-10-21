@@ -1,0 +1,7 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="white"/>
+  <text x="600" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="#F7931A">BTCDecoded</text>
+  <text x="600" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" fill="#333333">Decentralizing the Decentralizers</text>
+  <text x="600" y="380" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" fill="#666666">Bitcoin governance solved through mathematical specification</text>
+  <text x="600" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#999999">btcdecoded.org</text>
+</svg>

@@ -1,0 +1,634 @@
+/* BTCDecoded Website Styles - Minimal/Technical Design */
+
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Colors */
+:root {
+    --bitcoin-orange: #F7931A;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --text-muted: #666666;
+    --background: #FFFFFF;
+    --code-background: #F5F5F5;
+    --border: #E0E0E0;
+    --hover: #F0F0F0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+
+/* Navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.nav-logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--bitcoin-orange);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+/* Sections */
+.section {
+    padding: 80px 0;
+}
+
+.hero {
+    padding: 120px 0 80px;
+    text-align: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.hero h1 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    color: var(--bitcoin-orange);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 2px solid var(--bitcoin-orange);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: var(--bitcoin-orange);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #e6820a;
+    border-color: #e6820a;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--bitcoin-orange);
+}
+
+.btn-secondary:hover {
+    background: var(--bitcoin-orange);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+.btn-outline:hover {
+    border-color: var(--bitcoin-orange);
+    color: var(--bitcoin-orange);
+}
+
+.btn-large {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Architecture */
+.architecture {
+    margin: 3rem 0;
+}
+
+.layer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--code-background);
+}
+
+.layer-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--bitcoin-orange);
+    min-width: 80px;
+    text-align: center;
+}
+
+.layer-content {
+    flex: 1;
+    margin-left: 1.5rem;
+}
+
+.layer-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.layer-content p:first-of-type {
+    font-weight: 600;
+    color: var(--bitcoin-orange);
+    margin-bottom: 0.5rem;
+}
+
+/* Repositories */
+.repos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+@media (min-width: 768px) {
+    .repos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .repos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.repo-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.repo-card:hover {
+    border-color: var(--bitcoin-orange);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(247, 147, 26, 0.15);
+}
+
+.repo-card h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.repo-description {
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.repo-features {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.repo-features li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.repo-features li:before {
+    content: "•";
+    color: var(--bitcoin-orange);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.governance-card {
+    border-color: var(--bitcoin-orange);
+    background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+}
+
+/* Governance */
+.governance-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+@media (min-width: 768px) {
+    .governance-details {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.governance-item {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--code-background);
+}
+
+.governance-item h3 {
+    color: var(--bitcoin-orange);
+    margin-bottom: 1rem;
+}
+
+.governance-item ul {
+    list-style: none;
+}
+
+.governance-item li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.governance-item li:last-child {
+    border-bottom: none;
+}
+
+/* Book Section */
+.book-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin: 3rem 0;
+}
+
+@media (min-width: 768px) {
+    .book-content {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.book-info h3 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.author {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.book-tagline {
+    font-size: 1.1rem;
+    color: var(--bitcoin-orange);
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.book-toc, .book-learn {
+    margin: 2rem 0;
+}
+
+.book-toc h4, .book-learn h4 {
+    color: var(--bitcoin-orange);
+    margin-bottom: 1rem;
+}
+
+.book-toc ul, .book-learn ul {
+    list-style: none;
+}
+
+.book-toc li, .book-learn li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.book-toc li:before, .book-learn li:before {
+    content: "•";
+    color: var(--bitcoin-orange);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.book-purchase {
+    text-align: center;
+}
+
+.book-cover {
+    background: linear-gradient(135deg, var(--bitcoin-orange) 0%, #e6820a 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.book-cover h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.book-cover p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--bitcoin-orange);
+    margin: 2rem 0;
+}
+
+.purchase-buttons {
+    margin: 2rem 0;
+}
+
+.coming-soon {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Code */
+code {
+    background: var(--code-background);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.excerpt {
+    background: var(--code-background);
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--bitcoin-orange);
+    margin: 2rem 0;
+}
+
+.excerpt h4 {
+    color: var(--bitcoin-orange);
+    margin-bottom: 1rem;
+}
+
+.excerpt code {
+    display: block;
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    border: 1px solid var(--border);
+}
+
+/* Footer */
+.footer {
+    background: var(--code-background);
+    border-top: 1px solid var(--border);
+    padding: 3rem 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.footer h4 {
+    color: var(--bitcoin-orange);
+    margin-bottom: 1rem;
+}
+
+.footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--bitcoin-orange);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.close:hover {
+    color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-ctas .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .layer {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .layer-number {
+        margin-bottom: 1rem;
+    }
+    
+    .layer-content {
+        margin-left: 0;
+    }
+    
+    .book-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .purchase-buttons .btn {
+        width: 100%;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .btn, .repo-card, .layer {
+        transition: none;
+    }
+}
+
+/* Focus states */
+.btn:focus, .nav-links a:focus {
+    outline: 2px solid var(--bitcoin-orange);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .nav, .footer {
+        display: none;
+    }
+    
+    .section {
+        padding: 1rem 0;
+    }
+}

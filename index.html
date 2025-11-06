@@ -30,9 +30,8 @@
             </div>
             <div class="nav-links">
                 <a href="#problem">Problem</a>
-                <a href="#solution">Solution</a>
+                <a href="#architecture">Architecture</a>
                 <a href="#orange-paper">Orange Paper</a>
-                <a href="#repositories">Repositories</a>
                 <a href="#governance">Governance</a>
                 <a href="#book">Book</a>
                 <a href="https://thebitcoincommons.org" target="_blank">Framework</a>
@@ -83,67 +82,72 @@
         </div>
     </section>
 
-    <!-- Solution Section -->
-    <section id="solution" class="section">
+    <!-- Architecture Section -->
+    <section id="architecture" class="section">
         <div class="container">
-            <h2>The BTCDecoded System</h2>
+            <h2>Architecture</h2>
             <div class="content">
-                <p>BTCDecoded is a complete solution to Bitcoin's governance crisis through a 6-tier implementation stack that makes governance 6x harder to capture:</p>
+                <p>BTCDecoded's 6-tier stack enforces correctness through mathematical specification and formal verification. The Orange Paper provides the mathematical foundation; consensus-proof implements it with formal verification; all higher layers depend directly on consensus-proof.</p>
                 
                 <div class="architecture">
-                    <div class="layer">
-                        <div class="layer-number">Layer 1</div>
+                    <div class="layer layer-foundation">
+                        <div class="layer-number">1</div>
                         <div class="layer-content">
-                            <h3>Orange Paper</h3>
-                            <p>Mathematical Foundation</p>
-                            <p>Complete mathematical specification of Bitcoin consensus extracted from Bitcoin Core using AI-assisted analysis</p>
+                            <h3><a href="https://github.com/BTCDecoded/the-orange-paper" target="_blank">the-orange-paper</a></h3>
+                            <p class="layer-type">Mathematical Specification</p>
+                            <p>Complete mathematical specification of Bitcoin consensus extracted from Bitcoin Core. Includes the 21 million supply convergence proof (Theorem 6.1).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="layer layer-core">
+                        <div class="layer-number">2</div>
+                        <div class="layer-content">
+                            <h3><a href="https://github.com/BTCDecoded/consensus-proof" target="_blank">consensus-proof</a></h3>
+                            <p class="layer-type">Formally Verified Implementation</p>
+                            <p>Pure Rust implementation of Orange Paper functions with <strong>Kani model checking</strong> for formal verification. All consensus decisions are mathematically proven. UTXO set operations verified for consistency and double-spend prevention.</p>
+                            <p class="tech-detail"><strong>Formal Verification:</strong> Chain selection, block subsidy, proof-of-work, transaction validation all verified with bounded model checking.</p>
                         </div>
                     </div>
                     
                     <div class="layer">
-                        <div class="layer-number">Layer 2</div>
+                        <div class="layer-number">3</div>
                         <div class="layer-content">
-                            <h3>consensus-proof</h3>
-                            <p>Pure Math Implementation</p>
-                            <p>Side-effect-free Rust implementation of Orange Paper functions with exact version pinning</p>
+                            <h3><a href="https://github.com/BTCDecoded/protocol-engine" target="_blank">protocol-engine</a></h3>
+                            <p class="layer-type">Protocol Abstraction</p>
+                            <p>Bitcoin variant abstraction (mainnet, testnet, regtest) built on consensus-proof. All consensus calls go through the formally verified layer.</p>
                         </div>
                     </div>
                     
                     <div class="layer">
-                        <div class="layer-number">Layer 3</div>
+                        <div class="layer-number">4</div>
                         <div class="layer-content">
-                            <h3>protocol-engine</h3>
-                            <p>Bitcoin Abstraction</p>
-                            <p>Protocol abstraction supporting multiple Bitcoin variants (mainnet, testnet, regtest) and evolution</p>
+                            <h3><a href="https://github.com/BTCDecoded/reference-node" target="_blank">reference-node</a></h3>
+                            <p class="layer-type">Full Node</p>
+                            <p>Complete Bitcoin node using protocol-engine and consensus-proof. Adds storage, networking, and RPC. <strong>Optional features:</strong> Iroh QUIC transport (NAT traversal), Quinn QUIC transport, UTXO commitments (faster initial sync).</p>
                         </div>
                     </div>
                     
                     <div class="layer">
-                        <div class="layer-number">Layer 4</div>
+                        <div class="layer-number">5</div>
                         <div class="layer-content">
-                            <h3>reference-node</h3>
-                            <p>Full Node Implementation</p>
-                            <p>Complete Bitcoin node using protocol-engine and consensus-proof with storage, networking, RPC</p>
+                            <h3><a href="https://github.com/BTCDecoded/developer-sdk" target="_blank">developer-sdk</a></h3>
+                            <p class="layer-type">Governance Infrastructure</p>
+                            <p>Cryptographic primitives for governance: key management, multisig, message signing. Built for governance enforcement, not consensus.</p>
                         </div>
                     </div>
                     
                     <div class="layer">
-                        <div class="layer-number">Layer 5</div>
+                        <div class="layer-number">6</div>
                         <div class="layer-content">
-                            <h3>developer-sdk</h3>
-                            <p>Governance Infrastructure</p>
-                            <p>Cryptographic primitives for governance operations: key management, multisig, message signing</p>
+                            <h3><a href="https://github.com/BTCDecoded/governance" target="_blank">governance</a></h3>
+                            <p class="layer-type">Cryptographic Enforcement</p>
+                            <p>GitHub App enforcing governance rules through signature verification and review periods. Uses developer-sdk for cryptographic operations.</p>
                         </div>
                     </div>
-                    
-                    <div class="layer">
-                        <div class="layer-number">Layer 6</div>
-                        <div class="layer-content">
-                            <h3>governance + app</h3>
-                            <p>Cryptographic Enforcement</p>
-                            <p>GitHub App enforcing governance rules through signature verification and review periods</p>
-                        </div>
-                    </div>
+                </div>
+                
+                <div class="architecture-note">
+                    <p><strong>Dependency Chain:</strong> Orange Paper → consensus-proof (formally verified) → protocol-engine → reference-node → developer-sdk → governance. All consensus decisions flow through the mathematically proven consensus-proof layer.</p>
                 </div>
             </div>
         </div>
@@ -165,35 +169,6 @@
                         <li>Source code releases</li>
                     </ul>
                     <p class="download-note">Check <a href="https://github.com/BTCDecoded/reference-node/releases" target="_blank">GitHub releases</a> for current source code.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Implementation Details Section -->
-    <section id="implementation-details" class="section">
-        <div class="container">
-            <h2>BTCDecoded Implementation</h2>
-            <div class="content">
-                <p>Here's what makes BTCDecoded unique:</p>
-                
-                <div class="implementation-features">
-                    <div class="feature-item">
-                        <h3>Governance Score</h3>
-                        <p><strong>Phase 1 (Current):</strong> 65% governance quality</p>
-                        <p><strong>Phase 3 (Target):</strong> 93% governance quality</p>
-                        <p>3-4x better governance than existing Bitcoin implementations</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h3>Complete 6-Tier Stack</h3>
-                        <p>From mathematical specification (Orange Paper) to full node implementation, with cryptographic governance enforcement at every layer.</p>
-                    </div>
-                    
-                    <div class="feature-item">
-                        <h3>Formal Governance</h3>
-                        <p>First Bitcoin implementation with systematic governance infrastructure, making capture 6x harder than Bitcoin Core's current model.</p>
-                    </div>
                 </div>
             </div>
         </div>
@@ -221,89 +196,6 @@
         </div>
     </section>
 
-    <!-- Repositories Section -->
-    <section id="repositories" class="section">
-        <div class="container">
-            <h2>Open Source Repositories</h2>
-            <div class="repos-grid">
-                <div class="repo-card">
-                    <h3>the-orange-paper</h3>
-                    <p class="repo-description">Mathematical Bitcoin specification</p>
-                    <ul class="repo-features">
-                        <li>Complete mathematical formalization</li>
-                        <li>AI-assisted extraction from Bitcoin Core</li>
-                        <li>14 sections covering all consensus rules</li>
-                        <li>Formal verification ready</li>
-                    </ul>
-                    <a href="https://github.com/BTCDecoded/the-orange-paper" class="btn btn-outline" target="_blank">View Repository</a>
-                </div>
-                
-                <div class="repo-card">
-                    <h3>consensus-proof</h3>
-                    <p class="repo-description">Pure mathematical implementation (Rust)</p>
-                    <ul class="repo-features">
-                        <li>Side-effect-free functions</li>
-                        <li>Exact version pinning</li>
-                        <li>Comprehensive test coverage</li>
-                        <li>Direct Orange Paper implementation</li>
-                    </ul>
-                    <a href="https://github.com/BTCDecoded/consensus-proof" class="btn btn-outline" target="_blank">View Repository</a>
-                </div>
-                
-                <div class="repo-card">
-                    <h3>protocol-engine</h3>
-                    <p class="repo-description">Bitcoin variant abstraction</p>
-                    <ul class="repo-features">
-                        <li>Multiple Bitcoin variants</li>
-                        <li>Protocol evolution support</li>
-                        <li>Network parameter abstraction</li>
-                        <li>Feature flag management</li>
-                    </ul>
-                    <a href="https://github.com/BTCDecoded/protocol-engine" class="btn btn-outline" target="_blank">View Repository</a>
-                </div>
-                
-                <div class="repo-card">
-                    <h3>reference-node</h3>
-                    <p class="repo-description">Full node implementation</p>
-                    <ul class="repo-features">
-                        <li>Complete Bitcoin node</li>
-                        <li>Storage layer (sled database)</li>
-                        <li>P2P networking</li>
-                        <li>RPC interface</li>
-                    </ul>
-                    <a href="https://github.com/BTCDecoded/reference-node" class="btn btn-outline" target="_blank">View Repository</a>
-                </div>
-                
-                <div class="repo-card">
-                    <h3>developer-sdk</h3>
-                    <p class="repo-description">Governance cryptographic primitives</p>
-                    <ul class="repo-features">
-                        <li>Key generation and management</li>
-                        <li>Multisig threshold logic</li>
-                        <li>Message signing and verification</li>
-                        <li>CLI tools for governance</li>
-                    </ul>
-                    <a href="https://github.com/BTCDecoded/developer-sdk" class="btn btn-outline" target="_blank">View Repository</a>
-                </div>
-                
-                <div class="repo-card governance-card">
-                    <h3>governance</h3>
-                    <p class="repo-description">Cryptographic governance system</p>
-                    <ul class="repo-features">
-                        <li>Layer-based signature thresholds</li>
-                        <li>Emergency tier system</li>
-                        <li>Cross-layer validation rules</li>
-                        <li>GitHub App enforcement</li>
-                    </ul>
-                    <a href="https://github.com/BTCDecoded/governance" class="btn btn-outline" target="_blank">View Repository</a>
-                </div>
-            </div>
-            
-            <div class="repos-org-link">
-                <p><a href="https://github.com/BTCDecoded" class="btn btn-primary" target="_blank">View All Repositories on GitHub</a></p>
-            </div>
-        </div>
-    </section>
 
     <!-- Governance Section -->
     <section id="governance" class="section">

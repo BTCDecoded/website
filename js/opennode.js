@@ -62,7 +62,7 @@ async function createBitcoinInvoice() {
             body: JSON.stringify({
                 amount: 10,
                 currency: 'USD',
-                description: 'BTCDecoded Book - Decentralizing the Decentralizers',
+                description: 'Bitcoin Commons: Decentralizing the Decentralizers',
                 customer_email: '', // Will be collected in OpenNode checkout
                 webhook_url: `${VPS_API_URL}/api/webhook`
             })
@@ -101,7 +101,7 @@ function displayInvoice(invoice) {
                 <div style="font-size: 2rem; font-weight: bold; color: #F7931A; margin-bottom: 0.5rem;">
                     ${amount} ${currency}
                 </div>
-                <p style="color: #666; margin-bottom: 1rem;">BTCDecoded Book</p>
+                <p style="color: #666; margin-bottom: 1rem;">Bitcoin Commons: Decentralizing the Decentralizers</p>
             </div>
             
             ${invoice.lightning_invoice ? `

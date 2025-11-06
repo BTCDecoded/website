@@ -154,7 +154,23 @@ p {
     font-size: 1.25rem;
     color: var(--text-secondary);
     max-width: 800px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 2rem;
+}
+
+.framework-badge {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.framework-badge a {
+    color: var(--bitcoin-orange);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.framework-badge a:hover {
+    text-decoration: underline;
 }
 
 /* Buttons */
@@ -326,6 +342,13 @@ p {
     background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
 }
 
+.repos-org-link {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+}
+
 /* Governance */
 .governance-details {
     display: grid;
@@ -495,6 +518,79 @@ code {
     border: 1px solid var(--border);
 }
 
+/* Download Section */
+.download-coming {
+    background: var(--code-background);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+.download-coming ul {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.download-coming li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.download-coming li:before {
+    content: "•";
+    color: var(--bitcoin-orange);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.download-note {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.download-note a {
+    color: var(--bitcoin-orange);
+    text-decoration: none;
+}
+
+.download-note a:hover {
+    text-decoration: underline;
+}
+
+/* Implementation Features */
+.implementation-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+@media (min-width: 768px) {
+    .implementation-features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.feature-item {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--code-background);
+}
+
+.feature-item h3 {
+    color: var(--bitcoin-orange);
+    margin-bottom: 1rem;
+}
+
+.feature-item p {
+    margin-bottom: 0.75rem;
+}
+
 /* Footer */
 .footer {
     background: var(--code-background);
@@ -510,8 +606,31 @@ code {
 
 @media (min-width: 768px) {
     .footer-content {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
+}
+
+.footer-framework {
+    padding: 1rem 0;
+}
+
+.footer-framework h4 {
+    color: var(--bitcoin-orange);
+    margin-bottom: 1rem;
+}
+
+.footer-framework p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.footer-framework a {
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.footer-framework a:hover {
+    color: var(--bitcoin-orange);
 }
 
 .footer h4 {

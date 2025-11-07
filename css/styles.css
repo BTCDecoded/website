@@ -771,6 +771,124 @@ code {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Commons Section */
+.commons-intro {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.commons-intro p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.commons-intro a {
+    color: var(--bitcoin-orange);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.commons-intro a:hover {
+    text-decoration: underline;
+}
+
+.commons-with-chart {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+@media (min-width: 1024px) {
+    .commons-with-chart {
+        grid-template-columns: 1.2fr 1fr;
+        gap: 3rem;
+        align-items: start;
+    }
+}
+
+.commons-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: var(--code-background);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    border-left: 4px solid var(--bitcoin-orange);
+}
+
+.commons-content h3 {
+    color: var(--bitcoin-orange);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.commons-content p {
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.commons-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.commons-content li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    border-bottom: 1px solid var(--border);
+}
+
+.commons-content li:last-child {
+    border-bottom: none;
+}
+
+.commons-content li:before {
+    content: "•";
+    color: var(--bitcoin-orange);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.commons-content strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.commons-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.commons-chart {
+    position: sticky;
+    top: 80px;
+    text-align: center;
+    max-width: 100%;
+}
+
+.commons-chart img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 /* Status Warning */
 .status-warning {
     background: #fff3cd;

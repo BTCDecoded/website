@@ -234,6 +234,24 @@ p {
 }
 
 /* Architecture */
+.architecture-diagram {
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.architecture-diagram img {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.diagram-caption {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
 .architecture {
     margin: 3rem 0;
 }

@@ -582,26 +582,119 @@ code {
 }
 
 /* Download Section */
-.download-coming {
-    background: var(--code-background);
-    padding: 2rem;
+.download-card {
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.download-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.download-header h3 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.download-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.download-status {
+    background: #fff8f0;
+    border: 1px solid #ffc107;
+    border-left: 4px solid var(--bitcoin-orange);
     border-radius: 8px;
-    border: 1px solid var(--border);
+    padding: 1.5rem;
     margin: 2rem 0;
 }
 
-.download-coming ul {
-    list-style: none;
-    margin: 1rem 0;
+.status-badge {
+    font-weight: 600;
+    color: var(--bitcoin-orange);
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
 }
 
-.download-coming li {
+.status-note {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.status-note a {
+    color: var(--bitcoin-orange);
+    text-decoration: underline;
+}
+
+.download-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .download-options {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.download-option {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--code-background);
+}
+
+.download-option.available {
+    border-color: #4CAF50;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.05) 0%, var(--code-background) 100%);
+}
+
+.download-option.coming-soon {
+    border-color: var(--border);
+    opacity: 0.8;
+}
+
+.download-option h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.download-option p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.download-option ul {
+    list-style: none;
+    margin: 1rem 0 0 0;
+    padding: 0;
+}
+
+.download-option li {
     padding: 0.5rem 0;
     padding-left: 1.5rem;
     position: relative;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
-.download-coming li:before {
+.download-option li:before {
     content: "•";
     color: var(--bitcoin-orange);
     position: absolute;

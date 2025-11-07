@@ -163,7 +163,6 @@
                 
                 <div class="architecture-note">
                     <p><strong>Dependency Chain:</strong> Orange Paper → bllvm-consensus (formally verified with 176 Kani proofs) → bllvm-protocol → bllvm-node → bllvm-sdk → governance + governance-app. All consensus decisions flow through the mathematically proven bllvm-consensus layer.</p>
-                    <p><strong>⚠️ Status:</strong> Phase 1 (Infrastructure Building) - System is unreleased and untested in production. Governance rules are not yet enforced. See <a href="https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md" target="_blank">System Status</a> for verified implementation details.</p>
                 </div>
             </div>
         </div>
@@ -172,21 +171,36 @@
     <!-- Download Section -->
     <section id="download" class="section">
         <div class="container">
-            <h2>Download BTCDecoded</h2>
+            <h2>Download BLLVM</h2>
             <div class="content">
-                <p class="status-warning"><strong>⚠️ Phase 1 Status:</strong> BTCDecoded is in active development. Infrastructure is complete but governance rules are not yet enforced. System is unreleased and untested in production. Do not deploy in production until Phase 2 activation.</p>
-                
-                <p>Download the BTCDecoded Bitcoin node implementation. Binaries and packages will be available soon.</p>
-                
-                <div class="download-coming">
-                    <p><strong>Coming Soon:</strong></p>
-                    <ul>
-                        <li>Executables (Linux, macOS, Windows)</li>
-                        <li>RPM packages</li>
-                        <li>DEB packages</li>
-                        <li>Source code releases</li>
-                    </ul>
-                    <p class="download-note">Check <a href="https://github.com/BTCDecoded/bllvm-node/releases" target="_blank">GitHub releases</a> for current source code. See <a href="https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md" target="_blank">System Status</a> for verified implementation details.</p>
+                <div class="download-card">
+                    <div class="download-header">
+                        <h3>Get BLLVM</h3>
+                        <p class="download-subtitle">Bitcoin node implementation with formal verification</p>
+                    </div>
+                    
+                    <div class="download-status">
+                        <p class="status-badge">Phase 1: Infrastructure Complete</p>
+                        <p class="status-note">System is unreleased and untested in production. Governance rules not yet enforced. See <a href="https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md" target="_blank">System Status</a> for details.</p>
+                    </div>
+                    
+                    <div class="download-options">
+                        <div class="download-option available">
+                            <h4>Source Code</h4>
+                            <p>Available now on GitHub</p>
+                            <a href="https://github.com/BTCDecoded/bllvm-node/releases" class="btn btn-primary" target="_blank">View Releases</a>
+                        </div>
+                        
+                        <div class="download-option coming-soon">
+                            <h4>Binaries & Packages</h4>
+                            <p>Coming soon after Phase 2 activation</p>
+                            <ul>
+                                <li>Executables (Linux, macOS, Windows)</li>
+                                <li>RPM packages</li>
+                                <li>DEB packages</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -195,7 +209,7 @@
     <!-- Orange Paper Section -->
     <section id="orange-paper" class="section">
         <div class="container">
-            <h2>The Orange Paper</h2>
+            <h2>The Orange Paper <sup>(bllvm-spec)</sup></h2>
             <h3>Mathematical Specification of Bitcoin Consensus</h3>
             <div class="content">
                 <p>The Orange Paper is the first complete mathematical specification of Bitcoin's consensus protocol. Unlike previous descriptions, this specification is derived entirely from the current Bitcoin Core codebase and represents the protocol as it exists today.</p>

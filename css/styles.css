@@ -606,6 +606,30 @@ code {
     text-decoration: underline;
 }
 
+/* Status Warning */
+.status-warning {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-left: 4px solid #ff9800;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    color: #856404;
+}
+
+.status-warning strong {
+    color: #856404;
+}
+
+.status-warning a {
+    color: #856404;
+    text-decoration: underline;
+}
+
+.status-warning a:hover {
+    color: #664d03;
+}
+
 /* Implementation Features */
 .implementation-features {
     display: grid;

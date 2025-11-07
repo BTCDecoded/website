@@ -49,7 +49,7 @@
             <div class="hero-ctas">
                 <a href="#book" class="btn btn-primary">Read the Book</a>
                 <a href="#repositories" class="btn btn-secondary">Explore Repositories</a>
-                <a href="https://github.com/BTCDecoded/the-orange-paper" class="btn btn-outline" target="_blank">Read the Orange Paper</a>
+                <a href="https://github.com/BTCDecoded/bllvm-spec" class="btn btn-outline" target="_blank">Read the Orange Paper</a>
             </div>
         </div>
     </section>
@@ -87,13 +87,14 @@
         <div class="container">
             <h2>Architecture</h2>
             <div class="content">
-                <p>BTCDecoded's 6-tier stack enforces correctness through mathematical specification and formal verification. The Orange Paper provides the mathematical foundation; consensus-proof implements it with formal verification; all higher layers depend directly on consensus-proof.</p>
+                <p>BTCDecoded's 7-repository stack enforces correctness through mathematical specification and formal verification. The Orange Paper provides the mathematical foundation; bllvm-consensus implements it with formal verification (176 Kani proofs); all higher layers depend directly on bllvm-consensus.</p>
+                <p class="status-warning"><strong>⚠️ Phase 1 Status:</strong> Infrastructure complete but not yet activated. Governance rules are not enforced. System is unreleased and untested in production. See <a href="https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md" target="_blank">System Status</a> for details.</p>
                 
                 <div class="architecture">
                     <div class="layer layer-foundation">
                         <div class="layer-number">1</div>
                         <div class="layer-content">
-                            <h3><a href="https://github.com/BTCDecoded/the-orange-paper" target="_blank">the-orange-paper</a></h3>
+                            <h3><a href="https://github.com/BTCDecoded/bllvm-spec" target="_blank">bllvm-spec</a></h3>
                             <p class="layer-type">Mathematical Specification</p>
                             <p>Complete mathematical specification of Bitcoin consensus extracted from Bitcoin Core. Includes the 21 million supply convergence proof (Theorem 6.1).</p>
                         </div>
@@ -102,35 +103,35 @@
                     <div class="layer layer-core">
                         <div class="layer-number">2</div>
                         <div class="layer-content">
-                            <h3><a href="https://github.com/BTCDecoded/consensus-proof" target="_blank">consensus-proof</a></h3>
+                            <h3><a href="https://github.com/BTCDecoded/bllvm-consensus" target="_blank">bllvm-consensus</a></h3>
                             <p class="layer-type">Formally Verified Implementation</p>
                             <p>Pure Rust implementation of Orange Paper functions with <strong>Kani model checking</strong> for formal verification. All consensus decisions are mathematically proven. UTXO set operations verified for consistency and double-spend prevention.</p>
-                            <p class="tech-detail"><strong>Formal Verification:</strong> Chain selection, block subsidy, proof-of-work, transaction validation all verified with bounded model checking.</p>
+                            <p class="tech-detail"><strong>Formal Verification:</strong> 176 Kani proofs verified in source code. Chain selection, block subsidy (21M limit proof), proof-of-work, transaction validation all verified with bounded model checking.</p>
                         </div>
                     </div>
                     
                     <div class="layer">
                         <div class="layer-number">3</div>
                         <div class="layer-content">
-                            <h3><a href="https://github.com/BTCDecoded/protocol-engine" target="_blank">protocol-engine</a></h3>
+                            <h3><a href="https://github.com/BTCDecoded/bllvm-protocol" target="_blank">bllvm-protocol</a></h3>
                             <p class="layer-type">Protocol Abstraction</p>
-                            <p>Bitcoin variant abstraction (mainnet, testnet, regtest) built on consensus-proof. All consensus calls go through the formally verified layer.</p>
+                            <p>Bitcoin variant abstraction (mainnet, testnet, regtest) built on bllvm-consensus. All consensus calls go through the formally verified layer.</p>
                         </div>
                     </div>
                     
                     <div class="layer">
                         <div class="layer-number">4</div>
                         <div class="layer-content">
-                            <h3><a href="https://github.com/BTCDecoded/reference-node" target="_blank">reference-node</a></h3>
+                            <h3><a href="https://github.com/BTCDecoded/bllvm-node" target="_blank">bllvm-node</a></h3>
                             <p class="layer-type">Full Node</p>
-                            <p>Complete Bitcoin node using protocol-engine and consensus-proof. Adds storage, networking, and RPC. <strong>Optional features:</strong> Iroh QUIC transport (NAT traversal), Quinn QUIC transport, UTXO commitments (faster initial sync).</p>
+                            <p>Complete Bitcoin node using bllvm-protocol and bllvm-consensus. Adds storage, networking, and RPC. <strong>Optional features:</strong> Iroh QUIC transport (NAT traversal), Quinn QUIC transport, UTXO commitments (faster initial sync).</p>
                         </div>
                     </div>
                     
                     <div class="layer">
                         <div class="layer-number">5</div>
                         <div class="layer-content">
-                            <h3><a href="https://github.com/BTCDecoded/developer-sdk" target="_blank">developer-sdk</a></h3>
+                            <h3><a href="https://github.com/BTCDecoded/bllvm-sdk" target="_blank">bllvm-sdk</a></h3>
                             <p class="layer-type">Governance Infrastructure</p>
                             <p>Cryptographic primitives for governance: key management, multisig, message signing. Built for governance enforcement, not consensus.</p>
                         </div>
@@ -140,14 +141,24 @@
                         <div class="layer-number">6</div>
                         <div class="layer-content">
                             <h3><a href="https://github.com/BTCDecoded/governance" target="_blank">governance</a></h3>
+                            <p class="layer-type">Governance Configuration</p>
+                            <p>Central source of truth for governance rules, layer hierarchy, and emergency tier system. Defines who can merge what, and when.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-number">7</div>
+                        <div class="layer-content">
+                            <h3><a href="https://github.com/BTCDecoded/governance-app" target="_blank">governance-app</a></h3>
                             <p class="layer-type">Cryptographic Enforcement</p>
-                            <p>GitHub App enforcing governance rules through signature verification and review periods. Uses developer-sdk for cryptographic operations.</p>
+                            <p>GitHub App enforcing governance rules through signature verification and review periods. Uses bllvm-sdk for cryptographic operations. <strong>Phase 1:</strong> Infrastructure complete, enforcement not yet activated.</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="architecture-note">
-                    <p><strong>Dependency Chain:</strong> Orange Paper → consensus-proof (formally verified) → protocol-engine → reference-node → developer-sdk → governance. All consensus decisions flow through the mathematically proven consensus-proof layer.</p>
+                    <p><strong>Dependency Chain:</strong> Orange Paper → bllvm-consensus (formally verified with 176 Kani proofs) → bllvm-protocol → bllvm-node → bllvm-sdk → governance + governance-app. All consensus decisions flow through the mathematically proven bllvm-consensus layer.</p>
+                    <p><strong>⚠️ Status:</strong> Phase 1 (Infrastructure Building) - System is unreleased and untested in production. Governance rules are not yet enforced. See <a href="https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md" target="_blank">System Status</a> for verified implementation details.</p>
                 </div>
             </div>
         </div>
@@ -158,17 +169,20 @@
         <div class="container">
             <h2>Download BTCDecoded</h2>
             <div class="content">
-                <p>Download the BTCDecoded Bitcoin node implementation. Binaries and packages will be available soon.</p>
+                <p class="status-warning"><strong>⚠️ Phase 1 Status:</strong> BTCDecoded is in active development. Infrastructure is complete but governance rules are not yet enforced. System is unreleased and untested in production. Do not deploy in production until Phase 2 activation.</p>
+                
+                <p>Download the BTCDecoded Bitcoin node implementation. Binaries and packages will be available after Phase 2 activation.</p>
                 
                 <div class="download-coming">
-                    <p><strong>Coming Soon:</strong></p>
+                    <p><strong>Current Status:</strong></p>
                     <ul>
-                        <li>Executables (Linux, macOS, Windows)</li>
-                        <li>RPM packages</li>
-                        <li>DEB packages</li>
-                        <li>Source code releases</li>
+                        <li>✅ Source code available on GitHub</li>
+                        <li>✅ All 7 repositories implemented</li>
+                        <li>✅ 176 Kani proofs for formal verification</li>
+                        <li>⚠️ Phase 1: Infrastructure complete, not yet activated</li>
+                        <li>⏳ Phase 2: Governance enforcement (3-6 months)</li>
                     </ul>
-                    <p class="download-note">Check <a href="https://github.com/BTCDecoded/reference-node/releases" target="_blank">GitHub releases</a> for current source code.</p>
+                    <p class="download-note">Check <a href="https://github.com/BTCDecoded/bllvm-node/releases" target="_blank">GitHub releases</a> for current source code. See <a href="https://github.com/BTCDecoded/.github/blob/main/SYSTEM_STATUS.md" target="_blank">System Status</a> for verified implementation details.</p>
                 </div>
             </div>
         </div>
@@ -191,7 +205,7 @@
                     <code>TotalSupply(∞) = H × 50 × C × Σ(k=0 to 63) 2^(-k) ≈ 21 × 10^6 × C</code>
                 </div>
                 
-                <a href="https://github.com/BTCDecoded/the-orange-paper" class="btn btn-primary" target="_blank">Read Full Paper</a>
+                <a href="https://github.com/BTCDecoded/bllvm-spec" class="btn btn-primary" target="_blank">Read Full Paper</a>
             </div>
         </div>
     </section>

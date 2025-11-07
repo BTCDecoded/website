@@ -234,12 +234,35 @@ p {
 }
 
 /* Architecture */
-.architecture-diagram {
+.architecture-with-diagram {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
     margin: 3rem 0;
+}
+
+@media (min-width: 1024px) {
+    .architecture-with-diagram {
+        grid-template-columns: 1.2fr 1fr;
+        align-items: start;
+    }
+}
+
+.architecture-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.architecture-diagram {
+    position: sticky;
+    top: 80px;
     text-align: center;
 }
 
 .architecture-diagram img {
+    width: 100%;
+    height: auto;
     border: 1px solid var(--border);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -250,10 +273,11 @@ p {
     font-size: 0.9rem;
     color: var(--text-secondary);
     font-style: italic;
+    line-height: 1.5;
 }
 
 .architecture {
-    margin: 3rem 0;
+    margin: 0;
 }
 
 .layer {
@@ -582,6 +606,12 @@ code {
 }
 
 /* Download Section */
+.download-intro {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
 .download-card {
     background: white;
     border: 2px solid var(--border);
@@ -589,25 +619,6 @@ code {
     padding: 2.5rem;
     margin: 2rem 0;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.download-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid var(--border);
-}
-
-.download-header h3 {
-    font-size: 2rem;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-}
-
-.download-subtitle {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    margin: 0;
 }
 
 .download-status {
@@ -715,6 +726,41 @@ code {
 
 .download-note a:hover {
     text-decoration: underline;
+}
+
+/* Orange Paper with Diagram */
+.orange-paper-with-diagram {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (min-width: 1024px) {
+    .orange-paper-with-diagram {
+        grid-template-columns: 1.2fr 1fr;
+        align-items: start;
+    }
+}
+
+.orange-paper-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.coverage-diagram {
+    position: sticky;
+    top: 80px;
+    text-align: center;
+}
+
+.coverage-diagram img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Status Warning */

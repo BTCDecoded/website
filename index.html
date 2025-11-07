@@ -84,14 +84,11 @@
         <div class="container">
             <h2>Architecture</h2>
             <div class="content">
-                <p>BTCDecoded's 7-repository stack enforces correctness through mathematical specification and formal verification. The Orange Paper provides the mathematical foundation; bllvm-consensus implements it with formal verification (176 Kani proofs); all higher layers depend directly on bllvm-consensus.</p>
-                
-                <div class="architecture-diagram">
-                    <img src="assets/images/stack.png" alt="BLLVM Stack Architecture" style="max-width: 100%; height: auto; margin: 2rem 0;">
-                    <p class="diagram-caption">BLLVM architecture showing bllvm-spec (Orange Paper) as the foundation, bllvm-consensus as the core implementation with verification paths (Kani proofs, spec drift detection, hash verification), and dependent components (bllvm-protocol, bllvm-node, bllvm-sdk) building on the verified consensus layer.</p>
-                </div>
-                
-                <div class="architecture">
+                <div class="architecture-with-diagram">
+                    <div class="architecture-content">
+                        <p>BTCDecoded's 7-repository stack enforces correctness through mathematical specification and formal verification. The Orange Paper provides the mathematical foundation; bllvm-consensus implements it with formal verification (176 Kani proofs); all higher layers depend directly on bllvm-consensus.</p>
+                        
+                        <div class="architecture">
                     <div class="layer layer-foundation">
                         <div class="layer-number">1</div>
                         <div class="layer-content">
@@ -157,8 +154,15 @@
                     </div>
                 </div>
                 
-                <div class="architecture-note">
-                    <p><strong>Dependency Chain:</strong> Orange Paper → bllvm-consensus (formally verified with 176 Kani proofs) → bllvm-protocol → bllvm-node → bllvm-sdk → governance + governance-app. All consensus decisions flow through the mathematically proven bllvm-consensus layer.</p>
+                        <div class="architecture-note">
+                            <p><strong>Dependency Chain:</strong> Orange Paper → bllvm-consensus (formally verified with 176 Kani proofs) → bllvm-protocol → bllvm-node → bllvm-sdk → governance + governance-app. All consensus decisions flow through the mathematically proven bllvm-consensus layer.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="architecture-diagram">
+                        <img src="assets/images/stack.png" alt="BLLVM Stack Architecture">
+                        <p class="diagram-caption">BLLVM architecture showing bllvm-spec (Orange Paper) as the foundation, bllvm-consensus as the core implementation with verification paths (Kani proofs, spec drift detection, hash verification), and dependent components (bllvm-protocol, bllvm-node, bllvm-sdk) building on the verified consensus layer.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,11 +173,8 @@
         <div class="container">
             <h2>Download BLLVM</h2>
             <div class="content">
+                <p class="download-intro">Bitcoin node implementation with formal verification</p>
                 <div class="download-card">
-                    <div class="download-header">
-                        <h3>Get BLLVM</h3>
-                        <p class="download-subtitle">Bitcoin node implementation with formal verification</p>
-                    </div>
                     
                     <div class="download-status">
                         <p class="status-badge">Phase 1: Infrastructure Complete</p>
@@ -207,23 +208,27 @@
         <div class="container">
             <h2>The Orange Paper (bllvm-spec)</h2>
             <div class="content">
-                <p>The Orange Paper is the first complete mathematical specification of Bitcoin's consensus protocol. Unlike previous descriptions, this specification is derived entirely from the current Bitcoin Core codebase and represents the protocol as it exists today. The specification is available in the <a href="https://github.com/BTCDecoded/bllvm-spec" target="_blank" rel="noopener">bllvm-spec repository</a>.</p>
-                
-                <p>Using AI-assisted extraction, we've formalized Bitcoin's consensus rules into mathematical functions that can be used to build alternative implementations without consensus risk.</p>
-                
-                <div class="excerpt">
-                    <h4>Supply Convergence Proof</h4>
-                    <p><strong>Theorem 6.1</strong> (Supply Convergence): The total supply converges to exactly 21 million BTC.</p>
-                    <p><em>Proof:</em> The total supply can be expressed as a sum of geometric series. For each halving period k, the subsidy is 50 × C × 2^(-k) for H consecutive blocks. The total supply is:</p>
-                    <code>TotalSupply(∞) = H × 50 × C × Σ(k=0 to 63) 2^(-k) ≈ 21 × 10^6 × C</code>
+                <div class="orange-paper-with-diagram">
+                    <div class="orange-paper-content">
+                        <p>The Orange Paper is the first complete mathematical specification of Bitcoin's consensus protocol. Unlike previous descriptions, this specification is derived entirely from the current Bitcoin Core codebase and represents the protocol as it exists today. The specification is available in the <a href="https://github.com/BTCDecoded/bllvm-spec" target="_blank" rel="noopener">bllvm-spec repository</a>.</p>
+                        
+                        <p>Using AI-assisted extraction, we've formalized Bitcoin's consensus rules into mathematical functions that can be used to build alternative implementations without consensus risk.</p>
+                        
+                        <div class="excerpt">
+                            <h4>Supply Convergence Proof</h4>
+                            <p><strong>Theorem 6.1</strong> (Supply Convergence): The total supply converges to exactly 21 million BTC.</p>
+                            <p><em>Proof:</em> The total supply can be expressed as a sum of geometric series. For each halving period k, the subsidy is 50 × C × 2^(-k) for H consecutive blocks. The total supply is:</p>
+                            <code>TotalSupply(∞) = H × 50 × C × Σ(k=0 to 63) 2^(-k) ≈ 21 × 10^6 × C</code>
+                        </div>
+                        
+                        <a href="https://github.com/BTCDecoded/bllvm-spec" class="btn btn-primary" target="_blank">Read Full Paper</a>
+                    </div>
+                    
+                    <div class="coverage-diagram">
+                        <img src="assets/images/Consensus-Coverage-Comparison.png" alt="Consensus Coverage Comparison">
+                        <p class="diagram-caption">Bitcoin Core achieves 25% coverage through testing alone. Bitcoin Commons achieves 65% formal verification coverage (176 Kani proofs) plus 77% test coverage.</p>
+                    </div>
                 </div>
-                
-                <div class="coverage-diagram" style="margin: 2rem 0;">
-                    <img src="assets/images/Consensus-Coverage-Comparison.png" alt="Consensus Coverage Comparison" style="max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px;">
-                    <p class="diagram-caption">Bitcoin Core achieves 25% coverage through testing alone. Bitcoin Commons achieves 65% formal verification coverage (176 Kani proofs) plus 77% test coverage.</p>
-                </div>
-                
-                <a href="https://github.com/BTCDecoded/bllvm-spec" class="btn btn-primary" target="_blank">Read Full Paper</a>
             </div>
         </div>
     </section>

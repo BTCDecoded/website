@@ -870,17 +870,32 @@ code {
     margin: 3rem 0;
     text-align: center;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.commons-chart-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    display: block;
 }
 
 .commons-chart-fullwidth img {
     max-width: 100%;
     width: 100%;
     height: auto;
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: block;
+    object-fit: contain;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Status Warning */

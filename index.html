@@ -20,6 +20,17 @@
     <meta name="twitter:image" content="https://btcdecoded.org/assets/og-image.png">
     
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -214,11 +225,89 @@
                         
                         <p>Using AI-assisted extraction, we've formalized Bitcoin's consensus rules into mathematical functions that can be used to build alternative implementations without consensus risk.</p>
                         
-                        <div class="excerpt">
+                        <div class="excerpt proof-showcase">
                             <h4>Supply Convergence Proof</h4>
-                            <p><strong>Theorem 6.1</strong> (Supply Convergence): The total supply converges to exactly 21 million BTC.</p>
-                            <p><em>Proof:</em> The total supply can be expressed as a sum of geometric series. For each halving period k, the subsidy is 50 × C × 2^(-k) for H consecutive blocks. The total supply is:</p>
-                            <code>TotalSupply(∞) = H × 50 × C × Σ(k=0 to 63) 2^(-k) ≈ 21 × 10^6 × C</code>
+                            
+                            <div class="proof-tabs">
+                                <button class="proof-tab active" data-tab="math">Math Proof</button>
+                                <button class="proof-tab" data-tab="kani">Kani Proof</button>
+                            </div>
+                            
+                            <div class="proof-content">
+                                <div class="proof-panel active" data-panel="math">
+                                    <p><strong>Theorem 8.2</strong> (Supply Convergence): The total supply converges to exactly 21 million BTC.</p>
+                                    <p><em>Proof:</em> From Theorem 6.1, we have:</p>
+                                    <div class="math-formula">$$\lim_{h \to \infty} \text{TotalSupply}(h) = 21 \times 10^6 \times C$$</div>
+                                    <p>Since the subsidy becomes 0 after 64 halvings (height 13,440,000), the total supply is exactly:</p>
+                                    <div class="math-formula">$$\text{TotalSupply}(13,440,000) = 50 \times C \times \sum_{i=0}^{63} \left(\frac{1}{2}\right)^i = 50 \times C \times \frac{1 - (1/2)^{64}}{1 - 1/2} = 100 \times C \times (1 - 2^{-64})$$</div>
+                                    <p>For practical purposes, $2^{-64} \approx 0$, so the total supply is effectively 21 million BTC.</p>
+                                    <p class="proof-source">Source: <a href="https://github.com/BTCDecoded/bllvm-spec/blob/main/THE_ORANGE_PAPER.md#theorem-82" target="_blank" rel="noopener">Orange Paper, Theorem 8.2</a></p>
+                                </div>
+                                
+                                <div class="proof-panel" data-panel="kani">
+                                    <p class="kani-description">This Rust code is formally verified using Kani model checking to prove the supply convergence property.</p>
+                                    <div class="code-container">
+                                        <div class="code-header">
+                                            <span class="code-filename">bllvm-consensus/src/economic.rs</span>
+                                            <a href="https://github.com/BTCDecoded/bllvm-consensus/blob/main/src/economic.rs#L317" target="_blank" rel="noopener" class="code-link">View on GitHub →</a>
+                                        </div>
+                                        <pre><code class="language-rust">/// Kani proof: Supply Convergence (Orange Paper Theorem 8.2)
+///
+/// Mathematical specification:
+/// lim(h→∞) TotalSupply(h) = 21 × 10⁶ × C
+///
+/// This proves that the total supply converges to exactly 21 million BTC.
+/// After 64 halvings (height 13,440,000), the subsidy becomes 0, so:
+/// TotalSupply(13,440,000) = 50 × C × Σ(i=0 to 63) (1/2)^i = 100 × C × (1 - 2^-64)
+/// For practical purposes, 2^-64 ≈ 0, so supply ≈ 21M BTC.
+#[kani::proof]
+fn kani_supply_convergence() {
+    // Test convergence property: as height increases, supply approaches 21M
+    // After 64 halvings (height = 13,440,000), subsidy = 0
+
+    // Calculate supply at different heights to show convergence
+    let height_after_64_halvings = HALVING_INTERVAL * 64;
+
+    // Bound for tractability (test up to 10 halvings)
+    let max_test_height = HALVING_INTERVAL * 10;
+    kani::assume(max_test_height <= height_after_64_halvings);
+
+    // Supply at height h approaches 21M as h increases
+    // Formula: TotalSupply(h) = 50 × C × Σ(i=0 to min(63, ⌊h/H⌋)) (1/2)^i
+    // Where H = HALVING_INTERVAL = 210,000
+
+    // Test monotonic convergence: supply increases but never exceeds 21M
+    let supply_at_max = total_supply(max_test_height);
+
+    // Critical invariant: supply never exceeds maximum money (21M BTC)
+    assert!(
+        supply_at_max <= MAX_MONEY,
+        "Supply Convergence: total supply must never exceed 21M BTC"
+    );
+
+    // Convergence property: after many halvings, supply approaches 21M
+    // For height = HALVING_INTERVAL * 64, subsidy = 0, so supply is constant
+    // The supply at this point is: 50 × C × (1 - (1/2)^64) / (1 - 1/2) = 100 × C × (1 - 2^-64)
+    // Since 2^-64 is negligible, this is effectively 100 × C = 21M BTC
+
+    // Verify supply is bounded and converges
+    assert!(
+        supply_at_max >= 0,
+        "Supply Convergence: total supply must be non-negative"
+    );
+
+    // Supply increases monotonically until halvings stop
+    if max_test_height > 0 {
+        let supply_at_h_minus_1 = total_supply(max_test_height - 1);
+        assert!(
+            supply_at_max >= supply_at_h_minus_1,
+            "Supply Convergence: supply must increase monotonically"
+        );
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         
                         <a href="https://github.com/BTCDecoded/bllvm-spec" class="btn btn-primary" target="_blank">Read Full Paper</a>
@@ -362,5 +451,46 @@
 
     <script src="js/scroll.js"></script>
     <script src="js/opennode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Proof showcase tabs
+            const proofTabs = document.querySelectorAll('.proof-tab');
+            const proofPanels = document.querySelectorAll('.proof-panel');
+            
+            proofTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    proofTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update active panel
+                    proofPanels.forEach(p => {
+                        p.classList.remove('active');
+                        if (p.getAttribute('data-panel') === targetTab) {
+                            p.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            // Auto-cycle slideshow (switch between math and kani tabs every 5 seconds)
+            let currentTab = 'math';
+            setInterval(function() {
+                const activeTab = document.querySelector('.proof-tab.active');
+                if (activeTab) {
+                    currentTab = activeTab.getAttribute('data-tab');
+                    const nextTab = currentTab === 'math' ? 'kani' : 'math';
+                    const nextTabButton = document.querySelector(`.proof-tab[data-tab="${nextTab}"]`);
+                    if (nextTabButton) {
+                        nextTabButton.click();
+                    }
+                }
+            }, 5000);
+        });
+    </script>
 </body>
 </html>

@@ -480,9 +480,9 @@ fn kani_supply_convergence() {
                 });
             });
             
-            // Auto-cycle slideshow (switch between math and kani tabs every 5 seconds)
+            // Auto-cycle slideshow (switch between math and kani tabs every 10 seconds)
             let currentTab = 'math';
-            setInterval(function() {
+            let slideshowInterval = setInterval(function() {
                 const activeTab = document.querySelector('.proof-tab.active');
                 if (activeTab) {
                     currentTab = activeTab.getAttribute('data-tab');
@@ -492,7 +492,28 @@ fn kani_supply_convergence() {
                         nextTabButton.click();
                     }
                 }
-            }, 5000);
+            }, 10000);
+            
+            // Pause slideshow on manual tab click
+            proofTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    clearInterval(slideshowInterval);
+                    // Restart after 15 seconds of inactivity
+                    setTimeout(function() {
+                        slideshowInterval = setInterval(function() {
+                            const activeTab = document.querySelector('.proof-tab.active');
+                            if (activeTab) {
+                                currentTab = activeTab.getAttribute('data-tab');
+                                const nextTab = currentTab === 'math' ? 'kani' : 'math';
+                                const nextTabButton = document.querySelector(`.proof-tab[data-tab="${nextTab}"]`);
+                                if (nextTabButton) {
+                                    nextTabButton.click();
+                                }
+                            }
+                        }, 10000);
+                    }, 15000);
+                });
+            });
         });
     </script>
 </body>

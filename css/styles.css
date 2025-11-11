@@ -612,6 +612,8 @@ code {
 /* Proof Showcase Styles */
 .proof-showcase {
     margin-top: 1.5rem;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .proof-tabs {
@@ -647,12 +649,16 @@ code {
 .proof-content {
     position: relative;
     min-height: 500px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .proof-panel {
     display: none;
     animation: fadeIn 0.3s ease;
     min-height: 500px;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .proof-panel.active {
@@ -682,6 +688,8 @@ code {
     border-radius: 4px;
     text-align: center;
     overflow-x: auto;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .proof-source {
@@ -711,6 +719,7 @@ code {
     border-radius: 8px;
     overflow: hidden;
     margin-top: 1rem;
+    max-width: 100%;
 }
 
 .code-header {
@@ -743,8 +752,12 @@ code {
     margin: 0;
     padding: 1.5rem;
     overflow-x: auto;
+    overflow-y: hidden;
     background-color: #2d2d2d;
     color: #f8f8f2;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .code-container code {
@@ -934,6 +947,8 @@ code {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .coverage-diagram {

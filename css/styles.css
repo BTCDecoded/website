@@ -683,13 +683,18 @@ code {
 
 .math-formula {
     margin: 1.5rem 0;
-    padding: 1rem;
+    padding: 1.5rem;
     background-color: #f5f5f5;
     border-radius: 4px;
     text-align: center;
     overflow-x: auto;
     max-width: 100%;
     word-wrap: break-word;
+    font-size: 1.1rem;
+}
+
+.math-formula .MathJax {
+    font-size: 1.2em !important;
 }
 
 .proof-source {
@@ -762,8 +767,8 @@ code {
 
 .code-container code {
     font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.7;
     background: none;
     padding: 0;
     border: none;
@@ -800,7 +805,16 @@ code {
     
     .code-container pre {
         padding: 1rem;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+    }
+    
+    .math-formula {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .math-formula .MathJax {
+        font-size: 1.1em !important;
     }
 }
 

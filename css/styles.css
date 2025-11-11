@@ -646,12 +646,13 @@ code {
 
 .proof-content {
     position: relative;
-    min-height: 300px;
+    min-height: 500px;
 }
 
 .proof-panel {
     display: none;
     animation: fadeIn 0.3s ease;
+    min-height: 500px;
 }
 
 .proof-panel.active {
@@ -777,7 +778,11 @@ code {
     }
     
     .proof-content {
-        min-height: 250px;
+        min-height: 400px;
+    }
+    
+    .proof-panel {
+        min-height: 400px;
     }
     
     .code-container pre {

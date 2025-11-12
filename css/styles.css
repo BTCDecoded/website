@@ -670,8 +670,8 @@ code {
     overflow-y: auto;
     overflow-x: hidden;
     box-sizing: border-box;
-    padding: 0.75rem;
-    padding-right: calc(0.75rem + 8px);
+    padding: 1rem;
+    padding-right: calc(1rem + 8px);
 }
 
 .proof-panel.active {
@@ -698,32 +698,61 @@ code {
 }
 
 .proof-panel p {
-    margin-bottom: 0.75rem;
-    line-height: 1.5;
-    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.proof-panel p strong {
+    font-size: 1.05rem;
+    color: #333;
+}
+
+.proof-panel p em {
+    font-style: italic;
+    color: #555;
 }
 
 /* Ensure consistent layout structure for both panels - padding handled above */
 
 .math-formula {
-    margin: 1rem 0;
-    padding: 1rem;
+    margin: 1.5rem 0;
+    padding: 1.25rem;
     background-color: #f5f5f5;
-    border-radius: 4px;
+    border-radius: 6px;
     text-align: center;
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
     max-width: 100%;
+    width: 100%;
     word-wrap: break-word;
-    font-size: 0.9rem;
-    flex-shrink: 0;
+    font-size: 1.1rem;
+    flex-shrink: 1;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .math-formula .MathJax {
-    font-size: 0.9em !important;
-    max-width: 100%;
-    overflow-x: auto;
+    font-size: 1.15em !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    display: inline-block !important;
+    text-align: center;
+}
+
+.math-formula .MathJax_Display {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    margin: 0.5em 0 !important;
+}
+
+.math-formula .MathJax_SVG,
+.math-formula .MathJax_SVG_Display {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
 }
 
 .proof-source {
@@ -849,11 +878,12 @@ code {
     
     .math-formula {
         padding: 1rem;
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin: 1rem 0;
     }
     
     .math-formula .MathJax {
-        font-size: 1.1em !important;
+        font-size: 1em !important;
     }
 }
 

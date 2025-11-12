@@ -86,7 +86,7 @@
             <div class="content">
                 <div class="architecture-with-diagram">
                     <div class="architecture-content">
-                        <p>BTCDecoded's 7-repository stack enforces correctness through mathematical specification and formal verification. The Orange Paper provides the mathematical foundation; bllvm-consensus implements it with formal verification (176 Kani proofs); all higher layers depend directly on bllvm-consensus.</p>
+                        <p>BTCDecoded's 7-repository stack enforces correctness through mathematical specification and formal verification. The Orange Paper provides the mathematical foundation; bllvm-consensus implements it with formal verification (Kani model checking); all higher layers depend directly on bllvm-consensus.</p>
                         
                         <div class="architecture">
                     <div class="layer layer-foundation">
@@ -104,7 +104,7 @@
                             <h3><a href="https://github.com/BTCDecoded/bllvm-consensus" target="_blank">bllvm-consensus</a></h3>
                             <p class="layer-type">Formally Verified Implementation</p>
                             <p>Pure Rust implementation of Orange Paper functions with <strong>Kani model checking</strong> for formal verification. All consensus decisions are mathematically proven. UTXO set operations verified for consistency and double-spend prevention.</p>
-                            <p class="tech-detail"><strong>Formal Verification:</strong> 176 Kani proofs verified in source code. Chain selection, block subsidy (21M limit proof), proof-of-work, transaction validation all verified with bounded model checking.</p>
+                            <p class="tech-detail"><strong>Formal Verification:</strong> Kani proofs verified in source code. Chain selection, block subsidy (21M limit proof), proof-of-work, transaction validation all verified with bounded model checking.</p>
                         </div>
                     </div>
                     
@@ -155,7 +155,7 @@
                 </div>
                 
                         <div class="architecture-note">
-                            <p><strong>Dependency Chain:</strong> Orange Paper → bllvm-consensus (formally verified with 176 Kani proofs) → bllvm-protocol → bllvm-node → bllvm-sdk → governance + governance-app. All consensus decisions flow through the mathematically proven bllvm-consensus layer.</p>
+                            <p><strong>Dependency Chain:</strong> Orange Paper → bllvm-consensus (formally verified with Kani model checking) → bllvm-protocol → bllvm-node → bllvm-sdk → governance + governance-app. All consensus decisions flow through the mathematically proven bllvm-consensus layer.</p>
                         </div>
                     </div>
                     

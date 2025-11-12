@@ -755,6 +755,23 @@ code {
     overflow-x: hidden !important;
 }
 
+/* Ensure MathJax SVG scales to fit container */
+.math-formula svg {
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Force MathJax to respect container width */
+.math-formula mjx-container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.math-formula mjx-math {
+    max-width: 100% !important;
+}
+
 .proof-source {
     font-size: 0.85rem;
     color: #666;

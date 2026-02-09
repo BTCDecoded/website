@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scroll for navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            if(link.id !== 'commonsNavlink') {
             e.preventDefault();
+            }
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             

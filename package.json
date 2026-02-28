@@ -1,0 +1,30 @@
+{
+  "name": "next-hash-spa-test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next build && next export && rm -rf docs/* && cp -r out/* docs && touch ./docs/.nojekyll",
+    "deploy": "npm run export && npx gh-pages -d docs",
+    "serve": "serve -l 3000 out",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.8",
+    "@mui/material": "^7.3.8",
+    "better-react-mathjax": "^3.0.0",
+    "next": "^13.5.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.30.3",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "prettier": "^3.8.1",
+    "serve": "^13.0.4"
+  }
+}

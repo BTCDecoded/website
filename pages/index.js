@@ -1,41 +1,54 @@
-import Layout from "../components/Layout";
 import Link from "next/link";
 
 export default function IndexPage() {
   return (
-    <section id="hero" class="hero">
-      <div class="container">
+    <section id="hero" className="hero">
+      <div className="container">
         <h1>BTCDecoded</h1>
-        <p class="tagline">
-          Bitcoin Decoded: Bitcoin LLVM and Cryptographic Commons
+        <p className="tagline">
+          Bitcoin Decoded — shared specification, verified consensus, forkable
+          governance
+        </p>
+        <p className="hero-lead">
+          First full implementation of{" "}
+          <a
+            href="https://thebitcoincommons.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Bitcoin Commons
+          </a>
+          : the Orange Paper (blvm-spec), formally checked consensus
+          (blvm-consensus + blvm-spec-lock), a node and SDK path, and governance
+          rules you can inspect or fork—not a new coin, a new way to build and
+          coordinate on Bitcoin.
         </p>
 
-        <div class="hero-ctas">
-          {/* <a href="#book" class="btn btn-primary">Read the Book</a>  */}
+        <div className="hero-ctas">
           <a
             href="https://docs.thebitcoincommons.org"
-            class="btn btn-secondary"
+            className="btn btn-secondary"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Documentation
           </a>
           <a
             href="https://btccommons.substack.com"
-            class="btn btn-secondary"
+            className="btn btn-secondary"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Subscribe on Substack
           </a>
-          <a href="#repositories" class="btn btn-secondary">
+          <Link href="/architecture/" className="btn btn-secondary">
             Explore Repositories
-          </a>
+          </Link>
           <a
             href="https://thebitcoincommons.org/orange-paper.html"
-            class="btn btn-outline"
+            className="btn btn-outline"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Read the Orange Paper
           </a>

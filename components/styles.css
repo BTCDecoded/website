@@ -188,6 +188,28 @@ p {
   margin-bottom: 1rem;
 }
 
+.hero-lead {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 52rem;
+  margin: 0 auto 1.75rem;
+  line-height: 1.65;
+}
+
+.hero-lead a {
+  color: var(--bitcoin-orange);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hero-lead a:hover {
+  text-decoration: underline;
+}
+
+.problem-content p + p {
+  margin-top: 1.1rem;
+}
+
 .subtitle {
   font-size: 1.25rem;
   color: var(--text-secondary);

@@ -1,11 +1,15 @@
 export default function ArchitecturePage() {
   return (
-    <section id="architecture" class="section">
-      <div class="container">
-        <h2>Architecture</h2>
-        <div class="content">
-          <div class="architecture-with-diagram">
-            <div class="architecture-content">
+    <section
+      id="architecture"
+      className="section"
+      aria-labelledby="architecture-heading"
+    >
+      <div className="container">
+        <h2 id="architecture-heading">Architecture &amp; repositories</h2>
+        <div className="content">
+          <div className="architecture-with-diagram">
+            <div className="architecture-content">
               <p>
                 6-tier architecture: Orange Paper → blvm-consensus (formally
                 verified with blvm-spec-lock) → blvm-protocol → blvm-node →
@@ -20,10 +24,10 @@ export default function ArchitecturePage() {
                 for details.
               </p>
 
-              <div class="architecture">
-                <div class="layer layer-foundation">
-                  <div class="layer-number">1</div>
-                  <div class="layer-content">
+              <div className="architecture">
+                <div className="layer layer-foundation">
+                  <div className="layer-number">1</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://thebitcoincommons.org/orange-paper.html"
@@ -33,7 +37,7 @@ export default function ArchitecturePage() {
                         blvm-spec
                       </a>
                     </h3>
-                    <p class="layer-type">Mathematical Specification</p>
+                    <p className="layer-type">Mathematical Specification</p>
                     <p>
                       Complete mathematical specification of Bitcoin consensus
                       extracted from Bitcoin Core. Includes the 21 million
@@ -42,9 +46,9 @@ export default function ArchitecturePage() {
                   </div>
                 </div>
 
-                <div class="layer layer-core">
-                  <div class="layer-number">2</div>
-                  <div class="layer-content">
+                <div className="layer layer-core">
+                  <div className="layer-number">2</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://github.com/BTCDecoded/blvm-consensus"
@@ -54,7 +58,7 @@ export default function ArchitecturePage() {
                         blvm-consensus
                       </a>
                     </h3>
-                    <p class="layer-type">Formally Verified Implementation</p>
+                    <p className="layer-type">Formally Verified Implementation</p>
                     <p>
                       Pure Rust implementation of Orange Paper functions with{" "}
                       <strong>blvm-spec-lock</strong> formal verification (Z3
@@ -62,7 +66,7 @@ export default function ArchitecturePage() {
                       proven. UTXO set operations verified for consistency and
                       double-spend prevention.
                     </p>
-                    <p class="tech-detail">
+                    <p className="tech-detail">
                       <strong>Formal Verification:</strong> blvm-spec-lock
                       proofs link code to Orange Paper specifications. Chain
                       selection, block subsidy (21M limit proof), proof-of-work,
@@ -71,9 +75,9 @@ export default function ArchitecturePage() {
                   </div>
                 </div>
 
-                <div class="layer">
-                  <div class="layer-number">3</div>
-                  <div class="layer-content">
+                <div className="layer">
+                  <div className="layer-number">3</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://github.com/BTCDecoded/blvm-protocol"
@@ -83,7 +87,7 @@ export default function ArchitecturePage() {
                         blvm-protocol
                       </a>
                     </h3>
-                    <p class="layer-type">Protocol Abstraction</p>
+                    <p className="layer-type">Protocol Abstraction</p>
                     <p>
                       Bitcoin variant abstraction (mainnet, testnet, regtest)
                       built on blvm-consensus. All consensus calls go through
@@ -92,9 +96,9 @@ export default function ArchitecturePage() {
                   </div>
                 </div>
 
-                <div class="layer">
-                  <div class="layer-number">4</div>
-                  <div class="layer-content">
+                <div className="layer">
+                  <div className="layer-number">4</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://github.com/BTCDecoded/blvm-node"
@@ -104,7 +108,7 @@ export default function ArchitecturePage() {
                         blvm-node
                       </a>
                     </h3>
-                    <p class="layer-type">Full Node Library</p>
+                    <p className="layer-type">Full Node Library</p>
                     <p>
                       Complete Bitcoin node library using blvm-protocol and
                       blvm-consensus. Adds storage, networking, and RPC.{" "}
@@ -115,9 +119,9 @@ export default function ArchitecturePage() {
                   </div>
                 </div>
 
-                <div class="layer">
-                  <div class="layer-number">5</div>
-                  <div class="layer-content">
+                <div className="layer">
+                  <div className="layer-number">5</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://github.com/BTCDecoded/blvm"
@@ -127,7 +131,7 @@ export default function ArchitecturePage() {
                         blvm
                       </a>
                     </h3>
-                    <p class="layer-type">Binary Wrapper</p>
+                    <p className="layer-type">Binary Wrapper</p>
                     <p>
                       Standalone binary executable that wraps blvm-node.
                       Provides command-line interface for running a full Bitcoin
@@ -136,9 +140,9 @@ export default function ArchitecturePage() {
                   </div>
                 </div>
 
-                <div class="layer">
-                  <div class="layer-number">6</div>
-                  <div class="layer-content">
+                <div className="layer">
+                  <div className="layer-number">6</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://github.com/BTCDecoded/blvm-sdk"
@@ -148,7 +152,7 @@ export default function ArchitecturePage() {
                         blvm-sdk
                       </a>
                     </h3>
-                    <p class="layer-type">Developer Toolkit</p>
+                    <p className="layer-type">Developer Toolkit</p>
                     <p>
                       Developer toolkit for building alternative Bitcoin
                       implementations. Provides module composition framework for
@@ -158,9 +162,9 @@ export default function ArchitecturePage() {
                   </div>
                 </div>
 
-                <div class="layer">
-                  <div class="layer-number">7</div>
-                  <div class="layer-content">
+                <div className="layer">
+                  <div className="layer-number">7</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://github.com/BTCDecoded/governance"
@@ -170,7 +174,7 @@ export default function ArchitecturePage() {
                         governance
                       </a>
                     </h3>
-                    <p class="layer-type">Governance Configuration</p>
+                    <p className="layer-type">Governance Configuration</p>
                     <p>
                       Central source of truth for governance rules, layer
                       hierarchy, and emergency tier system. Defines who can
@@ -179,9 +183,9 @@ export default function ArchitecturePage() {
                   </div>
                 </div>
 
-                <div class="layer">
-                  <div class="layer-number">8</div>
-                  <div class="layer-content">
+                <div className="layer">
+                  <div className="layer-number">8</div>
+                  <div className="layer-content">
                     <h3>
                       <a
                         href="https://github.com/BTCDecoded/blvm-commons"
@@ -191,7 +195,7 @@ export default function ArchitecturePage() {
                         blvm-commons
                       </a>
                     </h3>
-                    <p class="layer-type">Cryptographic Enforcement</p>
+                    <p className="layer-type">Cryptographic Enforcement</p>
                     <p>
                       GitHub App enforcing governance rules through signature
                       verification and review periods. Uses blvm-sdk for
@@ -202,7 +206,7 @@ export default function ArchitecturePage() {
                 </div>
               </div>
 
-              <div class="architecture-note">
+              <div className="architecture-note">
                 <p>
                   <strong>
                     All consensus decisions flow through the formally verified
@@ -212,12 +216,12 @@ export default function ArchitecturePage() {
               </div>
             </div>
 
-            <div class="architecture-diagram">
+            <div className="architecture-diagram">
               <img
                 src="https://thebitcoincommons.org/assets/images/stack.png"
                 alt="BLVM Stack Architecture"
               />
-              <p class="diagram-caption">
+              <p className="diagram-caption">
                 Orange Paper foundation → blvm-consensus (formally verified) →
                 dependent components.
               </p>

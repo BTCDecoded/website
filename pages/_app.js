@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Head from "next/head";
 import Layout from "../components/Layout";
 import NavBar from "../components/NavBar";
 import "../components/styles.css";
@@ -55,6 +56,9 @@ export default function MyApp({ Component, pageProps }) {
 
   return (
     <MathJaxContext config={mathJaxconfig}>
+      <Head>
+        <title>Bitcoin Decoded</title>
+      </Head>
       <Layout>
         <NavBar
           selectedWorkflow={selectedWorkflow}

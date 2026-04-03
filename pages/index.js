@@ -6,7 +6,7 @@ export default function IndexPage() {
       <div className="container">
         <h1>BTCDecoded</h1>
         <p className="tagline">
-          Bitcoin Decoded — shared specification, verified consensus, forkable
+          Bitcoin Decoded: shared specification, verified consensus, forkable
           governance
         </p>
         <p className="hero-lead">
@@ -20,7 +20,7 @@ export default function IndexPage() {
           </a>
           : the Orange Paper (blvm-spec), formally checked consensus
           (blvm-consensus + blvm-spec-lock), a node and SDK path, and governance
-          rules you can inspect or fork—not a new coin, a new way to build and
+          rules you can inspect or fork. Not a new coin: a new way to build and
           coordinate on Bitcoin.
         </p>
 

@@ -82,7 +82,7 @@
         <div class="container">
             <h2>Bitcoin Consensus, Decoded</h2>
             <div class="content">
-                <p>Formally verified Bitcoin implementation. Every critical function is mathematically proven against the Orange Paper specification using Z3 SMT solver.</p>
+                <p>Rust Bitcoin consensus and node stack built on the Orange Paper, with <strong>BLVM Specification Lock</strong> (Z3) on spec-locked code, plus broad tests and review. See <a href="https://docs.thebitcoincommons.org/consensus/formal-verification.html" target="_blank" rel="noopener">formal verification</a> for scope.</p>
             </div>
         </div>
     </section>
@@ -106,7 +106,7 @@
             <div class="content">
                 <div class="architecture-with-diagram">
                     <div class="architecture-content">
-                        <p>6-tier architecture: Orange Paper → blvm-consensus (formally verified with blvm-spec-lock) → blvm-protocol → blvm-node → blvm-sdk → governance. <a href="https://docs.thebitcoincommons.org/architecture/system-overview.html" target="_blank" rel="noopener">See architecture docs</a> for details.</p>
+                        <p>Six-layer stack: Orange Paper → blvm-consensus (spec-lock + tests) → blvm-protocol → blvm-node → blvm-sdk → blvm-commons (governance enforcement). <a href="https://docs.thebitcoincommons.org/architecture/system-overview.html" target="_blank" rel="noopener">See architecture docs</a> for the canonical diagram.</p>
                         
                         <div class="architecture">
                     <div class="layer layer-foundation">
@@ -122,9 +122,9 @@
                         <div class="layer-number">2</div>
                         <div class="layer-content">
                             <h3><a href="https://github.com/BTCDecoded/blvm-consensus" target="_blank" rel="noopener">blvm-consensus</a></h3>
-                            <p class="layer-type">Formally Verified Implementation</p>
-                            <p>Pure Rust implementation of Orange Paper functions with <strong>blvm-spec-lock</strong> formal verification (Z3 SMT solver). All consensus decisions are mathematically proven. UTXO set operations verified for consistency and double-spend prevention.</p>
-                            <p class="tech-detail"><strong>Formal Verification:</strong> blvm-spec-lock proofs link code to Orange Paper specifications. Chain selection, block subsidy (21M limit proof), proof-of-work, transaction validation all verified with Z3.</p>
+                            <p class="layer-type">Consensus implementation</p>
+                            <p>Pure Rust implementation of Orange Paper rules with <strong>BLVM Specification Lock</strong> (Z3 proofs on spec-locked functions), property tests, fuzzing, and integration tests.</p>
+                            <p class="tech-detail"><strong>Verification:</strong> Spec-lock ties annotated consensus code to Orange Paper contracts; see <a href="https://github.com/BTCDecoded/blvm-consensus/blob/main/docs/PROOF_LIMITATIONS.md" target="_blank" rel="noopener">proof scope</a> and <a href="https://docs.thebitcoincommons.org/consensus/formal-verification.html" target="_blank" rel="noopener">docs</a>.</p>
                         </div>
                     </div>
                     
@@ -133,7 +133,7 @@
                         <div class="layer-content">
                             <h3><a href="https://github.com/BTCDecoded/blvm-protocol" target="_blank" rel="noopener">blvm-protocol</a></h3>
                             <p class="layer-type">Protocol Abstraction</p>
-                            <p>Bitcoin variant abstraction (mainnet, testnet, regtest) built on blvm-consensus. All consensus calls go through the formally verified layer.</p>
+                            <p>Bitcoin variant abstraction (mainnet, testnet, regtest) built on blvm-consensus. Consensus rules are enforced in <strong>blvm-consensus</strong>, not reimplemented in the node.</p>
                         </div>
                     </div>
                     
@@ -184,13 +184,13 @@
                 </div>
                 
                         <div class="architecture-note">
-                            <p><strong>All consensus decisions flow through the formally verified blvm-consensus layer.</strong></p>
+                            <p><strong>Consensus validation is centralized in blvm-consensus</strong> (spec-lock + tests on critical paths).</p>
                         </div>
                     </div>
                     
                     <div class="architecture-diagram">
                         <img src="https://thebitcoincommons.org/assets/images/stack.png" alt="BLVM Stack Architecture">
-                        <p class="diagram-caption">Orange Paper foundation → blvm-consensus (formally verified) → dependent components.</p>
+                        <p class="diagram-caption">Orange Paper → blvm-consensus (spec-lock + tests) → protocol, node, SDK, governance.</p>
                     </div>
                 </div>
             </div>
@@ -202,7 +202,7 @@
         <div class="container">
             <h2>Download BLVM</h2>
             <div class="content">
-                <p class="download-intro">Bitcoin node implementation with formal verification</p>
+                <p class="download-intro">Bitcoin node implementation with Orange Paper spec and layered verification</p>
                 <div class="download-card">
                     
                     <div class="download-status">

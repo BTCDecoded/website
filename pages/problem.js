@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function ProblemContentPage() {
   return (
     <>
@@ -49,14 +51,19 @@ export default function ProblemContentPage() {
               principles through cryptographic enforcement.
             </p>
 
-            <a
-              href="https://thebitcoincommons.org"
-              className="btn btn-outline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn About the Framework
-            </a>
+            <div className="commons-cta">
+              <Link href="/governance/" className="btn btn-primary">
+                Our Governance
+              </Link>
+              <a
+                href="https://thebitcoincommons.org"
+                className="btn btn-outline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn About the Framework
+              </a>
+            </div>
           </div>
         </div>
       </section>

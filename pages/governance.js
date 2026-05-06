@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const GOV_RAW =
   "https://raw.githubusercontent.com/BTCDecoded/governance/main";
@@ -6,6 +6,53 @@ const GOV_RAW =
 const GOV_CDN =
   "https://cdn.jsdelivr.net/gh/BTCDecoded/governance@main";
 const GOV_BLOB = "https://github.com/BTCDecoded/governance/blob/main";
+
+const GOV_SPECTRUM_SRC =
+  "https://thebitcoincommons.org/node-charts/governance-spectrum-line.html?theme=light";
+
+function GovernanceSpectrumLight() {
+  const iframeRef = useRef(null);
+  const [iframeHeight, setIframeHeight] = useState(200);
+
+  useEffect(() => {
+    function onMessage(e) {
+      if (!e.data || e.data.type !== "btcc-gov-spectrum-height") return;
+      const win = iframeRef.current?.contentWindow;
+      if (!win || e.source !== win) return;
+      const h = e.data.height;
+      if (typeof h !== "number" || !isFinite(h) || h <= 0) return;
+      setIframeHeight(Math.min(Math.max(Math.round(h + 4), 140), 380));
+    }
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
+
+  return (
+    <figure className="governance-spectrum-figure">
+      <div className="governance-spectrum-embed">
+        <iframe
+          ref={iframeRef}
+          src={GOV_SPECTRUM_SRC}
+          title="Governance spectrum: centralized to decentralized (Bank, Bitcoin now, Modular, Chaos)"
+          style={{ height: iframeHeight }}
+          loading="lazy"
+        />
+      </div>
+      <figcaption className="diagram-caption">
+        Same interactive spectrum as on{" "}
+        <a
+          href="https://thebitcoincommons.org/#why-title"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Bitcoin Commons
+        </a>{" "}
+        (light theme for this page). The band marks modular governance: published
+        rules and thresholds instead of informal discretion alone.
+      </figcaption>
+    </figure>
+  );
+}
 
 /** All governance YAML consumed by tooling / docs (excludes .github/workflows). */
 const YAML_FILES = [
@@ -279,6 +326,8 @@ export default function GovernancePage() {
           </p>
         </div>
 
+        <GovernanceSpectrumLight />
+
         <div className="governance-cta-row">
           <a
             href="https://thebitcoincommons.org/governance-designer.html"
@@ -407,19 +456,6 @@ export default function GovernancePage() {
               </details>
             );
           })}
-        </div>
-
-        <div className="commons-chart-fullwidth governance-diagram">
-          <div className="commons-chart-wrapper">
-            <img
-              src="https://thebitcoincommons.org/assets/images/centralized-vs-decentralized.png"
-              alt="Centralized vs decentralized governance comparison"
-            />
-          </div>
-          <p className="diagram-caption">
-            Decentralized, forkable governance reduces capture through exit
-            competition.
-          </p>
         </div>
       </div>
     </section>

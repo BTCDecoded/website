@@ -4,15 +4,15 @@ export default function IndexPage() {
   return (
     <>
       <div className="release-banner">
-        <span className="release-banner-badge">v1.0 released</span>
+        <span className="release-banner-badge">v1.0</span>
         <span className="release-banner-text">
-          First production release is live —{" "}
+          First production build —{" "}
           <a
             href="https://github.com/BTCDecoded/blvm-node/releases/latest"
             target="_blank"
             rel="noopener noreferrer"
           >
-            release notes →
+            view on GitHub →
           </a>
         </span>
       </div>

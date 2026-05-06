@@ -12,9 +12,9 @@ export default function Desktop() {
         </p>
 
         <div className="release-notice">
-          <span className="release-badge">v1.0 releasing now</span>
+          <span className="release-badge">v1.0</span>
           <p>
-            Desktop packages are being published with the v1.0 release.{" "}
+            Desktop packages are available with the v1.0 build.{" "}
             <a
               href="https://github.com/BTCDecoded/blvm-node/releases/latest"
               target="_blank"

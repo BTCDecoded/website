@@ -1937,56 +1937,6 @@ code {
   line-height: 1.45;
 }
 
-.governance-file-grid {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0 2rem;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-}
-
-.governance-file-card {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 1rem 1.1rem;
-  background: #fff;
-}
-
-.governance-file-title {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.governance-file-path code {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-}
-
-.governance-file-desc {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin: 0.5rem 0 0.75rem;
-  line-height: 1.45;
-}
-
-.governance-file-links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.governance-file-links a {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--bitcoin-orange);
-  text-decoration: none;
-}
-
-.governance-file-links a:hover {
-  text-decoration: underline;
-}
-
 .governance-diagram {
   margin-top: 2.5rem;
 }
@@ -1995,7 +1945,7 @@ code {
 .gov-yml-files {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.65rem;
   margin: 1.25rem 0 2rem;
 }
 
@@ -2009,14 +1959,76 @@ code {
 .gov-yml-summary {
   cursor: pointer;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
+  display: block;
   padding: 0.85rem 1rem;
   font-weight: 600;
   background: var(--code-background);
   border-bottom: 1px solid transparent;
+}
+
+.gov-yml-summary-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.gov-yml-summary-titleline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.gov-yml-summary-status {
+  flex-shrink: 0;
+}
+
+.gov-yml-summary-metarow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.gov-yml-summary-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.gov-yml-src-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 2.35rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--background, #fff);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  line-height: 1.2;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.gov-yml-src-btn:hover {
+  background: var(--hover);
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+.gov-yml-src-btn i {
+  font-size: 1rem;
+  color: var(--bitcoin-orange);
+  line-height: 1;
 }
 
 .gov-yml-details[open] .gov-yml-summary {
@@ -2032,9 +2044,12 @@ code {
 }
 
 .gov-yml-summary-path {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  flex: 1 1 10rem;
+  min-width: 0;
+  word-break: break-all;
 }
 
 .gov-yml-summary-err {
@@ -2042,37 +2057,18 @@ code {
   font-weight: 700;
   text-transform: uppercase;
   color: #b91c1c;
-  margin-left: auto;
 }
 
 .gov-yml-summary-pending {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
-  margin-left: auto;
 }
 
 .gov-yml-body {
   padding: 1rem 1rem 1.25rem;
   font-size: 0.875rem;
   overflow-x: auto;
-}
-
-.gov-yml-file-links {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.gov-yml-file-links a {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--bitcoin-orange);
-  text-decoration: none;
-}
-
-.gov-yml-file-links a:hover {
-  text-decoration: underline;
 }
 
 .gov-yml-dl {
@@ -2108,6 +2104,10 @@ code {
 
 .gov-yml-list li {
   margin-bottom: 0.35rem;
+}
+
+.gov-yml-list-singlekey .gov-yml-singlekey-k {
+  font-size: 0.88em;
 }
 
 .gov-yml-scalar {

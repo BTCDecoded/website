@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 
 const GOV_RAW =
   "https://raw.githubusercontent.com/BTCDecoded/governance/main";
+/** Same files via jsDelivr; works when extensions block raw.githubusercontent.com (ERR_BLOCKED_BY_CLIENT). */
+const GOV_CDN =
+  "https://cdn.jsdelivr.net/gh/BTCDecoded/governance@main";
 const GOV_BLOB = "https://github.com/BTCDecoded/governance/blob/main";
 
 /** All governance YAML consumed by tooling / docs (excludes .github/workflows). */
 const YAML_FILES = [
-  { path: "fork-registry.yml", label: "Fork registry" },
-  { path: "implementations-registry.yml", label: "Implementations registry" },
   { path: ".governance.yml", label: "Meta-governance (.governance.yml)" },
   { path: "config/action-tiers.yml", label: "Action tiers" },
   { path: "config/commons-contributor-thresholds.yml", label: "Commons contributor thresholds" },
@@ -38,9 +39,26 @@ const YAML_FILES = [
 ];
 
 async function fetchYamlText(path) {
-  const res = await fetch(`${GOV_RAW}/${path}`, { cache: "no-store" });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.text();
+  /* CDN first: many blockers allow cdn.jsdelivr.net but block raw.githubusercontent.com. */
+  const sources = [`${GOV_CDN}/${path}`, `${GOV_RAW}/${path}`];
+  let lastErr;
+  for (const url of sources) {
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) {
+        lastErr = new Error(`HTTP ${res.status}`);
+        continue;
+      }
+      return await res.text();
+    } catch (e) {
+      lastErr = e instanceof Error ? e : new Error(String(e));
+    }
+  }
+  const hint =
+    lastErr?.message === "Failed to fetch"
+      ? " (privacy extensions often block raw.githubusercontent.com; this page should retry via jsDelivr — if both fail, allow the site or disable the blocker for this page.)"
+      : "";
+  throw new Error((lastErr?.message || "Failed to load YAML") + hint);
 }
 
 function isPlainObject(v) {
@@ -58,6 +76,27 @@ function YamlArray({ value }) {
   );
 
   if (allObjects) {
+    const keysPerRow = value.map((row) => Object.keys(row).length);
+    const eachRowSingleKey = keysPerRow.every((n) => n === 1);
+
+    /* e.g. process: [ { flag_a: true }, { flag_b: true } ] — table columns look broken */
+    if (eachRowSingleKey) {
+      return (
+        <ul className="gov-yml-list gov-yml-list-singlekey">
+          {value.map((row, i) => {
+            const [k] = Object.keys(row);
+            return (
+              <li key={i}>
+                <code className="gov-yml-singlekey-k">{k}</code>
+                <span className="gov-yml-singlekey-sep">: </span>
+                <YamlValue value={row[k]} inline />
+              </li>
+            );
+          })}
+        </ul>
+      );
+    }
+
     const keySet = new Set();
     value.forEach((row) => {
       Object.keys(row).forEach((k) => keySet.add(k));
@@ -270,14 +309,15 @@ export default function GovernancePage() {
         <p className="governance-muted governance-note">
           {loading ? (
             <>
-              Fetching {YAML_FILES.length} YAML files from GitHub — each file is
-              listed below; open a row to view YAML after load completes.
+              Fetching {YAML_FILES.length} YAML files from GitHub. Each row
+              shows the path, links, and load status; expand to see the parsed
+              tree.
             </>
           ) : (
             <>
               Loaded {loadedCount} / {YAML_FILES.length} files
               {failCount > 0
-                ? ` (${failCount} failed — expand to see errors)`
+                ? ` (${failCount} failed — expand the row for the error)`
                 : ""}
               . Large files (e.g. test vectors, expanded template) start
               collapsed.
@@ -285,10 +325,11 @@ export default function GovernancePage() {
           )}
         </p>
 
-        <h3 className="governance-subheading">Live YAML (full structure)</h3>
+        <h3 className="governance-subheading">Governance files (live YAML)</h3>
         <p className="governance-muted">
-          Arrays of objects are shown as tables. Nested objects use key/value
-          lists. Open a section to inspect every field.
+          Same sources as CI and the governance designer. Arrays of objects
+          render as tables where it helps; single-key rows render as lists.
+          Expand a file to inspect every field.
         </p>
 
         <div className="gov-yml-files">
@@ -302,32 +343,54 @@ export default function GovernancePage() {
                 open={idx === 0 && r?.ok}
               >
                 <summary className="gov-yml-summary">
-                  <span className="gov-yml-summary-label">{label}</span>
-                  <code className="gov-yml-summary-path">{path}</code>
-                  {loading && !r && (
-                    <span className="gov-yml-summary-pending">Loading…</span>
-                  )}
-                  {r?.ok === false && (
-                    <span className="gov-yml-summary-err">Failed</span>
-                  )}
+                  <div className="gov-yml-summary-inner">
+                    <div className="gov-yml-summary-titleline">
+                      <span className="gov-yml-summary-label">{label}</span>
+                      <span className="gov-yml-summary-status" aria-live="polite">
+                        {loading && !r && (
+                          <span className="gov-yml-summary-pending">Loading…</span>
+                        )}
+                        {r?.ok === false && (
+                          <span className="gov-yml-summary-err">Failed</span>
+                        )}
+                      </span>
+                    </div>
+                    <div className="gov-yml-summary-metarow">
+                      <code className="gov-yml-summary-path">{path}</code>
+                      <nav
+                        className="gov-yml-summary-links"
+                        aria-label={`Source links for ${label}`}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <a
+                          className="gov-yml-src-btn"
+                          href={`${GOV_BLOB}/${path}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i
+                            className="fa-brands fa-github"
+                            aria-hidden="true"
+                          />
+                          <span>GitHub</span>
+                        </a>
+                        <a
+                          className="gov-yml-src-btn"
+                          href={`${GOV_RAW}/${path}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i
+                            className="fa-solid fa-file-code"
+                            aria-hidden="true"
+                          />
+                          <span>Raw</span>
+                        </a>
+                      </nav>
+                    </div>
+                  </div>
                 </summary>
                 <div className="gov-yml-body">
-                  <div className="gov-yml-file-links">
-                    <a
-                      href={`${GOV_BLOB}/${path}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View on GitHub
-                    </a>
-                    <a
-                      href={`${GOV_RAW}/${path}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Raw
-                    </a>
-                  </div>
                   {!r && loading && (
                     <p className="governance-status">Fetching this file…</p>
                   )}
@@ -345,34 +408,6 @@ export default function GovernancePage() {
             );
           })}
         </div>
-
-        <h3 className="governance-subheading">Quick links</h3>
-        <ul className="governance-file-grid">
-          {YAML_FILES.map((f) => (
-            <li key={f.path} className="governance-file-card">
-              <div className="governance-file-title">{f.label}</div>
-              <div className="governance-file-path">
-                <code>{f.path}</code>
-              </div>
-              <div className="governance-file-links">
-                <a
-                  href={`${GOV_BLOB}/${f.path}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </a>
-                <a
-                  href={`${GOV_RAW}/${f.path}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Raw
-                </a>
-              </div>
-            </li>
-          ))}
-        </ul>
 
         <div className="commons-chart-fullwidth governance-diagram">
           <div className="commons-chart-wrapper">

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const BLVM_FLOW_EMBED_SRC =
-  "https://thebitcoincommons.org/node-charts/bllvm-dependency-flow.html?embed=1";
+  "https://thebitcoincommons.org/node-charts/bllvm-dependency-flow.html?embed=1&theme=light";
 
 export default function ArchitecturePage() {
   const blvmFlowRef = useRef(null);

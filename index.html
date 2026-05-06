@@ -189,7 +189,14 @@
                     </div>
                     
                     <div class="architecture-diagram">
-                        <img src="https://thebitcoincommons.org/assets/images/stack.png" alt="BLVM Stack Architecture">
+                        <iframe
+                            id="architecture-blvm-flow"
+                            title="BLVM dependency flow: Orange Paper to consensus and dependents"
+                            src="https://thebitcoincommons.org/node-charts/bllvm-dependency-flow.html?embed=1"
+                            loading="lazy"
+                            height="360"
+                            referrerpolicy="no-referrer-when-downgrade"
+                        ></iframe>
                         <p class="diagram-caption">Orange Paper → blvm-consensus (spec-lock + tests) → protocol, node, SDK, governance.</p>
                     </div>
                 </div>
@@ -310,7 +317,7 @@ pub fn total_supply(height: Natural) -> Integer {
                 
                 <div class="commons-chart-fullwidth">
                     <div class="commons-chart-wrapper">
-                        <img src="assets/images/centralized-vs-decentralized.png" alt="Centralized vs Decentralized Governance">
+                        <img src="/assets/images/centralized-vs-decentralized.png" alt="Centralized vs Decentralized Governance">
                     </div>
                     <p class="diagram-caption">Decentralized, forkable governance prevents capture through exit competition.</p>
                 </div>
@@ -454,6 +461,24 @@ pub fn total_supply(height: Natural) -> Integer {
                 }
             }, 5000);
         });
+
+        (function () {
+            var frame = document.getElementById("architecture-blvm-flow");
+            if (!frame) return;
+            window.addEventListener("message", function (e) {
+                if (!e.data || e.data.type !== "btcc-bllvm-embed-height") return;
+                if (e.source !== frame.contentWindow) return;
+                var h = e.data.height;
+                if (typeof h !== "number" || !isFinite(h) || h <= 0) return;
+                var cap = Math.round(window.innerHeight * 0.92);
+                var slack = 2;
+                var next = Math.min(
+                    Math.max(Math.round(h + slack), 200),
+                    Math.max(cap, 200)
+                );
+                frame.style.height = next + "px";
+            });
+        })();
     </script>
 </body>
 </html>

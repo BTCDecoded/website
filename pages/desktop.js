@@ -1,85 +1,74 @@
 import React from "react";
-//
-export default function Desktop() {
-  const downloads = [
-    {
-      platform: "Mac (Intel)",
-      file: "app-mac-intel.dmg",
-      shaSum: "abc123def456ghi789",
-      signature: "signature-mac-intel.sig",
-    },
-    {
-      platform: "Mac (ARM64)",
-      file: "app-mac-arm64.dmg",
-      shaSum: "xyz987uvw654rst321",
-      signature: "signature-mac-arm64.sig",
-    },
-    {
-      platform: "Windows",
-      file: "app-windows.exe",
-      shaSum: "lmn456opq123stu789",
-      signature: "signature-windows.sig",
-    },
-    {
-      platform: "Linux (x86_64)",
-      file: "app-linux-x86_64.tar.gz",
-      shaSum: "qrs789tuv456wxy123",
-      signature: "signature-linux-x86_64.sig",
-    },
-  ];
 
+export default function Desktop() {
   return (
-    <div
-      style={{
-        padding: "20px",
-        fontFamily: "Arial, sans-serif",
-        marginTop: "80px",
-      }}
-    >
-      <h1>Download Our Application</h1>
-      <p>Select your platform below to download the application:</p>
-      <table
-        style={{ width: "100%", borderCollapse: "collapse", marginTop: "20px" }}
-      >
-        <thead>
-          <tr>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-              Platform
-            </th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-              Download
-            </th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-              SHA256 Checksum
-            </th>
-            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
-              Signature
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {downloads.map((download, index) => (
-            <tr key={index}>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {download.platform}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                <a href={`/${download.file}`} download>
-                  {download.file}
-                </a>
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                {download.shaSum}
-              </td>
-              <td style={{ border: "1px solid #ddd", padding: "8px" }}>
-                <a href={`/${download.signature}`} download>
-                  {download.signature}
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <section id="desktop" className="section">
+      <div className="container">
+        <h2>Desktop App</h2>
+        <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>
+          Native desktop packages for Mac and Linux. Each release is signed and
+          includes a SHA-256 checksum so you can verify the download before
+          running it.
+        </p>
+
+        <div className="release-notice">
+          <span className="release-badge">v1.0 releasing now</span>
+          <p>
+            Desktop packages are being published with the v1.0 release.{" "}
+            <a
+              href="https://github.com/BTCDecoded/blvm-node/releases/latest"
+              target="_blank"
+              rel="noopener"
+            >
+              Check the GitHub releases page
+            </a>{" "}
+            for the latest signed binaries and checksums.
+          </p>
+        </div>
+
+        <h3 style={{ marginTop: "2.5rem" }}>Verifying your download</h3>
+        <p style={{ color: "var(--text-secondary)" }}>
+          Every release ships with a <code>.sha256</code> checksum file and a
+          detached GPG signature. Verify before running:
+        </p>
+        <div className="code-container" style={{ marginTop: "1rem" }}>
+          <div className="code-header">
+            <span className="code-filename">Verify (Linux / Mac)</span>
+          </div>
+          <pre>
+            <code className="language-bash">{`# Check the checksum
+sha256sum --check btcdecoded-linux-x86_64.tar.gz.sha256
+
+# Verify the GPG signature
+gpg --verify btcdecoded-linux-x86_64.tar.gz.sig btcdecoded-linux-x86_64.tar.gz`}</code>
+          </pre>
+        </div>
+
+        <div className="platform-links" style={{ marginTop: "2rem" }}>
+          <a
+            href="https://github.com/BTCDecoded/blvm-node/releases/latest"
+            className="btn btn-primary"
+            target="_blank"
+            rel="noopener"
+          >
+            Download latest release
+          </a>
+          <a
+            href="https://docs.thebitcoincommons.org/nodes/desktop.html"
+            className="btn btn-outline"
+            target="_blank"
+            rel="noopener"
+          >
+            Installation guide
+          </a>
+        </div>
+
+        <p style={{ color: "var(--text-muted)", marginTop: "2rem", fontSize: "0.9rem" }}>
+          Looking for plug-and-play node hardware (Start9, Umbrel, myNode,
+          Parmanode)?{" "}
+          <a href="/plugandplay/">See the pre-built node packages page.</a>
+        </p>
+      </div>
+    </section>
   );
 }

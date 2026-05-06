@@ -1,4 +1,31 @@
+import { useEffect, useRef } from "react";
+
+const BLVM_FLOW_EMBED_SRC =
+  "https://thebitcoincommons.org/node-charts/bllvm-dependency-flow.html?embed=1";
+
 export default function ArchitecturePage() {
+  const blvmFlowRef = useRef(null);
+
+  useEffect(() => {
+    const frame = blvmFlowRef.current;
+    if (!frame) return;
+    function onMessage(e) {
+      if (!e.data || e.data.type !== "btcc-bllvm-embed-height") return;
+      if (e.source !== frame.contentWindow) return;
+      const h = e.data.height;
+      if (typeof h !== "number" || !isFinite(h) || h <= 0) return;
+      const cap = Math.round(window.innerHeight * 0.92);
+      const slack = 2;
+      const next = Math.min(
+        Math.max(Math.round(h + slack), 200),
+        Math.max(cap, 200)
+      );
+      frame.style.height = `${next}px`;
+    }
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, []);
+
   return (
     <section
       id="architecture"
@@ -217,13 +244,17 @@ export default function ArchitecturePage() {
             </div>
 
             <div className="architecture-diagram">
-              <img
-                src="https://thebitcoincommons.org/assets/images/stack.png"
-                alt="BLVM Stack Architecture"
+              <iframe
+                ref={blvmFlowRef}
+                title="BLVM dependency flow: Orange Paper to consensus and dependents"
+                src={BLVM_FLOW_EMBED_SRC}
+                loading="lazy"
+                height={360}
+                referrerPolicy="no-referrer-when-downgrade"
               />
               <p className="diagram-caption">
-                Orange Paper foundation → blvm-consensus (formally verified) →
-                dependent components.
+                Orange Paper → blvm-consensus (spec-lock + tests) → protocol,
+                node, SDK, governance.
               </p>
             </div>
           </div>

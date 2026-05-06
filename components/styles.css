@@ -151,11 +151,21 @@ p {
   color: var(--bitcoin-orange);
 }
 
+.layout-main {
+  padding: 60px 12px 12px;
+}
+
+@media (max-width: 700px) {
+  .layout-main {
+    padding-top: 80px;
+  }
+}
+
 .workflow-toggle {
   display: flex;
   flex-direction: column;
   margin-left: 12px;
-  margin-top: 60px; /* Adjust this value if needed */
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {
@@ -326,6 +336,18 @@ p {
   max-width: 100%;
   width: 100%;
   height: auto;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.architecture-diagram iframe {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  min-height: 200px;
+  height: 360px;
   background: white;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -1131,7 +1153,8 @@ code {
   max-width: 100%;
 }
 
-.coverage-diagram img {
+.coverage-diagram img,
+.coverage-diagram .spec-map-img {
   max-width: 100%;
   width: 100%;
   height: auto;
@@ -1139,6 +1162,18 @@ code {
   border: 1px solid var(--border);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.coverage-diagram a {
+  display: block;
+  text-decoration: none;
+}
+
+.coverage-diagram a:hover .spec-map-img,
+.coverage-diagram a:hover img {
+  box-shadow: 0 6px 20px rgba(247, 147, 26, 0.25);
+  border-color: var(--bitcoin-orange);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 /* Commons Section */
@@ -1525,4 +1560,208 @@ code {
   .section {
     padding: 1rem 0;
   }
+}
+
+/* ── Release banner ── */
+.release-banner {
+  background: var(--bitcoin-orange);
+  color: white;
+  text-align: center;
+  padding: 0.45rem 1rem;
+  margin: 0 -12px 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.release-banner a {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.release-banner-badge {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Push nav down when banner is present */
+/* ── Hero subscribe block ── */
+.hero-subscribe {
+  margin-top: 2.5rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-subscribe-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Why-BLVM grid ── */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+@media (min-width: 640px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .why-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.why-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem 1.35rem;
+  background: var(--code-background);
+}
+
+.why-card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.why-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.why-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* ── Plug-and-play tabs ── */
+.platform-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.platform-tab {
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.platform-tab:hover {
+  border-color: var(--bitcoin-orange);
+  color: var(--bitcoin-orange);
+}
+
+.platform-tab.active {
+  background: var(--bitcoin-orange);
+  border-color: var(--bitcoin-orange);
+  color: white;
+}
+
+.platform-panel {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  background: var(--code-background);
+}
+
+.install-steps {
+  padding-left: 1.4rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.install-steps li {
+  margin-bottom: 0.4rem;
+}
+
+.platform-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.platform-note {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.platform-note a {
+  color: var(--bitcoin-orange);
+  text-decoration: none;
+}
+
+/* ── Desktop / release notice ── */
+.release-notice {
+  border: 1px solid var(--bitcoin-orange);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  background: rgba(247, 147, 26, 0.06);
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.release-badge {
+  white-space: nowrap;
+  background: var(--bitcoin-orange);
+  color: white;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.release-notice p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.release-notice a {
+  color: var(--bitcoin-orange);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.release-notice a:hover {
+  text-decoration: underline;
 }

@@ -110,7 +110,7 @@ export default function Footer(){
                 >Bitcoin Commons: Decentralizing the Decentralizers</a
               >
             </p>
-            <p>© 2025 BTCDecoded</p>
+            <p>© 2026 BTCDecoded</p>
           </div>
         </div>
       </div>

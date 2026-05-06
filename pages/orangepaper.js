@@ -200,9 +200,31 @@ pub fn total_supply(height: Natural) -> Integer {
             </div>
 
             <div className="coverage-diagram">
+              <a
+                href="https://thebitcoincommons.org/orange-paper.html"
+                target="_blank"
+                rel="noopener"
+              >
+                <img
+                  src="/assets/images/spec-map.jpg"
+                  alt="Orange Paper specification map"
+                  className="spec-map-img"
+                />
+              </a>
+              <p className="diagram-caption">
+                Orange Paper specification map —{" "}
+                <a
+                  href="https://thebitcoincommons.org/orange-paper.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  read the full spec →
+                </a>
+              </p>
               <img
                 src="https://thebitcoincommons.org/assets/images/Consensus-Coverage-Comparison.png"
                 alt="Consensus Coverage Comparison"
+                style={{ marginTop: "1.5rem" }}
               />
               <p className="diagram-caption">
                 Comparison of consensus coverage between Bitcoin Core

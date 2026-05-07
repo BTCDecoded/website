@@ -12,7 +12,7 @@ const platforms = [
       "Click Install and follow the on-screen prompts.",
       "Once installed, configure your data directory and sync settings from the service properties panel.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/start9.html",
+    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://docs.start9.com",
   },
   {
@@ -26,7 +26,7 @@ const platforms = [
       "Wait for the initial sync to complete — this may take several hours on first run.",
       "Access node settings and RPC credentials from the app detail page.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/umbrel.html",
+    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://community.getumbrel.com",
   },
   {
@@ -40,7 +40,7 @@ const platforms = [
       "Click Enable to install the service.",
       "RPC and P2P ports are pre-configured; review them under the app settings.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/mynode.html",
+    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://mynodebtc.com/support",
   },
   {
@@ -54,7 +54,7 @@ const platforms = [
       "The installer handles dependencies, user creation, and service registration automatically.",
       "Monitor logs with the built-in Parmanode log viewer.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/parmanode.html",
+    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://parmanode.com",
   },
 ];
@@ -119,7 +119,7 @@ export default function PlugAndPlay() {
           <p>
             Don&apos;t see your platform?{" "}
             <a
-              href="https://docs.thebitcoincommons.org/nodes/manual.html"
+              href="https://docs.thebitcoincommons.org/getting-started/installation.html"
               target="_blank"
               rel="noopener"
             >

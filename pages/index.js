@@ -8,11 +8,9 @@ export default function IndexPage() {
         <span className="release-banner-text">
           Pre-release build —{" "}
           <a
-            href="https://github.com/BTCDecoded/blvm-node/releases/latest"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="https://btcdecoded.org/install/"
           >
-            view on GitHub →
+            install →
           </a>
         </span>
       </div>
@@ -41,10 +39,8 @@ export default function IndexPage() {
 
           <div className="hero-ctas">
             <a
-              href="https://github.com/BTCDecoded/blvm-node/releases/latest"
+              href="https://btcdecoded.org/install/"
               className="btn btn-primary"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Download v0.1
             </a>

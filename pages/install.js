@@ -10,90 +10,66 @@ const PACKAGES = [
     label: "Debian / Ubuntu",
     ext: ".deb",
     icon: "fa-brands fa-linux",
-    filename: `btcdecoded_0.1.0_amd64.deb`,
+    filename: `blvm_0.1.0_amd64.deb`,
     description: "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro.",
-    installCmd: `sudo dpkg -i btcdecoded_0.1.0_amd64.deb
+    installCmd: `sudo dpkg -i blvm_0.1.0_amd64.deb
 sudo apt-get install -f    # pull in any missing deps`,
-    verify: `sha256sum --check btcdecoded_0.1.0_amd64.deb.sha256`,
+    verify: `sha256sum --check blvm_0.1.0_amd64.deb.sha256`,
   },
   {
     id: "rpm",
     label: "Fedora / RHEL",
     ext: ".rpm",
     icon: "fa-brands fa-linux",
-    filename: `btcdecoded-0.1.0-1.x86_64.rpm`,
+    filename: `blvm-0.1.0-1.x86_64.rpm`,
     description: "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros.",
-    installCmd: `sudo rpm -i btcdecoded-0.1.0-1.x86_64.rpm
+    installCmd: `sudo rpm -i blvm-0.1.0-1.x86_64.rpm
 # or via dnf:
-sudo dnf install ./btcdecoded-0.1.0-1.x86_64.rpm`,
-    verify: `sha256sum --check btcdecoded-0.1.0-1.x86_64.rpm.sha256`,
+sudo dnf install ./blvm-0.1.0-1.x86_64.rpm`,
+    verify: `sha256sum --check blvm-0.1.0-1.x86_64.rpm.sha256`,
   },
   {
     id: "exe",
     label: "Windows",
     ext: ".exe",
     icon: "fa-brands fa-windows",
-    filename: `BTCDecoded-Setup-0.1.0.exe`,
-    description: "Windows 10 / 11 (64-bit). Signed installer, no admin account required for the node data directory.",
+    filename: `blvm-setup-0.1.0.exe`,
+    description: "Windows 10 / 11 (64-bit). Signed installer — registers blvm as a background service via the Windows Service Manager.",
     installCmd: `# Run the installer, accept the UAC prompt, choose your data directory.
-# BTCDecoded registers itself as a background service via the Windows Service Manager.`,
+# blvm registers itself as a Windows service and starts automatically on boot.`,
     verify: `# PowerShell checksum verify:
-(Get-FileHash BTCDecoded-Setup-0.1.0.exe -Algorithm SHA256).Hash`,
+(Get-FileHash blvm-setup-0.1.0.exe -Algorithm SHA256).Hash`,
   },
 ];
 
 const PLATFORMS = [
   {
-    name: "Start9",
-    description:
-      "Install directly from the Start9 marketplace. Sovereign personal server with a built-in app store — no command line required.",
-    steps: [
-      "Open your Start9 dashboard and navigate to Marketplace.",
-      'Search for "BTCDecoded" and select the package.',
-      "Click Install and follow the on-screen prompts.",
-      "Configure your data directory and sync settings from the service properties panel.",
-    ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/start9.html",
-    supportLink: "https://docs.start9.com",
-  },
-  {
     name: "Umbrel",
+    icon: "fa-solid fa-plug",
     description:
-      "Available in the Umbrel App Store. Runs on a Raspberry Pi or any Linux machine with a one-click node stack.",
+      "Available in the Umbrel App Store as \"Bitcoin Commons\". Runs on a Raspberry Pi or any Linux machine with a one-click node stack.",
     steps: [
       "Open your Umbrel dashboard and go to the App Store.",
-      'Search for "BTCDecoded" and click Install.',
-      "Wait for initial sync to complete — this may take several hours.",
+      'Search for "Bitcoin Commons" and click Install.',
+      "Wait for initial sync to complete — this may take several hours on first run.",
       "Access node settings and RPC credentials from the app detail page.",
     ],
     docsLink: "https://docs.thebitcoincommons.org/nodes/umbrel.html",
     supportLink: "https://community.getumbrel.com",
   },
   {
-    name: "myNode",
+    name: "Docker",
+    icon: "fa-brands fa-docker",
     description:
-      "Dedicated Bitcoin node device with a premium app store. Runs alongside Bitcoin Core so you can compare both side by side.",
+      "Run blvm in a container on any platform that supports Docker or Podman. The official image is published to Docker Hub as btccommons/blvm.",
     steps: [
-      "Log into your myNode dashboard.",
-      'Navigate to Apps and find "BTCDecoded".',
-      "Click Enable to install the service.",
-      "RPC and P2P ports are pre-configured; review them under app settings.",
+      "Pull the image: docker pull btccommons/blvm:0.1.0",
+      "Create a persistent data volume: docker volume create blvm-data",
+      "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 btccommons/blvm:0.1.0",
+      "Check logs: docker logs -f blvm",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/mynode.html",
-    supportLink: "https://mynodebtc.com/support",
-  },
-  {
-    name: "Parmanode",
-    description:
-      "Terminal-based node manager. BTCDecoded integrates as a selectable node implementation during setup.",
-    steps: [
-      "Run the Parmanode setup script on your Linux machine.",
-      "When prompted to select a Bitcoin node, choose BTCDecoded.",
-      "The installer handles dependencies, user creation, and service registration.",
-      "Monitor logs with the built-in Parmanode log viewer.",
-    ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/parmanode.html",
-    supportLink: "https://parmanode.com",
+    docsLink: "https://docs.thebitcoincommons.org/nodes/docker.html",
+    supportLink: "https://hub.docker.com/r/btccommons/blvm",
   },
 ];
 
@@ -125,7 +101,7 @@ export default function Install() {
 
         {/* ── Header ── */}
         <div className="install-header">
-          <h2>Install BTCDecoded</h2>
+          <h2>Install blvm</h2>
           <p className="install-lead">
             Pre-built packages for Linux and Windows. Each release ships with a
             SHA-256 checksum and a detached GPG signature — verify before
@@ -194,13 +170,13 @@ export default function Install() {
 
         {/* ── Divider ── */}
         <div className="install-section-divider">
-          <span>Pre-built node appliances</span>
+          <span>Managed installs</span>
         </div>
 
-        {/* ── Plug-and-play tabs ── */}
+        {/* ── Platform tabs ── */}
         <p className="install-plat-intro">
-          Running a dedicated node box? BTCDecoded is available as a managed
-          package on the major sovereign node platforms.
+          Prefer a one-click install? blvm is available as a managed package on
+          Umbrel and as an official Docker image.
         </p>
 
         <div className="platform-tabs">
@@ -210,7 +186,8 @@ export default function Install() {
               className={`platform-tab${i === activePlat ? " active" : ""}`}
               onClick={() => setActivePlat(i)}
             >
-              {p.name}
+              <i className={`${p.icon} platform-tab-icon`} aria-hidden="true" />
+              {" "}{p.name}
             </button>
           ))}
         </div>
@@ -239,7 +216,7 @@ export default function Install() {
               target="_blank"
               rel="noopener"
             >
-              {platform.name} support
+              {platform.name === "Docker" ? "Docker Hub →" : `${platform.name} support`}
             </a>
           </div>
         </div>

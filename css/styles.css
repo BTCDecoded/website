@@ -1695,6 +1695,10 @@ code {
   color: var(--text-secondary);
   margin-bottom: 1rem;
 }
+.platform-tab-icon {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
 
 /* ── Release banner ── */
 .release-banner {

@@ -201,7 +201,7 @@ pub fn total_supply(height: Natural) -> Integer {
 
             <div className="coverage-diagram">
               <a
-                href="https://thebitcoincommons.org/orange-paper.html"
+                href="https://thebitcoincommons.org/#path-orange-paper"
                 target="_blank"
                 rel="noopener"
               >

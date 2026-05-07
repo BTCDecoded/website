@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "sync-install": "node scripts/sync-install-data.mjs",
+    "prebuild": "node scripts/sync-install-data.mjs",
     "dev": "next dev",
     "build": "next build",
     "export": "next build && next export && rm -rf docs/* && cp -r out/* docs && (test -f CNAME && cp CNAME docs/ || true) && touch ./docs/.nojekyll",

@@ -9,14 +9,21 @@ Static marketing site for [btcdecoded.org](https://btcdecoded.org), published to
 - **MathJax** on the Orange Paper page via `better-react-mathjax`
 - **Assets** live under `public/` (e.g. `public/assets/images/spec-map.jpg`) and are served at `/assets/...` after export
 
+## Install page (`/install`)
+
+Structured copy (packages, Umbrel/Docker steps, release URLs) is **not** edited in `pages/install.js`. The canonical file is **[blvm-docs `src/install/install-content.json`](https://github.com/BTCDecoded/blvm-docs/blob/main/src/install/install-content.json)**. On every `npm run build`, **`prebuild`** runs `scripts/sync-install-data.mjs` to copy that JSON into `data/install-content.json` (sibling checkout `../blvm-docs/` required in dev; the committed `data/` file is the fallback for standalone clones).
+
+After changing the JSON in blvm-docs, run `node scripts/render-installation.mjs` there to regenerate the Installation chapter, then rebuild this site.
+
 ## Commands
 
 ```bash
 npm install
-npm run dev          # http://localhost:3000
-npm run export       # build → out/, copy to docs/, preserve CNAME + .nojekyll
-npm run serve        # serve out/ on port 3000
-npm run deploy       # export then gh-pages from docs/
+npm run sync-install   # optional: refresh data/install-content.json from ../blvm-docs
+npm run dev            # http://localhost:3000
+npm run export         # build → out/, copy to docs/, preserve CNAME + .nojekyll
+npm run serve          # serve out/ on port 3000
+npm run deploy         # export then gh-pages from docs/
 ```
 
 ## Deploy

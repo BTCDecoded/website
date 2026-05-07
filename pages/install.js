@@ -1,77 +1,7 @@
 import React, { useState } from "react";
+import installContent from "../data/install-content.json";
 
-const RELEASE_TAG = "v0.1.0";
-const GITHUB_RELEASES = "https://github.com/BTCDecoded/blvm-node/releases/latest";
-const GITHUB_RELEASES_TAG = `https://github.com/BTCDecoded/blvm-node/releases/tag/${RELEASE_TAG}`;
-
-const PACKAGES = [
-  {
-    id: "deb",
-    label: "Debian / Ubuntu",
-    ext: ".deb",
-    icon: "fa-brands fa-linux",
-    filename: `blvm_0.1.0_amd64.deb`,
-    description: "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro.",
-    installCmd: `sudo dpkg -i blvm_0.1.0_amd64.deb
-sudo apt-get install -f    # pull in any missing deps`,
-    verify: `sha256sum --check blvm_0.1.0_amd64.deb.sha256`,
-  },
-  {
-    id: "rpm",
-    label: "Fedora / RHEL",
-    ext: ".rpm",
-    icon: "fa-brands fa-linux",
-    filename: `blvm-0.1.0-1.x86_64.rpm`,
-    description: "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros.",
-    installCmd: `sudo rpm -i blvm-0.1.0-1.x86_64.rpm
-# or via dnf:
-sudo dnf install ./blvm-0.1.0-1.x86_64.rpm`,
-    verify: `sha256sum --check blvm-0.1.0-1.x86_64.rpm.sha256`,
-  },
-  {
-    id: "exe",
-    label: "Windows",
-    ext: ".exe",
-    icon: "fa-brands fa-windows",
-    filename: `blvm-setup-0.1.0.exe`,
-    description: "Windows 10 / 11 (64-bit). Signed installer — registers blvm as a background service via the Windows Service Manager.",
-    installCmd: `# Run the installer, accept the UAC prompt, choose your data directory.
-# blvm registers itself as a Windows service and starts automatically on boot.`,
-    verify: `# PowerShell checksum verify:
-(Get-FileHash blvm-setup-0.1.0.exe -Algorithm SHA256).Hash`,
-  },
-];
-
-const PLATFORMS = [
-  {
-    name: "Umbrel",
-    icon: "fa-solid fa-plug",
-    description:
-      "Available in the Umbrel App Store as \"Bitcoin Commons\". Runs on a Raspberry Pi or any Linux machine with a one-click node stack.",
-    steps: [
-      "Open your Umbrel dashboard and go to the App Store.",
-      'Search for "Bitcoin Commons" and click Install.',
-      "Wait for initial sync to complete — this may take several hours on first run.",
-      "Access node settings and RPC credentials from the app detail page.",
-    ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/umbrel.html",
-    supportLink: "https://community.getumbrel.com",
-  },
-  {
-    name: "Docker",
-    icon: "fa-brands fa-docker",
-    description:
-      "Run blvm in a container on any platform that supports Docker or Podman. The official image is published to Docker Hub as btccommons/blvm.",
-    steps: [
-      "Pull the image: docker pull btccommons/blvm:0.1.0",
-      "Create a persistent data volume: docker volume create blvm-data",
-      "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 btccommons/blvm:0.1.0",
-      "Check logs: docker logs -f blvm",
-    ],
-    docsLink: "https://docs.thebitcoincommons.org/nodes/docker.html",
-    supportLink: "https://hub.docker.com/r/btccommons/blvm",
-  },
-];
+const { page, release, packages, managed, platforms } = installContent;
 
 function PackageCard({ pkg, active, onClick }) {
   return (
@@ -92,29 +22,25 @@ function PackageCard({ pkg, active, onClick }) {
 export default function Install() {
   const [activePkg, setActivePkg] = useState(0);
   const [activePlat, setActivePlat] = useState(0);
-  const pkg = PACKAGES[activePkg];
-  const platform = PLATFORMS[activePlat];
+  const pkg = packages[activePkg];
+  const platform = platforms[activePlat];
 
   return (
     <section id="install" className="section">
       <div className="container">
 
-        {/* ── Header ── */}
         <div className="install-header">
-          <h2>Install blvm</h2>
+          <h2>{page.title}</h2>
           <p className="install-lead">
-            Pre-built packages for Linux and Windows. Each release ships with a
-            SHA-256 checksum and a detached GPG signature — verify before
-            running. Current release:{" "}
-            <a href={GITHUB_RELEASES_TAG} target="_blank" rel="noopener">
-              {RELEASE_TAG} on GitHub →
+            {page.lead} Current release:{" "}
+            <a href={release.releasesTagUrl} target="_blank" rel="noopener">
+              {release.tag} on GitHub →
             </a>
           </p>
         </div>
 
-        {/* ── Package picker ── */}
         <div className="install-pkg-grid">
-          {PACKAGES.map((p, i) => (
+          {packages.map((p, i) => (
             <PackageCard
               key={p.id}
               pkg={p}
@@ -124,7 +50,6 @@ export default function Install() {
           ))}
         </div>
 
-        {/* ── Selected package detail ── */}
         <div className="install-detail">
           <div className="install-detail-head">
             <div>
@@ -132,7 +57,7 @@ export default function Install() {
               <p className="install-detail-desc">{pkg.description}</p>
             </div>
             <a
-              href={GITHUB_RELEASES}
+              href={release.releasesLatestUrl}
               className="btn btn-primary install-dl-btn"
               target="_blank"
               rel="noopener"
@@ -159,7 +84,7 @@ export default function Install() {
           <p className="install-gpg-note">
             Every release also ships a detached GPG signature ({pkg.filename}.sig).{" "}
             <a
-              href="https://docs.thebitcoincommons.org/nodes/verification.html"
+              href={page.verificationGuideUrl}
               target="_blank"
               rel="noopener"
             >
@@ -168,27 +93,24 @@ export default function Install() {
           </p>
         </div>
 
-        {/* ── Managed installs (collapsed: not shipping yet) ── */}
         <details className="install-managed-details">
           <summary className="install-managed-summary">
-            <span className="install-managed-summary-title">Managed installs</span>
-            <span className="install-managed-badge">Not ready yet</span>
+            <span className="install-managed-summary-title">{managed.summaryTitle}</span>
+            <span className="install-managed-badge">{managed.badge}</span>
             <span className="install-managed-summary-hint">
-              Umbrel &amp; Docker · click to preview planned steps
+              {managed.summaryHint}
             </span>
           </summary>
           <div className="install-managed-inner">
             <p className="install-managed-banner" role="status">
-              These paths are not live yet. Use the packages above or build from
-              source until Umbrel listing and Docker image publish.
+              {managed.banner}
             </p>
             <p className="install-plat-intro">
-              Prefer a one-click install? blvm is available as a managed package on
-              Umbrel and as an official Docker image.
+              {managed.intro}
             </p>
 
             <div className="platform-tabs">
-              {PLATFORMS.map((p, i) => (
+              {platforms.map((p, i) => (
                 <button
                   key={p.name}
                   type="button"
@@ -225,19 +147,18 @@ export default function Install() {
                   target="_blank"
                   rel="noopener"
                 >
-                  {platform.name === "Docker" ? "Docker Hub →" : `${platform.name} support`}
+                  {platform.supportLinkLabel}
                 </a>
               </div>
             </div>
           </div>
         </details>
 
-        {/* ── Footer note ── */}
         <div className="platform-note">
           <p>
             Building from source or need a different architecture?{" "}
             <a
-              href="https://docs.thebitcoincommons.org/nodes/build.html"
+              href={page.buildFromSourceUrl}
               target="_blank"
               rel="noopener"
             >

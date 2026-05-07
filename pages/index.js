@@ -4,9 +4,9 @@ export default function IndexPage() {
   return (
     <>
       <div className="release-banner">
-        <span className="release-banner-badge">v1.0</span>
+        <span className="release-banner-badge">v0.1</span>
         <span className="release-banner-text">
-          First production build —{" "}
+          Pre-release build —{" "}
           <a
             href="https://github.com/BTCDecoded/blvm-node/releases/latest"
             target="_blank"
@@ -46,7 +46,7 @@ export default function IndexPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Download v1.0
+              Download v0.1
             </a>
             <a
               href="https://docs.thebitcoincommons.org"

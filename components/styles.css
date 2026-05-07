@@ -1562,6 +1562,140 @@ code {
   }
 }
 
+/* ── Install page ── */
+.install-header {
+  margin-bottom: 2rem;
+}
+.install-lead {
+  color: var(--text-secondary);
+  max-width: 680px;
+}
+.install-pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 560px) {
+  .install-pkg-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.install-pkg-card {
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--background);
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+.install-pkg-card:hover {
+  border-color: var(--bitcoin-orange);
+  background: #fff8f0;
+}
+.install-pkg-card.active {
+  border-color: var(--bitcoin-orange);
+  background: #fff4e6;
+}
+.install-pkg-ext {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bitcoin-orange);
+  background: rgba(247, 147, 26, 0.1);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
+.install-pkg-icon {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin: 0.25rem 0;
+}
+.install-pkg-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.install-detail {
+  background: var(--code-background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.install-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+.install-detail-title {
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+}
+.install-detail-desc {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  max-width: 480px;
+}
+.install-dl-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.install-code-block {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+.install-code-block pre {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  font-size: 0.82rem;
+  overflow-x: auto;
+  background: #fff;
+}
+.install-code-verify {
+  margin-top: 0;
+}
+.install-gpg-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+.install-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+.install-section-divider::before,
+.install-section-divider::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid var(--border);
+}
+.install-plat-intro {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
 /* ── Release banner ── */
 .release-banner {
   background: var(--bitcoin-orange);

@@ -29,7 +29,7 @@ const mathJaxconfig = {
 const NodeNavLinks = [
   { href: "/whyblvm", title: "Why BLVM?" },
   { href: "/plugandplay", title: "Pre-Built Nodes" },
-  { href: "/desktop", title: "PC  / Mac" },
+  { href: "/install", title: "Install" },
   { href: "/faq", title: "FAQ" },
 ];
 

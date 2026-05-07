@@ -126,7 +126,7 @@ export default function PlugAndPlay() {
               Manual install instructions
             </a>{" "}
             cover any Linux system. For Mac and Windows, see{" "}
-            <a href="/desktop/">the desktop app</a>.
+            <a href="/install/">the install page</a>.
           </p>
         </div>
       </div>

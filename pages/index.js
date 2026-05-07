@@ -6,7 +6,7 @@ export default function IndexPage() {
       <div className="release-banner">
         <span className="release-banner-badge">v0.1</span>
         <span className="release-banner-text">
-          Pre-release build —{" "}
+          Pre-release build.{" "}
           <a
             href="https://btcdecoded.org/install/"
           >

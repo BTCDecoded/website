@@ -413,6 +413,19 @@ p {
   color: var(--bitcoin-orange);
 }
 
+.layer-content .architecture-inline-spec-link {
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(247, 147, 26, 0.35);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.layer-content .architecture-inline-spec-link:hover {
+  color: #e6820a;
+  border-bottom-color: rgba(230, 130, 10, 0.6);
+}
+
 .layer-content .tech-detail {
   font-size: 0.9rem;
   color: var(--text-secondary);

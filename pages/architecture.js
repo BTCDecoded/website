@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 const BLVM_FLOW_EMBED_SRC =
   "https://thebitcoincommons.org/node-charts/bllvm-dependency-flow.html?embed=1&theme=light";
@@ -68,7 +69,10 @@ export default function ArchitecturePage() {
                     <p>
                       Complete mathematical specification of Bitcoin consensus
                       extracted from Bitcoin Core. Includes the 21 million
-                      supply convergence proof (Theorem 6.1).
+                      supply convergence proof (Theorem 6.1).{" "}
+                      <Link href="/orangepaper/" className="architecture-inline-spec-link">
+                        Orange Paper viewer on this site →
+                      </Link>
                     </p>
                   </div>
                 </div>

@@ -181,29 +181,29 @@ export default function Install() {
                 </a>
               </div>
             </div>
-
-            {releaseHistory.length > 0 && (
-              <div className="install-history install-history-in-managed">
-                <h3 className="install-history-heading">Recent releases</h3>
-                <ul className="install-history-list">
-                  {releaseHistory.map((r) => (
-                    <li key={r.tag}>
-                      <a href={r.url} target="_blank" rel="noopener">
-                        <span className="install-history-tag">{r.tag}</span>
-                        <span className="install-history-name">{r.name}</span>
-                        {r.publishedAt ? (
-                          <span className="install-history-date">
-                            {formatReleaseDate(r.publishedAt)}
-                          </span>
-                        ) : null}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
         </details>
+
+        {releaseHistory.length > 0 && (
+          <div className="install-history install-history-after-managed">
+            <h3 className="install-history-heading">Recent releases</h3>
+            <ul className="install-history-list">
+              {releaseHistory.map((r) => (
+                <li key={r.tag}>
+                  <a href={r.url} target="_blank" rel="noopener">
+                    <span className="install-history-tag">{r.tag}</span>
+                    <span className="install-history-name">{r.name}</span>
+                    {r.publishedAt ? (
+                      <span className="install-history-date">
+                        {formatReleaseDate(r.publishedAt)}
+                      </span>
+                    ) : null}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="platform-note">
           <p>

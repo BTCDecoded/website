@@ -1,10 +1,14 @@
 # Build Next.js static export and deploy docs/ to GitHub Pages (not the repo root).
+# Rebuild from another repo (e.g. after a blvm release): repository_dispatch with
+# event type "blvm-release" (requires a token with contents access to this repo).
 name: Deploy site to GitHub Pages
 
 on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  repository_dispatch:
+    types: [blvm-release]
 
 permissions:
   contents: read
@@ -33,6 +37,8 @@ jobs:
         run: npm ci
 
       - name: Static export (Next.js → docs/)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run export
 
       - name: Copy CNAME for custom domain

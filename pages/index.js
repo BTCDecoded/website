@@ -1,12 +1,15 @@
 import Link from "next/link";
+import {
+  blvmDisplayTag,
+} from "../lib/blvmReleaseMeta";
 
 export default function IndexPage() {
   return (
     <>
       <div className="release-banner">
-        <span className="release-banner-badge">v0.1</span>
+        <span className="release-banner-badge">{blvmDisplayTag}</span>
         <span className="release-banner-text">
-          Pre-release build.{" "}
+          Latest release.{" "}
           <a
             href="https://btcdecoded.org/install/"
           >
@@ -42,7 +45,7 @@ export default function IndexPage() {
               href="https://btcdecoded.org/install/"
               className="btn btn-primary"
             >
-              Download v0.1
+              Download {blvmDisplayTag}
             </a>
             <a
               href="https://docs.thebitcoincommons.org"

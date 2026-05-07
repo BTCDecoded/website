@@ -1,7 +1,32 @@
 import React, { useState } from "react";
 import installContent from "../data/install-content.json";
+import {
+  blvmDisplayTag,
+  blvmReleasesLatestUrl,
+  blvmReleasesTagUrl,
+} from "../lib/blvmReleaseMeta";
 
-const { page, release, packages, managed, platforms } = installContent;
+const {
+  page,
+  release,
+  packages,
+  managed,
+  platforms,
+  releaseHistory = [],
+} = installContent;
+
+function formatReleaseDate(iso) {
+  if (!iso) return "";
+  try {
+    return new Intl.DateTimeFormat(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }).format(new Date(iso));
+  } catch {
+    return String(iso).slice(0, 10);
+  }
+}
 
 function PackageCard({ pkg, active, onClick }) {
   return (
@@ -33,10 +58,35 @@ export default function Install() {
           <h2>{page.title}</h2>
           <p className="install-lead">
             {page.lead} Current release:{" "}
-            <a href={release.releasesTagUrl} target="_blank" rel="noopener">
-              {release.tag} on GitHub →
+            <a
+              href={blvmReleasesTagUrl || release.releasesTagUrl}
+              target="_blank"
+              rel="noopener"
+            >
+              {blvmDisplayTag} on GitHub →
             </a>
           </p>
+
+          {releaseHistory.length > 0 && (
+            <div className="install-history">
+              <h3 className="install-history-heading">Recent releases</h3>
+              <ul className="install-history-list">
+                {releaseHistory.map((r) => (
+                  <li key={r.tag}>
+                    <a href={r.url} target="_blank" rel="noopener">
+                      <span className="install-history-tag">{r.tag}</span>
+                      <span className="install-history-name">{r.name}</span>
+                      {r.publishedAt ? (
+                        <span className="install-history-date">
+                          {formatReleaseDate(r.publishedAt)}
+                        </span>
+                      ) : null}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className="install-pkg-grid">
@@ -57,7 +107,7 @@ export default function Install() {
               <p className="install-detail-desc">{pkg.description}</p>
             </div>
             <a
-              href={release.releasesLatestUrl}
+              href={pkg.downloadUrl ?? blvmReleasesLatestUrl ?? release.releasesLatestUrl}
               className="btn btn-primary install-dl-btn"
               target="_blank"
               rel="noopener"
@@ -82,7 +132,8 @@ export default function Install() {
           </div>
 
           <p className="install-gpg-note">
-            Every release also ships a detached GPG signature ({pkg.filename}.sig).{" "}
+            Releases may publish a detached GPG signature beside each artifact (often{" "}
+            <code>{pkg.filename}.sig</code>).{" "}
             <a
               href={page.verificationGuideUrl}
               target="_blank"

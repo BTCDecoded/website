@@ -1,0 +1,81 @@
+{
+  "version": 2,
+  "releaseRepo": "BTCDecoded/blvm",
+  "page": {
+    "title": "Install blvm",
+    "lead": "Pre-built Linux packages (.deb / .rpm) from GitHub Releases, with checksums.sha256 published on each release. Verify before running.",
+    "verificationGuideUrl": "https://docs.thebitcoincommons.org/getting-started/installation.html",
+    "buildFromSourceUrl": "https://github.com/BTCDecoded/blvm"
+  },
+  "packageSlots": [
+    {
+      "id": "deb",
+      "label": "Debian / Ubuntu",
+      "ext": ".deb",
+      "icon": "fa-brands fa-linux",
+      "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro.",
+      "pick": { "suffix": ".deb", "includes": ["amd64"] },
+      "installCmdTemplate": "sudo dpkg -i {{FILENAME}}\nsudo apt-get install -f    # pull in any missing deps",
+      "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
+    },
+    {
+      "id": "rpm",
+      "label": "Fedora / RHEL",
+      "ext": ".rpm",
+      "icon": "fa-brands fa-linux",
+      "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros.",
+      "pick": { "suffix": ".rpm", "includes": ["x86_64"] },
+      "installCmdTemplate": "sudo rpm -i {{FILENAME}}\n# or via dnf:\nsudo dnf install ./{{FILENAME}}",
+      "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
+    },
+    {
+      "id": "exe",
+      "label": "Windows",
+      "ext": ".exe",
+      "icon": "fa-brands fa-windows",
+      "optional": true,
+      "description": "Windows 10 / 11 (64-bit). Signed installer: blvm registers as a background service via the Windows Service Manager.",
+      "pick": { "suffix": ".exe", "includes": [] },
+      "installCmdTemplate": "# Run the installer, accept the UAC prompt, choose your data directory.\n# blvm registers itself as a Windows service and starts automatically on boot.",
+      "verifyTemplate": "# PowerShell checksum verify:\n(Get-FileHash {{FILENAME}} -Algorithm SHA256).Hash"
+    }
+  ],
+  "managed": {
+    "summaryTitle": "Managed installs",
+    "badge": "Not ready yet",
+    "summaryHint": "Umbrel & Docker · click to preview planned steps",
+    "banner": "These paths are not live yet. Use the packages above or build from source until Umbrel listing and Docker image publish.",
+    "intro": "Prefer a one-click install? blvm is planned as a managed package on Umbrel and as an official Docker image."
+  },
+  "platforms": [
+    {
+      "name": "Umbrel",
+      "icon": "fa-solid fa-plug",
+      "description": "Available in the Umbrel App Store as \"Bitcoin Commons\". Runs on a Raspberry Pi or any Linux machine with a one-click node stack.",
+      "steps": [
+        "Open your Umbrel dashboard and go to the App Store.",
+        "Search for \"Bitcoin Commons\" and click Install.",
+        "Wait for initial sync to complete; this may take several hours on first run.",
+        "Access node settings and RPC credentials from the app detail page."
+      ],
+      "docsLink": "https://docs.thebitcoincommons.org/getting-started/installation.html",
+      "supportLink": "https://community.getumbrel.com",
+      "supportLinkLabel": "Umbrel support"
+    },
+    {
+      "name": "Docker",
+      "icon": "fa-brands fa-docker",
+      "description": "Run blvm in a container on any platform that supports Docker or Podman. Official image tagging follows blvm releases when published.",
+      "steps": [
+        "Pull the image: docker pull btccommons/blvm:{{VERSION}}",
+        "Create a persistent data volume: docker volume create blvm-data",
+        "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 btccommons/blvm:{{VERSION}}",
+        "Check logs: docker logs -f blvm"
+      ],
+      "docsLink": "https://docs.thebitcoincommons.org/getting-started/installation.html",
+      "supportLink": "https://github.com/BTCDecoded/blvm/releases/latest",
+      "supportLinkLabel": "GitHub Releases →"
+    }
+  ],
+  "markdownDoc": {}
+}

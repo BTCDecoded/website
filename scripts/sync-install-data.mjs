@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Copies blvm-docs canonical install JSON into website/data/ for Next.js import.
- * Monorepo layout: website/ and blvm-docs/ are siblings under btc-commons.
+ * Copies blvm-docs install JSON into website/data/ (manual / legacy).
+ * CI and `npm run build` use `fetch-blvm-release.mjs`, which pulls BTCDecoded/blvm releases.
  */
 import fs from "fs";
 import path from "path";

@@ -82,30 +82,6 @@ export default function IndexPage() {
         </div>
       </section>
 
-      <section id="about-commons" className="section">
-        <div className="container">
-          <h2>Built on Bitcoin Commons</h2>
-          <div className="content">
-            <p>
-              Forkable governance framework applying Ostrom&apos;s commons
-              principles through cryptographic enforcement.
-            </p>
-            <div className="commons-cta">
-              <Link href="/governance/" className="btn btn-primary">
-                Our Governance
-              </Link>
-              <a
-                href="https://thebitcoincommons.org"
-                className="btn btn-outline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn About the Framework
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

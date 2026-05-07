@@ -168,58 +168,69 @@ export default function Install() {
           </p>
         </div>
 
-        {/* ── Divider ── */}
-        <div className="install-section-divider">
-          <span>Managed installs</span>
-        </div>
+        {/* ── Managed installs (collapsed: not shipping yet) ── */}
+        <details className="install-managed-details">
+          <summary className="install-managed-summary">
+            <span className="install-managed-summary-title">Managed installs</span>
+            <span className="install-managed-badge">Not ready yet</span>
+            <span className="install-managed-summary-hint">
+              Umbrel &amp; Docker · click to preview planned steps
+            </span>
+          </summary>
+          <div className="install-managed-inner">
+            <p className="install-managed-banner" role="status">
+              These paths are not live yet. Use the packages above or build from
+              source until Umbrel listing and Docker image publish.
+            </p>
+            <p className="install-plat-intro">
+              Prefer a one-click install? blvm is available as a managed package on
+              Umbrel and as an official Docker image.
+            </p>
 
-        {/* ── Platform tabs ── */}
-        <p className="install-plat-intro">
-          Prefer a one-click install? blvm is available as a managed package on
-          Umbrel and as an official Docker image.
-        </p>
+            <div className="platform-tabs">
+              {PLATFORMS.map((p, i) => (
+                <button
+                  key={p.name}
+                  type="button"
+                  className={`platform-tab${i === activePlat ? " active" : ""}`}
+                  onClick={() => setActivePlat(i)}
+                >
+                  <i className={`${p.icon} platform-tab-icon`} aria-hidden="true" />
+                  {" "}{p.name}
+                </button>
+              ))}
+            </div>
 
-        <div className="platform-tabs">
-          {PLATFORMS.map((p, i) => (
-            <button
-              key={p.name}
-              className={`platform-tab${i === activePlat ? " active" : ""}`}
-              onClick={() => setActivePlat(i)}
-            >
-              <i className={`${p.icon} platform-tab-icon`} aria-hidden="true" />
-              {" "}{p.name}
-            </button>
-          ))}
-        </div>
-
-        <div className="platform-panel">
-          <h3>{platform.name}</h3>
-          <p style={{ color: "var(--text-secondary)" }}>{platform.description}</p>
-          <h4 style={{ marginTop: "1.5rem" }}>Installation steps</h4>
-          <ol className="install-steps">
-            {platform.steps.map((step, i) => (
-              <li key={i}>{step}</li>
-            ))}
-          </ol>
-          <div className="platform-links">
-            <a
-              href={platform.docsLink}
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener"
-            >
-              Full documentation
-            </a>
-            <a
-              href={platform.supportLink}
-              className="btn btn-outline"
-              target="_blank"
-              rel="noopener"
-            >
-              {platform.name === "Docker" ? "Docker Hub →" : `${platform.name} support`}
-            </a>
+            <div className="platform-panel">
+              <h3>{platform.name}</h3>
+              <p style={{ color: "var(--text-secondary)" }}>{platform.description}</p>
+              <h4 style={{ marginTop: "1.5rem" }}>Installation steps</h4>
+              <ol className="install-steps">
+                {platform.steps.map((step, i) => (
+                  <li key={i}>{step}</li>
+                ))}
+              </ol>
+              <div className="platform-links">
+                <a
+                  href={platform.docsLink}
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Full documentation
+                </a>
+                <a
+                  href={platform.supportLink}
+                  className="btn btn-outline"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  {platform.name === "Docker" ? "Docker Hub →" : `${platform.name} support`}
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
+        </details>
 
         {/* ── Footer note ── */}
         <div className="platform-note">

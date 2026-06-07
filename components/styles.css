@@ -1636,13 +1636,31 @@ code {
   margin-top: 2.25rem;
   margin-bottom: 0.25rem;
 }
-.install-pkg-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.75rem;
+.install-pkg-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
   margin-bottom: 1.5rem;
 }
+.install-pkg-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 0.65rem;
+}
+.install-pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
 @media (max-width: 560px) {
+  .install-pkg-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 400px) {
   .install-pkg-grid {
     grid-template-columns: 1fr;
   }
@@ -1680,9 +1698,23 @@ code {
   padding: 0.15rem 0.5rem;
 }
 .install-pkg-icon {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: var(--text-secondary);
   margin: 0.25rem 0;
+}
+.install-pkg-card.active .install-pkg-icon {
+  color: var(--bitcoin-orange);
+}
+.install-detail-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.3rem;
+  font-size: 1.1rem;
+}
+.install-detail-icon {
+  font-size: 1.25rem;
+  color: var(--bitcoin-orange);
 }
 .install-pkg-label {
   font-size: 0.875rem;
@@ -1703,10 +1735,6 @@ code {
   gap: 1rem;
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
-}
-.install-detail-title {
-  margin: 0 0 0.3rem;
-  font-size: 1.1rem;
 }
 .install-detail-desc {
   margin: 0;

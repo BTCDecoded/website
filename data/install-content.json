@@ -1,56 +1,196 @@
 {
   "version": 3,
-  "generatedAt": "2026-05-07T22:22:11.658Z",
+  "generatedAt": "2026-06-07T13:01:03.407Z",
   "source": "github://BTCDecoded/blvm",
   "release": {
-    "tag": "v0.1.5",
-    "semver": "0.1.5",
+    "tag": "v0.1.35",
+    "semver": "0.1.35",
     "releasesLatestUrl": "https://github.com/BTCDecoded/blvm/releases/latest",
-    "releasesTagUrl": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.5",
-    "body": "**Bitcoin Commons BLVM** — Bitcoin Low-Level Virtual Machine node CLI.\n\n> [!NOTE]\n> Verify your download against `checksums.sha256` before running.\n\n## Downloads\n\n| Platform | File | Notes |\n|---|---|---|\n| **Linux x86_64** (binary) | `blvm-0.1.5-linux-x86_64` | Full features |\n| **Linux x86_64** (Debian/Ubuntu) | `blvm_0.1.5_amd64.deb` | dpkg install |\n| **Linux x86_64** (RHEL/Fedora) | `blvm-0.1.5-1.x86_64.rpm` | rpm install |\n| **Windows x86_64** | `blvm-0.1.5-windows-x86_64.exe` | Core features |\n| **Checksums** | `checksums.sha256` | SHA-256 for all artifacts |\n\n## Verify\n\n```bash\nsha256sum -c checksums.sha256\n```\n\n## Install\n\n**Linux (binary):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.5/blvm-0.1.5-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.5/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.5-linux-x86_64\nsudo mv blvm-0.1.5-linux-x86_64 /usr/local/bin/blvm\n```\n\n**Debian/Ubuntu:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.5/blvm_0.1.5_amd64.deb\nsudo dpkg -i blvm_0.1.5_amd64.deb\n```\n\n**RHEL/Fedora:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.5/blvm-0.1.5-1.x86_64.rpm\nsudo rpm -i blvm-0.1.5-1.x86_64.rpm\n```\n\n**Windows:** Download `blvm-0.1.5-windows-x86_64.exe`, verify checksum, and run from a terminal.\n\n## Changes\n\nSee [commit history](https://github.com/BTCDecoded/blvm/compare/205c1fced75180e8570663c91c4d1c3722a4030b...1542e11f49c633be7bea9228677a0aea8a0ee731)\n"
+    "releasesTagUrl": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.35",
+    "body": "**Bitcoin Commons BLVM** — Bitcoin Low-Level Virtual Machine node CLI.\n\n> [!NOTE]\n> Verify your download against `checksums.sha256` before running.\n\n## Downloads\n\n| Platform | File | Notes |\n|---|---|---|\n| **Linux x86_64** (binary) | `blvm-0.1.35-linux-x86_64` | Full features (default `cargo build`) |\n| **Linux aarch64** (binary) | `blvm-0.1.35-linux-aarch64` | Raspberry Pi 4/5 (64-bit OS); portable cross-build (sled/redb) |\n| **Linux x86_64** (tarball) | `blvm-v0.1.35-linux-x86_64.tar.gz` | `blvm` + governance CLIs (+ checksum file inside) |\n| **Linux aarch64** (tarball) | `blvm-v0.1.35-linux-aarch64.tar.gz` | `blvm` for 64-bit ARM Linux (+ checksum file inside) |\n| **Linux x86_64** (Arch / pacman) | `blvm-0.1.35-x86_64.pkg.tar.gz` | `pacman -U` |\n| **Linux x86_64** (Debian/Ubuntu) | `blvm_0.1.35_amd64.deb` | `cargo deb` (matches standalone binary) |\n| **Linux x86_64** (RHEL/Fedora) | `blvm-0.1.35-1.x86_64.rpm` | `cargo generate-rpm` |\n| **Windows x86_64** | `blvm-0.1.35-windows-x86_64.exe` | Portable Windows build |\n| **Windows x86_64** (zip) | `blvm-v0.1.35-windows-x86_64.zip` | Same as .exe in archive form |\n| **Checksums** | `checksums.sha256`, `SHA256SUMS-blvm-*`, `SHA256SUMS-linux-packages.txt` | Verify downloads |\n\n## Verify\n\n```bash\nsha256sum -c checksums.sha256\n```\n\n## Install\n\n**Linux (single binary):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.35-linux-x86_64\nsudo mv blvm-0.1.35-linux-x86_64 /usr/local/bin/blvm\n```\n\n**Linux aarch64 (Raspberry Pi 4/5, 64-bit OS):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.35-linux-aarch64\nsudo mv blvm-0.1.35-linux-aarch64 /usr/local/bin/blvm\n```\n\n**Linux (tarball):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-x86_64.tar.gz\ntar -xzf blvm-v0.1.35-linux-x86_64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Linux aarch64 (tarball, Raspberry Pi 4/5):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-aarch64.tar.gz\ntar -xzf blvm-v0.1.35-linux-aarch64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Debian/Ubuntu:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm_0.1.35_amd64.deb\nsudo dpkg -i blvm_0.1.35_amd64.deb\n```\n\n**RHEL/Fedora:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-1.x86_64.rpm\nsudo rpm -i blvm-0.1.35-1.x86_64.rpm\n```\n\n**Windows:** Download `blvm-0.1.35-windows-x86_64.exe`, verify checksum, and run from a terminal.\n\n## Changes\n\nSee [commit history](https://github.com/BTCDecoded/blvm/compare/...95bb56b6959866a2c2ff2662701700baf6e16589)\n"
   },
   "releaseHistory": [
     {
-      "tag": "v0.1.5",
-      "name": "blvm v0.1.5",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.5",
-      "publishedAt": "2026-05-07T18:44:27Z"
+      "tag": "v0.1.35",
+      "name": "blvm v0.1.35",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.35",
+      "publishedAt": "2026-06-07T03:15:49Z"
     },
     {
-      "tag": "v0.1.4",
-      "name": "blvm v0.1.4",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.4",
-      "publishedAt": "2026-05-07T17:28:47Z"
+      "tag": "v0.1.34",
+      "name": "blvm v0.1.34",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.34",
+      "publishedAt": "2026-06-05T16:53:55Z"
+    },
+    {
+      "tag": "v0.1.33",
+      "name": "blvm v0.1.33",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.33",
+      "publishedAt": "2026-06-04T22:45:15Z"
+    },
+    {
+      "tag": "v0.1.32",
+      "name": "blvm v0.1.32",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.32",
+      "publishedAt": "2026-06-04T22:27:27Z"
+    },
+    {
+      "tag": "v0.1.31",
+      "name": "blvm v0.1.31",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.31",
+      "publishedAt": "2026-05-28T21:25:35Z"
+    },
+    {
+      "tag": "v0.1.30",
+      "name": "blvm v0.1.30",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.30",
+      "publishedAt": "2026-05-28T02:54:20Z"
+    },
+    {
+      "tag": "v0.1.29",
+      "name": "blvm v0.1.29",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.29",
+      "publishedAt": "2026-05-21T21:02:17Z"
+    },
+    {
+      "tag": "v0.1.28",
+      "name": "blvm v0.1.28",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.28",
+      "publishedAt": "2026-05-21T19:03:25Z"
+    }
+  ],
+  "packageGroups": [
+    {
+      "id": "linux-native",
+      "title": "Linux — binaries & archives"
+    },
+    {
+      "id": "linux-pkg",
+      "title": "Linux — package managers"
+    },
+    {
+      "id": "linux-arm",
+      "title": "ARM64 Linux"
+    },
+    {
+      "id": "windows",
+      "title": "Windows"
     }
   ],
   "page": {
     "title": "Install blvm",
-    "lead": "Pre-built Linux packages (.deb / .rpm) from GitHub Releases, with checksums.sha256 published on each release. Verify before running.",
+    "lead": "Pre-built binaries and Linux packages from GitHub Releases, with checksums.sha256 on every release. Verify before running.",
     "verificationGuideUrl": "https://docs.thebitcoincommons.org/getting-started/installation.html",
     "buildFromSourceUrl": "https://github.com/BTCDecoded/blvm"
   },
   "packages": [
     {
+      "id": "linux-x86_64",
+      "label": "Linux x86_64",
+      "ext": "binary",
+      "icon": "fa-solid fa-microchip",
+      "group": "linux-native",
+      "description": "Single static binary for 64-bit Linux (glibc). Full features; no package manager required.",
+      "filename": "blvm-0.1.35-linux-x86_64",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-x86_64",
+      "installCmd": "chmod +x blvm-0.1.35-linux-x86_64\nsudo mv blvm-0.1.35-linux-x86_64 /usr/local/bin/blvm",
+      "verify": "sha256sum --check checksums.sha256"
+    },
+    {
+      "id": "tarball-x86_64",
+      "label": "Linux tarball",
+      "ext": ".tar.gz",
+      "icon": "fa-solid fa-file-zipper",
+      "group": "linux-native",
+      "description": "Archive with blvm and governance CLIs plus per-artifact checksum files inside.",
+      "filename": "blvm-v0.1.35-linux-x86_64.tar.gz",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-x86_64.tar.gz",
+      "installCmd": "tar -xzf blvm-v0.1.35-linux-x86_64.tar.gz\nsudo mv blvm /usr/local/bin/",
+      "verify": "sha256sum --check checksums.sha256"
+    },
+    {
       "id": "deb",
       "label": "Debian / Ubuntu",
       "ext": ".deb",
-      "icon": "fa-brands fa-linux",
+      "icon": "fa-brands fa-debian",
+      "group": "linux-pkg",
       "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro.",
-      "filename": "blvm_0.1.5_amd64.deb",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.5/blvm_0.1.5_amd64.deb",
-      "installCmd": "sudo dpkg -i blvm_0.1.5_amd64.deb\nsudo apt-get install -f    # pull in any missing deps",
+      "filename": "blvm_0.1.35_amd64.deb",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm_0.1.35_amd64.deb",
+      "installCmd": "sudo dpkg -i blvm_0.1.35_amd64.deb\nsudo apt-get install -f    # pull in any missing deps",
       "verify": "sha256sum --check checksums.sha256"
     },
     {
       "id": "rpm",
       "label": "Fedora / RHEL",
       "ext": ".rpm",
-      "icon": "fa-brands fa-linux",
+      "icon": "fa-brands fa-fedora",
+      "group": "linux-pkg",
       "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros.",
-      "filename": "blvm-0.1.5-1.x86_64.rpm",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.5/blvm-0.1.5-1.x86_64.rpm",
-      "installCmd": "sudo rpm -i blvm-0.1.5-1.x86_64.rpm\n# or via dnf:\nsudo dnf install ./blvm-0.1.5-1.x86_64.rpm",
+      "filename": "blvm-0.1.35-1.x86_64.rpm",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-1.x86_64.rpm",
+      "installCmd": "sudo rpm -i blvm-0.1.35-1.x86_64.rpm\n# or via dnf:\nsudo dnf install ./blvm-0.1.35-1.x86_64.rpm",
       "verify": "sha256sum --check checksums.sha256"
+    },
+    {
+      "id": "pacman",
+      "label": "Arch Linux",
+      "ext": ".pkg.tar.gz",
+      "icon": "fa-solid fa-cubes",
+      "group": "linux-pkg",
+      "description": "Arch and other pacman-based distros (x86_64).",
+      "filename": "blvm-0.1.35-x86_64.pkg.tar.gz",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-x86_64.pkg.tar.gz",
+      "installCmd": "sudo pacman -U blvm-0.1.35-x86_64.pkg.tar.gz",
+      "verify": "sha256sum --check checksums.sha256"
+    },
+    {
+      "id": "linux-aarch64",
+      "label": "ARM64 binary",
+      "ext": "binary",
+      "icon": "fa-brands fa-raspberry-pi",
+      "group": "linux-arm",
+      "description": "64-bit ARM Linux binary (Raspberry Pi 4/5 with 64-bit OS, Apple Silicon Linux VMs, etc.).",
+      "filename": "blvm-0.1.35-linux-aarch64",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-aarch64",
+      "installCmd": "chmod +x blvm-0.1.35-linux-aarch64\nsudo mv blvm-0.1.35-linux-aarch64 /usr/local/bin/blvm",
+      "verify": "sha256sum --check checksums.sha256"
+    },
+    {
+      "id": "tarball-aarch64",
+      "label": "ARM64 tarball",
+      "ext": ".tar.gz",
+      "icon": "fa-solid fa-file-zipper",
+      "group": "linux-arm",
+      "description": "64-bit ARM Linux archive (Raspberry Pi 4/5, aarch64 servers).",
+      "filename": "blvm-v0.1.35-linux-aarch64.tar.gz",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-aarch64.tar.gz",
+      "installCmd": "tar -xzf blvm-v0.1.35-linux-aarch64.tar.gz\nsudo mv blvm /usr/local/bin/",
+      "verify": "sha256sum --check checksums.sha256"
+    },
+    {
+      "id": "exe",
+      "label": "Windows",
+      "ext": ".exe",
+      "icon": "fa-brands fa-windows",
+      "group": "windows",
+      "description": "Portable Windows 10 / 11 build (64-bit). Run from a terminal after verifying the checksum.",
+      "filename": "blvm-0.1.35-windows-x86_64.exe",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-windows-x86_64.exe",
+      "installCmd": "# Download blvm-0.1.35-windows-x86_64.exe, verify the checksum, then run from PowerShell or cmd.",
+      "verify": "# PowerShell:\n(Get-FileHash blvm-0.1.35-windows-x86_64.exe -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
+    },
+    {
+      "id": "zip",
+      "label": "Windows zip",
+      "ext": ".zip",
+      "icon": "fa-solid fa-file-zipper",
+      "group": "windows",
+      "description": "Same Windows binary packaged as a zip archive.",
+      "filename": "blvm-v0.1.35-windows-x86_64.zip",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-windows-x86_64.zip",
+      "installCmd": "# Expand-Archive blvm-v0.1.35-windows-x86_64.zip\n# Run blvm.exe from the extracted folder",
+      "verify": "# PowerShell:\n(Get-FileHash blvm-v0.1.35-windows-x86_64.zip -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
     }
   ],
   "managed": {
@@ -80,9 +220,9 @@
       "icon": "fa-brands fa-docker",
       "description": "Run blvm in a container on any platform that supports Docker or Podman. Official image tagging follows blvm releases when published.",
       "steps": [
-        "Pull the image: docker pull btccommons/blvm:0.1.5",
+        "Pull the image: docker pull btccommons/blvm:0.1.35",
         "Create a persistent data volume: docker volume create blvm-data",
-        "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 btccommons/blvm:0.1.5",
+        "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 btccommons/blvm:0.1.35",
         "Check logs: docker logs -f blvm"
       ],
       "docsLink": "https://docs.thebitcoincommons.org/getting-started/installation.html",

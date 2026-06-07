@@ -13,7 +13,7 @@ Static marketing site for [btcdecoded.org](https://btcdecoded.org), published to
 
 Structured fields (packages, managed-install previews, release links) come from **`data/install-content.json`**, consumed by `pages/install.js` (do not hand-edit release-driven values in JS).
 
-**Default build path:** **`prebuild`** runs **`scripts/fetch-blvm-release.mjs`**, which refreshes **`data/install-content.json`** from the **[`blvm` GitHub Releases](https://github.com/BTCDecoded/blvm/releases)** API (optional `GITHUB_TOKEN`; static/fallback if fetch is skipped). This keeps the marketing **`/install`** page aligned with **shipped binaries**, not only the mdBook chapter.
+**Default build path:** **`prebuild`** / **`preexport`** and CI run **`scripts/fetch-blvm-release.mjs`**, which refreshes **`data/install-content.json`** from the **[`blvm` GitHub Releases](https://github.com/BTCDecoded/blvm/releases)** API (optional `GITHUB_TOKEN`; static/fallback if fetch is skipped). This keeps the marketing **`/install`** page aligned with **shipped binaries**, not only the mdBook chapter.
 
 **Optional:** **`npm run sync-install`** runs **`scripts/sync-install-data.mjs`** to copy **[`blvm-docs` `src/install/install-content.json`](https://github.com/BTCDecoded/blvm-docs/blob/main/src/install/install-content.json)** into `data/` when you have a sibling **`../blvm-docs`** checkout—useful to preview **book-generated** install JSON locally. After editing that JSON in **blvm-docs**, run `node scripts/render-installation.mjs` there and sync before rebuilding this site.
 

@@ -37,9 +37,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Static export (Next.js → docs/)
+      - name: Refresh install metadata from blvm GitHub Releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-blvm-release.mjs --strict
+
+      - name: Static export (Next.js → docs/)
         run: npm run export
 
       - name: Copy CNAME for custom domain

@@ -65,7 +65,7 @@ function perFileChecksumFilename(assets, pkgFilename) {
 }
 
 function verifyForPackage(slot, filename, assets, verifyTemplate) {
-  if (slot.id === "exe") {
+  if (slot.id === "exe" || slot.id === "zip") {
     return verifyTemplate.replaceAll("{{FILENAME}}", filename);
   }
   const aggregate = aggregateChecksumFilename(assets);
@@ -103,6 +103,7 @@ function buildPackages(staticData, assets) {
       label: slot.label,
       ext: slot.ext,
       icon: slot.icon,
+      group: slot.group ?? null,
       description: slot.description,
       filename,
       downloadUrl: asset.browser_download_url,
@@ -170,6 +171,7 @@ async function main() {
         body: latest.body ?? "",
       },
       releaseHistory,
+      packageGroups: staticData.packageGroups ?? [],
       page: staticData.page,
       packages,
       managed: staticData.managed,

@@ -6,6 +6,7 @@
     "sync-install": "node scripts/sync-install-data.mjs",
     "fetch-blvm-release": "node scripts/fetch-blvm-release.mjs",
     "prebuild": "node scripts/fetch-blvm-release.mjs",
+    "preexport": "node scripts/fetch-blvm-release.mjs",
     "dev": "next dev",
     "build": "next build",
     "export": "next build && next export && rm -rf docs/* && cp -r out/* docs && (test -f CNAME && cp CNAME docs/ || true) && touch ./docs/.nojekyll",

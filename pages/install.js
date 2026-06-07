@@ -10,6 +10,7 @@ const {
   page,
   release,
   packages,
+  packageGroups = [],
   managed,
   platforms,
   releaseHistory = [],
@@ -44,11 +45,47 @@ function PackageCard({ pkg, active, onClick }) {
   );
 }
 
+function groupPackages(allPackages, groups) {
+  if (!groups?.length) {
+    return [
+      {
+        title: null,
+        items: allPackages.map((pkg, index) => ({ pkg, index })),
+      },
+    ];
+  }
+
+  const byGroup = new Map(
+    groups.map((g) => [g.id, { title: g.title, items: [] }]),
+  );
+  const fallback = { title: "Other downloads", items: [] };
+
+  allPackages.forEach((pkg, index) => {
+    const bucket = pkg.group ? byGroup.get(pkg.group) : null;
+    if (bucket) bucket.items.push({ pkg, index });
+    else fallback.items.push({ pkg, index });
+  });
+
+  const ordered = groups
+    .map((g) => byGroup.get(g.id))
+    .filter((g) => g && g.items.length > 0);
+
+  if (fallback.items.length > 0) ordered.push(fallback);
+  return ordered;
+}
+
+function downloadLabel(ext) {
+  if (!ext) return "Download";
+  if (ext.startsWith(".")) return `Download ${ext}`;
+  return `Download ${ext}`;
+}
+
 export default function Install() {
   const [activePkg, setActivePkg] = useState(0);
   const [activePlat, setActivePlat] = useState(0);
   const pkg = packages[activePkg];
   const platform = platforms[activePlat];
+  const groupedPackages = groupPackages(packages, packageGroups);
 
   return (
     <section id="install" className="section">
@@ -68,21 +105,33 @@ export default function Install() {
           </p>
         </div>
 
-        <div className="install-pkg-grid">
-          {packages.map((p, i) => (
-            <PackageCard
-              key={p.id}
-              pkg={p}
-              active={i === activePkg}
-              onClick={() => setActivePkg(i)}
-            />
+        <div className="install-pkg-sections">
+          {groupedPackages.map((section) => (
+            <div key={section.title ?? "default"} className="install-pkg-section">
+              {section.title ? (
+                <h3 className="install-pkg-section-title">{section.title}</h3>
+              ) : null}
+              <div className="install-pkg-grid">
+                {section.items.map(({ pkg: p, index }) => (
+                  <PackageCard
+                    key={p.id}
+                    pkg={p}
+                    active={index === activePkg}
+                    onClick={() => setActivePkg(index)}
+                  />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
         <div className="install-detail">
           <div className="install-detail-head">
             <div>
-              <h3 className="install-detail-title">{pkg.label}</h3>
+              <h3 className="install-detail-title">
+                <i className={`${pkg.icon} install-detail-icon`} aria-hidden="true" />
+                {pkg.label}
+              </h3>
               <p className="install-detail-desc">{pkg.description}</p>
             </div>
             <a
@@ -92,7 +141,7 @@ export default function Install() {
               rel="noopener"
             >
               <i className="fa-solid fa-download" aria-hidden="true" />
-              {" "}Download {pkg.ext}
+              {" "}{downloadLabel(pkg.ext)}
             </a>
           </div>
 

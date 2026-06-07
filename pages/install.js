@@ -31,17 +31,18 @@ function formatReleaseDate(iso) {
 
 function PackageCard({ pkg, active, onClick }) {
   return (
-    <div
+    <button
+      type="button"
       className={`install-pkg-card${active ? " active" : ""}`}
       onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => e.key === "Enter" && onClick()}
+      aria-pressed={active}
     >
-      <span className="install-pkg-ext">{pkg.ext}</span>
       <i className={`${pkg.icon} install-pkg-icon`} aria-hidden="true" />
       <span className="install-pkg-label">{pkg.label}</span>
-    </div>
+      {pkg.ext && pkg.ext !== "binary" ? (
+        <span className="install-pkg-ext">{pkg.ext}</span>
+      ) : null}
+    </button>
   );
 }
 
@@ -111,7 +112,9 @@ export default function Install() {
               {section.title ? (
                 <h3 className="install-pkg-section-title">{section.title}</h3>
               ) : null}
-              <div className="install-pkg-grid">
+              <div
+                className={`install-pkg-grid install-pkg-grid--${section.items.length}`}
+              >
                 {section.items.map(({ pkg: p, index }) => (
                   <PackageCard
                     key={p.id}
@@ -256,13 +259,21 @@ export default function Install() {
 
         <div className="platform-note">
           <p>
-            Building from source or need a different architecture?{" "}
+            Need tarballs, zip archives, or another format?{" "}
+            <a
+              href={blvmReleasesLatestUrl || release.releasesLatestUrl}
+              target="_blank"
+              rel="noopener"
+            >
+              All artifacts on GitHub Releases →
+            </a>
+            {" · "}
             <a
               href={page.buildFromSourceUrl}
               target="_blank"
               rel="noopener"
             >
-              Build instructions →
+              Build from source →
             </a>
           </p>
         </div>

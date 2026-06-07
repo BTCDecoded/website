@@ -8,34 +8,10 @@
     "buildFromSourceUrl": "https://github.com/BTCDecoded/blvm"
   },
   "packageGroups": [
-    { "id": "linux-native", "title": "Linux — binaries & archives" },
-    { "id": "linux-pkg", "title": "Linux — package managers" },
-    { "id": "linux-arm", "title": "ARM64 Linux" },
-    { "id": "windows", "title": "Windows" }
+    { "id": "linux-pkg", "title": "Linux package managers" },
+    { "id": "binaries", "title": "Standalone binaries" }
   ],
   "packageSlots": [
-    {
-      "id": "linux-x86_64",
-      "group": "linux-native",
-      "label": "Linux x86_64",
-      "ext": "binary",
-      "icon": "fa-solid fa-microchip",
-      "description": "Single static binary for 64-bit Linux (glibc). Full features; no package manager required.",
-      "pick": { "suffix": "-linux-x86_64", "includes": [] },
-      "installCmdTemplate": "chmod +x {{FILENAME}}\nsudo mv {{FILENAME}} /usr/local/bin/blvm",
-      "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
-    },
-    {
-      "id": "tarball-x86_64",
-      "group": "linux-native",
-      "label": "Linux tarball",
-      "ext": ".tar.gz",
-      "icon": "fa-solid fa-file-zipper",
-      "description": "Archive with blvm and governance CLIs plus per-artifact checksum files inside.",
-      "pick": { "suffix": ".tar.gz", "includes": ["linux-x86_64"] },
-      "installCmdTemplate": "tar -xzf {{FILENAME}}\nsudo mv blvm /usr/local/bin/",
-      "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
-    },
     {
       "id": "deb",
       "group": "linux-pkg",
@@ -70,9 +46,20 @@
       "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
     },
     {
+      "id": "linux-x86_64",
+      "group": "binaries",
+      "label": "Linux x86_64",
+      "ext": "binary",
+      "icon": "fa-solid fa-microchip",
+      "description": "Single static binary for 64-bit Linux (glibc). Full features; no package manager required.",
+      "pick": { "suffix": "-linux-x86_64", "includes": [] },
+      "installCmdTemplate": "chmod +x {{FILENAME}}\nsudo mv {{FILENAME}} /usr/local/bin/blvm",
+      "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
+    },
+    {
       "id": "linux-aarch64",
-      "group": "linux-arm",
-      "label": "ARM64 binary",
+      "group": "binaries",
+      "label": "ARM64 Linux",
       "ext": "binary",
       "icon": "fa-brands fa-raspberry-pi",
       "description": "64-bit ARM Linux binary (Raspberry Pi 4/5 with 64-bit OS, Apple Silicon Linux VMs, etc.).",
@@ -81,37 +68,14 @@
       "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
     },
     {
-      "id": "tarball-aarch64",
-      "group": "linux-arm",
-      "label": "ARM64 tarball",
-      "ext": ".tar.gz",
-      "icon": "fa-solid fa-file-zipper",
-      "description": "64-bit ARM Linux archive (Raspberry Pi 4/5, aarch64 servers).",
-      "pick": { "suffix": ".tar.gz", "includes": ["linux-aarch64"] },
-      "installCmdTemplate": "tar -xzf {{FILENAME}}\nsudo mv blvm /usr/local/bin/",
-      "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
-    },
-    {
       "id": "exe",
-      "group": "windows",
+      "group": "binaries",
       "label": "Windows",
       "ext": ".exe",
       "icon": "fa-brands fa-windows",
       "description": "Portable Windows 10 / 11 build (64-bit). Run from a terminal after verifying the checksum.",
       "pick": { "suffix": ".exe", "includes": ["windows"] },
       "installCmdTemplate": "# Download {{FILENAME}}, verify the checksum, then run from PowerShell or cmd.",
-      "verifyTemplate": "# PowerShell:\n(Get-FileHash {{FILENAME}} -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
-    },
-    {
-      "id": "zip",
-      "group": "windows",
-      "label": "Windows zip",
-      "ext": ".zip",
-      "icon": "fa-solid fa-file-zipper",
-      "optional": true,
-      "description": "Same Windows binary packaged as a zip archive.",
-      "pick": { "suffix": ".zip", "includes": ["windows"] },
-      "installCmdTemplate": "# Expand-Archive {{FILENAME}}\n# Run blvm.exe from the extracted folder",
       "verifyTemplate": "# PowerShell:\n(Get-FileHash {{FILENAME}} -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
     }
   ],

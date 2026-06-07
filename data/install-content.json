@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-06-07T13:01:03.407Z",
+  "generatedAt": "2026-06-07T13:09:49.812Z",
   "source": "github://BTCDecoded/blvm",
   "release": {
     "tag": "v0.1.35",
@@ -61,20 +61,12 @@
   ],
   "packageGroups": [
     {
-      "id": "linux-native",
-      "title": "Linux — binaries & archives"
-    },
-    {
       "id": "linux-pkg",
-      "title": "Linux — package managers"
+      "title": "Linux package managers"
     },
     {
-      "id": "linux-arm",
-      "title": "ARM64 Linux"
-    },
-    {
-      "id": "windows",
-      "title": "Windows"
+      "id": "binaries",
+      "title": "Standalone binaries"
     }
   ],
   "page": {
@@ -84,30 +76,6 @@
     "buildFromSourceUrl": "https://github.com/BTCDecoded/blvm"
   },
   "packages": [
-    {
-      "id": "linux-x86_64",
-      "label": "Linux x86_64",
-      "ext": "binary",
-      "icon": "fa-solid fa-microchip",
-      "group": "linux-native",
-      "description": "Single static binary for 64-bit Linux (glibc). Full features; no package manager required.",
-      "filename": "blvm-0.1.35-linux-x86_64",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-x86_64",
-      "installCmd": "chmod +x blvm-0.1.35-linux-x86_64\nsudo mv blvm-0.1.35-linux-x86_64 /usr/local/bin/blvm",
-      "verify": "sha256sum --check checksums.sha256"
-    },
-    {
-      "id": "tarball-x86_64",
-      "label": "Linux tarball",
-      "ext": ".tar.gz",
-      "icon": "fa-solid fa-file-zipper",
-      "group": "linux-native",
-      "description": "Archive with blvm and governance CLIs plus per-artifact checksum files inside.",
-      "filename": "blvm-v0.1.35-linux-x86_64.tar.gz",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-x86_64.tar.gz",
-      "installCmd": "tar -xzf blvm-v0.1.35-linux-x86_64.tar.gz\nsudo mv blvm /usr/local/bin/",
-      "verify": "sha256sum --check checksums.sha256"
-    },
     {
       "id": "deb",
       "label": "Debian / Ubuntu",
@@ -145,11 +113,23 @@
       "verify": "sha256sum --check checksums.sha256"
     },
     {
+      "id": "linux-x86_64",
+      "label": "Linux x86_64",
+      "ext": "binary",
+      "icon": "fa-solid fa-microchip",
+      "group": "binaries",
+      "description": "Single static binary for 64-bit Linux (glibc). Full features; no package manager required.",
+      "filename": "blvm-0.1.35-linux-x86_64",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-x86_64",
+      "installCmd": "chmod +x blvm-0.1.35-linux-x86_64\nsudo mv blvm-0.1.35-linux-x86_64 /usr/local/bin/blvm",
+      "verify": "sha256sum --check checksums.sha256"
+    },
+    {
       "id": "linux-aarch64",
-      "label": "ARM64 binary",
+      "label": "ARM64 Linux",
       "ext": "binary",
       "icon": "fa-brands fa-raspberry-pi",
-      "group": "linux-arm",
+      "group": "binaries",
       "description": "64-bit ARM Linux binary (Raspberry Pi 4/5 with 64-bit OS, Apple Silicon Linux VMs, etc.).",
       "filename": "blvm-0.1.35-linux-aarch64",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-aarch64",
@@ -157,40 +137,16 @@
       "verify": "sha256sum --check checksums.sha256"
     },
     {
-      "id": "tarball-aarch64",
-      "label": "ARM64 tarball",
-      "ext": ".tar.gz",
-      "icon": "fa-solid fa-file-zipper",
-      "group": "linux-arm",
-      "description": "64-bit ARM Linux archive (Raspberry Pi 4/5, aarch64 servers).",
-      "filename": "blvm-v0.1.35-linux-aarch64.tar.gz",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-aarch64.tar.gz",
-      "installCmd": "tar -xzf blvm-v0.1.35-linux-aarch64.tar.gz\nsudo mv blvm /usr/local/bin/",
-      "verify": "sha256sum --check checksums.sha256"
-    },
-    {
       "id": "exe",
       "label": "Windows",
       "ext": ".exe",
       "icon": "fa-brands fa-windows",
-      "group": "windows",
+      "group": "binaries",
       "description": "Portable Windows 10 / 11 build (64-bit). Run from a terminal after verifying the checksum.",
       "filename": "blvm-0.1.35-windows-x86_64.exe",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-windows-x86_64.exe",
       "installCmd": "# Download blvm-0.1.35-windows-x86_64.exe, verify the checksum, then run from PowerShell or cmd.",
       "verify": "# PowerShell:\n(Get-FileHash blvm-0.1.35-windows-x86_64.exe -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
-    },
-    {
-      "id": "zip",
-      "label": "Windows zip",
-      "ext": ".zip",
-      "icon": "fa-solid fa-file-zipper",
-      "group": "windows",
-      "description": "Same Windows binary packaged as a zip archive.",
-      "filename": "blvm-v0.1.35-windows-x86_64.zip",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-windows-x86_64.zip",
-      "installCmd": "# Expand-Archive blvm-v0.1.35-windows-x86_64.zip\n# Run blvm.exe from the extracted folder",
-      "verify": "# PowerShell:\n(Get-FileHash blvm-v0.1.35-windows-x86_64.zip -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
     }
   ],
   "managed": {

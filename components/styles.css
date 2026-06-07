@@ -940,6 +940,33 @@ code {
   text-decoration: underline;
 }
 
+.code-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.code-copy-btn:hover {
+  border-color: var(--bitcoin-orange);
+  color: var(--bitcoin-orange);
+  background: #fff8f0;
+}
+
+.code-copy-btn.copied {
+  border-color: #2e7d32;
+  color: #2e7d32;
+  background: #f1f8f2;
+}
+
 .code-container pre {
   margin: 0;
   padding: 1.5rem;

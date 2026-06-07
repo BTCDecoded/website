@@ -81,6 +81,58 @@ function downloadLabel(ext) {
   return `Download ${ext}`;
 }
 
+async function copyText(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.left = "-9999px";
+  document.body.appendChild(ta);
+  ta.select();
+  const ok = document.execCommand("copy");
+  document.body.removeChild(ta);
+  if (!ok) throw new Error("copy failed");
+}
+
+function CopyCodeBlock({ label, code, className = "" }) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCopy() {
+    try {
+      await copyText(code);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.alert("Could not copy to clipboard. Select the text and copy manually.");
+    }
+  }
+
+  return (
+    <div className={`install-code-block${className ? ` ${className}` : ""}`}>
+      <div className="code-header">
+        <span className="code-filename">{label}</span>
+        <button
+          type="button"
+          className={`code-copy-btn${copied ? " copied" : ""}`}
+          onClick={handleCopy}
+          aria-label={copied ? `${label} copied` : `Copy ${label} commands`}
+        >
+          <i
+            className={`fa-solid ${copied ? "fa-check" : "fa-copy"}`}
+            aria-hidden="true"
+          />
+          {copied ? "Copied" : "Copy"}
+        </button>
+      </div>
+      <pre><code>{code}</code></pre>
+    </div>
+  );
+}
+
 export default function Install() {
   const [activePkg, setActivePkg] = useState(0);
   const [activePlat, setActivePlat] = useState(0);
@@ -148,19 +200,18 @@ export default function Install() {
             </a>
           </div>
 
-          <div className="install-code-block">
-            <div className="code-header">
-              <span className="code-filename">Install</span>
-            </div>
-            <pre><code>{pkg.installCmd}</code></pre>
-          </div>
+          <CopyCodeBlock
+            key={`${pkg.id}-install`}
+            label="Install"
+            code={pkg.installCmd}
+          />
 
-          <div className="install-code-block install-code-verify">
-            <div className="code-header">
-              <span className="code-filename">Verify checksum</span>
-            </div>
-            <pre><code>{pkg.verify}</code></pre>
-          </div>
+          <CopyCodeBlock
+            key={`${pkg.id}-verify`}
+            label="Verify checksum"
+            code={pkg.verify}
+            className="install-code-verify"
+          />
 
           <p className="install-gpg-note">
             Releases may publish a detached GPG signature beside each artifact (often{" "}

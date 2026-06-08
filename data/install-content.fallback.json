@@ -1,15 +1,21 @@
 {
   "version": 3,
-  "generatedAt": "2026-06-07T13:09:49.812Z",
+  "generatedAt": "2026-06-08T02:30:19.348Z",
   "source": "github://BTCDecoded/blvm",
   "release": {
-    "tag": "v0.1.35",
-    "semver": "0.1.35",
+    "tag": "v0.1.36",
+    "semver": "0.1.36",
     "releasesLatestUrl": "https://github.com/BTCDecoded/blvm/releases/latest",
-    "releasesTagUrl": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.35",
-    "body": "**Bitcoin Commons BLVM** — Bitcoin Low-Level Virtual Machine node CLI.\n\n> [!NOTE]\n> Verify your download against `checksums.sha256` before running.\n\n## Downloads\n\n| Platform | File | Notes |\n|---|---|---|\n| **Linux x86_64** (binary) | `blvm-0.1.35-linux-x86_64` | Full features (default `cargo build`) |\n| **Linux aarch64** (binary) | `blvm-0.1.35-linux-aarch64` | Raspberry Pi 4/5 (64-bit OS); portable cross-build (sled/redb) |\n| **Linux x86_64** (tarball) | `blvm-v0.1.35-linux-x86_64.tar.gz` | `blvm` + governance CLIs (+ checksum file inside) |\n| **Linux aarch64** (tarball) | `blvm-v0.1.35-linux-aarch64.tar.gz` | `blvm` for 64-bit ARM Linux (+ checksum file inside) |\n| **Linux x86_64** (Arch / pacman) | `blvm-0.1.35-x86_64.pkg.tar.gz` | `pacman -U` |\n| **Linux x86_64** (Debian/Ubuntu) | `blvm_0.1.35_amd64.deb` | `cargo deb` (matches standalone binary) |\n| **Linux x86_64** (RHEL/Fedora) | `blvm-0.1.35-1.x86_64.rpm` | `cargo generate-rpm` |\n| **Windows x86_64** | `blvm-0.1.35-windows-x86_64.exe` | Portable Windows build |\n| **Windows x86_64** (zip) | `blvm-v0.1.35-windows-x86_64.zip` | Same as .exe in archive form |\n| **Checksums** | `checksums.sha256`, `SHA256SUMS-blvm-*`, `SHA256SUMS-linux-packages.txt` | Verify downloads |\n\n## Verify\n\n```bash\nsha256sum -c checksums.sha256\n```\n\n## Install\n\n**Linux (single binary):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.35-linux-x86_64\nsudo mv blvm-0.1.35-linux-x86_64 /usr/local/bin/blvm\n```\n\n**Linux aarch64 (Raspberry Pi 4/5, 64-bit OS):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.35-linux-aarch64\nsudo mv blvm-0.1.35-linux-aarch64 /usr/local/bin/blvm\n```\n\n**Linux (tarball):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-x86_64.tar.gz\ntar -xzf blvm-v0.1.35-linux-x86_64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Linux aarch64 (tarball, Raspberry Pi 4/5):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-v0.1.35-linux-aarch64.tar.gz\ntar -xzf blvm-v0.1.35-linux-aarch64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Debian/Ubuntu:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm_0.1.35_amd64.deb\nsudo dpkg -i blvm_0.1.35_amd64.deb\n```\n\n**RHEL/Fedora:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-1.x86_64.rpm\nsudo rpm -i blvm-0.1.35-1.x86_64.rpm\n```\n\n**Windows:** Download `blvm-0.1.35-windows-x86_64.exe`, verify checksum, and run from a terminal.\n\n## Changes\n\nSee [commit history](https://github.com/BTCDecoded/blvm/compare/...95bb56b6959866a2c2ff2662701700baf6e16589)\n"
+    "releasesTagUrl": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.36",
+    "body": "**Bitcoin Commons BLVM** — Bitcoin Low-Level Virtual Machine node CLI.\n\n> [!NOTE]\n> Verify your download against `checksums.sha256` before running.\n\n## Downloads\n\n| Platform | File | Notes |\n|---|---|---|\n| **Linux x86_64** (binary) | `blvm-0.1.36-linux-x86_64` | Full features (default `cargo build`) |\n| **Linux aarch64** (binary) | `blvm-0.1.36-linux-aarch64` | Raspberry Pi 4/5 (64-bit OS); portable cross-build (sled/redb) |\n| **Linux x86_64** (tarball) | `blvm-v0.1.36-linux-x86_64.tar.gz` | `blvm` + governance CLIs (+ checksum file inside) |\n| **Linux aarch64** (tarball) | `blvm-v0.1.36-linux-aarch64.tar.gz` | `blvm` for 64-bit ARM Linux (+ checksum file inside) |\n| **Linux x86_64** (Arch / pacman) | `blvm-0.1.36-x86_64.pkg.tar.gz` | `pacman -U` |\n| **Linux x86_64** (Debian/Ubuntu) | `blvm_0.1.36_amd64.deb` | `cargo deb` (matches standalone binary) |\n| **Linux x86_64** (RHEL/Fedora) | `blvm-0.1.36-1.x86_64.rpm` | `cargo generate-rpm` |\n| **Windows x86_64** | `blvm-0.1.36-windows-x86_64.exe` | Portable Windows build |\n| **Windows x86_64** (zip) | `blvm-v0.1.36-windows-x86_64.zip` | Same as .exe in archive form |\n| **Checksums** | `checksums.sha256`, `SHA256SUMS-blvm-*`, `SHA256SUMS-linux-packages.txt` | Verify downloads |\n\n## Verify\n\n```bash\nsha256sum -c checksums.sha256\n```\n\n## Install\n\n**Linux (single binary):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.36-linux-x86_64\nsudo mv blvm-0.1.36-linux-x86_64 /usr/local/bin/blvm\n```\n\n**Linux aarch64 (Raspberry Pi 4/5, 64-bit OS):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.36-linux-aarch64\nsudo mv blvm-0.1.36-linux-aarch64 /usr/local/bin/blvm\n```\n\n**Linux (tarball):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-v0.1.36-linux-x86_64.tar.gz\ntar -xzf blvm-v0.1.36-linux-x86_64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Linux aarch64 (tarball, Raspberry Pi 4/5):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-v0.1.36-linux-aarch64.tar.gz\ntar -xzf blvm-v0.1.36-linux-aarch64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Debian/Ubuntu:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm_0.1.36_amd64.deb\nsudo dpkg -i blvm_0.1.36_amd64.deb\n```\n\n**RHEL/Fedora:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-1.x86_64.rpm\nsudo rpm -i blvm-0.1.36-1.x86_64.rpm\n```\n\n**Windows:** Download `blvm-0.1.36-windows-x86_64.exe`, verify checksum, and run from a terminal.\n\n## Changes\n\nSee [commit history](https://github.com/BTCDecoded/blvm/compare/be5f579f9e0f4579ff6d26eae34abc5880a950e3...cc8cefac8fd3444fd589a78a4368410bd5c90ed3)\n"
   },
   "releaseHistory": [
+    {
+      "tag": "v0.1.36",
+      "name": "blvm v0.1.36",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.36",
+      "publishedAt": "2026-06-07T20:34:40Z"
+    },
     {
       "tag": "v0.1.35",
       "name": "blvm v0.1.35",
@@ -51,12 +57,6 @@
       "name": "blvm v0.1.29",
       "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.29",
       "publishedAt": "2026-05-21T21:02:17Z"
-    },
-    {
-      "tag": "v0.1.28",
-      "name": "blvm v0.1.28",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.28",
-      "publishedAt": "2026-05-21T19:03:25Z"
     }
   ],
   "packageGroups": [
@@ -83,10 +83,10 @@
       "icon": "fa-brands fa-debian",
       "group": "linux-pkg",
       "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro.",
-      "filename": "blvm_0.1.35_amd64.deb",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm_0.1.35_amd64.deb",
-      "installCmd": "sudo dpkg -i blvm_0.1.35_amd64.deb\nsudo apt-get install -f    # pull in any missing deps",
-      "verify": "sha256sum --check checksums.sha256"
+      "filename": "blvm_0.1.36_amd64.deb",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm_0.1.36_amd64.deb",
+      "installCmd": "sudo dpkg -i blvm_0.1.36_amd64.deb\nsudo apt-get install -f    # pull in any missing deps",
+      "verify": "# Run in the folder where you saved blvm_0.1.36_amd64.deb\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm_0.1.36_amd64.deb' checksums.sha256 | sha256sum --check"
     },
     {
       "id": "rpm",
@@ -95,10 +95,10 @@
       "icon": "fa-brands fa-fedora",
       "group": "linux-pkg",
       "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros.",
-      "filename": "blvm-0.1.35-1.x86_64.rpm",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-1.x86_64.rpm",
-      "installCmd": "sudo rpm -i blvm-0.1.35-1.x86_64.rpm\n# or via dnf:\nsudo dnf install ./blvm-0.1.35-1.x86_64.rpm",
-      "verify": "sha256sum --check checksums.sha256"
+      "filename": "blvm-0.1.36-1.x86_64.rpm",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-1.x86_64.rpm",
+      "installCmd": "sudo rpm -i blvm-0.1.36-1.x86_64.rpm\n# or via dnf:\nsudo dnf install ./blvm-0.1.36-1.x86_64.rpm",
+      "verify": "# Run in the folder where you saved blvm-0.1.36-1.x86_64.rpm\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-1.x86_64.rpm' checksums.sha256 | sha256sum --check"
     },
     {
       "id": "pacman",
@@ -107,10 +107,10 @@
       "icon": "fa-solid fa-cubes",
       "group": "linux-pkg",
       "description": "Arch and other pacman-based distros (x86_64).",
-      "filename": "blvm-0.1.35-x86_64.pkg.tar.gz",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-x86_64.pkg.tar.gz",
-      "installCmd": "sudo pacman -U blvm-0.1.35-x86_64.pkg.tar.gz",
-      "verify": "sha256sum --check checksums.sha256"
+      "filename": "blvm-0.1.36-x86_64.pkg.tar.gz",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-x86_64.pkg.tar.gz",
+      "installCmd": "sudo pacman -U blvm-0.1.36-x86_64.pkg.tar.gz",
+      "verify": "# Run in the folder where you saved blvm-0.1.36-x86_64.pkg.tar.gz\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-x86_64.pkg.tar.gz' checksums.sha256 | sha256sum --check"
     },
     {
       "id": "linux-x86_64",
@@ -119,10 +119,10 @@
       "icon": "fa-solid fa-microchip",
       "group": "binaries",
       "description": "Single static binary for 64-bit Linux (glibc). Full features; no package manager required.",
-      "filename": "blvm-0.1.35-linux-x86_64",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-x86_64",
-      "installCmd": "chmod +x blvm-0.1.35-linux-x86_64\nsudo mv blvm-0.1.35-linux-x86_64 /usr/local/bin/blvm",
-      "verify": "sha256sum --check checksums.sha256"
+      "filename": "blvm-0.1.36-linux-x86_64",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-linux-x86_64",
+      "installCmd": "chmod +x blvm-0.1.36-linux-x86_64\nsudo mv blvm-0.1.36-linux-x86_64 /usr/local/bin/blvm",
+      "verify": "# Run in the folder where you saved blvm-0.1.36-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-linux-x86_64' checksums.sha256 | sha256sum --check"
     },
     {
       "id": "linux-aarch64",
@@ -131,10 +131,10 @@
       "icon": "fa-brands fa-raspberry-pi",
       "group": "binaries",
       "description": "64-bit ARM Linux binary (Raspberry Pi 4/5 with 64-bit OS, Apple Silicon Linux VMs, etc.).",
-      "filename": "blvm-0.1.35-linux-aarch64",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-linux-aarch64",
-      "installCmd": "chmod +x blvm-0.1.35-linux-aarch64\nsudo mv blvm-0.1.35-linux-aarch64 /usr/local/bin/blvm",
-      "verify": "sha256sum --check checksums.sha256"
+      "filename": "blvm-0.1.36-linux-aarch64",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-linux-aarch64",
+      "installCmd": "chmod +x blvm-0.1.36-linux-aarch64\nsudo mv blvm-0.1.36-linux-aarch64 /usr/local/bin/blvm",
+      "verify": "# Run in the folder where you saved blvm-0.1.36-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-linux-aarch64' checksums.sha256 | sha256sum --check"
     },
     {
       "id": "exe",
@@ -143,18 +143,18 @@
       "icon": "fa-brands fa-windows",
       "group": "binaries",
       "description": "Portable Windows 10 / 11 build (64-bit). Run from a terminal after verifying the checksum.",
-      "filename": "blvm-0.1.35-windows-x86_64.exe",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.35/blvm-0.1.35-windows-x86_64.exe",
-      "installCmd": "# Download blvm-0.1.35-windows-x86_64.exe, verify the checksum, then run from PowerShell or cmd.",
-      "verify": "# PowerShell:\n(Get-FileHash blvm-0.1.35-windows-x86_64.exe -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
+      "filename": "blvm-0.1.36-windows-x86_64.exe",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-windows-x86_64.exe",
+      "installCmd": "# Download blvm-0.1.36-windows-x86_64.exe, verify the checksum, then run from PowerShell or cmd.",
+      "verify": "# PowerShell — same folder as blvm-0.1.36-windows-x86_64.exe\nInvoke-WebRequest -Uri 'https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256' -OutFile checksums.sha256\n$expected = ((Get-Content checksums.sha256 | Select-String -SimpleMatch 'blvm-0.1.36-windows-x86_64.exe').Line -split '\\s+')[0]\n$actual = (Get-FileHash blvm-0.1.36-windows-x86_64.exe -Algorithm SHA256).Hash\nif ($expected.ToUpper() -eq $actual) { 'Checksum OK' } else { throw 'Checksum MISMATCH' }"
     }
   ],
   "docker": {
     "title": "Docker",
     "icon": "fa-brands fa-docker",
     "description": "Official image on GHCR, published on every stable release.",
-    "pullCmd": "docker pull ghcr.io/btcdecoded/blvm:0.1.35",
-    "runCmd": "docker run -d --name blvm \\\n  -v blvm-data:/data \\\n  -p 8333:8333 -p 8332:8332 \\\n  ghcr.io/btcdecoded/blvm:0.1.35",
+    "pullCmd": "docker pull ghcr.io/btcdecoded/blvm:0.1.36",
+    "runCmd": "docker run -d --name blvm \\\n  -v blvm-data:/data \\\n  -p 8333:8333 -p 8332:8332 \\\n  ghcr.io/btcdecoded/blvm:0.1.36",
     "packageUrl": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
     "packageLinkLabel": "View on GHCR →"
   },

@@ -64,19 +64,42 @@ function perFileChecksumFilename(assets, pkgFilename) {
   return hit?.name ?? null;
 }
 
-function verifyForPackage(slot, filename, assets, verifyTemplate) {
-  if (slot.id === "exe" || slot.id === "zip") {
-    return verifyTemplate.replaceAll("{{FILENAME}}", filename);
-  }
+function releaseDownloadUrl(repo, tag, filename) {
+  return `https://github.com/${repo}/releases/download/${tag}/${filename}`;
+}
+
+function verifyForPackage(slot, filename, assets, verifyTemplate, repo, tag) {
   const aggregate = aggregateChecksumFilename(assets);
-  if (aggregate) {
-    return `sha256sum --check ${aggregate}`;
+  const checksumsName = aggregate ?? "checksums.sha256";
+
+  if (slot.id === "exe" || slot.id === "zip") {
+    const checksumsUrl = releaseDownloadUrl(repo, tag, checksumsName);
+    return (
+      `# PowerShell — same folder as ${filename}\n` +
+      `Invoke-WebRequest -Uri '${checksumsUrl}' -OutFile checksums.sha256\n` +
+      `$expected = ((Get-Content checksums.sha256 | Select-String -SimpleMatch '${filename}').Line -split '\\s+')[0]\n` +
+      `$actual = (Get-FileHash ${filename} -Algorithm SHA256).Hash\n` +
+      `if ($expected.ToUpper() -eq $actual) { 'Checksum OK' } else { throw 'Checksum MISMATCH' }`
+    );
   }
+
+  if (aggregate) {
+    const checksumsUrl = releaseDownloadUrl(repo, tag, aggregate);
+    return (
+      `# Run in the folder where you saved ${filename}\n` +
+      `curl -LO ${checksumsUrl}\n` +
+      `grep '${filename}' ${aggregate} | sha256sum --check`
+    );
+  }
+
   const checkName = perFileChecksumFilename(assets, filename);
   if (checkName) {
     return verifyTemplate.replaceAll("{{CHECKFILE}}", checkName);
   }
-  return `sha256sum ${filename}\n# Compare the digest to checksums.sha256 or the GitHub release page`;
+  return (
+    `sha256sum ${filename}\n` +
+    `# Compare the digest to ${checksumsName} on the GitHub release page`
+  );
 }
 
 function substituteDocker(docker, semver) {
@@ -89,7 +112,7 @@ function substituteDocker(docker, semver) {
   };
 }
 
-function buildPackages(staticData, assets) {
+function buildPackages(staticData, assets, repo, tag) {
   const packages = [];
   for (const slot of staticData.packageSlots) {
     const asset = pickAsset(assets, slot);
@@ -98,7 +121,7 @@ function buildPackages(staticData, assets) {
       throw new Error(`No release asset matches slot "${slot.id}" (${JSON.stringify(slot.pick)})`);
     }
     const filename = asset.name;
-    const verify = verifyForPackage(slot, filename, assets, slot.verifyTemplate);
+    const verify = verifyForPackage(slot, filename, assets, slot.verifyTemplate, repo, tag);
     const installCmd = slot.installCmdTemplate.replaceAll("{{FILENAME}}", filename);
 
     packages.push({
@@ -160,7 +183,7 @@ async function main() {
           }))
       : [];
 
-    const packages = buildPackages(staticData, assets);
+    const packages = buildPackages(staticData, assets, repo, tag);
 
     const out = {
       version: 3,

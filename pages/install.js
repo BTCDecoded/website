@@ -198,11 +198,13 @@ export default function Install() {
             </a>
           </div>
 
-          <CopyCodeBlock
-            key={`${pkg.id}-install`}
-            label="Install"
-            code={pkg.installCmd}
-          />
+          {pkg.installCmd ? (
+            <CopyCodeBlock
+              key={`${pkg.id}-install`}
+              label="Install"
+              code={pkg.installCmd}
+            />
+          ) : null}
 
           <CopyCodeBlock
             key={`${pkg.id}-verify`}
@@ -210,6 +212,15 @@ export default function Install() {
             code={pkg.verify}
             className="install-code-verify"
           />
+
+          {pkg.runCmd ? (
+            <CopyCodeBlock
+              key={`${pkg.id}-run`}
+              label="Run"
+              code={pkg.runCmd}
+              className="install-code-run"
+            />
+          ) : null}
 
           <p className="install-gpg-note">
             Releases may publish a detached GPG signature beside each artifact (often{" "}

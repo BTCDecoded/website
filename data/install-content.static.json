@@ -73,10 +73,10 @@
       "label": "Windows",
       "ext": ".exe",
       "icon": "fa-brands fa-windows",
-      "description": "Portable Windows 10 / 11 build (64-bit). Run from a terminal after verifying the checksum.",
+      "description": "Portable Windows 10 / 11 build (64-bit). Download above, verify the checksum, then run the .exe from PowerShell.",
       "pick": { "suffix": ".exe", "includes": ["windows"] },
-      "installCmdTemplate": "# Download {{FILENAME}}, verify the checksum, then run from PowerShell or cmd.",
-      "verifyTemplate": "# PowerShell:\n(Get-FileHash {{FILENAME}} -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
+      "installCmdTemplate": "",
+      "verifyTemplate": ""
     }
   ],
   "docker": {

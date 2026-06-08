@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-06-08T02:30:19.348Z",
+  "generatedAt": "2026-06-08T02:32:28.271Z",
   "source": "github://BTCDecoded/blvm",
   "release": {
     "tag": "v0.1.36",
@@ -86,6 +86,7 @@
       "filename": "blvm_0.1.36_amd64.deb",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm_0.1.36_amd64.deb",
       "installCmd": "sudo dpkg -i blvm_0.1.36_amd64.deb\nsudo apt-get install -f    # pull in any missing deps",
+      "runCmd": null,
       "verify": "# Run in the folder where you saved blvm_0.1.36_amd64.deb\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm_0.1.36_amd64.deb' checksums.sha256 | sha256sum --check"
     },
     {
@@ -98,6 +99,7 @@
       "filename": "blvm-0.1.36-1.x86_64.rpm",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-1.x86_64.rpm",
       "installCmd": "sudo rpm -i blvm-0.1.36-1.x86_64.rpm\n# or via dnf:\nsudo dnf install ./blvm-0.1.36-1.x86_64.rpm",
+      "runCmd": null,
       "verify": "# Run in the folder where you saved blvm-0.1.36-1.x86_64.rpm\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-1.x86_64.rpm' checksums.sha256 | sha256sum --check"
     },
     {
@@ -110,6 +112,7 @@
       "filename": "blvm-0.1.36-x86_64.pkg.tar.gz",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-x86_64.pkg.tar.gz",
       "installCmd": "sudo pacman -U blvm-0.1.36-x86_64.pkg.tar.gz",
+      "runCmd": null,
       "verify": "# Run in the folder where you saved blvm-0.1.36-x86_64.pkg.tar.gz\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-x86_64.pkg.tar.gz' checksums.sha256 | sha256sum --check"
     },
     {
@@ -122,6 +125,7 @@
       "filename": "blvm-0.1.36-linux-x86_64",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-linux-x86_64",
       "installCmd": "chmod +x blvm-0.1.36-linux-x86_64\nsudo mv blvm-0.1.36-linux-x86_64 /usr/local/bin/blvm",
+      "runCmd": null,
       "verify": "# Run in the folder where you saved blvm-0.1.36-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-linux-x86_64' checksums.sha256 | sha256sum --check"
     },
     {
@@ -134,6 +138,7 @@
       "filename": "blvm-0.1.36-linux-aarch64",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-linux-aarch64",
       "installCmd": "chmod +x blvm-0.1.36-linux-aarch64\nsudo mv blvm-0.1.36-linux-aarch64 /usr/local/bin/blvm",
+      "runCmd": null,
       "verify": "# Run in the folder where you saved blvm-0.1.36-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256\ngrep 'blvm-0.1.36-linux-aarch64' checksums.sha256 | sha256sum --check"
     },
     {
@@ -142,10 +147,11 @@
       "ext": ".exe",
       "icon": "fa-brands fa-windows",
       "group": "binaries",
-      "description": "Portable Windows 10 / 11 build (64-bit). Run from a terminal after verifying the checksum.",
+      "description": "Portable Windows 10 / 11 build (64-bit). Download above, verify the checksum, then run the .exe from PowerShell.",
       "filename": "blvm-0.1.36-windows-x86_64.exe",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/blvm-0.1.36-windows-x86_64.exe",
-      "installCmd": "# Download blvm-0.1.36-windows-x86_64.exe, verify the checksum, then run from PowerShell or cmd.",
+      "installCmd": null,
+      "runCmd": "# PowerShell — after download + verify\n.\\blvm-0.1.36-windows-x86_64.exe --help",
       "verify": "# PowerShell — same folder as blvm-0.1.36-windows-x86_64.exe\nInvoke-WebRequest -Uri 'https://github.com/BTCDecoded/blvm/releases/download/v0.1.36/checksums.sha256' -OutFile checksums.sha256\n$expected = ((Get-Content checksums.sha256 | Select-String -SimpleMatch 'blvm-0.1.36-windows-x86_64.exe').Line -split '\\s+')[0]\n$actual = (Get-FileHash blvm-0.1.36-windows-x86_64.exe -Algorithm SHA256).Hash\nif ($expected.ToUpper() -eq $actual) { 'Checksum OK' } else { throw 'Checksum MISMATCH' }"
     }
   ],

@@ -102,6 +102,20 @@ function verifyForPackage(slot, filename, assets, verifyTemplate, repo, tag) {
   );
 }
 
+function installForPackage(slot, filename, downloadUrl) {
+  if (slot.id === "exe" || slot.id === "zip") {
+    return null;
+  }
+  return slot.installCmdTemplate.replaceAll("{{FILENAME}}", filename);
+}
+
+function runForPackage(slot, filename) {
+  if (slot.id === "exe") {
+    return `# PowerShell — after download + verify\n.\\${filename} --help`;
+  }
+  return null;
+}
+
 function substituteDocker(docker, semver) {
   if (!docker) return null;
   const sub = (s) => (s ?? "").replaceAll("{{VERSION}}", semver);
@@ -122,7 +136,8 @@ function buildPackages(staticData, assets, repo, tag) {
     }
     const filename = asset.name;
     const verify = verifyForPackage(slot, filename, assets, slot.verifyTemplate, repo, tag);
-    const installCmd = slot.installCmdTemplate.replaceAll("{{FILENAME}}", filename);
+    const installCmd = installForPackage(slot, filename, asset.browser_download_url);
+    const runCmd = runForPackage(slot, filename);
 
     packages.push({
       id: slot.id,
@@ -134,6 +149,7 @@ function buildPackages(staticData, assets, repo, tag) {
       filename,
       downloadUrl: asset.browser_download_url,
       installCmd,
+      runCmd,
       verify,
     });
   }

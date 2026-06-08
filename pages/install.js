@@ -226,10 +226,19 @@ export default function Install() {
           </p>
         </div>
 
-        <details className="install-managed-details">
+        <details
+          className="install-managed-details"
+          open={managed.defaultOpen ?? false}
+        >
           <summary className="install-managed-summary">
             <span className="install-managed-summary-title">{managed.summaryTitle}</span>
-            <span className="install-managed-badge">{managed.badge}</span>
+            <span
+              className={`install-managed-badge${
+                managed.badgeVariant === "available" ? " install-managed-badge--available" : ""
+              }`}
+            >
+              {managed.badge}
+            </span>
             <span className="install-managed-summary-hint">
               {managed.summaryHint}
             </span>
@@ -257,7 +266,16 @@ export default function Install() {
             </div>
 
             <div className="platform-panel">
-              <h3>{platform.name}</h3>
+              <h3 className="platform-panel-title">
+                {platform.name}
+                {platform.statusLabel ? (
+                  <span
+                    className={`platform-status platform-status--${platform.status ?? "default"}`}
+                  >
+                    {platform.statusLabel}
+                  </span>
+                ) : null}
+              </h3>
               <p style={{ color: "var(--text-secondary)" }}>{platform.description}</p>
               <h4 style={{ marginTop: "1.5rem" }}>Installation steps</h4>
               <ol className="install-steps">

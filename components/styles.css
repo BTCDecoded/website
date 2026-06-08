@@ -1835,7 +1835,7 @@ code {
   opacity: 0.8;
 }
 
-/* ── Install: managed paths (collapsed until live) ── */
+/* ── Install: managed paths (Docker / Umbrel) ── */
 .install-managed-details {
   margin: 2rem 0 0;
   border: 1px dashed var(--border);
@@ -1886,6 +1886,35 @@ code {
   text-transform: uppercase;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
+  background: rgba(180, 83, 9, 0.15);
+  color: #b45309;
+  border: 1px solid rgba(180, 83, 9, 0.35);
+}
+.install-managed-badge--available {
+  background: rgba(22, 101, 52, 0.12);
+  color: #166534;
+  border-color: rgba(22, 101, 52, 0.35);
+}
+.platform-panel-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+.platform-status {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+.platform-status--available {
+  background: rgba(22, 101, 52, 0.12);
+  color: #166534;
+  border: 1px solid rgba(22, 101, 52, 0.35);
+}
+.platform-status--coming-soon {
   background: rgba(180, 83, 9, 0.15);
   color: #b45309;
   border: 1px solid rgba(180, 83, 9, 0.35);

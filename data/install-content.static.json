@@ -81,16 +81,20 @@
   ],
   "managed": {
     "summaryTitle": "Managed installs",
-    "badge": "Not ready yet",
-    "summaryHint": "Umbrel & Docker · click to preview planned steps",
-    "banner": "These paths are not live yet. Use the packages above or build from source until Umbrel listing and Docker image publish.",
-    "intro": "Prefer a one-click install? blvm is planned as a managed package on Umbrel and as an official Docker image."
+    "badge": "Docker available",
+    "badgeVariant": "available",
+    "defaultOpen": true,
+    "summaryHint": "Docker on GHCR · Umbrel coming soon",
+    "banner": "Official container images publish to GitHub Container Registry on every stable release. Umbrel App Store listing is not live yet.",
+    "intro": "Run blvm in Docker today. Umbrel one-click install is planned for a future App Store release."
   },
   "platforms": [
     {
       "name": "Umbrel",
       "icon": "fa-solid fa-plug",
-      "description": "Available in the Umbrel App Store as \"Bitcoin Commons\". Runs on a Raspberry Pi or any Linux machine with a one-click node stack.",
+      "status": "coming-soon",
+      "statusLabel": "Coming soon",
+      "description": "Planned for the Umbrel App Store as \"Bitcoin Commons\" — one-click node stack on Raspberry Pi or any Linux host.",
       "steps": [
         "Open your Umbrel dashboard and go to the App Store.",
         "Search for \"Bitcoin Commons\" and click Install.",
@@ -104,16 +108,19 @@
     {
       "name": "Docker",
       "icon": "fa-brands fa-docker",
-      "description": "Run blvm in a container on any platform that supports Docker or Podman. Official image tagging follows blvm releases when published.",
+      "status": "available",
+      "statusLabel": "Available now",
+      "description": "Official image on GitHub Container Registry (GHCR). Published on every stable release as ghcr.io/btcdecoded/blvm — pin a version tag or use latest.",
       "steps": [
-        "Pull the image: docker pull btccommons/blvm:{{VERSION}}",
+        "Pull the release image: docker pull ghcr.io/btcdecoded/blvm:{{VERSION}}",
+        "Or track latest: docker pull ghcr.io/btcdecoded/blvm:latest",
         "Create a persistent data volume: docker volume create blvm-data",
-        "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 btccommons/blvm:{{VERSION}}",
+        "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 ghcr.io/btcdecoded/blvm:{{VERSION}}",
         "Check logs: docker logs -f blvm"
       ],
       "docsLink": "https://docs.thebitcoincommons.org/getting-started/installation.html",
-      "supportLink": "https://github.com/BTCDecoded/blvm/releases/latest",
-      "supportLinkLabel": "GitHub Releases →"
+      "supportLink": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
+      "supportLinkLabel": "GHCR package →"
     }
   ],
   "markdownDoc": {}

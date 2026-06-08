@@ -1798,12 +1798,24 @@ code {
   border: 1px solid var(--border);
   background: #fff;
 }
-.install-code-block pre {
+.install-code-block pre,
+.install-code-pre {
   margin: 0;
-  padding: 0.9rem 1rem;
+  padding: 0.85rem 1rem;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
   font-size: 0.82rem;
+  line-height: 1.55;
   overflow-x: auto;
   background: #fff;
+  color: var(--text-primary);
+  white-space: pre;
+  tab-size: 2;
+}
+.install-code-block pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
 }
 .install-code-verify {
   margin-top: 0;

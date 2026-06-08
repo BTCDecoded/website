@@ -128,7 +128,7 @@ function CopyCodeBlock({ label, code, className = "" }) {
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre><code>{code}</code></pre>
+      <pre className="install-code-pre">{code}</pre>
     </div>
   );
 }

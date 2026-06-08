@@ -79,11 +79,14 @@ function verifyForPackage(slot, filename, assets, verifyTemplate) {
   return `sha256sum ${filename}\n# Compare the digest to checksums.sha256 or the GitHub release page`;
 }
 
-function substitutePlatformSteps(platforms, semver) {
-  return platforms.map((p) => ({
-    ...p,
-    steps: (p.steps ?? []).map((line) => line.replaceAll("{{VERSION}}", semver)),
-  }));
+function substituteDocker(docker, semver) {
+  if (!docker) return null;
+  const sub = (s) => (s ?? "").replaceAll("{{VERSION}}", semver);
+  return {
+    ...docker,
+    pullCmd: sub(docker.pullCmd),
+    runCmd: sub(docker.runCmd),
+  };
 }
 
 function buildPackages(staticData, assets) {
@@ -174,8 +177,8 @@ async function main() {
       packageGroups: staticData.packageGroups ?? [],
       page: staticData.page,
       packages,
-      managed: staticData.managed,
-      platforms: substitutePlatformSteps(staticData.platforms ?? [], semver),
+      docker: substituteDocker(staticData.docker, semver),
+      comingSoonNote: staticData.comingSoonNote ?? "",
       markdownDoc: staticData.markdownDoc ?? {},
     };
 

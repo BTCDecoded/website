@@ -149,49 +149,15 @@
       "verify": "# PowerShell:\n(Get-FileHash blvm-0.1.35-windows-x86_64.exe -Algorithm SHA256).Hash\n# Compare to checksums.sha256 on the release page"
     }
   ],
-  "managed": {
-    "summaryTitle": "Managed installs",
-    "badge": "Docker available",
-    "badgeVariant": "available",
-    "defaultOpen": true,
-    "summaryHint": "Docker on GHCR · Umbrel coming soon",
-    "banner": "Official container images publish to GitHub Container Registry on every stable release. Umbrel App Store listing is not live yet.",
-    "intro": "Run blvm in Docker today. Umbrel one-click install is planned for a future App Store release."
+  "docker": {
+    "title": "Docker",
+    "icon": "fa-brands fa-docker",
+    "description": "Official image on GHCR, published on every stable release.",
+    "pullCmd": "docker pull ghcr.io/btcdecoded/blvm:0.1.35",
+    "runCmd": "docker run -d --name blvm \\\n  -v blvm-data:/data \\\n  -p 8333:8333 -p 8332:8332 \\\n  ghcr.io/btcdecoded/blvm:0.1.35",
+    "packageUrl": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
+    "packageLinkLabel": "View on GHCR →"
   },
-  "platforms": [
-    {
-      "name": "Umbrel",
-      "icon": "fa-solid fa-plug",
-      "status": "coming-soon",
-      "statusLabel": "Coming soon",
-      "description": "Planned for the Umbrel App Store as \"Bitcoin Commons\" — one-click node stack on Raspberry Pi or any Linux host.",
-      "steps": [
-        "Open your Umbrel dashboard and go to the App Store.",
-        "Search for \"Bitcoin Commons\" and click Install.",
-        "Wait for initial sync to complete; this may take several hours on first run.",
-        "Access node settings and RPC credentials from the app detail page."
-      ],
-      "docsLink": "https://docs.thebitcoincommons.org/getting-started/installation.html",
-      "supportLink": "https://community.getumbrel.com",
-      "supportLinkLabel": "Umbrel support"
-    },
-    {
-      "name": "Docker",
-      "icon": "fa-brands fa-docker",
-      "status": "available",
-      "statusLabel": "Available now",
-      "description": "Official image on GitHub Container Registry (GHCR). Published on every stable release as ghcr.io/btcdecoded/blvm — pin a version tag or use latest.",
-      "steps": [
-        "Pull the release image: docker pull ghcr.io/btcdecoded/blvm:0.1.35",
-        "Or track latest: docker pull ghcr.io/btcdecoded/blvm:latest",
-        "Create a persistent data volume: docker volume create blvm-data",
-        "Run the node: docker run -d --name blvm -v blvm-data:/data -p 8333:8333 -p 8332:8332 ghcr.io/btcdecoded/blvm:0.1.35",
-        "Check logs: docker logs -f blvm"
-      ],
-      "docsLink": "https://docs.thebitcoincommons.org/getting-started/installation.html",
-      "supportLink": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
-      "supportLinkLabel": "GHCR package →"
-    }
-  ],
+  "comingSoonNote": "Umbrel App Store — coming soon.",
   "markdownDoc": {}
 }

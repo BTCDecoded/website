@@ -11,8 +11,8 @@ const {
   release,
   packages,
   packageGroups = [],
-  managed,
-  platforms,
+  docker,
+  comingSoonNote = "",
   releaseHistory = [],
 } = installContent;
 
@@ -135,9 +135,7 @@ function CopyCodeBlock({ label, code, className = "" }) {
 
 export default function Install() {
   const [activePkg, setActivePkg] = useState(0);
-  const [activePlat, setActivePlat] = useState(0);
   const pkg = packages[activePkg];
-  const platform = platforms[activePlat];
   const groupedPackages = groupPackages(packages, packageGroups);
 
   return (
@@ -226,87 +224,37 @@ export default function Install() {
           </p>
         </div>
 
-        <details
-          className="install-managed-details"
-          open={managed.defaultOpen ?? false}
-        >
-          <summary className="install-managed-summary">
-            <span className="install-managed-summary-title">{managed.summaryTitle}</span>
-            <span
-              className={`install-managed-badge${
-                managed.badgeVariant === "available" ? " install-managed-badge--available" : ""
-              }`}
-            >
-              {managed.badge}
-            </span>
-            <span className="install-managed-summary-hint">
-              {managed.summaryHint}
-            </span>
-          </summary>
-          <div className="install-managed-inner">
-            <p className="install-managed-banner" role="status">
-              {managed.banner}
-            </p>
-            <p className="install-plat-intro">
-              {managed.intro}
-            </p>
-
-            <div className="platform-tabs">
-              {platforms.map((p, i) => (
-                <button
-                  key={p.name}
-                  type="button"
-                  className={`platform-tab${i === activePlat ? " active" : ""}`}
-                  onClick={() => setActivePlat(i)}
-                >
-                  <i className={`${p.icon} platform-tab-icon`} aria-hidden="true" />
-                  {" "}{p.name}
-                </button>
-              ))}
-            </div>
-
-            <div className="platform-panel">
-              <h3 className="platform-panel-title">
-                {platform.name}
-                {platform.statusLabel ? (
-                  <span
-                    className={`platform-status platform-status--${platform.status ?? "default"}`}
-                  >
-                    {platform.statusLabel}
-                  </span>
-                ) : null}
-              </h3>
-              <p style={{ color: "var(--text-secondary)" }}>{platform.description}</p>
-              <h4 style={{ marginTop: "1.5rem" }}>Installation steps</h4>
-              <ol className="install-steps">
-                {platform.steps.map((step, i) => (
-                  <li key={i}>{step}</li>
-                ))}
-              </ol>
-              <div className="platform-links">
-                <a
-                  href={platform.docsLink}
-                  className="btn btn-primary"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Full documentation
-                </a>
-                <a
-                  href={platform.supportLink}
-                  className="btn btn-outline"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  {platform.supportLinkLabel}
-                </a>
+        {docker ? (
+          <div className="install-detail install-docker">
+            <div className="install-detail-head">
+              <div>
+                <h3 className="install-detail-title">
+                  <i className={`${docker.icon} install-detail-icon`} aria-hidden="true" />
+                  {docker.title}
+                </h3>
+                <p className="install-detail-desc">{docker.description}</p>
               </div>
+              <a
+                href={docker.packageUrl}
+                className="btn btn-outline install-dl-btn"
+                target="_blank"
+                rel="noopener"
+              >
+                {docker.packageLinkLabel}
+              </a>
             </div>
+
+            <CopyCodeBlock key="docker-pull" label="Pull" code={docker.pullCmd} />
+            <CopyCodeBlock key="docker-run" label="Run" code={docker.runCmd} />
+
+            {comingSoonNote ? (
+              <p className="install-coming-soon">{comingSoonNote}</p>
+            ) : null}
           </div>
-        </details>
+        ) : null}
 
         {releaseHistory.length > 0 && (
-          <div className="install-history install-history-after-managed">
+          <div className="install-history">
             <h3 className="install-history-heading">Recent releases</h3>
             <ul className="install-history-list">
               {releaseHistory.map((r) => (

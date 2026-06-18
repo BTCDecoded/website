@@ -67,9 +67,16 @@ export default function PlugAndPlay() {
     <section id="plug-and-play" className="section">
       <div className="container">
         <h2>Pre-Built Node Packages</h2>
+        <p style={{ color: "var(--text-secondary)", marginBottom: "1rem" }}>
+          <strong>Coming soon.</strong> Managed marketplace installs (Start9, Umbrel, myNode, Parmanode) are not live yet.
+          Use <a href="/install/">GitHub Releases</a> or the{" "}
+          <a href="https://docs.thebitcoincommons.org/getting-started/installation.html" target="_blank" rel="noopener">
+            installation guide
+          </a>{" "}
+          for current packages.
+        </p>
         <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>
-          Run a verified Bitcoin node without compiling code. Pick your
-          platform below.
+          Preview of planned one-click paths — not available for production use yet.
         </p>
 
         <div className="platform-tabs">

@@ -8,6 +8,7 @@ Static marketing site for [btcdecoded.org](https://btcdecoded.org), published to
 - **Two entry paths** after load: **Developers** (problem, architecture, Orange Paper, governance) and **Nodes** (why BLVM, pre-built packages, desktop downloads, FAQ)
 - **MathJax** on the Orange Paper page via `better-react-mathjax`
 - **Assets** live under `public/` (e.g. `public/assets/images/spec-map.jpg`) and are served at `/assets/...` after export
+- **`public/llms.txt`** and **`public/robots.txt`** — machine-readable site index ([llmstxt.org](https://llmstxt.org/) convention), copied to the site root on export
 
 ## Install page (`/install`)
 

@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Machine-readable context for LLM agents (llmstxt.org convention)
+# https://btcdecoded.org/llms.txt

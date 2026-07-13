@@ -1,0 +1,50 @@
+# BTCDecoded (Bitcoin Decoded)
+
+> Marketing and operator entry point for BLVM: verified downloads, plug-and-play installs, and learning paths into Bitcoin Commons.
+
+BTCDecoded is the **reference implementation** brand for [Bitcoin Commons](https://thebitcoincommons.org). This site targets **operators and newcomers** choosing a node and downloading verified **`blvm`** binaries. Normative consensus specification lives on thebitcoincommons.org; APIs, configuration, and verification methodology live on docs.thebitcoincommons.org.
+
+**Two learning paths:** Developers start at Problem → Architecture → Orange Paper → Governance. Node operators start at Why BLVM → Pre-Built Nodes → Install → FAQ.
+
+## Downloads (canonical on this site)
+
+- [Install BLVM](https://btcdecoded.org/install/): Current release packages, checksums, Docker commands, release history (version data from GitHub Releases)
+- [Pre-built nodes](https://btcdecoded.org/plugandplay/): Start9, Umbrel, myNode, and Parmanode marketplace install paths
+
+## Learning paths
+
+### Developers
+
+- [Problem](https://btcdecoded.org/problem/): Informal governance risk and the need for a shared mathematical spec
+- [Architecture](https://btcdecoded.org/architecture/): BLVM crate map and dependency flow into consensus and node layers
+- [Orange Paper (on-site intro)](https://btcdecoded.org/orangepaper/): Orientation and formal-proof overview; canonical math IR is off-site
+- [Governance](https://btcdecoded.org/governance/): Live YAML viewer, tiers, and Commons enforcement model
+
+### Node operators
+
+- [Why BLVM?](https://btcdecoded.org/whyblvm/): One spec, Z3-backed verification, differential testing against Bitcoin Core
+- [FAQ](https://btcdecoded.org/faq/): Consensus safety, decentralization, support, and governance basics
+
+## Normative specification (off-site)
+
+- [Orange Paper (canonical)](https://thebitcoincommons.org/orange-paper.html): Mathematical Bitcoin consensus IR (not generated from code)
+- [Consensus Spec register](https://thebitcoincommons.org/spec.html): Auditable rule register with visualizations
+
+## Technical documentation
+
+- [BLVM documentation book](https://docs.thebitcoincommons.org/introduction.html): Operators, developers, node config, SDK, security posture
+- [Book llms.txt](https://docs.thebitcoincommons.org/llms.txt): Machine-readable chapter index for the docs site
+- [Commons llms.txt](https://thebitcoincommons.org/llms.txt): Parent project machine-readable index
+
+## Implementation
+
+- [blvm releases](https://github.com/BTCDecoded/blvm/releases): Source of truth for install page version metadata
+- [blvm repository](https://github.com/BTCDecoded/blvm): Reference node CLI and release artifacts
+
+## Optional
+
+- [Homepage](https://btcdecoded.org/): Latest release banner and project overview
+- [robots.txt](https://btcdecoded.org/robots.txt): Crawler policy (not access control)
+- [Bitcoin Commons](https://thebitcoincommons.org/): Umbrella project and spec hosting
+- [Updates](https://btccommons.substack.com/): Release notes and project newsletter
+- [Security contact](mailto:security@thebitcoincommons.org): Vulnerability reports

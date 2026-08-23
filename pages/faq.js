@@ -31,6 +31,10 @@ const faqs = [
     a: "Bitcoin Commons governance is published, tiered, and cryptographically enforced. Every rule — who can merge, what signature thresholds are required, how long review windows last — is in a public repository. Multisig enforcement means no single maintainer can bypass the process. If you disagree with a rule you fork the governance document, not the chain. The governance designer at thebitcoincommons.org lets you explore what a fork would look like.",
   },
   {
+    q: "What is Commons Pool?",
+    a: "Commons Pool is BTCDecoded's mining pool: no operator, no pool wallet, no KYC. Coinbase outputs pay miner addresses from a shared snapshot of work. It runs on Bitcoin Commons (BLVM), not Bitcoin Core. Signet today; not on mainnet. Site: commonspool.org.",
+  },
+  {
     q: "Where do I get support?",
     a: "Documentation lives at docs.thebitcoincommons.org. For platform-specific help (Start9, Umbrel, myNode, Parmanode) see the plug-and-play page. For bugs and issues use the GitHub issue tracker at github.com/BTCDecoded. For project updates subscribe to btccommons.substack.com.",
   },

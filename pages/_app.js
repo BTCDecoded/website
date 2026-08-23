@@ -12,7 +12,7 @@ const DevNavLinks = [
   { href: "/architecture", title: "Architecture" },
   { href: "/orangepaper", title: "Orange Paper" },
   { href: "/governance", title: "Governance" },
-  // { href: 'https://thebitcoincommons.org', title: 'Framework', external: true },
+  { href: "https://commonspool.org", title: "Commons Pool", external: true },
 ];
 
 const mathJaxconfig = {
@@ -30,6 +30,7 @@ const NodeNavLinks = [
   { href: "/whyblvm", title: "Why BLVM?" },
   { href: "/plugandplay", title: "Pre-Built Nodes" },
   { href: "/install", title: "Install" },
+  { href: "https://commonspool.org", title: "Commons Pool", external: true },
   { href: "/faq", title: "FAQ" },
 ];
 

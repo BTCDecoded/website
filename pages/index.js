@@ -85,6 +85,58 @@ export default function IndexPage() {
         </div>
       </section>
 
+      <section className="cp-feature" aria-labelledby="cp-feature-heading">
+        <div className="container">
+          <article className="cp-panel">
+            <div className="cp-panel__copy">
+              <p className="cp-kicker">Built by BTCDecoded</p>
+              <h2 id="cp-feature-heading">Commons Pool</h2>
+              <p className="cp-claim">Mine without handing anyone your coins.</p>
+              <p className="cp-lede">
+                When the pool finds a block, the coinbase already pays your
+                address. No pool wallet. No KYC. Same Bitcoin — on the BLVM
+                stack.
+              </p>
+              <div className="cp-ctas">
+                <a
+                  href="https://commonspool.org"
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit the pool
+                </a>
+                <a
+                  href="https://commonspool.org/architecture.html"
+                  className="btn btn-secondary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  How it works
+                </a>
+              </div>
+            </div>
+            <ul className="cp-facts" aria-label="Commons Pool at a glance">
+              <li>
+                <span className="cp-facts__k">Payouts</span>
+                <span>Straight from the coinbase</span>
+              </li>
+              <li>
+                <span className="cp-facts__k">Custody</span>
+                <span>None. Ever.</span>
+              </li>
+              <li>
+                <span className="cp-facts__k">Network</span>
+                <span>Signet today</span>
+              </li>
+              <li>
+                <span className="cp-facts__k">Stack</span>
+                <span>BLVM and Bitcoin Commons</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
     </>
   );
 }

@@ -77,6 +77,20 @@ export default function Footer(){
             </p>
           </div>
 
+          <div class="footer-framework">
+            <h4>Projects</h4>
+            <p>
+              <a
+                href="https://commonspool.org"
+                target="_blank"
+                rel="noopener"
+              >
+                Commons Pool
+              </a>
+              {" "}— mining without a custodian
+            </p>
+          </div>
+
           <div class="footer-legal">
             <p>
               <a

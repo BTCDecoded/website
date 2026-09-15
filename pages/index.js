@@ -22,22 +22,21 @@ export default function IndexPage() {
         <div className="container">
           <h1>BTCDecoded</h1>
           <p className="tagline">
-            Bitcoin Decoded: shared specification, verified consensus, forkable
-            governance
+            A Bitcoin full node with the consensus rules written down
           </p>
           <p className="hero-lead">
-            First full implementation of{" "}
+            Same chain as Bitcoin Core — not a new coin.{" "}
             <a
               href="https://thebitcoincommons.org"
               target="_blank"
               rel="noopener noreferrer"
             >
               Bitcoin Commons
-            </a>
-            : the Orange Paper (blvm-spec), formally checked consensus
-            (blvm-consensus + blvm-spec-lock), a node and SDK path, and
-            governance rules you can inspect or fork. Not a new coin: a new way
-            to build and coordinate on Bitcoin.
+            </a>{" "}
+            is the written rules (Orange Paper + CONSENSUS_SPEC) and forkable
+            governance. BLVM is the first implementation of those rules, shipped
+            by BTCDecoded — not part of Commons itself. You can run the node,
+            read the spec, or fork the published governance.
           </p>
 
           <div className="hero-ctas">
@@ -66,6 +65,9 @@ export default function IndexPage() {
             >
               Read the Orange Paper
             </a>
+            <Link href="/intelligence/" className="btn btn-outline">
+              Intelligence (testnet)
+            </Link>
           </div>
 
           <div className="hero-subscribe">
@@ -82,6 +84,46 @@ export default function IndexPage() {
               title="Subscribe to Bitcoin Commons on Substack"
             />
           </div>
+        </div>
+      </section>
+
+      <section className="fund-feature" aria-labelledby="fund-heading">
+        <div className="container">
+          <article className="fund-panel">
+            <p className="fund-kicker">Fund the work</p>
+            <h2 id="fund-heading">Donate through Plebly</h2>
+            <p className="fund-lede">
+              Plebly lists public Bitcoin development work and takes donations
+              into on-chain escrow — not a custodial tip jar. Fund a listed
+              Commons proposal, or donate to Commons directly.
+            </p>
+            <div className="fund-ctas">
+              <a
+                href="https://plebly.fund/#projects"
+                className="btn btn-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Fund a listed proposal
+              </a>
+              <a
+                href="https://plebly.fund/?type=direct#projects"
+                className="btn btn-secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Donate to Commons
+              </a>
+              <a
+                href="https://plebly.fund/about"
+                className="btn btn-outline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                How Plebly works
+              </a>
+            </div>
+          </article>
         </div>
       </section>
 

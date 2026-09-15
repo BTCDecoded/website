@@ -89,9 +89,24 @@ export default function Footer(){
               </a>
               {" "}— mining without a custodian
             </p>
+            <p>
+              <a
+                href="https://plebly.fund/#projects"
+                target="_blank"
+                rel="noopener"
+              >
+                Plebly
+              </a>
+              {" "}— fund Commons
+            </p>
           </div>
 
           <div class="footer-legal">
+            <p>
+              <a href="/intelligence/">Intelligence</a>
+              {" · "}
+              <a href="/pricing/">Pricing</a>
+            </p>
             <p>
               <a
                 href="https://docs.thebitcoincommons.org"

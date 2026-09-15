@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MCP_URL } from "../lib/api";
-import SignetNotice from "../components/SignetNotice";
+import CopyField from "../components/CopyField";
+import IntelChrome from "../components/IntelChrome";
 import {
   consumeSessionFromHash,
   fetchAccountKey,
@@ -53,7 +54,7 @@ export default function AccountPage() {
       setStatus(data.expires_at ? `Expires ${data.expires_at}` : "");
     } catch (err) {
       if (err.status === 404) {
-        setStatus("No key on this profile. Pay on Subscribe while logged in.");
+        setStatus("No key on this profile yet.");
         return;
       }
       setStatus(err instanceof Error ? err.message : String(err));
@@ -74,65 +75,56 @@ export default function AccountPage() {
     user?.id;
 
   return (
-    <section className="section">
-      <div className="container">
-        <h2>Account</h2>
-        <div className="content">
-          <SignetNotice />
-          {user === undefined ? (
-            <p>Loading…</p>
-          ) : user ? (
-            <>
-              <p>
-                Signed in as <strong>{label}</strong>
-                {user.github ? " (GitHub)" : ""}
-                {user.nostr ? " (Nostr)" : ""}.
-              </p>
-              <p>
-                Connector: <code>{MCP_URL}</code>
-              </p>
-              <p>
-                {user.has_key
-                  ? "A paid key is stored on this profile."
-                  : "No key yet. Pay on Subscribe with testnet Lightning (not mainnet)."}
-              </p>
-              <p>
-                <button type="button" className="btn btn-primary" onClick={onReveal}>
-                  Show API key
-                </button>{" "}
-                <Link href="/subscribe/" className="btn btn-secondary">
-                  Subscribe
-                </Link>{" "}
-                <button type="button" className="btn btn-secondary" onClick={onLogout}>
-                  Log out
-                </button>
-              </p>
-              {key ? (
-                <p style={{ wordBreak: "break-all" }}>
-                  API key: <code>{key}</code>
-                </p>
-              ) : null}
-            </>
-          ) : (
-            <>
-              <p>
-                Sign in with GitHub or a Nostr profile (NIP-07 extension such as
-                Alby or nos2x). Signing in does not issue a key. After you pay
-                on testnet, the key is stored on this page.
-              </p>
-              <p>
-                <a className="btn btn-primary" href={githubLoginUrl("/account")}>
-                  Continue with GitHub
-                </a>{" "}
-                <button type="button" className="btn btn-secondary" onClick={onNostr}>
-                  Continue with Nostr
-                </button>
-              </p>
-            </>
-          )}
-          {status ? <p>{status}</p> : null}
+    <IntelChrome
+      title="Account"
+      lede="Sign in to keep a paid key on this profile. Signing in does not issue a key by itself."
+    >
+      {user === undefined ? (
+        <p>Loading…</p>
+      ) : user ? (
+        <div className="intel-panel">
+          <p>
+            Signed in as <strong>{label}</strong>
+            {user.github ? " · GitHub" : ""}
+            {user.nostr ? " · Nostr" : ""}.
+          </p>
+          <p className="intel-panel-label">MCP URL</p>
+          <CopyField value={MCP_URL} />
+          <p>
+            {user.has_key
+              ? "A paid key is stored on this profile."
+              : "No key yet. Continue to checkout after you pick a plan."}
+          </p>
+          <div className="hero-ctas intel-ctas">
+            <button type="button" className="btn btn-primary" onClick={onReveal}>
+              Show API key
+            </button>
+            <Link href="/pricing/" className="btn btn-secondary">
+              Pricing
+            </Link>
+            <button type="button" className="btn btn-secondary" onClick={onLogout}>
+              Log out
+            </button>
+          </div>
+          {key ? <CopyField value={key} label="Copy key" /> : null}
         </div>
-      </div>
-    </section>
+      ) : (
+        <div className="intel-panel">
+          <p>
+            GitHub or a Nostr extension (Alby, nos2x). Then choose a plan and
+            pay on checkout.
+          </p>
+          <div className="hero-ctas intel-ctas">
+            <a className="btn btn-primary" href={githubLoginUrl("/account/")}>
+              Continue with GitHub
+            </a>
+            <button type="button" className="btn btn-secondary" onClick={onNostr}>
+              Continue with Nostr
+            </button>
+          </div>
+        </div>
+      )}
+      {status ? <p className="intel-status">{status}</p> : null}
+    </IntelChrome>
   );
 }

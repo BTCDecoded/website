@@ -66,7 +66,7 @@ export default function IndexPage() {
               Read the Orange Paper
             </a>
             <Link href="/intelligence/" className="btn btn-outline">
-              Intelligence (testnet)
+              Intelligence
             </Link>
           </div>
 

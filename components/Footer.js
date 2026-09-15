@@ -106,6 +106,10 @@ export default function Footer(){
               <a href="/intelligence/">Intelligence</a>
               {" · "}
               <a href="/pricing/">Pricing</a>
+              {" · "}
+              <a href="/subscribe/">Checkout</a>
+              {" · "}
+              <a href="/account/">Account</a>
             </p>
             <p>
               <a

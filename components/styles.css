@@ -2878,3 +2878,299 @@ code {
 .cp-on-stack a:hover {
   text-decoration: underline;
 }
+
+/* ── Intelligence product ── */
+.intel-page h2 {
+  margin-bottom: 0.75rem;
+}
+
+.intel-lede {
+  max-width: 40rem;
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.intel-grid {
+  margin: 2rem 0;
+}
+
+.intel-ctas {
+  margin-top: 1.5rem;
+}
+
+.intel-panel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  margin: 0 0 1.25rem;
+  background: #fff;
+}
+
+.intel-panel h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem;
+}
+
+.intel-panel-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.intel-panel--ok {
+  border-color: var(--bitcoin-orange);
+  background: #fffaf3;
+}
+
+.intel-steps {
+  margin: 0 0 1.5rem;
+  padding-left: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 40rem;
+}
+
+.intel-steps li {
+  margin-bottom: 0.45rem;
+}
+
+.intel-progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+}
+
+.intel-progress li {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.intel-progress li.is-current {
+  color: var(--text-primary);
+  border-color: var(--bitcoin-orange);
+}
+
+.intel-progress li.is-done {
+  color: var(--text-primary);
+  background: var(--hover);
+}
+
+.intel-plan-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0 0 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .intel-plan-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.intel-plan {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.intel-plan--featured {
+  border-color: var(--bitcoin-orange);
+  box-shadow: 0 0 0 1px var(--bitcoin-orange);
+}
+
+.intel-plan-badge {
+  margin: 0 0 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bitcoin-orange);
+}
+
+.intel-plan h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+}
+
+.intel-plan-blurb {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0 0 1rem;
+  min-height: 3.2em;
+}
+
+.intel-plan-price {
+  margin: 0;
+  line-height: 1.1;
+}
+
+.intel-plan-sats {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.intel-plan-unit {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.intel-plan-meta {
+  margin: 0.35rem 0 0.85rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.intel-plan-toggle {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.intel-plan-toggle button,
+.intel-sku {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  font-family: inherit;
+}
+
+.intel-plan-toggle button.is-on,
+.intel-sku.is-on {
+  border-color: var(--bitcoin-orange);
+  background: #fff4e0;
+}
+
+.intel-plan-list {
+  margin: 0 0 1.25rem;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  flex: 1;
+}
+
+.intel-plan-list li {
+  margin-bottom: 0.35rem;
+}
+
+.intel-plan .btn {
+  align-self: stretch;
+  text-align: center;
+}
+
+.intel-page .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.intel-fineprint {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  max-width: 42rem;
+}
+
+.intel-sku-grid {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .intel-sku-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.intel-sku {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0.75rem 0.9rem;
+}
+
+.intel-sku span {
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+
+.intel-copy {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0.5rem 0 0.85rem;
+}
+
+.intel-copy-value {
+  flex: 1;
+  min-width: 12rem;
+  display: block;
+  word-break: break-all;
+  padding: 0.7rem 0.85rem;
+  background: var(--code-background);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.intel-copy-btn {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.intel-invoice {
+  margin-top: 1rem;
+}
+
+.intel-status {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.intel-recover {
+  margin-top: 2rem;
+  color: var(--text-secondary);
+}
+
+.intel-recover summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.intel-input {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+  margin: 0.5rem 0 0.85rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+}

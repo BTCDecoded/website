@@ -1,47 +1,67 @@
 import Link from "next/link";
 import { MCP_URL } from "../lib/api";
-import SignetNotice from "../components/SignetNotice";
+import CopyField from "../components/CopyField";
+import IntelChrome from "../components/IntelChrome";
 
 export default function IntelligencePage() {
   return (
-    <section className="section">
-      <div className="container">
-        <h2>Intelligence</h2>
-        <div className="content">
-          <SignetNotice />
+    <IntelChrome
+      title="Answers with citations"
+      lede="A private MCP connector over Bitcoin review history and the informal record. You get a URL and a key — not a dump of the archives."
+    >
+      <div className="why-grid intel-grid">
+        <article className="why-card">
+          <h3>What you query</h3>
           <p>
-            Paid answers about Bitcoin’s review history and informal record,
-            with citations. You get an HTTPS MCP URL and a key. You do not get
-            a download of the underlying archives.
+            Published findings, argument maps, Core docs and selected{" "}
+            <code>src/</code>, plus PRs, lists, IRC, Delving, and Bitcointalk.
+            Each hit is cited. Staleness is labeled.
           </p>
+        </article>
+        <article className="why-card">
+          <h3>How you connect</h3>
           <p>
-            Connector:{" "}
-            <code>{MCP_URL}</code>
+            Add the HTTPS MCP URL in Claude (or any Streamable HTTP client) with
+            your key as a Bearer token. Search and assess work on every plan.
+            Developer adds an advisory PR scaffold.
           </p>
+        </article>
+        <article className="why-card">
+          <h3>What it is not</h3>
           <p>
-            Add that URL in Claude (or any Streamable HTTP MCP client) with your
-            key as a Bearer token. Search across findings, Core history, and
-            selected source. Developer keys can scaffold a public PR. Results
-            are advisory. This is not a merge check and not live governance.
+            Not a merge check. Not live governance. Not a download of the
+            underlying corpus. Results are advisory.
           </p>
-          <p>
-            What you can query: published findings, argument maps, Core docs and
-            selected <code>src/</code>, plus the informal record (PRs, lists,
-            IRC, Delving, Bitcointalk). Staleness is labeled on each result.
-          </p>
-          <div className="hero-ctas" style={{ marginTop: "1.5rem" }}>
-            <Link href="/pricing/" className="btn btn-primary">
-              Pricing
-            </Link>
-            <Link href="/account/" className="btn btn-secondary">
-              Account
-            </Link>
-            <Link href="/subscribe/" className="btn btn-secondary">
-              Get a key
-            </Link>
-          </div>
-        </div>
+        </article>
       </div>
-    </section>
+
+      <div className="intel-panel">
+        <p className="intel-panel-label">MCP URL</p>
+        <CopyField value={MCP_URL} />
+      </div>
+
+      <ol className="intel-steps">
+        <li>
+          <Link href="/account/">Sign in</Link> with GitHub or Nostr so a paid
+          key is saved to your profile.
+        </li>
+        <li>
+          Choose a plan on <Link href="/pricing/">Pricing</Link>.
+        </li>
+        <li>
+          Pay a testnet Lightning invoice on{" "}
+          <Link href="/subscribe/">Checkout</Link>, then copy the key.
+        </li>
+      </ol>
+
+      <div className="hero-ctas intel-ctas">
+        <Link href="/pricing/" className="btn btn-primary">
+          See pricing
+        </Link>
+        <Link href="/account/" className="btn btn-secondary">
+          Sign in
+        </Link>
+      </div>
+    </IntelChrome>
   );
 }

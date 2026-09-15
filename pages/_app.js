@@ -13,6 +13,7 @@ const DevNavLinks = [
   { href: "/orangepaper", title: "Orange Paper" },
   { href: "/governance", title: "Governance" },
   { href: "/intelligence", title: "Intelligence" },
+  { href: "/pricing", title: "Pricing" },
   { href: "/account", title: "Account" },
   { href: "https://commonspool.org", title: "Commons Pool", external: true },
 ];
@@ -33,6 +34,7 @@ const NodeNavLinks = [
   { href: "/plugandplay", title: "Pre-Built Nodes" },
   { href: "/install", title: "Install" },
   { href: "/intelligence", title: "Intelligence" },
+  { href: "/pricing", title: "Pricing" },
   { href: "/account", title: "Account" },
   { href: "https://commonspool.org", title: "Commons Pool", external: true },
   { href: "/faq", title: "FAQ" },

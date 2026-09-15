@@ -1,52 +1,66 @@
+import { useState } from "react";
 import Link from "next/link";
-import { PACKAGES } from "../lib/api";
-import SignetNotice from "../components/SignetNotice";
+import { PLANS, USD_NOTE } from "../lib/api";
+import IntelChrome from "../components/IntelChrome";
+
+function PlanCard({ plan }) {
+  const [sku, setSku] = useState(plan.options[0].id);
+  const opt = plan.options.find((o) => o.id === sku) || plan.options[0];
+  return (
+    <article
+      className={`intel-plan${plan.featured ? " intel-plan--featured" : ""}`}
+    >
+      {plan.featured ? <p className="intel-plan-badge">Includes PR review</p> : null}
+      <h3>{plan.label}</h3>
+      <p className="intel-plan-blurb">{plan.blurb}</p>
+      <p className="intel-plan-price">
+        <span className="intel-plan-sats">{opt.sats.toLocaleString()}</span>
+        <span className="intel-plan-unit"> sats</span>
+      </p>
+      <p className="intel-plan-meta">
+        {opt.days} days · {opt.usd} reference
+      </p>
+      <div className="intel-plan-toggle" role="group" aria-label="Term">
+        {plan.options.map((o) => (
+          <button
+            key={o.id}
+            type="button"
+            className={o.id === sku ? "is-on" : ""}
+            onClick={() => setSku(o.id)}
+          >
+            {o.days}d
+          </button>
+        ))}
+      </div>
+      <ul className="intel-plan-list">
+        {plan.includes.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+      <Link href={`/subscribe/?plan=${encodeURIComponent(sku)}`} className="btn btn-primary">
+        Continue to checkout
+      </Link>
+    </article>
+  );
+}
 
 export default function PricingPage() {
   return (
-    <section className="section">
-      <div className="container">
-        <h2>Intelligence pricing</h2>
-        <div className="content">
-          <SignetNotice />
-          <p>
-            Planned packages in sats (USD at $100k BTC is only a reference).
-            Checkout is Bitcoin <strong>testnet3</strong>, not mainnet.
-            Researcher covers search, argument maps, and contributor profiles.
-            Developer adds a public-PR scaffold (spec + history + selected
-            source). Results are advisory — not live governance and not a merge
-            check.
-          </p>
-          <table className="governance-table">
-            <thead>
-              <tr>
-                <th>Package</th>
-                <th>Sats</th>
-                <th>Days</th>
-                <th>What you get</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PACKAGES.map((p) => (
-                <tr key={p.id}>
-                  <td>{p.label}</td>
-                  <td>{p.sats.toLocaleString()}</td>
-                  <td>{p.days}</td>
-                  <td>{p.tools}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p style={{ marginTop: "1.5rem" }}>
-            What you buy: joined findings + maps + Core history + selected
-            source + informal channels. What you can already get free: one
-            GitHub PR, Core <code>doc/</code>, published articles.
-          </p>
-          <Link href="/subscribe/" className="btn btn-primary">
-            Subscribe
-          </Link>
-        </div>
+    <IntelChrome
+      title="Plans"
+      lede="Time-limited access, paid in testnet sats. Same tools on every term; Developer adds an advisory PR scaffold."
+    >
+      <div className="intel-plan-grid">
+        {PLANS.map((plan) => (
+          <PlanCard key={plan.id} plan={plan} />
+        ))}
       </div>
-    </section>
+      <p className="intel-fineprint">
+        {USD_NOTE} Trial (15k sats) is not offered here — it is below the Boltz
+        reverse-swap minimum. Included: joined findings, maps, Core history,
+        selected source, informal channels. Already free: a single GitHub PR,
+        Core <code>doc/</code>, published articles.
+      </p>
+    </IntelChrome>
   );
 }

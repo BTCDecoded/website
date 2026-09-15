@@ -13,7 +13,7 @@ import {
 } from "../lib/auth";
 
 export default function AccountPage() {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
   const [key, setKey] = useState("");
   const [status, setStatus] = useState("");
 
@@ -79,9 +79,7 @@ export default function AccountPage() {
       title="Account"
       lede="Sign in to keep a paid key on this profile. Signing in does not issue a key by itself."
     >
-      {user === undefined ? (
-        <p>Loading…</p>
-      ) : user ? (
+      {user ? (
         <div className="intel-panel">
           <p>
             Signed in as <strong>{label}</strong>

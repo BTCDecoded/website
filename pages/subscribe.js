@@ -15,7 +15,7 @@ import IntelChrome from "../components/IntelChrome";
 export default function SubscribePage() {
   const router = useRouter();
   const [pack, setPack] = useState("researcher");
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState(null);
   const [busy, setBusy] = useState("");
   const [invoice, setInvoice] = useState("");
   const [swapId, setSwapId] = useState("");
@@ -193,9 +193,7 @@ export default function SubscribePage() {
 
       <div className="intel-panel">
         <h3>1. Sign in</h3>
-        {user === undefined ? (
-          <p>Checking session…</p>
-        ) : user ? (
+        {user ? (
           <p>
             Signed in. The key will be stored on{" "}
             <Link href="/account/">Account</Link> after payment.

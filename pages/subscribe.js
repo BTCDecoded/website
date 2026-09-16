@@ -171,7 +171,7 @@ export default function SubscribePage() {
   async function checkSwap() {
     if (!swapId) return;
     try {
-      const res = await authFetch(`${WORKER_ORIGIN}/lightning/swap/${swapId}`);
+      const res = await fetch(`${WORKER_ORIGIN}/lightning/swap/${swapId}`);
       const data = await res.json();
       if (data.paid || data.key) applyPaid(data);
       else if (data.recovery_code) setRecoveryCode(data.recovery_code);

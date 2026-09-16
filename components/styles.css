@@ -3505,11 +3505,97 @@ code {
 }
 
 .intel-coupon {
-  margin: 0 0 1rem;
+  margin: 0 0 1.15rem;
 }
 
-.intel-coupon .intel-input {
-  margin-bottom: 0.5rem;
+.intel-coupon-row {
+  display: flex;
+  gap: 0.45rem;
+  align-items: stretch;
+  max-width: 28rem;
+}
+
+.intel-coupon-row .intel-input {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.intel-coupon-row .btn {
+  flex: 0 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.intel-coupon-note,
+.intel-coupon-ok {
+  margin: 0.45rem 0 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.intel-coupon-ok {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  align-items: baseline;
+  color: var(--text-secondary);
+}
+
+.intel-coupon-clear {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.intel-coupon-clear:hover {
+  color: var(--text-primary);
+}
+
+.intel-plan--coupon {
+  border-color: var(--bitcoin-orange);
+}
+
+.intel-plan-was {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  margin: 0 0 0.2rem;
+}
+
+.intel-plan-sats--free {
+  font-size: 1.65rem;
+}
+
+.intel-pay-btn {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.intel-coupon-details {
+  margin: 1.15rem 0 0;
+  color: var(--text-secondary);
+}
+
+.intel-coupon-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.intel-coupon-details .intel-coupon {
+  margin: 0.85rem 0 0;
 }
 
 .auth-card {

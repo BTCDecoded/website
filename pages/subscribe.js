@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PACKAGES, WORKER_ORIGIN, planBySku, activeSku, isUpgradeSku, upgradeSats, upgradeSkus } from "../lib/api";
@@ -13,6 +13,107 @@ import {
   fetchMe,
   loginWithNostr,
 } from "../lib/auth";
+
+function canonicalCoupon(raw) {
+  return String(raw || "")
+    .trim()
+    .toUpperCase()
+    .replace(/\s+/g, "");
+}
+
+function checkoutStatus(error, extra = {}) {
+  if (error === "unknown_coupon" || error === "invalid_coupon") {
+    return "That code isn’t valid.";
+  }
+  if (error === "expired_coupon") return "That code has expired.";
+  if (error === "coupon_used") return "You already used this code on this login.";
+  if (error === "coupon_max") return "This code has no uses left.";
+  if (error === "coupon required") return "Enter a coupon code.";
+  if (error === "invoice_open") {
+    return "You already have an unpaid invoice. Pay it or wait for it to expire.";
+  }
+  if (error === "already_active") {
+    return `You already have ${extra.tier || "a plan"} until ${
+      String(extra.expires_at || "").slice(0, 10) || "it expires"
+    }. Pick an upgrade.`;
+  }
+  if (error === "login required") return "Sign in first.";
+  if (error === "lightning disabled") {
+    return "Lightning is off on this network. Do not send bitcoin.";
+  }
+  if (error === "use_invoice") return "This code is a discount. Create the invoice to use it.";
+  return extra.fallback || error || "Something went wrong.";
+}
+
+function CouponBox({
+  apply,
+  coupon,
+  busy,
+  preview,
+  planLabel,
+  canGrant,
+  discounted,
+  chargeSats,
+  onChange,
+  onApply,
+  onClear,
+}) {
+  const code = canonicalCoupon(coupon);
+  return (
+    <div className="intel-coupon">
+      <label className="intel-panel-label" htmlFor="intel-coupon">
+        Coupon
+      </label>
+      <div className="intel-coupon-row">
+        <input
+          id="intel-coupon"
+          className="intel-input"
+          value={coupon}
+          onChange={(e) => onChange(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && apply && code) {
+              e.preventDefault();
+              onApply(code);
+            }
+          }}
+          placeholder="BDI-XXXX-XXXX"
+          autoComplete="off"
+          autoCapitalize="characters"
+          spellCheck={false}
+          disabled={Boolean(busy)}
+        />
+        {apply ? (
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => onApply(code)}
+            disabled={Boolean(busy) || !code || Boolean(preview)}
+          >
+            {busy === "coupon" ? "Checking…" : preview ? "Applied" : "Apply"}
+          </button>
+        ) : null}
+      </div>
+      {preview ? (
+        <p className="intel-coupon-ok">
+          <span>
+            {canGrant
+              ? `Grants ${planLabel} · no invoice`
+              : discounted
+                ? `${Number(chargeSats).toLocaleString()} sats after coupon`
+                : "Coupon applied"}
+          </span>
+          <button type="button" className="intel-coupon-clear" onClick={onClear}>
+            Remove
+          </button>
+        </p>
+      ) : apply ? (
+        <p className="intel-coupon-note">Optional. Apply to see the price before you pay.</p>
+      ) : (
+        <p className="intel-coupon-note">Sign in to apply this code.</p>
+      )}
+    </div>
+  );
+}
 
 export default function SubscribePage() {
   const router = useRouter();
@@ -29,12 +130,15 @@ export default function SubscribePage() {
   const [loginErr, setLoginErr] = useState("");
   const [lnNote, setLnNote] = useState("");
   const [lnOk, setLnOk] = useState(null);
+  const [granted, setGranted] = useState(false);
+  const autoPreviewed = useRef("");
   const btcUsd = useBtcUsd();
 
   function applyPaid(data) {
     setPaid(true);
     setInvoice("");
     setStatus("");
+    setGranted(Boolean(data.grant));
     if (data.recovery_code) setRecoveryCode(data.recovery_code);
   }
 
@@ -51,7 +155,7 @@ export default function SubscribePage() {
     if (invoice || paid) return;
     const q = String(router.query.plan || "");
     if (PACKAGES.some((p) => p.id === q)) setPack(q);
-    const c = String(router.query.coupon || "").trim();
+    const c = canonicalCoupon(router.query.coupon);
     if (c) setCoupon(c);
   }, [router.isReady, router.query.plan, router.query.coupon, invoice, paid]);
 
@@ -142,8 +246,10 @@ export default function SubscribePage() {
     }
   }
 
-  async function applyCoupon() {
-    if (!user || !coupon.trim()) return;
+  async function applyCoupon(raw) {
+    const code = canonicalCoupon(raw ?? coupon);
+    if (!user || !code) return;
+    setCoupon(code);
     setBusy("coupon");
     setStatus("");
     try {
@@ -151,7 +257,7 @@ export default function SubscribePage() {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          coupon: coupon.trim(),
+          coupon: code,
           package: pack,
           preview: true,
         }),
@@ -159,13 +265,7 @@ export default function SubscribePage() {
       const data = await res.json();
       if (!res.ok) {
         setPreview(null);
-        setStatus(
-          data.error === "already_active"
-            ? `You already have ${data.tier || "a plan"} until ${String(data.expires_at || "").slice(0, 10) || "it expires"}. Pick an upgrade.`
-            : data.error === "login required"
-              ? "Sign in first."
-              : data.error || "Could not apply coupon",
-        );
+        setStatus(checkoutStatus(data.error, { ...data, fallback: "Could not apply coupon" }));
         return;
       }
       setPreview(data);
@@ -191,22 +291,14 @@ export default function SubscribePage() {
           headers: { "content-type": "application/json" },
           body: JSON.stringify({
             package: pack,
-            coupon: coupon.trim() || undefined,
+            coupon: canonicalCoupon(coupon) || undefined,
           }),
         },
       );
       const data = await res.json();
       if (!res.ok) {
         setStatus(
-          data.error === "lightning disabled"
-            ? "Lightning is off on this network. Do not send bitcoin."
-            : data.error === "login required"
-              ? "Sign in first."
-              : data.error === "already_active"
-                ? `You already have ${data.tier || "a plan"} until ${String(data.expires_at || "").slice(0, 10) || "it expires"}. Pick an upgrade.`
-                : data.error === "invoice_open"
-                  ? "Pay or wait out the open invoice first."
-                  : data.error || "Could not create invoice",
+          checkoutStatus(data.error, { ...data, fallback: "Could not create invoice" }),
         );
         return;
       }
@@ -231,35 +323,85 @@ export default function SubscribePage() {
     }
   }
 
+  useEffect(() => {
+    if (!user || !router.isReady || invoice || paid) return;
+    const code = canonicalCoupon(router.query.coupon);
+    if (!code || autoPreviewed.current === code) return;
+    autoPreviewed.current = code;
+    applyCoupon(code);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, router.isReady, router.query.coupon]);
+
+  function onCouponChange(value) {
+    setCoupon(canonicalCoupon(value));
+    if (preview) setPreview(null);
+  }
+
+  function clearCoupon() {
+    setCoupon("");
+    setPreview(null);
+    setStatus("");
+    autoPreviewed.current = "";
+  }
+
   const { plan, opt } = planBySku(pack);
   const current = activeSku(user);
   const upgrading = Boolean(current && isUpgradeSku(current, pack));
   const blocked = Boolean(current && !upgrading && !invoice && !paid && !preview?.grant);
-  const listSats = upgrading ? upgradeSats(current, pack) : opt.sats;
+  const listSats =
+    preview && Number.isFinite(preview.list_sats)
+      ? preview.list_sats
+      : upgrading
+        ? upgradeSats(current, pack)
+        : opt.sats;
   const chargeSats =
     preview && Number.isFinite(preview.charged_sats) ? preview.charged_sats : listSats;
   const usd = usdApprox(chargeSats, btcUsd);
   const nextUp = current ? upgradeSkus(current) : [];
   const canGrant = Boolean(preview?.grant);
-  const payDisabled =
-    Boolean(busy) || (!canGrant && lnOk === false);
+  const discounted = Boolean(preview && !canGrant && listSats > chargeSats);
+  const payDisabled = Boolean(busy) || (!canGrant && lnOk === false);
+  const couponCode = canonicalCoupon(coupon);
+  const queryCoupon = canonicalCoupon(router.query.coupon);
+  const couponProps = {
+    coupon,
+    busy,
+    preview,
+    planLabel: plan.label,
+    canGrant,
+    discounted,
+    chargeSats,
+    onChange: onCouponChange,
+    onApply: applyCoupon,
+    onClear: clearCoupon,
+  };
 
   return (
     <IntelChrome title="Checkout">
       <div className="intel-split">
-        <article className="intel-plan">
+        <article className={`intel-plan${preview ? " intel-plan--coupon" : ""}`}>
+          {preview ? (
+            <p className="intel-plan-badge">{canGrant ? "Grant" : "Coupon"}</p>
+          ) : null}
           <h3>{plan.label}</h3>
           <p className="intel-plan-blurb">{plan.blurb}</p>
           <p className="intel-plan-price">
-            <span className="intel-plan-sats">{chargeSats.toLocaleString()}</span>
-            <span className="intel-plan-unit"> sats</span>
+            {canGrant ? (
+              <span className="intel-plan-sats intel-plan-sats--free">No invoice</span>
+            ) : (
+              <>
+                {discounted ? (
+                  <span className="intel-plan-was">{listSats.toLocaleString()} sats</span>
+                ) : null}
+                <span className="intel-plan-sats">{chargeSats.toLocaleString()}</span>
+                <span className="intel-plan-unit"> sats</span>
+              </>
+            )}
           </p>
           <p className="intel-plan-meta">
-            {opt.days} days{usd ? ` · ${usd}` : ""}
+            {opt.days} days
+            {!canGrant && usd ? ` · ${usd}` : ""}
             {upgrading ? " · upgrade" : ""}
-            {preview && preview.list_sats !== preview.charged_sats
-              ? ` · list ${Number(preview.list_sats).toLocaleString()}`
-              : ""}
           </p>
           {current && !invoice ? (
             <p className="intel-plan-meta">
@@ -275,18 +417,25 @@ export default function SubscribePage() {
         </article>
         {!user ? (
           <div className="intel-panel">
+            {queryCoupon ? <CouponBox apply={false} {...couponProps} /> : null}
             <AuthCard
               title="Sign in"
               returnPath={`/subscribe/?plan=${encodeURIComponent(pack)}${
-                coupon.trim() ? `&coupon=${encodeURIComponent(coupon.trim())}` : ""
+                couponCode ? `&coupon=${encodeURIComponent(couponCode)}` : ""
               }`}
               onNostr={onNostr}
               error={loginErr}
             />
+            {queryCoupon ? null : (
+              <details className="intel-coupon-details">
+                <summary>Have a coupon?</summary>
+                <CouponBox apply={false} {...couponProps} />
+              </details>
+            )}
           </div>
         ) : paid ? (
           <div className="intel-panel intel-panel--ok">
-            <h3>Paid</h3>
+            <h3>{granted ? "Activated" : "Paid"}</h3>
             <p>
               The key is on <Link href="/account/">Account</Link>.
             </p>
@@ -304,34 +453,15 @@ export default function SubscribePage() {
           </div>
         ) : (
           <div className="intel-panel">
-            <h3>{blocked ? "Already on this plan" : "Pay with Lightning"}</h3>
+            <h3>
+              {blocked
+                ? "Already on this plan"
+                : canGrant
+                  ? "Redeem"
+                  : "Pay with Lightning"}
+            </h3>
             {lnNote && !canGrant ? <p className="intel-status">{lnNote}</p> : null}
-            {invoice ? null : (
-              <div className="intel-coupon">
-                <label className="intel-panel-label" htmlFor="intel-coupon">
-                  Coupon
-                </label>
-                <input
-                  id="intel-coupon"
-                  className="intel-input"
-                  value={coupon}
-                  onChange={(e) => {
-                    setCoupon(e.target.value);
-                    setPreview(null);
-                  }}
-                  autoComplete="off"
-                  spellCheck={false}
-                />
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={applyCoupon}
-                  disabled={Boolean(busy) || !coupon.trim()}
-                >
-                  {busy === "coupon" ? "Checking…" : "Apply"}
-                </button>
-              </div>
-            )}
+            {invoice ? null : <CouponBox apply {...couponProps} />}
             {blocked ? (
               <>
                 <p>
@@ -351,13 +481,19 @@ export default function SubscribePage() {
               </>
             ) : invoice ? (
               <div className="intel-invoice">
+                {preview || discounted ? (
+                  <p className="intel-plan-meta">
+                    {chargeSats.toLocaleString()} sats
+                    {discounted ? ` · was ${listSats.toLocaleString()}` : ""}
+                  </p>
+                ) : null}
                 <InvoiceQr value={invoice} />
                 <CopyField value={invoice} label="Copy invoice" />
               </div>
             ) : (
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-primary intel-pay-btn"
                 onClick={startPay}
                 disabled={payDisabled}
               >
@@ -372,7 +508,11 @@ export default function SubscribePage() {
                       : "Create invoice"}
               </button>
             )}
-            {status ? <p className="intel-status">{status}</p> : null}
+            {status ? (
+              <p className="intel-status" role="status">
+                {status}
+              </p>
+            ) : null}
           </div>
         )}
       </div>

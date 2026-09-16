@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PACKAGES, WORKER_ORIGIN, planBySku } from "../lib/api";
+import { PACKAGES, WORKER_ORIGIN, planBySku, activeSku, isUpgradeSku, upgradeSats, upgradeSkus } from "../lib/api";
 import { usdApprox, useBtcUsd } from "../lib/btcUsd";
 import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
@@ -155,7 +155,9 @@ export default function SubscribePage() {
             ? "Lightning is off on this network. Do not send bitcoin."
             : data.error === "login required"
               ? "Sign in first."
-              : data.error || "Could not create invoice",
+              : data.error === "already_active"
+                ? `You already have ${data.tier || "a plan"} until ${String(data.expires_at || "").slice(0, 10) || "it expires"}. Pick an upgrade.`
+                : data.error || "Could not create invoice",
         );
         return;
       }
@@ -181,7 +183,12 @@ export default function SubscribePage() {
   }
 
   const { plan, opt } = planBySku(pack);
-  const usd = usdApprox(opt.sats, btcUsd);
+  const current = activeSku(user);
+  const upgrading = Boolean(current && isUpgradeSku(current, pack));
+  const blocked = Boolean(current && !upgrading && !invoice && !paid);
+  const chargeSats = upgrading ? upgradeSats(current, pack) : opt.sats;
+  const usd = usdApprox(chargeSats, btcUsd);
+  const nextUp = current ? upgradeSkus(current) : [];
 
   return (
     <IntelChrome title="Checkout">
@@ -190,12 +197,19 @@ export default function SubscribePage() {
           <h3>{plan.label}</h3>
           <p className="intel-plan-blurb">{plan.blurb}</p>
           <p className="intel-plan-price">
-            <span className="intel-plan-sats">{opt.sats.toLocaleString()}</span>
+            <span className="intel-plan-sats">{chargeSats.toLocaleString()}</span>
             <span className="intel-plan-unit"> sats</span>
           </p>
           <p className="intel-plan-meta">
             {opt.days} days{usd ? ` · ${usd}` : ""}
+            {upgrading ? " · upgrade" : ""}
           </p>
+          {current && !invoice ? (
+            <p className="intel-plan-meta">
+              You have {planBySku(current).plan.label} until{" "}
+              {String(user.key_expires_at || "").slice(0, 10) || "expiry"}.
+            </p>
+          ) : null}
           {invoice ? null : (
             <p className="intel-plan-meta">
               <Link href="/pricing/">Change plan</Link>
@@ -231,9 +245,26 @@ export default function SubscribePage() {
           </div>
         ) : (
           <div className="intel-panel">
-            <h3>Pay with Lightning</h3>
+            <h3>{blocked ? "Already on this plan" : "Pay with Lightning"}</h3>
             {lnNote ? <p className="intel-status">{lnNote}</p> : null}
-            {invoice ? (
+            {blocked ? (
+              <>
+                <p>
+                  The key is on <Link href="/account/">Account</Link>.
+                  {nextUp.length ? " A higher plan is an upgrade, not a second copy." : ""}
+                </p>
+                <div className="hero-ctas intel-ctas">
+                  <Link href="/account/" className="btn btn-primary">
+                    Open Account
+                  </Link>
+                  {nextUp.length ? (
+                    <Link href="/pricing/" className="btn btn-secondary">
+                      See upgrades
+                    </Link>
+                  ) : null}
+                </div>
+              </>
+            ) : invoice ? (
               <div className="intel-invoice">
                 <InvoiceQr value={invoice} />
                 <CopyField value={invoice} label="Copy invoice" />
@@ -245,7 +276,11 @@ export default function SubscribePage() {
                 onClick={startPay}
                 disabled={busy === "invoice" || lnOk === false}
               >
-                {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
+                {busy === "invoice"
+                  ? "Creating invoice…"
+                  : upgrading
+                    ? `Upgrade to ${plan.label}`
+                    : "Create invoice"}
               </button>
             )}
             {status ? <p className="intel-status">{status}</p> : null}

@@ -1,19 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { PLANS } from "../lib/api";
+import { PLANS, activeSku, isUpgradeSku } from "../lib/api";
 import { usdApprox, useBtcUsd } from "../lib/btcUsd";
 import IntelChrome from "../components/IntelChrome";
+import { consumeSessionFromHash, fetchMe } from "../lib/auth";
 
-function PlanCard({ plan, btcUsd }) {
+function PlanCard({ plan, btcUsd, current }) {
   const [sku, setSku] = useState(plan.options[0].id);
   const opt = plan.options.find((o) => o.id === sku) || plan.options[0];
   const many = plan.options.length > 1;
   const usd = usdApprox(opt.sats, btcUsd);
+  const isCurrent = current && current === sku;
+  const canUpgrade = current ? isUpgradeSku(current, sku) : true;
+  const cta = isCurrent
+    ? "Current plan"
+    : current && canUpgrade
+      ? `Upgrade to ${plan.label}`
+      : current && !canUpgrade
+        ? "Included"
+        : `Get ${plan.label}`;
   return (
     <article
       className={`intel-plan${plan.featured ? " intel-plan--featured" : ""}`}
     >
-      {plan.featured ? (
+      {isCurrent ? (
+        <p className="intel-plan-badge">Your plan</p>
+      ) : plan.featured ? (
         <p className="intel-plan-badge">Includes PR review</p>
       ) : (
         <p className="intel-plan-badge intel-plan-badge--quiet" aria-hidden="true">
@@ -50,23 +62,52 @@ function PlanCard({ plan, btcUsd }) {
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <Link
-        href={`/subscribe/?plan=${encodeURIComponent(sku)}`}
-        className="btn btn-primary"
-      >
-        Get {plan.label}
-      </Link>
+      {isCurrent || (current && !canUpgrade) ? (
+        <Link href="/account/" className="btn btn-secondary">
+          {cta}
+        </Link>
+      ) : (
+        <Link
+          href={`/subscribe/?plan=${encodeURIComponent(sku)}`}
+          className="btn btn-primary"
+        >
+          {cta}
+        </Link>
+      )}
     </article>
   );
 }
 
 export default function PricingPage() {
   const btcUsd = useBtcUsd();
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      await consumeSessionFromHash();
+      try {
+        const me = await fetchMe();
+        if (!cancelled) setUser(me);
+      } catch {
+        if (!cancelled) setUser(null);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const current = activeSku(user);
   return (
     <IntelChrome title="Plans">
+      {current ? (
+        <p className="intel-lede">
+          You already have a plan. Checkout will not sell you the same one
+          again. Higher tiers are upgrades: same key, sat difference only.
+        </p>
+      ) : null}
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (
-          <PlanCard key={plan.id} plan={plan} btcUsd={btcUsd} />
+          <PlanCard key={plan.id} plan={plan} btcUsd={btcUsd} current={current} />
         ))}
       </div>
     </IntelChrome>

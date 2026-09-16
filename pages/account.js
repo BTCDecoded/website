@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MCP_URL, WORKER_ORIGIN } from "../lib/api";
+import { MCP_URL, WORKER_ORIGIN, activeSku, upgradeSkus } from "../lib/api";
 import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
 import IntelChrome from "../components/IntelChrome";
@@ -151,6 +151,7 @@ export default function AccountPage() {
   const provider = user?.github ? "GitHub" : user?.nostr ? "Nostr" : "";
   const plan = tierLabel(user?.key_tier);
   const until = expiryLabel(user?.key_expires_at);
+  const canUpgrade = user?.has_key ? upgradeSkus(activeSku(user)).length > 0 : false;
   const mcpUrl = connector?.mcp || MCP_URL;
   const clientId = connector?.oauth_client_id || "";
   const clientSecret = connector?.oauth_client_secret || "";
@@ -207,6 +208,13 @@ export default function AccountPage() {
                 After Connect, sign in on mcp.btcdecoded.org if asked, then Allow
                 Claude.
               </p>
+              {canUpgrade ? (
+                <div className="hero-ctas intel-ctas">
+                  <Link href="/pricing/" className="btn btn-secondary">
+                    Upgrade plan
+                  </Link>
+                </div>
+              ) : null}
             </div>
           ) : (
             <div className="intel-panel">

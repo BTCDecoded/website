@@ -12,9 +12,25 @@ import {
   logout,
 } from "../lib/auth";
 
+const CONNECTOR_NAME = "BTCDecoded Intelligence";
+
+function tierLabel(tier) {
+  if (tier === "developer") return "Developer";
+  if (tier === "trial") return "Trial";
+  if (tier === "researcher") return "Researcher";
+  return "";
+}
+
+function expiryLabel(iso) {
+  if (!iso) return "";
+  const day = String(iso).slice(0, 10);
+  return day ? `until ${day}` : "";
+}
+
 export default function AccountPage() {
   const [user, setUser] = useState(null);
   const [key, setKey] = useState("");
+  const [connector, setConnector] = useState(null);
   const [status, setStatus] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [busy, setBusy] = useState(false);
@@ -42,6 +58,26 @@ export default function AccountPage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!user?.has_key) {
+      setConnector(null);
+      return undefined;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${WORKER_ORIGIN}/oauth/connector`);
+        const data = await res.json();
+        if (!cancelled && data.oauth_client_id) setConnector(data);
+      } catch {
+        /* reveal still has the fields */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.has_key]);
+
   async function onNostr() {
     setLoginErr("");
     setBusy(true);
@@ -60,7 +96,8 @@ export default function AccountPage() {
     try {
       const data = await fetchAccountKey();
       setKey(data.key || "");
-      setStatus(data.expires_at ? `Expires ${data.expires_at}` : "");
+      if (data.oauth_client_id) setConnector(data);
+      setStatus(data.expires_at ? `Expires ${String(data.expires_at).slice(0, 10)}` : "");
     } catch (err) {
       if (err.status === 404) {
         setStatus("No key on this profile yet.");
@@ -73,6 +110,7 @@ export default function AccountPage() {
   async function onLogout() {
     await logout();
     setKey("");
+    setConnector(null);
     setUser(null);
     setStatus("");
   }
@@ -111,82 +149,147 @@ export default function AccountPage() {
     .slice(0, 1)
     .toUpperCase();
   const provider = user?.github ? "GitHub" : user?.nostr ? "Nostr" : "";
+  const plan = tierLabel(user?.key_tier);
+  const until = expiryLabel(user?.key_expires_at);
+  const mcpUrl = connector?.mcp || MCP_URL;
+  const clientId = connector?.oauth_client_id || "";
+  const clientSecret = connector?.oauth_client_secret || "";
+  const connectorName = connector?.connector_name || CONNECTOR_NAME;
 
   return (
     <IntelChrome title={user ? "Account" : "Sign in"}>
-      <div className="intel-split">
-        {user ? (
-          <>
-            <div className="auth-session">
-              <span className="auth-session__avatar" aria-hidden="true">
-                {initial}
-              </span>
-              <div className="auth-session__who">
-                <p className="auth-session__name">{label}</p>
-                <p className="auth-session__meta">{provider}</p>
-              </div>
-              <button
-                type="button"
-                className="auth-session__out"
-                onClick={onLogout}
-              >
-                Sign out
-              </button>
+      {user ? (
+        <div className="intel-account">
+          <div className="auth-session">
+            <span className="auth-session__avatar" aria-hidden="true">
+              {initial}
+            </span>
+            <div className="auth-session__who">
+              <p className="auth-session__name">{label}</p>
+              <p className="auth-session__meta">
+                {provider}
+                {user.has_key && plan ? ` · ${plan}` : ""}
+                {user.has_key && until ? ` ${until}` : ""}
+              </p>
             </div>
+            <button
+              type="button"
+              className="auth-session__out"
+              onClick={onLogout}
+            >
+              Sign out
+            </button>
+          </div>
 
+          {user.has_key ? (
+            <div className="intel-panel intel-panel--ok">
+              <p className="intel-plan-badge">Active</p>
+              <h3>Claude connector</h3>
+              <p className="intel-plan-blurb">
+                Claude asks for OAuth, not an API key. Settings → Connectors →
+                Add custom connector, then paste these four fields.
+              </p>
+              {clientId ? (
+                <>
+                  <p className="intel-panel-label">Name</p>
+                  <CopyField value={connectorName} label="Copy name" />
+                  <p className="intel-panel-label">MCP server URL</p>
+                  <CopyField value={mcpUrl} label="Copy URL" />
+                  <p className="intel-panel-label">OAuth client ID</p>
+                  <CopyField value={clientId} label="Copy client ID" />
+                  <p className="intel-panel-label">OAuth client secret</p>
+                  <CopyField value={clientSecret} label="Copy secret" />
+                </>
+              ) : (
+                <p className="intel-status">Loading connector fields…</p>
+              )}
+              <p className="intel-plan-meta">
+                After Connect, sign in on mcp.btcdecoded.org if asked, then Allow
+                Claude.
+              </p>
+            </div>
+          ) : (
             <div className="intel-panel">
-              <p className="intel-panel-label">Intelligence key</p>
-              <p>
-                {user.has_key
-                  ? "Reveal to copy the key and connector URL."
-                  : "No key yet."}
+              <h3>No subscription on this login</h3>
+              <p className="intel-plan-blurb">
+                Pay while signed in. The key stays on this account.
               </p>
               <div className="hero-ctas intel-ctas">
-                {user.has_key ? (
+                <Link href="/pricing/" className="btn btn-primary">
+                  See plans
+                </Link>
+              </div>
+            </div>
+          )}
+
+          {user.has_key ? (
+            <div className="intel-panel">
+              <details className="intel-recover">
+                <summary>API key for other MCP clients</summary>
+                <p>
+                  Cursor and raw HTTP use a Bearer key. Claude does not.
+                </p>
+                <div className="hero-ctas intel-ctas">
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btn-secondary"
                     onClick={onReveal}
                   >
                     Show API key
                   </button>
-                ) : (
-                  <Link href="/pricing/" className="btn btn-primary">
-                    See plans
-                  </Link>
-                )}
-              </div>
-              {key ? (
-                <>
-                  <p className="intel-panel-label">API key</p>
-                  <CopyField value={key} label="Copy key" />
-                  <p className="intel-panel-label">MCP URL</p>
-                  <CopyField value={MCP_URL} label="Copy MCP URL" />
-                </>
-              ) : null}
-              {status ? <p className="intel-status">{status}</p> : null}
+                </div>
+                {key ? (
+                  <>
+                    <p className="intel-panel-label">API key</p>
+                    <CopyField value={key} label="Copy key" />
+                  </>
+                ) : null}
+                {status ? <p className="intel-status">{status}</p> : null}
+              </details>
             </div>
-          </>
-        ) : (
-          <>
-            <article className="intel-plan">
-              <h3>Your profile</h3>
-              <p className="intel-plan-blurb">
-                GitHub or Nostr. A paid key is stored on this account.
-              </p>
-            </article>
-            <div className="intel-panel">
-              <AuthCard
-                title="Sign in"
-                returnPath="/account/"
-                onNostr={onNostr}
-                error={loginErr}
-                busy={busy}
+          ) : null}
+
+          <div className="intel-panel">
+            <details className="intel-recover">
+              <summary>Lost the key after paying?</summary>
+              <p>Paste the recovery code shown at purchase.</p>
+              <input
+                className="intel-input"
+                type="text"
+                value={recoverInput}
+                onChange={(e) => setRecoverInput(e.target.value)}
+                placeholder="bdi_rec_…"
               />
-            </div>
-          </>
-        )}
-      </div>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={recoverKey}
+                disabled={recoverBusy}
+              >
+                Recover API key
+              </button>
+            </details>
+          </div>
+        </div>
+      ) : (
+        <div className="intel-split">
+          <article className="intel-plan">
+            <h3>Your profile</h3>
+            <p className="intel-plan-blurb">
+              GitHub or Nostr. A paid key is stored on this account.
+            </p>
+          </article>
+          <div className="intel-panel">
+            <AuthCard
+              title="Sign in"
+              returnPath="/account/"
+              onNostr={onNostr}
+              error={loginErr}
+              busy={busy}
+            />
+          </div>
+        </div>
+      )}
 
       {!user && key ? (
         <div className="intel-panel">
@@ -197,28 +300,6 @@ export default function AccountPage() {
         </div>
       ) : null}
       {!user && status ? <p className="intel-status">{status}</p> : null}
-
-      <div className="intel-panel">
-        <details className="intel-recover">
-          <summary>Lost the key after paying?</summary>
-          <p>Paste the recovery code shown at purchase.</p>
-          <input
-            className="intel-input"
-            type="text"
-            value={recoverInput}
-            onChange={(e) => setRecoverInput(e.target.value)}
-            placeholder="bdi_rec_…"
-          />
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={recoverKey}
-            disabled={recoverBusy}
-          >
-            Recover API key
-          </button>
-        </details>
-      </div>
     </IntelChrome>
   );
 }

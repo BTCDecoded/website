@@ -3634,3 +3634,20 @@ code {
 .auth-session__out:hover {
   color: var(--text-primary);
 }
+
+.intel-account {
+  max-width: 40rem;
+}
+
+.intel-account .auth-session,
+.intel-account .intel-panel {
+  max-width: none;
+}
+
+.intel-account .intel-plan-blurb {
+  min-height: 0;
+}
+
+.intel-account .intel-ctas {
+  margin-top: 0.75rem;
+}

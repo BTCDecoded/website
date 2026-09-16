@@ -6,6 +6,7 @@ import { usdApprox, useBtcUsd } from "../lib/btcUsd";
 import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
 import IntelChrome from "../components/IntelChrome";
+import InvoiceQr from "../components/InvoiceQr";
 import {
   authFetch,
   consumeSessionFromHash,
@@ -216,6 +217,7 @@ export default function SubscribePage() {
             </button>
             {invoice ? (
               <div className="intel-invoice">
+                <InvoiceQr value={invoice} />
                 <CopyField value={invoice} label="Copy invoice" />
                 <button
                   type="button"

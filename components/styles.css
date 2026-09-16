@@ -3458,6 +3458,24 @@ code {
   margin-top: 1rem;
 }
 
+.intel-qr {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 1rem;
+  padding: 0.85rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.intel-qr img {
+  display: block;
+  width: 220px;
+  height: 220px;
+  image-rendering: pixelated;
+}
+
 .intel-status {
   color: var(--text-secondary);
   font-size: 0.95rem;

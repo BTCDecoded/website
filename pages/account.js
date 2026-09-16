@@ -22,9 +22,18 @@ function tierLabel(tier) {
 }
 
 function expiryLabel(iso) {
-  if (!iso) return "";
-  const day = String(iso).slice(0, 10);
-  return day ? `until ${day}` : "";
+  const ms = Date.parse(iso);
+  if (!Number.isFinite(ms)) return "";
+  const date = new Date(ms).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+  const left = ms - Date.now();
+  if (left <= 0) return `ended ${date}`;
+  const days = Math.max(1, Math.ceil(left / 86400000));
+  const wait = days === 1 ? "1 day" : `${days} days`;
+  return `until ${date} (${wait})`;
 }
 
 export default function AccountPage() {

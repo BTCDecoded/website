@@ -159,67 +159,78 @@ export default function SubscribePage() {
   const usd = usdApprox(opt.sats, btcUsd);
 
   return (
-    <IntelChrome title="Checkout" narrow>
-      {!user ? (
-        <AuthCard
-          title="Sign in"
-          returnPath={`/subscribe/?plan=${encodeURIComponent(pack)}`}
-          onNostr={onNostr}
-          error={loginErr}
-        />
-      ) : paid ? (
-        <div className="intel-panel intel-panel--ok">
-          <h3>Paid</h3>
-          <p>
-            The key is on <Link href="/account/">Account</Link>.
+    <IntelChrome title="Checkout">
+      <div className="intel-split">
+        <article className="intel-plan">
+          <h3>{plan.label}</h3>
+          <p className="intel-plan-blurb">{plan.blurb}</p>
+          <p className="intel-plan-price">
+            <span className="intel-plan-sats">{opt.sats.toLocaleString()}</span>
+            <span className="intel-plan-unit"> sats</span>
           </p>
-          {recoveryCode ? (
-            <>
-              <p className="intel-plan-meta">Store this recovery code</p>
-              <CopyField value={recoveryCode} label="Copy recovery code" />
-            </>
-          ) : null}
-          <div className="hero-ctas intel-ctas">
-            <Link href="/account/" className="btn btn-primary">
-              Open Account
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <div className="intel-panel">
-          <h3>Pay with Lightning</h3>
-          <p>
-            {plan.label} · {opt.days}d · {opt.sats.toLocaleString()} sats
-            {usd ? ` · ${usd}` : ""}
+          <p className="intel-plan-meta">
+            {opt.days} days{usd ? ` · ${usd}` : ""}
           </p>
           <p className="intel-plan-meta">
             <Link href="/pricing/">Change plan</Link>
           </p>
-          {lnNote ? <p className="intel-status">{lnNote}</p> : null}
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={startPay}
-            disabled={busy === "invoice" || lnOk === false}
-          >
-            {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
-          </button>
-          {invoice ? (
-            <div className="intel-invoice">
-              <CopyField value={invoice} label="Copy invoice" />
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => checkSwap(true)}
-                disabled={busy === "check"}
-              >
-                {busy === "check" ? "Checking…" : "I’ve paid — check now"}
-              </button>
+        </article>
+        {!user ? (
+          <div className="intel-panel">
+            <AuthCard
+              title="Sign in"
+              returnPath={`/subscribe/?plan=${encodeURIComponent(pack)}`}
+              onNostr={onNostr}
+              error={loginErr}
+            />
+          </div>
+        ) : paid ? (
+          <div className="intel-panel intel-panel--ok">
+            <h3>Paid</h3>
+            <p>
+              The key is on <Link href="/account/">Account</Link>.
+            </p>
+            {recoveryCode ? (
+              <>
+                <p className="intel-plan-meta">Store this recovery code</p>
+                <CopyField value={recoveryCode} label="Copy recovery code" />
+              </>
+            ) : null}
+            <div className="hero-ctas intel-ctas">
+              <Link href="/account/" className="btn btn-primary">
+                Open Account
+              </Link>
             </div>
-          ) : null}
-          {status ? <p className="intel-status">{status}</p> : null}
-        </div>
-      )}
+          </div>
+        ) : (
+          <div className="intel-panel">
+            <h3>Pay with Lightning</h3>
+            {lnNote ? <p className="intel-status">{lnNote}</p> : null}
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={startPay}
+              disabled={busy === "invoice" || lnOk === false}
+            >
+              {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
+            </button>
+            {invoice ? (
+              <div className="intel-invoice">
+                <CopyField value={invoice} label="Copy invoice" />
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => checkSwap(true)}
+                  disabled={busy === "check"}
+                >
+                  {busy === "check" ? "Checking…" : "I’ve paid — check now"}
+                </button>
+              </div>
+            ) : null}
+            {status ? <p className="intel-status">{status}</p> : null}
+          </div>
+        )}
+      </div>
     </IntelChrome>
   );
 }

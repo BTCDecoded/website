@@ -7,11 +7,10 @@ export default function IntelChrome({
   kicker = "Intelligence",
   lede,
   heading = true,
-  narrow = false,
   children,
 }) {
   return (
-    <section className={`section intel-page${narrow ? " intel-page--narrow" : ""}`}>
+    <section className="section intel-page">
       <Head>
         <title>{`${title} · BTCDecoded`}</title>
       </Head>

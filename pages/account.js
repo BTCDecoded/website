@@ -113,62 +113,80 @@ export default function AccountPage() {
   const provider = user?.github ? "GitHub" : user?.nostr ? "Nostr" : "";
 
   return (
-    <IntelChrome title={user ? "Account" : "Sign in"} narrow>
-      {user ? (
-        <>
-          <div className="auth-session">
-            <span className="auth-session__avatar" aria-hidden="true">
-              {initial}
-            </span>
-            <div className="auth-session__who">
-              <p className="auth-session__name">{label}</p>
-              <p className="auth-session__meta">{provider}</p>
+    <IntelChrome title={user ? "Account" : "Sign in"}>
+      <div className="intel-split">
+        {user ? (
+          <>
+            <div className="auth-session">
+              <span className="auth-session__avatar" aria-hidden="true">
+                {initial}
+              </span>
+              <div className="auth-session__who">
+                <p className="auth-session__name">{label}</p>
+                <p className="auth-session__meta">{provider}</p>
+              </div>
+              <button
+                type="button"
+                className="auth-session__out"
+                onClick={onLogout}
+              >
+                Sign out
+              </button>
             </div>
-            <button
-              type="button"
-              className="auth-session__out"
-              onClick={onLogout}
-            >
-              Sign out
-            </button>
-          </div>
 
-          <div className="intel-panel">
-            <p className="intel-panel-label">Intelligence key</p>
-            <p>
-              {user.has_key
-                ? "Reveal to copy the key and connector URL."
-                : "No key yet."}
-            </p>
-            <div className="hero-ctas intel-ctas">
-              {user.has_key ? (
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={onReveal}
-                >
-                  Show API key
-                </button>
-              ) : (
-                <Link href="/pricing/" className="btn btn-primary">
-                  See plans
-                </Link>
-              )}
+            <div className="intel-panel">
+              <p className="intel-panel-label">Intelligence key</p>
+              <p>
+                {user.has_key
+                  ? "Reveal to copy the key and connector URL."
+                  : "No key yet."}
+              </p>
+              <div className="hero-ctas intel-ctas">
+                {user.has_key ? (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={onReveal}
+                  >
+                    Show API key
+                  </button>
+                ) : (
+                  <Link href="/pricing/" className="btn btn-primary">
+                    See plans
+                  </Link>
+                )}
+              </div>
+              {key ? (
+                <>
+                  <p className="intel-panel-label">API key</p>
+                  <CopyField value={key} label="Copy key" />
+                  <p className="intel-panel-label">MCP URL</p>
+                  <CopyField value={MCP_URL} label="Copy MCP URL" />
+                </>
+              ) : null}
+              {status ? <p className="intel-status">{status}</p> : null}
             </div>
-            {key ? (
-              <>
-                <p className="intel-panel-label">API key</p>
-                <CopyField value={key} label="Copy key" />
-                <p className="intel-panel-label">MCP URL</p>
-                <CopyField value={MCP_URL} label="Copy MCP URL" />
-              </>
-            ) : null}
-            {status ? <p className="intel-status">{status}</p> : null}
-          </div>
-        </>
-      ) : (
-        <AuthCard title="" returnPath="/account/" onNostr={onNostr} error={loginErr} busy={busy} />
-      )}
+          </>
+        ) : (
+          <>
+            <article className="intel-plan">
+              <h3>Your profile</h3>
+              <p className="intel-plan-blurb">
+                GitHub or Nostr. A paid key is stored on this account.
+              </p>
+            </article>
+            <div className="intel-panel">
+              <AuthCard
+                title="Sign in"
+                returnPath="/account/"
+                onNostr={onNostr}
+                error={loginErr}
+                busy={busy}
+              />
+            </div>
+          </>
+        )}
+      </div>
 
       {!user && key ? (
         <div className="intel-panel">
@@ -180,25 +198,27 @@ export default function AccountPage() {
       ) : null}
       {!user && status ? <p className="intel-status">{status}</p> : null}
 
-      <details className="intel-recover">
-        <summary>Lost the key after paying?</summary>
-        <p>Paste the recovery code shown at purchase.</p>
-        <input
-          className="intel-input"
-          type="text"
-          value={recoverInput}
-          onChange={(e) => setRecoverInput(e.target.value)}
-          placeholder="bdi_rec_…"
-        />
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={recoverKey}
-          disabled={recoverBusy}
-        >
-          Recover API key
-        </button>
-      </details>
+      <div className="intel-panel">
+        <details className="intel-recover">
+          <summary>Lost the key after paying?</summary>
+          <p>Paste the recovery code shown at purchase.</p>
+          <input
+            className="intel-input"
+            type="text"
+            value={recoverInput}
+            onChange={(e) => setRecoverInput(e.target.value)}
+            placeholder="bdi_rec_…"
+          />
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={recoverKey}
+            disabled={recoverBusy}
+          >
+            Recover API key
+          </button>
+        </details>
+      </div>
     </IntelChrome>
   );
 }

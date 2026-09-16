@@ -3244,36 +3244,6 @@ code {
   margin-bottom: 0.45rem;
 }
 
-.intel-progress {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.75rem;
-}
-
-.intel-progress li {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 0.35rem 0.7rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-}
-
-.intel-progress li.is-current {
-  color: var(--text-primary);
-  border-color: var(--bitcoin-orange);
-}
-
-.intel-progress li.is-done {
-  color: var(--text-primary);
-  background: var(--hover);
-}
-
 .intel-plan-grid {
   display: grid;
   gap: 1.25rem;

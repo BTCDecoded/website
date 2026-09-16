@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MCP_URL } from "../lib/api";
+import { MCP_URL, WORKER_ORIGIN } from "../lib/api";
 import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
 import IntelChrome from "../components/IntelChrome";
@@ -18,6 +18,8 @@ export default function AccountPage() {
   const [status, setStatus] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [busy, setBusy] = useState(false);
+  const [recoverInput, setRecoverInput] = useState("");
+  const [recoverBusy, setRecoverBusy] = useState(false);
 
   async function refresh() {
     try {
@@ -73,6 +75,29 @@ export default function AccountPage() {
     setKey("");
     setUser(null);
     setStatus("");
+  }
+
+  async function recoverKey() {
+    setRecoverBusy(true);
+    setStatus("");
+    try {
+      const res = await fetch(`${WORKER_ORIGIN}/lightning/recover`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ recovery_code: recoverInput }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setStatus(data.error || "Could not recover");
+        return;
+      }
+      setKey(data.key || "");
+      setStatus("Recovered.");
+    } catch {
+      setStatus("Could not reach the Worker.");
+    } finally {
+      setRecoverBusy(false);
+    }
   }
 
   const label =
@@ -144,6 +169,36 @@ export default function AccountPage() {
       ) : (
         <AuthCard title="" returnPath="/account/" onNostr={onNostr} error={loginErr} busy={busy} />
       )}
+
+      {!user && key ? (
+        <div className="intel-panel">
+          <p className="intel-panel-label">API key</p>
+          <CopyField value={key} label="Copy key" />
+          <p className="intel-panel-label">MCP URL</p>
+          <CopyField value={MCP_URL} label="Copy MCP URL" />
+        </div>
+      ) : null}
+      {!user && status ? <p className="intel-status">{status}</p> : null}
+
+      <details className="intel-recover">
+        <summary>Lost the key after paying?</summary>
+        <p>Paste the recovery code shown at purchase.</p>
+        <input
+          className="intel-input"
+          type="text"
+          value={recoverInput}
+          onChange={(e) => setRecoverInput(e.target.value)}
+          placeholder="bdi_rec_…"
+        />
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={recoverKey}
+          disabled={recoverBusy}
+        >
+          Recover API key
+        </button>
+      </details>
     </IntelChrome>
   );
 }

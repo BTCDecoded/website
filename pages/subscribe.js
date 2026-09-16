@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import {
-  MCP_URL,
-  PACKAGES,
-  PLANS,
-  WORKER_ORIGIN,
-  planBySku,
-} from "../lib/api";
+import { PACKAGES, WORKER_ORIGIN, planBySku } from "../lib/api";
 import { usdApprox, useBtcUsd } from "../lib/btcUsd";
 import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
@@ -26,9 +20,8 @@ export default function SubscribePage() {
   const [busy, setBusy] = useState("");
   const [invoice, setInvoice] = useState("");
   const [swapId, setSwapId] = useState("");
-  const [key, setKey] = useState("");
+  const [paid, setPaid] = useState(false);
   const [recoveryCode, setRecoveryCode] = useState("");
-  const [recoverInput, setRecoverInput] = useState("");
   const [status, setStatus] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [lnNote, setLnNote] = useState("");
@@ -89,13 +82,13 @@ export default function SubscribePage() {
   }, []);
 
   useEffect(() => {
-    if (!swapId || key) return undefined;
+    if (!swapId || paid) return undefined;
     const t = setInterval(() => {
       checkSwap(false);
     }, 4000);
     return () => clearInterval(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [swapId, key]);
+  }, [swapId, paid]);
 
   async function onNostr() {
     setLoginErr("");
@@ -115,7 +108,7 @@ export default function SubscribePage() {
     setBusy("invoice");
     setStatus("");
     setInvoice("");
-    setKey("");
+    setPaid(false);
     setRecoveryCode("");
     try {
       const res = await authFetch(`${WORKER_ORIGIN}/lightning/invoice`, {
@@ -136,7 +129,7 @@ export default function SubscribePage() {
       }
       setInvoice(data.invoice || "");
       setSwapId(data.swap_id || "");
-      setStatus("Pay from a Lightning wallet. We poll until it settles.");
+      setStatus("Pay from a Lightning wallet.");
     } catch {
       setStatus("Could not reach the Worker.");
     } finally {
@@ -151,8 +144,8 @@ export default function SubscribePage() {
       const res = await authFetch(`${WORKER_ORIGIN}/lightning/swap/${swapId}`);
       const data = await res.json();
       if (data.key) {
-        setKey(data.key);
-        setStatus("Paid. Copy the key — it is also on Account.");
+        setPaid(true);
+        setStatus("");
       } else if (manual) {
         setStatus(data.status || data.error || "Not settled yet.");
       }
@@ -162,171 +155,71 @@ export default function SubscribePage() {
     }
   }
 
-  async function recoverKey() {
-    setBusy("recover");
-    setStatus("");
-    try {
-      const res = await fetch(`${WORKER_ORIGIN}/lightning/recover`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ recovery_code: recoverInput }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setStatus(data.error || "Could not recover");
-        return;
-      }
-      setKey(data.key || "");
-      setStatus("Recovered. Store the API key again.");
-    } catch {
-      setStatus("Could not reach the Worker.");
-    } finally {
-      setBusy("");
-    }
-  }
-
   const { plan, opt } = planBySku(pack);
   const usd = usdApprox(opt.sats, btcUsd);
-  const step = key ? 4 : invoice ? 3 : user ? 2 : 1;
 
   return (
     <IntelChrome title="Checkout" narrow>
-      <ol className="intel-progress" aria-label="Checkout steps">
-        {["Sign in", "Plan", "Pay", "Key"].map((label, i) => {
-          const n = i + 1;
-          const cls = step > n ? "is-done" : step === n ? "is-current" : "";
-          return (
-            <li key={label} className={cls}>
-              {n} {label}
-            </li>
-          );
-        })}
-      </ol>
-
-      <div className={`intel-panel${step === 1 ? " intel-panel--focus" : ""}`}>
-        {user ? (
-          <>
-            <h3>Sign in</h3>
-            <p>
-              Signed in. After payment the key is on{" "}
-              <Link href="/account/">Account</Link>.
-            </p>
-          </>
-        ) : (
-          <AuthCard
-            title="Sign in"
-            returnPath={`/subscribe/?plan=${encodeURIComponent(pack)}`}
-            onNostr={onNostr}
-            error={loginErr}
-          />
-        )}
-      </div>
-
-      {user ? (
-        <>
-          <div className={`intel-panel${step === 2 ? " intel-panel--focus" : ""}`}>
-            <h3>Plan</h3>
-            <div className="intel-sku-grid">
-              {PLANS.map((p) =>
-                p.options.map((o) => {
-                  const id = o.id;
-                  const on = pack === id;
-                  return (
-                    <button
-                      key={id}
-                      type="button"
-                      className={`intel-sku${on ? " is-on" : ""}`}
-                      onClick={() => setPack(id)}
-                    >
-                      <strong>
-                        {p.label} · {o.days}d
-                      </strong>
-                      <span>
-                        {o.sats.toLocaleString()} sats
-                        {usdApprox(o.sats, btcUsd)
-                          ? ` · ${usdApprox(o.sats, btcUsd)}`
-                          : ""}
-                      </span>
-                    </button>
-                  );
-                }),
-              )}
-            </div>
-            <p className="intel-plan-meta">{plan.blurb}</p>
-          </div>
-
-          <div className={`intel-panel${step === 3 ? " intel-panel--focus" : ""}`}>
-            <h3>Pay with Lightning</h3>
-            <p>
-              {plan.label} · {opt.sats.toLocaleString()} sats
-              {usd ? ` · ${usd}` : ""}
-            </p>
-            {lnNote ? <p className="intel-status">{lnNote}</p> : null}
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={startPay}
-              disabled={busy === "invoice" || lnOk === false}
-            >
-              {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
-            </button>
-            {invoice ? (
-              <div className="intel-invoice">
-                <CopyField value={invoice} label="Copy invoice" />
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => checkSwap(true)}
-                  disabled={busy === "check"}
-                >
-                  {busy === "check" ? "Checking…" : "I’ve paid — check now"}
-                </button>
-              </div>
-            ) : null}
-            {status && step === 3 ? <p className="intel-status">{status}</p> : null}
-          </div>
-        </>
-      ) : null}
-
-      {key ? (
+      {!user ? (
+        <AuthCard
+          title="Sign in"
+          returnPath={`/subscribe/?plan=${encodeURIComponent(pack)}`}
+          onNostr={onNostr}
+          error={loginErr}
+        />
+      ) : paid ? (
         <div className="intel-panel intel-panel--ok">
-          <h3>Your API key</h3>
-          <CopyField value={key} label="Copy key" />
+          <h3>Paid</h3>
+          <p>
+            The key is on <Link href="/account/">Account</Link>.
+          </p>
           {recoveryCode ? (
             <>
-              <p className="intel-plan-meta">Recovery code</p>
+              <p className="intel-plan-meta">Store this recovery code</p>
               <CopyField value={recoveryCode} label="Copy recovery code" />
             </>
           ) : null}
-          <p>Add this URL in Claude with the key as Bearer.</p>
-          <CopyField value={MCP_URL} label="Copy MCP URL" />
-          <p>
-            Also on <Link href="/account/">Account</Link>.
-          </p>
+          <div className="hero-ctas intel-ctas">
+            <Link href="/account/" className="btn btn-primary">
+              Open Account
+            </Link>
+          </div>
         </div>
-      ) : null}
-
-      {status && step !== 3 ? <p className="intel-status">{status}</p> : null}
-
-      <details className="intel-recover">
-        <summary>Lost the key after paying?</summary>
-        <p>Paste the recovery code shown at purchase.</p>
-        <input
-          className="intel-input"
-          type="text"
-          value={recoverInput}
-          onChange={(e) => setRecoverInput(e.target.value)}
-          placeholder="bdi_rec_…"
-        />
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={recoverKey}
-          disabled={busy === "recover"}
-        >
-          Recover API key
-        </button>
-      </details>
+      ) : (
+        <div className="intel-panel">
+          <h3>Pay with Lightning</h3>
+          <p>
+            {plan.label} · {opt.days}d · {opt.sats.toLocaleString()} sats
+            {usd ? ` · ${usd}` : ""}
+          </p>
+          <p className="intel-plan-meta">
+            <Link href="/pricing/">Change plan</Link>
+          </p>
+          {lnNote ? <p className="intel-status">{lnNote}</p> : null}
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={startPay}
+            disabled={busy === "invoice" || lnOk === false}
+          >
+            {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
+          </button>
+          {invoice ? (
+            <div className="intel-invoice">
+              <CopyField value={invoice} label="Copy invoice" />
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => checkSwap(true)}
+                disabled={busy === "check"}
+              >
+                {busy === "check" ? "Checking…" : "I’ve paid — check now"}
+              </button>
+            </div>
+          ) : null}
+          {status ? <p className="intel-status">{status}</p> : null}
+        </div>
+      )}
     </IntelChrome>
   );
 }

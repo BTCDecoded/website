@@ -1,6 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import {
+  consumeSessionFromHash,
+  fetchMe,
+} from "../lib/auth";
+
+const NAV_GROUPS = [
+  {
+    id: "project",
+    title: "Project",
+    items: [
+      { href: "/problem/", title: "Problem" },
+      { href: "/architecture/", title: "Architecture" },
+      { href: "/orangepaper/", title: "Orange Paper" },
+      { href: "/governance/", title: "Governance" },
+    ],
+  },
+  {
+    id: "node",
+    title: "Node",
+    items: [
+      { href: "/whyblvm/", title: "Why BLVM?" },
+      { href: "/install/", title: "Install" },
+      { href: "/plugandplay/", title: "Pre-built nodes" },
+      { href: "/faq/", title: "FAQ" },
+    ],
+  },
+  {
+    id: "intelligence",
+    title: "Intelligence",
+    items: [
+      { href: "/intelligence/", title: "Overview" },
+      { href: "/pricing/", title: "Plans" },
+    ],
+  },
+];
 
 function isActivePath(pathname, href) {
   const path = (pathname || "/").replace(/\/$/, "") || "/";
@@ -8,88 +43,186 @@ function isActivePath(pathname, href) {
   return path === target;
 }
 
-export default function NavBar({ navLinks }) {
+function groupIsActive(pathname, items) {
+  return items.some(
+    (item) => !item.external && isActivePath(pathname, item.href),
+  );
+}
+
+function accountLabel(user) {
+  if (!user) return "Sign in";
+  if (user.github) return `@${user.github}`;
+  if (user.nostr_name) return user.nostr_name;
+  if (user.nostr) return `npub ${user.nostr.slice(0, 8)}`;
+  return "Account";
+}
+
+export default function NavBar() {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+  const [drawer, setDrawer] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const close = () => setOpen(false);
+    const close = () => {
+      setDrawer(false);
+      setOpenMenu(null);
+    };
     router.events.on("routeChangeStart", close);
     return () => router.events.off("routeChangeStart", close);
   }, [router.events]);
 
   useEffect(() => {
-    if (!open) return undefined;
+    let cancelled = false;
+    (async () => {
+      await consumeSessionFromHash();
+      try {
+        const me = await fetchMe();
+        if (!cancelled) setUser(me);
+      } catch {
+        if (!cancelled) setUser(null);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [router.asPath]);
+
+  useEffect(() => {
+    if (!drawer && !openMenu) return undefined;
     const onKey = (event) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setDrawer(false);
+        setOpenMenu(null);
+      }
+    };
+    const onDoc = (event) => {
+      if (!rootRef.current?.contains(event.target)) setOpenMenu(null);
     };
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
+    document.addEventListener("mousedown", onDoc);
+    if (drawer) document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onDoc);
       document.body.style.overflow = "";
     };
-  }, [open]);
+  }, [drawer, openMenu]);
+
+  function toggleMenu(id) {
+    setOpenMenu((cur) => (cur === id ? null : id));
+  }
 
   return (
-    <nav className={`nav${open ? " is-open" : ""}`} aria-label="Primary">
+    <nav
+      ref={rootRef}
+      className={`nav${drawer ? " is-open" : ""}`}
+      aria-label="Primary"
+    >
       <div className="nav-bar">
         <div className="nav-logo">
-          <Link href="/" onClick={() => setOpen(false)}>
+          <Link href="/" onClick={() => setDrawer(false)}>
             BTCDecoded
           </Link>
         </div>
 
         <button
           type="button"
-          className={`nav-toggle${open ? " is-open" : ""}`}
-          aria-expanded={open}
+          className={`nav-toggle${drawer ? " is-open" : ""}`}
+          aria-expanded={drawer}
           aria-controls="site-nav-links"
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => {
+            setDrawer((value) => !value);
+            setOpenMenu(null);
+          }}
         >
           <span className="nav-toggle__bars" aria-hidden="true" />
           <span className="visually-hidden">
-            {open ? "Close menu" : "Open menu"}
+            {drawer ? "Close menu" : "Open menu"}
           </span>
         </button>
 
         <div
           id="site-nav-links"
-          className={`nav-links${open ? " is-open" : ""}`}
+          className={`nav-links${drawer ? " is-open" : ""}`}
         >
-          {navLinks.map((link) =>
-            link.external ? (
-              <a
-                key={link.href}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
+          {NAV_GROUPS.map((group) => {
+            const expanded = openMenu === group.id;
+            const current = groupIsActive(router.pathname, group.items);
+            return (
+              <div
+                key={group.id}
+                className={`nav-item nav-item--menu${expanded ? " is-open" : ""}`}
               >
-                {link.title}
-              </a>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={
-                  isActivePath(router.pathname, link.href) ? "page" : undefined
-                }
-                onClick={() => setOpen(false)}
-              >
-                {link.title}
-              </Link>
-            )
-          )}
+                <button
+                  type="button"
+                  className="nav-item__btn"
+                  aria-expanded={expanded}
+                  aria-current={current ? "true" : undefined}
+                  onClick={() => toggleMenu(group.id)}
+                >
+                  {group.title}
+                  <span className="nav-item__chev" aria-hidden="true" />
+                </button>
+                <div className="nav-submenu">
+                  {group.items.map((item) =>
+                    item.external ? (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setDrawer(false)}
+                      >
+                        {item.title}
+                      </a>
+                    ) : (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        aria-current={
+                          isActivePath(router.pathname, item.href)
+                            ? "page"
+                            : undefined
+                        }
+                        onClick={() => setDrawer(false)}
+                      >
+                        {item.title}
+                      </Link>
+                    ),
+                  )}
+                </div>
+              </div>
+            );
+          })}
+          <a
+            href="https://commonspool.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setDrawer(false)}
+          >
+            Commons Pool
+          </a>
+          <Link
+            href="/account/"
+            className="nav-signin"
+            aria-current={
+              isActivePath(router.pathname, "/account") ? "page" : undefined
+            }
+            onClick={() => setDrawer(false)}
+          >
+            {accountLabel(user)}
+          </Link>
         </div>
       </div>
       <button
         type="button"
-        className={`nav-backdrop${open ? " is-open" : ""}`}
-        tabIndex={open ? 0 : -1}
-        aria-hidden={!open}
+        className={`nav-backdrop${drawer ? " is-open" : ""}`}
+        tabIndex={drawer ? 0 : -1}
+        aria-hidden={!drawer}
         aria-label="Close menu"
-        onClick={() => setOpen(false)}
+        onClick={() => setDrawer(false)}
       />
     </nav>
   );

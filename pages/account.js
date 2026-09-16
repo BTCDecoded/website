@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MCP_URL } from "../lib/api";
+import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
 import IntelChrome from "../components/IntelChrome";
 import {
   consumeSessionFromHash,
   fetchAccountKey,
   fetchMe,
-  githubLoginUrl,
   loginWithNostr,
   logout,
 } from "../lib/auth";
@@ -16,6 +16,8 @@ export default function AccountPage() {
   const [user, setUser] = useState(null);
   const [key, setKey] = useState("");
   const [status, setStatus] = useState("");
+  const [loginErr, setLoginErr] = useState("");
+  const [busy, setBusy] = useState(false);
 
   async function refresh() {
     try {
@@ -29,7 +31,9 @@ export default function AccountPage() {
     let cancelled = false;
     (async () => {
       await consumeSessionFromHash();
-      if (!cancelled) await refresh();
+      if (!cancelled) {
+        await refresh();
+      }
     })();
     return () => {
       cancelled = true;
@@ -37,12 +41,15 @@ export default function AccountPage() {
   }, []);
 
   async function onNostr() {
-    setStatus("");
+    setLoginErr("");
+    setBusy(true);
     try {
       await loginWithNostr();
       await refresh();
     } catch (err) {
-      setStatus(err instanceof Error ? err.message : String(err));
+      setLoginErr(err instanceof Error ? err.message : String(err));
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -65,6 +72,7 @@ export default function AccountPage() {
     await logout();
     setKey("");
     setUser(null);
+    setStatus("");
   }
 
   const label =
@@ -73,56 +81,77 @@ export default function AccountPage() {
     user?.nostr_name ||
     (user?.nostr ? `nostr:${user.nostr.slice(0, 8)}…` : null) ||
     user?.id;
+  const initial = String(label || "A")
+    .replace(/^@/, "")
+    .slice(0, 1)
+    .toUpperCase();
+  const provider = user?.github ? "GitHub" : user?.nostr ? "Nostr" : "";
 
   return (
     <IntelChrome
-      title="Account"
-      lede="Sign in to keep a paid key on this profile. Signing in does not issue a key by itself."
+      title={user ? "Account" : "Sign in"}
+      lede={
+        user
+          ? "A paid key lives on this profile after checkout."
+          : "Sign in, then buy a plan. Signing in does not issue a key."
+      }
+      narrow
     >
       {user ? (
-        <div className="intel-panel">
-          <p>
-            Signed in as <strong>{label}</strong>
-            {user.github ? " · GitHub" : ""}
-            {user.nostr ? " · Nostr" : ""}.
-          </p>
-          <p className="intel-panel-label">MCP URL</p>
-          <CopyField value={MCP_URL} />
-          <p>
-            {user.has_key
-              ? "A paid key is stored on this profile."
-              : "No key yet. Continue to checkout after you pick a plan."}
-          </p>
-          <div className="hero-ctas intel-ctas">
-            <button type="button" className="btn btn-primary" onClick={onReveal}>
-              Show API key
-            </button>
-            <Link href="/pricing/" className="btn btn-secondary">
-              Pricing
-            </Link>
-            <button type="button" className="btn btn-secondary" onClick={onLogout}>
-              Log out
+        <>
+          <div className="auth-session">
+            <span className="auth-session__avatar" aria-hidden="true">
+              {initial}
+            </span>
+            <div className="auth-session__who">
+              <p className="auth-session__name">{label}</p>
+              <p className="auth-session__meta">{provider}</p>
+            </div>
+            <button
+              type="button"
+              className="auth-session__out"
+              onClick={onLogout}
+            >
+              Sign out
             </button>
           </div>
-          {key ? <CopyField value={key} label="Copy key" /> : null}
-        </div>
+
+          <div className="intel-panel">
+            <p className="intel-panel-label">Intelligence key</p>
+            <p>
+              {user.has_key
+                ? "A paid key is stored on this profile. Reveal it to copy the key and connector URL."
+                : "No key yet. Pick a plan and pay with Lightning."}
+            </p>
+            <div className="hero-ctas intel-ctas">
+              {user.has_key ? (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={onReveal}
+                >
+                  Show API key
+                </button>
+              ) : (
+                <Link href="/pricing/" className="btn btn-primary">
+                  See plans
+                </Link>
+              )}
+            </div>
+            {key ? (
+              <>
+                <p className="intel-panel-label">API key</p>
+                <CopyField value={key} label="Copy key" />
+                <p className="intel-panel-label">MCP URL</p>
+                <CopyField value={MCP_URL} label="Copy MCP URL" />
+              </>
+            ) : null}
+            {status ? <p className="intel-status">{status}</p> : null}
+          </div>
+        </>
       ) : (
-        <div className="intel-panel">
-          <p>
-            GitHub or a Nostr extension (Alby, nos2x). Then choose a plan and
-            pay on checkout.
-          </p>
-          <div className="hero-ctas intel-ctas">
-            <a className="btn btn-primary" href={githubLoginUrl("/account/")}>
-              Continue with GitHub
-            </a>
-            <button type="button" className="btn btn-secondary" onClick={onNostr}>
-              Continue with Nostr
-            </button>
-          </div>
-        </div>
+        <AuthCard title="" returnPath="/account/" onNostr={onNostr} error={loginErr} busy={busy} />
       )}
-      {status ? <p className="intel-status">{status}</p> : null}
     </IntelChrome>
   );
 }

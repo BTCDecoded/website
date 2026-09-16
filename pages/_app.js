@@ -7,17 +7,6 @@ import Splash from "../components/Splash";
 import { MathJaxContext } from "better-react-mathjax";
 import Footer from "../components/Footer";
 
-const DevNavLinks = [
-  { href: "/problem", title: "Problem" },
-  { href: "/architecture", title: "Architecture" },
-  { href: "/orangepaper", title: "Orange Paper" },
-  { href: "/governance", title: "Governance" },
-  { href: "/intelligence", title: "Intelligence" },
-  { href: "/pricing", title: "Pricing" },
-  { href: "/account", title: "Account" },
-  { href: "https://commonspool.org", title: "Commons Pool", external: true },
-];
-
 const mathJaxconfig = {
   loader: { load: ["input/tex", "output/chtml"] },
   tex: {
@@ -25,20 +14,9 @@ const mathJaxconfig = {
     displayMath: [["\\[", "\\]"]],
   },
   output: {
-    font: "mathjax-stix2", // deterministic academic fonts
+    font: "mathjax-stix2",
   },
 };
-
-const NodeNavLinks = [
-  { href: "/whyblvm", title: "Why BLVM?" },
-  { href: "/plugandplay", title: "Pre-Built Nodes" },
-  { href: "/install", title: "Install" },
-  { href: "/intelligence", title: "Intelligence" },
-  { href: "/pricing", title: "Pricing" },
-  { href: "/account", title: "Account" },
-  { href: "https://commonspool.org", title: "Commons Pool", external: true },
-  { href: "/faq", title: "FAQ" },
-];
 
 export const Workflow = {
   Nodes: "Nodes",
@@ -48,18 +26,6 @@ export const Workflow = {
 
 export default function MyApp({ Component, pageProps }) {
   const [selectedWorkflow, setSelectedWorkflow] = useState(Workflow.Developers);
-
-  let navLinks;
-  switch (selectedWorkflow) {
-    case Workflow.Developers:
-      navLinks = DevNavLinks;
-      break;
-    case Workflow.Nodes:
-      navLinks = NodeNavLinks;
-      break;
-    default:
-      navLinks = [];
-  }
 
   return (
     <MathJaxContext config={mathJaxconfig}>
@@ -73,11 +39,7 @@ export default function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Layout>
-        <NavBar
-          selectedWorkflow={selectedWorkflow}
-          setSelectedWorkflow={setSelectedWorkflow}
-          navLinks={navLinks}
-        />
+        <NavBar />
         {selectedWorkflow === Workflow.Splash && (
           <Splash
             setSelectedWorkflow={setSelectedWorkflow}
@@ -86,7 +48,7 @@ export default function MyApp({ Component, pageProps }) {
         )}
 
         {selectedWorkflow !== Workflow.Splash && <Component {...pageProps} />}
-        <Footer/>
+        <Footer />
       </Layout>
     </MathJaxContext>
   );

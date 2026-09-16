@@ -1,16 +1,23 @@
 import { useState } from "react";
 import Link from "next/link";
-import { PLANS, USD_NOTE } from "../lib/api";
+import { PLANS, USD_NOTE, usdRef } from "../lib/api";
 import IntelChrome from "../components/IntelChrome";
 
 function PlanCard({ plan }) {
   const [sku, setSku] = useState(plan.options[0].id);
   const opt = plan.options.find((o) => o.id === sku) || plan.options[0];
+  const many = plan.options.length > 1;
   return (
     <article
       className={`intel-plan${plan.featured ? " intel-plan--featured" : ""}`}
     >
-      {plan.featured ? <p className="intel-plan-badge">Includes PR review</p> : null}
+      {plan.featured ? (
+        <p className="intel-plan-badge">Includes PR review</p>
+      ) : (
+        <p className="intel-plan-badge intel-plan-badge--quiet" aria-hidden="true">
+          &nbsp;
+        </p>
+      )}
       <h3>{plan.label}</h3>
       <p className="intel-plan-blurb">{plan.blurb}</p>
       <p className="intel-plan-price">
@@ -18,27 +25,34 @@ function PlanCard({ plan }) {
         <span className="intel-plan-unit"> sats</span>
       </p>
       <p className="intel-plan-meta">
-        {opt.days} days · {opt.usd} reference
+        {opt.days} days · {usdRef(opt.sats)}
       </p>
-      <div className="intel-plan-toggle" role="group" aria-label="Term">
-        {plan.options.map((o) => (
-          <button
-            key={o.id}
-            type="button"
-            className={o.id === sku ? "is-on" : ""}
-            onClick={() => setSku(o.id)}
-          >
-            {o.days}d
-          </button>
-        ))}
-      </div>
+      {many ? (
+        <div className="intel-plan-toggle" role="group" aria-label="Term">
+          {plan.options.map((o) => (
+            <button
+              key={o.id}
+              type="button"
+              className={o.id === sku ? "is-on" : ""}
+              onClick={() => setSku(o.id)}
+            >
+              {o.days}d
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="intel-plan-toggle intel-plan-toggle--spacer" />
+      )}
       <ul className="intel-plan-list">
         {plan.includes.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
-      <Link href={`/subscribe/?plan=${encodeURIComponent(sku)}`} className="btn btn-primary">
-        Continue to checkout
+      <Link
+        href={`/subscribe/?plan=${encodeURIComponent(sku)}`}
+        className="btn btn-primary"
+      >
+        Get {plan.label}
       </Link>
     </article>
   );
@@ -48,20 +62,14 @@ export default function PricingPage() {
   return (
     <IntelChrome
       title="Plans"
-      lede="Time-limited access, paid in testnet sats. Same tools on every term; Developer adds an advisory PR scaffold."
+      lede="Lightning only. Sign in at checkout. Trial is the curated ~5k; Researcher and Developer search nearly 700k, primary-first."
     >
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (
           <PlanCard key={plan.id} plan={plan} />
         ))}
       </div>
-      <p className="intel-fineprint">
-        {USD_NOTE} Lightning invoices are created by OpenNode (custodial until
-        ops withdraw from the OpenNode dashboard). Trial is 15k sats if OpenNode
-        accepts that charge; otherwise use Researcher. Included: joined findings,
-        maps, Core history, selected source, informal channels. Already free: a
-        single GitHub PR, Core <code>doc/</code>, published articles.
-      </p>
+      <p className="intel-fineprint">{USD_NOTE} On-chain payment is off.</p>
     </IntelChrome>
   );
 }

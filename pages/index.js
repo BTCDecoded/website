@@ -1,7 +1,6 @@
 import Link from "next/link";
-import {
-  blvmDisplayTag,
-} from "../lib/blvmReleaseMeta";
+import { blvmDisplayTag } from "../lib/blvmReleaseMeta";
+import { CORPUS } from "../lib/api";
 
 export default function IndexPage() {
   return (
@@ -174,6 +173,49 @@ export default function IndexPage() {
               <li>
                 <span className="cp-facts__k">Stack</span>
                 <span>BLVM and Bitcoin Commons</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section className="intel-feature" aria-labelledby="intel-feature-heading">
+        <div className="container">
+          <article className="intel-hero">
+            <div className="intel-hero__copy">
+              <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
+              <h2 id="intel-feature-heading">
+                {CORPUS.headline} passages of Bitcoin review history
+              </h2>
+              <p className="intel-hero__lede">
+                Trial searches the curated ~5k. Researcher searches nearly
+                700k, primary-first. Sign in, pay Lightning, connect Claude.
+              </p>
+              <div className="hero-ctas">
+                <Link href="/intelligence/" className="btn btn-primary">
+                  See Intelligence
+                </Link>
+                <Link href="/pricing/" className="btn btn-secondary">
+                  Plans
+                </Link>
+              </div>
+            </div>
+            <ul className="intel-hero__facts" aria-label="Corpus at a glance">
+              <li>
+                <span className="intel-hero__k">Indexed</span>
+                <span>{CORPUS.headline} passages</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">IRC</span>
+                <span>{CORPUS.irc} review-chat lines</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Forums</span>
+                <span>{CORPUS.bitcointalk} Bitcointalk posts</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Pay</span>
+                <span>Lightning, then a private key</span>
               </li>
             </ul>
           </article>

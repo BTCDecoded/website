@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { MCP_URL, PACKAGES, PLANS, WORKER_ORIGIN, planBySku } from "../lib/api";
+import {
+  MCP_URL,
+  PACKAGES,
+  PLANS,
+  WORKER_ORIGIN,
+  planBySku,
+  usdRef,
+} from "../lib/api";
+import AuthCard from "../components/AuthCard";
+import CopyField from "../components/CopyField";
+import IntelChrome from "../components/IntelChrome";
 import {
   authFetch,
   consumeSessionFromHash,
   fetchMe,
-  githubLoginUrl,
   loginWithNostr,
 } from "../lib/auth";
-import CopyField from "../components/CopyField";
-import IntelChrome from "../components/IntelChrome";
 
 export default function SubscribePage() {
   const router = useRouter();
@@ -100,6 +107,10 @@ export default function SubscribePage() {
   }
 
   async function startPay() {
+    if (!user) {
+      setStatus("Sign in first.");
+      return;
+    }
     setBusy("invoice");
     setStatus("");
     setInvoice("");
@@ -116,13 +127,15 @@ export default function SubscribePage() {
         setStatus(
           data.error === "lightning disabled"
             ? "Lightning is off on this network. Do not send bitcoin."
-            : data.error || "Could not create invoice",
+            : data.error === "login required"
+              ? "Sign in first."
+              : data.error || "Could not create invoice",
         );
         return;
       }
       setInvoice(data.invoice || "");
       setSwapId(data.swap_id || "");
-      setStatus("Pay this invoice from a Lightning wallet, then wait — we poll OpenNode for payment.");
+      setStatus("Pay from a Lightning wallet. We poll until it settles.");
     } catch {
       setStatus("Could not reach the Worker.");
     } finally {
@@ -138,7 +151,7 @@ export default function SubscribePage() {
       const data = await res.json();
       if (data.key) {
         setKey(data.key);
-        setStatus("Paid. Copy the API key now. It is also on Account if you were signed in.");
+        setStatus("Paid. Copy the key — it is also on Account.");
       } else if (manual) {
         setStatus(data.status || data.error || "Not settled yet.");
       }
@@ -177,7 +190,8 @@ export default function SubscribePage() {
   return (
     <IntelChrome
       title="Checkout"
-      lede="Sign in, pick a plan, pay a testnet invoice, copy the key. Mainnet bitcoin will not credit this subscription."
+      lede="Sign in, pick a plan, pay Lightning, copy the key."
+      narrow
     >
       <ol className="intel-progress" aria-label="Checkout steps">
         {["Sign in", "Plan", "Pay", "Key"].map((label, i) => {
@@ -185,123 +199,119 @@ export default function SubscribePage() {
           const cls = step > n ? "is-done" : step === n ? "is-current" : "";
           return (
             <li key={label} className={cls}>
-              {n}. {label}
+              {n} {label}
             </li>
           );
         })}
       </ol>
 
-      <div className="intel-panel">
-        <h3>1. Sign in</h3>
+      <div className={`intel-panel${step === 1 ? " intel-panel--focus" : ""}`}>
         {user ? (
-          <p>
-            Signed in. The key will be stored on{" "}
-            <Link href="/account/">Account</Link> after payment.
-          </p>
-        ) : (
           <>
+            <h3>Sign in</h3>
             <p>
-              Recommended so you can show the key again. Paying logged out still
-              works — keep the recovery code.
+              Signed in. After payment the key is on{" "}
+              <Link href="/account/">Account</Link>.
             </p>
-            <div className="hero-ctas intel-ctas">
-              <a className="btn btn-primary" href={githubLoginUrl("/subscribe/")}>
-                Continue with GitHub
-              </a>
-              <button type="button" className="btn btn-secondary" onClick={onNostr}>
-                Continue with Nostr
-              </button>
-            </div>
-            {loginErr ? <p className="intel-status">{loginErr}</p> : null}
           </>
+        ) : (
+          <AuthCard
+            title="Sign in"
+            returnPath={`/subscribe/?plan=${encodeURIComponent(pack)}`}
+            onNostr={onNostr}
+            error={loginErr}
+          />
         )}
       </div>
 
-      <div className="intel-panel">
-        <h3>2. Plan</h3>
-        <div className="intel-sku-grid">
-          {PLANS.map((p) =>
-            p.options.map((o) => {
-              const id = o.id;
-              const on = pack === id;
-              return (
-                <button
-                  key={id}
-                  type="button"
-                  className={`intel-sku${on ? " is-on" : ""}`}
-                  onClick={() => setPack(id)}
-                >
-                  <strong>
-                    {p.label} · {o.days}d
-                  </strong>
-                  <span>{o.sats.toLocaleString()} sats</span>
-                </button>
-              );
-            }),
-          )}
-        </div>
-        <p className="intel-plan-meta">
-          {plan.label} — {opt.days} days — {opt.sats.toLocaleString()} sats (
-          {opt.usd} reference)
-        </p>
-      </div>
+      {user ? (
+        <>
+          <div className={`intel-panel${step === 2 ? " intel-panel--focus" : ""}`}>
+            <h3>Plan</h3>
+            <div className="intel-sku-grid">
+              {PLANS.map((p) =>
+                p.options.map((o) => {
+                  const id = o.id;
+                  const on = pack === id;
+                  return (
+                    <button
+                      key={id}
+                      type="button"
+                      className={`intel-sku${on ? " is-on" : ""}`}
+                      onClick={() => setPack(id)}
+                    >
+                      <strong>
+                        {p.label} · {o.days}d
+                      </strong>
+                      <span>
+                        {o.sats.toLocaleString()} sats · {usdRef(o.sats)}
+                      </span>
+                    </button>
+                  );
+                }),
+              )}
+            </div>
+            <p className="intel-plan-meta">{plan.blurb}</p>
+          </div>
 
-      <div className="intel-panel">
-        <h3>3. Pay with testnet Lightning</h3>
-        <p>
-          {plan.label} · {opt.days} days · {opt.sats.toLocaleString()} sats.
-          Pay from a Lightning wallet. OpenNode holds the payment until ops
-          withdraw. Do not send to a Boltz invoice.
-        </p>
-        {lnNote ? <p className="intel-status">{lnNote}</p> : null}
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={startPay}
-          disabled={busy === "invoice" || lnOk === false}
-        >
-          {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
-        </button>
-        {invoice ? (
-          <div className="intel-invoice">
-            <CopyField value={invoice} label="Copy invoice" />
+          <div className={`intel-panel${step === 3 ? " intel-panel--focus" : ""}`}>
+            <h3>Pay with Lightning</h3>
+            <p>
+              {plan.label} · {opt.days} days · {opt.sats.toLocaleString()} sats (
+              {usdRef(opt.sats)}). Lightning invoice only.
+            </p>
+            {lnNote ? <p className="intel-status">{lnNote}</p> : null}
             <button
               type="button"
-              className="btn btn-secondary"
-              onClick={() => checkSwap(true)}
-              disabled={busy === "check"}
+              className="btn btn-primary"
+              onClick={startPay}
+              disabled={busy === "invoice" || lnOk === false}
             >
-              {busy === "check" ? "Checking…" : "I’ve paid — check now"}
+              {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
             </button>
+            {invoice ? (
+              <div className="intel-invoice">
+                <CopyField value={invoice} label="Copy invoice" />
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => checkSwap(true)}
+                  disabled={busy === "check"}
+                >
+                  {busy === "check" ? "Checking…" : "I’ve paid — check now"}
+                </button>
+              </div>
+            ) : null}
+            {status && step === 3 ? <p className="intel-status">{status}</p> : null}
           </div>
-        ) : null}
-      </div>
+        </>
+      ) : null}
 
       {key ? (
         <div className="intel-panel intel-panel--ok">
-          <h3>4. Your API key</h3>
+          <h3>Your API key</h3>
           <CopyField value={key} label="Copy key" />
           {recoveryCode ? (
             <>
-              <p className="intel-plan-meta">Recovery code (keep this if you paid logged out)</p>
+              <p className="intel-plan-meta">Recovery code — store this with the key</p>
               <CopyField value={recoveryCode} label="Copy recovery code" />
             </>
           ) : null}
           <p>
-            Add this URL in Claude (or any Streamable HTTP MCP client) with the
+            In Claude (or any Streamable HTTP MCP client), add this URL with the
             key as a Bearer token.
           </p>
           <CopyField value={MCP_URL} label="Copy MCP URL" />
           <p>
-            You can also reveal the key later on <Link href="/account/">Account</Link>.
+            Reveal it later on <Link href="/account/">Account</Link>.
           </p>
         </div>
       ) : null}
 
-      {status ? <p className="intel-status">{status}</p> : null}
+      {status && step !== 3 ? <p className="intel-status">{status}</p> : null}
 
       <details className="intel-recover">
-        <summary>Already paid and lost the key?</summary>
+        <summary>Lost the key after paying?</summary>
         <p>Paste the recovery code shown at purchase.</p>
         <input
           className="intel-input"

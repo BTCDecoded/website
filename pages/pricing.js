@@ -56,10 +56,11 @@ export default function PricingPage() {
         ))}
       </div>
       <p className="intel-fineprint">
-        {USD_NOTE} Trial (15k sats) is not offered here — it is below the Boltz
-        reverse-swap minimum. Included: joined findings, maps, Core history,
-        selected source, informal channels. Already free: a single GitHub PR,
-        Core <code>doc/</code>, published articles.
+        {USD_NOTE} Lightning invoices are created by OpenNode (custodial until
+        ops withdraw from the OpenNode dashboard). Trial is 15k sats if OpenNode
+        accepts that charge; otherwise use Researcher. Included: joined findings,
+        maps, Core history, selected source, informal channels. Already free: a
+        single GitHub PR, Core <code>doc/</code>, published articles.
       </p>
     </IntelChrome>
   );

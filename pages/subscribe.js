@@ -122,7 +122,7 @@ export default function SubscribePage() {
       }
       setInvoice(data.invoice || "");
       setSwapId(data.swap_id || "");
-      setStatus("Pay this invoice from a testnet Lightning wallet, then wait — we poll for settlement.");
+      setStatus("Pay this invoice from a Lightning wallet, then wait — we poll OpenNode for payment.");
     } catch {
       setStatus("Could not reach the Worker.");
     } finally {
@@ -250,8 +250,8 @@ export default function SubscribePage() {
         <h3>3. Pay with testnet Lightning</h3>
         <p>
           {plan.label} · {opt.days} days · {opt.sats.toLocaleString()} sats.
-          Pay from a testnet Lightning wallet. Mainnet bitcoin will not credit
-          this subscription.
+          Pay from a Lightning wallet. OpenNode holds the payment until ops
+          withdraw. Do not send to a Boltz invoice.
         </p>
         {lnNote ? <p className="intel-status">{lnNote}</p> : null}
         <button

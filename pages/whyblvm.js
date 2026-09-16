@@ -37,13 +37,13 @@ export default function WhyBLVM() {
             </div>
 
             <div className="why-card">
-              <h3>900,000+ blocks, zero divergence</h3>
+              <h3>Checked against Core, in layers</h3>
               <p>
-                BTCDecoded has been differentially tested against Bitcoin Core
-                across the full mainnet history with no consensus divergence.
-                Fuzzing in CI reaches edge cases that chain replay alone
-                never exercises. That's the bar a second node needs to clear
-                before it matters for network health.
+                A single chain replay is not enough. Compatibility is exercised
+                by property tests, libFuzzer on consensus, protocol, and node,
+                golden vectors from mainnet wire bytes and Core script fixtures,
+                and a differential against Bitcoin Core / libbitcoinkernel.
+                Each layer is meant to catch a different class of mistake.
               </p>
             </div>
 
@@ -93,7 +93,7 @@ export default function WhyBLVM() {
               target="_blank"
               rel="noopener"
             >
-              Differential testing methodology
+              How testing is layered
             </a>
           </div>
         </div>

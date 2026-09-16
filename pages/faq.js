@@ -8,7 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 const faqs = [
   {
     q: "Will I stay in consensus with the Bitcoin network?",
-    a: "Yes. BTCDecoded implements the same Bitcoin consensus rules as Bitcoin Core, verified through differential testing against 900,000+ mainnet blocks with zero divergence. blvm-spec-lock ties every consensus-critical function back to the Orange Paper specification via Z3-checked contracts. Same chain, same UTXO set, same rules.",
+    a: "Yes. This node implements the same consensus rules as Bitcoin Core: same chain, same UTXO set. Consensus-critical functions are bound to the Orange Paper (spec-lock, Z3 in CI). Compatibility is checked in layers — property tests, libFuzzer on consensus/protocol/node, golden vectors from mainnet bytes and Core script fixtures, and a differential against Core / libbitcoinkernel — not by a single block-count slogan.",
   },
   {
     q: "How does this help decentralize Bitcoin?",
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "What if there is a bug in my node?",
-    a: "BLVM ships with spec-lock verification in CI, extensive differential testing, and continuous fuzzing of consensus and protocol code. Security vulnerabilities follow the Bitcoin Commons responsible disclosure policy — see SECURITY.md in each repository. Critical consensus issues trigger a coordinated release process with cryptographic sign-off from the governance tier. If you find a bug, report it to security@thebitcoincommons.org.",
+    a: "Treat it like any other full node: review the software before you put real funds on it. Spec-lock runs in CI; the test suite includes property tests, fuzzing, golden vectors, and a Core differential. Report security issues to security@thebitcoincommons.org (see SECURITY.md in each repo). Coordinated releases for consensus bugs still go through the published governance process.",
   },
   {
     q: "Is this a fork of Bitcoin?",
@@ -32,7 +32,11 @@ const faqs = [
   },
   {
     q: "What is Commons Pool?",
-    a: "Commons Pool is BTCDecoded's mining pool: no operator, no pool wallet, no KYC. Coinbase outputs pay miner addresses from a shared snapshot of work. It runs on Bitcoin Commons (BLVM), not Bitcoin Core. Signet today; not on mainnet. Site: commonspool.org.",
+    a: "Commons Pool is BTCDecoded's mining pool: no operator, no pool wallet, no KYC. Coinbase outputs pay miner addresses from a shared snapshot of work. It runs on BLVM (the first implementation of the Commons spec), not Bitcoin Core. Signet today; not on mainnet. Site: commonspool.org.",
+  },
+  {
+    q: "How can I fund the project?",
+    a: "Through Plebly (plebly.fund): on-chain escrow, not a custodial tip jar. Fund a listed Commons proposal, or donate to Commons directly. Plebly is the funding venue — not Commons and not the BLVM node.",
   },
   {
     q: "Where do I get support?",
@@ -46,7 +50,8 @@ export default function FAQ() {
       <div className="container">
         <h1>Frequently Asked Questions</h1>
         <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>
-          Questions about running a BTCDecoded node.{" "}
+          Running a node, staying on the Bitcoin chain, and how the software is
+          checked.{" "}
           <a
             href="https://thebitcoincommons.org/#faq"
             target="_blank"

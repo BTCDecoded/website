@@ -88,15 +88,7 @@ export default function AccountPage() {
   const provider = user?.github ? "GitHub" : user?.nostr ? "Nostr" : "";
 
   return (
-    <IntelChrome
-      title={user ? "Account" : "Sign in"}
-      lede={
-        user
-          ? "A paid key lives on this profile after checkout."
-          : "Sign in, then buy a plan. Signing in does not issue a key."
-      }
-      narrow
-    >
+    <IntelChrome title={user ? "Account" : "Sign in"} narrow>
       {user ? (
         <>
           <div className="auth-session">
@@ -120,8 +112,8 @@ export default function AccountPage() {
             <p className="intel-panel-label">Intelligence key</p>
             <p>
               {user.has_key
-                ? "A paid key is stored on this profile. Reveal it to copy the key and connector URL."
-                : "No key yet. Pick a plan and pay with Lightning."}
+                ? "Reveal to copy the key and connector URL."
+                : "No key yet."}
             </p>
             <div className="hero-ctas intel-ctas">
               {user.has_key ? (

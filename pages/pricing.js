@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Link from "next/link";
-import { PLANS, USD_NOTE, usdRef } from "../lib/api";
+import { PLANS } from "../lib/api";
+import { usdApprox, useBtcUsd } from "../lib/btcUsd";
 import IntelChrome from "../components/IntelChrome";
 
-function PlanCard({ plan }) {
+function PlanCard({ plan, btcUsd }) {
   const [sku, setSku] = useState(plan.options[0].id);
   const opt = plan.options.find((o) => o.id === sku) || plan.options[0];
   const many = plan.options.length > 1;
+  const usd = usdApprox(opt.sats, btcUsd);
   return (
     <article
       className={`intel-plan${plan.featured ? " intel-plan--featured" : ""}`}
@@ -25,7 +27,7 @@ function PlanCard({ plan }) {
         <span className="intel-plan-unit"> sats</span>
       </p>
       <p className="intel-plan-meta">
-        {opt.days} days · {usdRef(opt.sats)}
+        {opt.days} days{usd ? ` · ${usd}` : ""}
       </p>
       {many ? (
         <div className="intel-plan-toggle" role="group" aria-label="Term">
@@ -59,17 +61,14 @@ function PlanCard({ plan }) {
 }
 
 export default function PricingPage() {
+  const btcUsd = useBtcUsd();
   return (
-    <IntelChrome
-      title="Plans"
-      lede="Lightning only. Sign in at checkout. Trial is the curated ~5k; Researcher and Developer search nearly 700k, primary-first."
-    >
+    <IntelChrome title="Plans">
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (
-          <PlanCard key={plan.id} plan={plan} />
+          <PlanCard key={plan.id} plan={plan} btcUsd={btcUsd} />
         ))}
       </div>
-      <p className="intel-fineprint">{USD_NOTE} On-chain payment is off.</p>
     </IntelChrome>
   );
 }

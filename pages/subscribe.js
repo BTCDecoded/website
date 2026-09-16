@@ -7,8 +7,8 @@ import {
   PLANS,
   WORKER_ORIGIN,
   planBySku,
-  usdRef,
 } from "../lib/api";
+import { usdApprox, useBtcUsd } from "../lib/btcUsd";
 import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
 import IntelChrome from "../components/IntelChrome";
@@ -33,6 +33,7 @@ export default function SubscribePage() {
   const [loginErr, setLoginErr] = useState("");
   const [lnNote, setLnNote] = useState("");
   const [lnOk, setLnOk] = useState(null);
+  const btcUsd = useBtcUsd();
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -185,14 +186,11 @@ export default function SubscribePage() {
   }
 
   const { plan, opt } = planBySku(pack);
+  const usd = usdApprox(opt.sats, btcUsd);
   const step = key ? 4 : invoice ? 3 : user ? 2 : 1;
 
   return (
-    <IntelChrome
-      title="Checkout"
-      lede="Sign in, pick a plan, pay Lightning, copy the key."
-      narrow
-    >
+    <IntelChrome title="Checkout" narrow>
       <ol className="intel-progress" aria-label="Checkout steps">
         {["Sign in", "Plan", "Pay", "Key"].map((label, i) => {
           const n = i + 1;
@@ -244,7 +242,10 @@ export default function SubscribePage() {
                         {p.label} · {o.days}d
                       </strong>
                       <span>
-                        {o.sats.toLocaleString()} sats · {usdRef(o.sats)}
+                        {o.sats.toLocaleString()} sats
+                        {usdApprox(o.sats, btcUsd)
+                          ? ` · ${usdApprox(o.sats, btcUsd)}`
+                          : ""}
                       </span>
                     </button>
                   );
@@ -257,8 +258,8 @@ export default function SubscribePage() {
           <div className={`intel-panel${step === 3 ? " intel-panel--focus" : ""}`}>
             <h3>Pay with Lightning</h3>
             <p>
-              {plan.label} · {opt.days} days · {opt.sats.toLocaleString()} sats (
-              {usdRef(opt.sats)}). Lightning invoice only.
+              {plan.label} · {opt.sats.toLocaleString()} sats
+              {usd ? ` · ${usd}` : ""}
             </p>
             {lnNote ? <p className="intel-status">{lnNote}</p> : null}
             <button
@@ -293,17 +294,14 @@ export default function SubscribePage() {
           <CopyField value={key} label="Copy key" />
           {recoveryCode ? (
             <>
-              <p className="intel-plan-meta">Recovery code — store this with the key</p>
+              <p className="intel-plan-meta">Recovery code</p>
               <CopyField value={recoveryCode} label="Copy recovery code" />
             </>
           ) : null}
-          <p>
-            In Claude (or any Streamable HTTP MCP client), add this URL with the
-            key as a Bearer token.
-          </p>
+          <p>Add this URL in Claude with the key as Bearer.</p>
           <CopyField value={MCP_URL} label="Copy MCP URL" />
           <p>
-            Reveal it later on <Link href="/account/">Account</Link>.
+            Also on <Link href="/account/">Account</Link>.
           </p>
         </div>
       ) : null}

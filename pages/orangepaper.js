@@ -28,8 +28,9 @@ export default function OrangePaperContentPage() {
           <div className="orange-paper-with-diagram">
             <div className="orange-paper-content">
               <p>
-                Complete mathematical specification of Bitcoin consensus,
-                extracted from Bitcoin Core.{" "}
+                The written consensus rules for Bitcoin — math and invariants
+                extracted from how Bitcoin Core behaves, so a second
+                implementation has something to implement against.{" "}
                 <a
                   href="https://thebitcoincommons.org/orange-paper.html"
                   target="_blank"

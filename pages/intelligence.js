@@ -9,13 +9,10 @@ export default function IntelligencePage() {
         <div className="intel-hero__copy">
           <h2>The Bitcoin review record, searchable</h2>
           <p className="intel-hero__claim">
-            {CORPUS.headline} passages from the public review history — cited,
-            not dumped.
+            {CORPUS.headline} passages, cited.
           </p>
           <p className="intel-hero__lede">
-            Trial searches the curated ~5k. Researcher and Developer search
-            nearly 700k, primary-first. You sign in, pay Lightning, then connect
-            Claude with a key. Not a merge check. Not a download of the archives.
+            Sign in, pay Lightning, connect Claude.
           </p>
           <div className="hero-ctas">
             <Link href="/pricing/" className="btn btn-primary">
@@ -33,7 +30,7 @@ export default function IntelligencePage() {
           </li>
           <li>
             <span className="intel-hero__k">IRC</span>
-            <span>{CORPUS.irc} lines of review chat</span>
+            <span>{CORPUS.irc} lines</span>
           </li>
           <li>
             <span className="intel-hero__k">Forums</span>
@@ -41,7 +38,7 @@ export default function IntelligencePage() {
           </li>
           <li>
             <span className="intel-hero__k">Pay</span>
-            <span>Lightning, then a private key</span>
+            <span>Lightning</span>
           </li>
         </ul>
       </article>
@@ -51,37 +48,28 @@ export default function IntelligencePage() {
           <span className="intel-flow__n">1</span>
           <div>
             <strong>Sign in</strong>
-            <p>
-              GitHub or Nostr. A profile is required before an invoice. Signing
-              in does not issue a key.
-            </p>
+            <p>GitHub or Nostr.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">2</span>
           <div>
             <strong>Pick a plan</strong>
-            <p>
-              Trial is the curated ~5k. Researcher is ~700k, primary-first.
-              Developer adds an advisory PR scaffold.
-            </p>
+            <p>Trial ~5k. Researcher ~700k. Developer adds PR review.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">3</span>
           <div>
             <strong>Pay Lightning</strong>
-            <p>On-chain checkout is off. The key is stored on your account.</p>
+            <p>The key is stored on your account.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">4</span>
           <div>
             <strong>Connect</strong>
-            <p>
-              Copy the key and connector URL from Account into Claude (or any
-              Streamable HTTP client). The URL is not shown until you have a key.
-            </p>
+            <p>Paste the key into Claude from Account.</p>
           </div>
         </li>
       </ol>

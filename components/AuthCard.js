@@ -10,9 +10,6 @@ export default function AuthCard({
   return (
     <div className="auth-card">
       {title ? <h3 className="auth-card__title">{title}</h3> : null}
-      <p className="auth-card__lede">
-        Choose a provider. Signing in does not create a paid key.
-      </p>
       <a
         className="btn btn-primary auth-card__btn"
         href={githubLoginUrl(returnPath)}
@@ -42,9 +39,6 @@ export default function AuthCard({
       >
         Continue with Nostr
       </button>
-      <p className="auth-card__hint">
-        Nostr uses a browser extension (Alby, nos2x, or another NIP-07 signer).
-      </p>
       {error ? <p className="auth-card__error">{error}</p> : null}
     </div>
   );

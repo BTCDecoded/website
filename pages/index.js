@@ -188,8 +188,7 @@ export default function IndexPage() {
                 {CORPUS.headline} passages of Bitcoin review history
               </h2>
               <p className="intel-hero__lede">
-                Trial searches the curated ~5k. Researcher searches nearly
-                700k, primary-first. Sign in, pay Lightning, connect Claude.
+                Sign in, pay Lightning, connect Claude.
               </p>
               <div className="hero-ctas">
                 <Link href="/intelligence/" className="btn btn-primary">

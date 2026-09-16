@@ -39,17 +39,18 @@ export default function ArchitecturePage() {
           <div className="architecture-with-diagram">
             <div className="architecture-content">
               <p>
-                6-tier architecture: Orange Paper → blvm-consensus (formally
-                verified with blvm-spec-lock) → blvm-protocol → blvm-node →
-                blvm-sdk → governance.{" "}
+                Write Bitcoin’s rules, implement them, run a node, and publish
+                who can change the software. The path is Orange Paper →
+                blvm-consensus (spec-lock) → blvm-protocol → blvm-node → blvm
+                → blvm-sdk → governance.{" "}
                 <a
                   href="https://docs.thebitcoincommons.org/architecture/system-overview.html"
                   target="_blank"
                   rel="noopener"
                 >
-                  See architecture docs
-                </a>{" "}
-                for details.
+                  Architecture docs
+                </a>
+                .
               </p>
 
               <div className="architecture">
@@ -91,17 +92,17 @@ export default function ArchitecturePage() {
                     </h3>
                     <p className="layer-type">Formally Verified Implementation</p>
                     <p>
-                      Pure Rust implementation of Orange Paper functions with{" "}
-                      <strong>blvm-spec-lock</strong> formal verification (Z3
-                      SMT solver). All consensus decisions are mathematically
-                      proven. UTXO set operations verified for consistency and
-                      double-spend prevention.
+                      Rust implementation of the Orange Paper functions.{" "}
+                      <strong>blvm-spec-lock</strong> binds those functions to
+                      numbered spec sections and checks them with Z3 in CI. If
+                      the code drifts from the spec, the build fails.
                     </p>
                     <p className="tech-detail">
-                      <strong>Formal Verification:</strong> blvm-spec-lock
-                      proofs link code to Orange Paper specifications. Chain
-                      selection, block subsidy (21M limit proof), proof-of-work,
-                      transaction validation all verified with Z3.
+                      <strong>Spec-lock:</strong> chain selection, block subsidy
+                      (21M proof), proof-of-work, and transaction validation
+                      carry contracts discharged by Z3. This is the consensus
+                      path the node must call — it is not a claim that every
+                      runtime path is a finished theorem.
                     </p>
                   </div>
                 </div>

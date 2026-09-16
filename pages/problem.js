@@ -8,12 +8,11 @@ export default function ProblemContentPage() {
           <h2>The Problem</h2>
           <div className="content problem-content">
             <p>
-              Bitcoin proof-of-work consensus is one of the strongest systems
-              ever deployed. Development governance for the dominant client has
-              remained largely informal: concentrated maintainer discretion,
-              limited cryptographic accountability, and high social cost if you
-              disagree. That asymmetry (hard rules at the chain layer, soft
-              process above it) is what Commons-style projects aim to address.
+              Bitcoin’s chain rules are hard to change. How the dominant client
+              is governed is mostly informal: a small group of maintainers, little
+              cryptographic accountability, and a high social cost if you
+              disagree. Hard rules on the chain, soft process above it — that
+              gap is what this project is for.
             </p>
             <p>
               Alternative implementations face two hard requirements. First,{" "}

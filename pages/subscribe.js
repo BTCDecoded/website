@@ -29,11 +29,27 @@ export default function SubscribePage() {
   const [lnOk, setLnOk] = useState(null);
   const btcUsd = useBtcUsd();
 
+  function applyPaid(data) {
+    setPaid(true);
+    setInvoice("");
+    setStatus("");
+    if (data.recovery_code) setRecoveryCode(data.recovery_code);
+  }
+
+  function applyInvoice(data) {
+    setPaid(false);
+    setInvoice(data.invoice || "");
+    setSwapId(data.swap_id || "");
+    if (PACKAGES.some((p) => p.id === data.package)) setPack(data.package);
+    setStatus("Waiting for payment.");
+  }
+
   useEffect(() => {
     if (!router.isReady) return;
+    if (invoice || paid) return;
     const q = String(router.query.plan || "");
     if (PACKAGES.some((p) => p.id === q)) setPack(q);
-  }, [router.isReady, router.query.plan]);
+  }, [router.isReady, router.query.plan, invoice, paid]);
 
   useEffect(() => {
     let cancelled = false;
@@ -83,10 +99,31 @@ export default function SubscribePage() {
   }, []);
 
   useEffect(() => {
+    if (!user) return undefined;
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await authFetch(`${WORKER_ORIGIN}/lightning/pending`);
+        if (cancelled || res.status === 404) return;
+        const data = await res.json();
+        if (cancelled) return;
+        if (data.paid || data.key) applyPaid(data);
+        else if (data.invoice) applyInvoice(data);
+      } catch {
+        /* none */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
+
+  useEffect(() => {
     if (!swapId || paid) return undefined;
+    checkSwap();
     const t = setInterval(() => {
-      checkSwap(false);
-    }, 4000);
+      checkSwap();
+    }, 3000);
     return () => clearInterval(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [swapId, paid]);
@@ -102,15 +139,9 @@ export default function SubscribePage() {
   }
 
   async function startPay() {
-    if (!user) {
-      setStatus("Sign in first.");
-      return;
-    }
+    if (!user || invoice) return;
     setBusy("invoice");
     setStatus("");
-    setInvoice("");
-    setPaid(false);
-    setRecoveryCode("");
     try {
       const res = await authFetch(`${WORKER_ORIGIN}/lightning/invoice`, {
         method: "POST",
@@ -128,9 +159,8 @@ export default function SubscribePage() {
         );
         return;
       }
-      setInvoice(data.invoice || "");
-      setSwapId(data.swap_id || "");
-      setStatus("Pay from a Lightning wallet.");
+      if (data.paid || data.key) applyPaid(data);
+      else applyInvoice(data);
     } catch {
       setStatus("Could not reach the Worker.");
     } finally {
@@ -138,21 +168,15 @@ export default function SubscribePage() {
     }
   }
 
-  async function checkSwap(manual = true) {
+  async function checkSwap() {
     if (!swapId) return;
-    if (manual) setBusy("check");
     try {
       const res = await authFetch(`${WORKER_ORIGIN}/lightning/swap/${swapId}`);
       const data = await res.json();
-      if (data.key) {
-        setPaid(true);
-        setStatus("");
-      } else if (manual) {
-        setStatus(data.status || data.error || "Not settled yet.");
-      }
-      if (data.recovery_code) setRecoveryCode(data.recovery_code);
-    } finally {
-      if (manual) setBusy("");
+      if (data.paid || data.key) applyPaid(data);
+      else if (data.recovery_code) setRecoveryCode(data.recovery_code);
+    } catch {
+      /* next poll */
     }
   }
 
@@ -172,9 +196,11 @@ export default function SubscribePage() {
           <p className="intel-plan-meta">
             {opt.days} days{usd ? ` · ${usd}` : ""}
           </p>
-          <p className="intel-plan-meta">
-            <Link href="/pricing/">Change plan</Link>
-          </p>
+          {invoice ? null : (
+            <p className="intel-plan-meta">
+              <Link href="/pricing/">Change plan</Link>
+            </p>
+          )}
         </article>
         {!user ? (
           <div className="intel-panel">
@@ -207,28 +233,21 @@ export default function SubscribePage() {
           <div className="intel-panel">
             <h3>Pay with Lightning</h3>
             {lnNote ? <p className="intel-status">{lnNote}</p> : null}
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={startPay}
-              disabled={busy === "invoice" || lnOk === false}
-            >
-              {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
-            </button>
             {invoice ? (
               <div className="intel-invoice">
                 <InvoiceQr value={invoice} />
                 <CopyField value={invoice} label="Copy invoice" />
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => checkSwap(true)}
-                  disabled={busy === "check"}
-                >
-                  {busy === "check" ? "Checking…" : "I’ve paid — check now"}
-                </button>
               </div>
-            ) : null}
+            ) : (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={startPay}
+                disabled={busy === "invoice" || lnOk === false}
+              >
+                {busy === "invoice" ? "Creating invoice…" : "Create invoice"}
+              </button>
+            )}
             {status ? <p className="intel-status">{status}</p> : null}
           </div>
         )}

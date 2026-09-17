@@ -36,13 +36,13 @@ export default function IntelligencePage() {
           <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
           <h1>Bitcoin’s public coordination record, searchable.</h1>
           <p className="intel-hero__claim">
-            IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and
-            Core source — about {CORPUS.record} contemporaneous passages — plus
-            specs, maps, and research ({CORPUS.curated}).
+            About {CORPUS.record} contemporaneous passages — IRC, mailing lists,
+            GitHub, forums, source — plus specs, maps, and select articles
+            ({CORPUS.curated}).
           </p>
           <p className="intel-hero__lede">
-            Not price data. Not chain analytics. Lightning is how you pay. Any
-            MCP (Model Context Protocol) client.
+            Not price data. Not chain analytics. Pay with Lightning. Connect over
+            MCP.
           </p>
           <div className="hero-ctas">
             {hasKey ? (
@@ -78,7 +78,7 @@ export default function IntelligencePage() {
         <ul className="intel-hero__facts" aria-label="Corpus at a glance">
           <li>
             <span className="intel-hero__k">Curated {CORPUS.curatedShort}</span>
-            <span>specs, maps, findings</span>
+            <span>specs, maps, select articles</span>
           </li>
           <li>
             <span className="intel-hero__k">Record {CORPUS.recordShort}</span>
@@ -95,37 +95,12 @@ export default function IntelligencePage() {
         </ul>
       </article>
 
-      <div className="intel-uses">
-        <article>
-          <h3>Passages</h3>
-          <p>
-            A hit names the document and date when known. If the index has
-            nothing, it comes back empty.
-          </p>
-        </article>
-        <article>
-          <h3>Two layers</h3>
-          <p>
-            Curated {CORPUS.curatedShort} (specs, maps, findings) plus the{" "}
-            {CORPUS.recordShort} record. Trial and paid search both. Maps are
-            analysis. Logs, mails, PRs, and source files are evidence.
-          </p>
-        </article>
-        <article>
-          <h3>PR review</h3>
-          <p>
-            Developer plan reads public GitHub pull requests against that same
-            record (<code>analyze_pr</code>).
-          </p>
-        </article>
-      </div>
-
       <section className="intel-index" aria-labelledby="intel-index-heading">
         <h2 id="intel-index-heading">What’s in the index</h2>
         <p>
-          Every plan searches both layers. Trial is 7 days and 20 queries a day.
-          Researcher and Developer buy more days and more queries. Developer
-          adds PR review.
+          Every plan searches both layers.{" "}
+          <Link href="/pricing/">Plans</Link> differ by days, query cap, and PR
+          review.
         </p>
         <div className="intel-index__grid">
           <article>
@@ -137,7 +112,7 @@ export default function IntelligencePage() {
             </ul>
           </article>
           <article>
-            <h3>Full record ({CORPUS.recordShort})</h3>
+            <h3>Record ({CORPUS.recordShort})</h3>
             <ul>
               {INDEX_RECORD.map((item) => (
                 <li key={item}>{item}</li>
@@ -160,61 +135,35 @@ export default function IntelligencePage() {
           <span className="intel-flow__n">1</span>
           <div>
             <strong>Sign in</strong>
-            <p>GitHub or Nostr. One login owns the key.</p>
+            <p>GitHub or Nostr.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">2</span>
           <div>
             <strong>Pay Lightning</strong>
-            <p>Sats in, access out. Upgrades keep the same key.</p>
+            <p>Sats in, access out. Same key on upgrade.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">3</span>
           <div>
             <strong>Connect</strong>
-            <p>MCP. Claude uses OAuth; Cursor and others use a Bearer key.</p>
+            <p>MCP. Claude uses OAuth; others use a Bearer key.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">4</span>
           <div>
             <strong>Ask</strong>
-            <p>
-              The answer, with the source attached. Analysis is labeled as
-              analysis.
-            </p>
+            <p>The answer, with the source attached.</p>
           </div>
         </li>
       </ol>
 
-      <section className="intel-who" aria-labelledby="intel-who-heading">
-        <h2 id="intel-who-heading">Who this is for</h2>
-        <ul>
-          <li>
-            Protocol and client developers checking a claim against the written
-            and spoken public record
-          </li>
-          <li>
-            Journalists and researchers reconstructing who said what, in which
-            channel, on which date
-          </li>
-          <li>
-            Reviewers comparing a public PR to prior objections and to spec text
-          </li>
-          <li>
-            Historians and counsel who need contemporaneous sources, not recaps
-          </li>
-        </ul>
-        <p>Not for: spot-price desks, ETF flow pieces, chain surveillance.</p>
-      </section>
-
       <p className="intel-disclose">
-        Built by BTCDecoded on the Bitcoin Commons stack. The full record is
-        public source material (IRC, lists, GitHub, forums, source, Satoshi,
-        BIPs). Maps, findings, and argument assessments are research from that
-        same project (secsov.com). Treat them as analysis, not as the record.{" "}
+        The record is public source material. Maps, findings, and select articles
+        are analysis, not the record.{" "}
         <a href="/intelligence/llms.txt">Agent spec</a>.
       </p>
     </IntelChrome>

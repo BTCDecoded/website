@@ -27,7 +27,7 @@ Cite the record before citing analysis.
 - Canonical maintainer data
 - Training corpus: Bitcoin domain, epistemology, ops files, discourse games, argument map
 - Bitcoin Commons book chapters
-- Secsovereign articles and BIPs pages
+- Select articles
 - BLVM spec and Orange Paper pointer
 - BLVM docs
 - Bitcoin Commons whitepaper
@@ -39,7 +39,7 @@ Cite the record before citing analysis.
 ## Roles
 - source: cite as evidence
 - spec: cite as canonical text (whitepaper, Orange Paper, BLVM spec, BIP text)
-- analysis: findings, maps, secsov articles, Commons book, argument map — label as BTCDecoded/secsov analysis
+- analysis: findings, maps, select articles, Commons book, argument map — label as analysis
 - product: BLVM / Commons / Pool docs
 - internal: training, epistemology, ops, discourse games, review expectations — do not cite as history
 
@@ -54,4 +54,4 @@ Cite the record before citing analysis.
 Price, derivatives, ETF flows, chain analytics, wallet tracing, private chat, unpublished meetings.
 
 ## Producer
-BTCDecoded / Bitcoin Commons. Maps and assessments come from secsov research.
+BTCDecoded / Bitcoin Commons. Maps, findings, and select articles are analysis.

@@ -125,7 +125,6 @@ export default function SubscribePage() {
   const [invoice, setInvoice] = useState("");
   const [swapId, setSwapId] = useState("");
   const [paid, setPaid] = useState(false);
-  const [recoveryCode, setRecoveryCode] = useState("");
   const [status, setStatus] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [lnNote, setLnNote] = useState("");
@@ -139,7 +138,6 @@ export default function SubscribePage() {
     setInvoice("");
     setStatus("");
     setGranted(Boolean(data.grant));
-    if (data.recovery_code) setRecoveryCode(data.recovery_code);
   }
 
   function applyInvoice(data) {
@@ -319,7 +317,6 @@ export default function SubscribePage() {
       const res = await fetch(`${WORKER_ORIGIN}/lightning/swap/${swapId}`);
       const data = await res.json();
       if (data.paid || data.key) applyPaid(data);
-      else if (data.recovery_code) setRecoveryCode(data.recovery_code);
     } catch {
       /* next poll */
     }
@@ -459,12 +456,6 @@ export default function SubscribePage() {
             <p>
               The key is on <Link href="/account/">Account</Link>.
             </p>
-            {recoveryCode ? (
-              <>
-                <p className="intel-plan-meta">Store this recovery code</p>
-                <CopyField value={recoveryCode} label="Copy recovery code" />
-              </>
-            ) : null}
             <div className="hero-ctas intel-ctas">
               <Link href="/account/" className="btn btn-primary">
                 Open Account

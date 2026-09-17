@@ -106,9 +106,9 @@ export default function IntelligencePage() {
         <article>
           <h3>Two layers</h3>
           <p>
-            Trial is a week in the curated {CORPUS.curatedShort}. Paid search
-            includes the {CORPUS.recordShort} record. Maps are analysis. Logs,
-            mails, PRs, and source files are evidence.
+            Curated {CORPUS.curatedShort} (specs, maps, findings) plus the{" "}
+            {CORPUS.recordShort} record. Trial and paid search both. Maps are
+            analysis. Logs, mails, PRs, and source files are evidence.
           </p>
         </article>
         <article>
@@ -123,8 +123,9 @@ export default function IntelligencePage() {
       <section className="intel-index" aria-labelledby="intel-index-heading">
         <h2 id="intel-index-heading">What’s in the index</h2>
         <p>
-          Paid plans search the full record. The trial searches the curated layer
-          only.
+          Every plan searches both layers. Trial is 7 days and 20 queries a day.
+          Researcher and Developer buy more days and more queries. Developer
+          adds PR review.
         </p>
         <div className="intel-index__grid">
           <article>

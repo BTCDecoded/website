@@ -8,7 +8,7 @@ Not market data. Not on-chain analytics.
 - record (~684k): contemporaneous public sources
 - total nearly 700k passages (4,935 + 683,718 ingest)
 
-Trial searches curated only. Paid search includes the record.
+Every plan searches both layers. Trial is 7 days and 20 queries/day. Researcher and Developer buy more days and more queries. Developer adds PR review.
 Cite the record before citing analysis.
 
 ## Full record (~684k)

@@ -47,7 +47,6 @@ function checkoutStatus(error, extra = {}) {
 
 function CouponBox({
   apply,
-  locked = false,
   coupon,
   busy,
   preview,
@@ -60,7 +59,6 @@ function CouponBox({
   onClear,
 }) {
   const code = canonicalCoupon(coupon);
-  const disableField = Boolean(busy) || locked;
   return (
     <div className="intel-coupon">
       <label className="intel-panel-label" htmlFor="intel-coupon">
@@ -73,18 +71,18 @@ function CouponBox({
           value={coupon}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && apply && !locked && code) {
+            if (e.key === "Enter" && apply && code) {
               e.preventDefault();
               onApply(code);
             }
           }}
-          placeholder="BDI-XXXX-XXXX"
+          placeholder="STRATEGYHUB"
           autoComplete="off"
           autoCapitalize="characters"
           spellCheck={false}
-          disabled={disableField}
+          disabled={Boolean(busy)}
         />
-        {apply && !locked ? (
+        {apply ? (
           <button
             type="button"
             className="btn btn-secondary"
@@ -95,19 +93,7 @@ function CouponBox({
           </button>
         ) : null}
       </div>
-      {locked ? (
-        <p className="intel-coupon-ok">
-          <span>
-            {code
-              ? canGrant
-                ? `Grants ${planLabel} · no invoice`
-                : discounted
-                  ? `${Number(chargeSats).toLocaleString()} sats after coupon`
-                  : "This invoice uses this code."
-              : "Pay or wait out this invoice before applying a code."}
-          </span>
-        </p>
-      ) : preview ? (
+      {preview ? (
         <p className="intel-coupon-ok">
           <span>
             {canGrant
@@ -284,6 +270,8 @@ export default function SubscribePage() {
       }
       setPreview(data);
       if (PACKAGES.some((p) => p.id === data.package)) setPack(data.package);
+      setInvoice("");
+      setSwapId("");
       setStatus("");
     } catch {
       setStatus("Could not reach the Worker.");
@@ -293,7 +281,7 @@ export default function SubscribePage() {
   }
 
   async function startPay() {
-    if (!user || invoice) return;
+    if (!user) return;
     setBusy("invoice");
     setStatus("");
     try {
@@ -493,7 +481,7 @@ export default function SubscribePage() {
                   : "Pay with Lightning"}
             </h3>
             {lnNote && !canGrant ? <p className="intel-status">{lnNote}</p> : null}
-            <CouponBox apply locked={Boolean(invoice)} {...couponProps} />
+            <CouponBox apply {...couponProps} />
             {blocked ? (
               <>
                 <p>
@@ -511,18 +499,7 @@ export default function SubscribePage() {
                   ) : null}
                 </div>
               </>
-            ) : invoice ? (
-              <div className="intel-invoice">
-                {preview || discounted ? (
-                  <p className="intel-plan-meta">
-                    {chargeSats.toLocaleString()} sats
-                    {discounted ? ` · was ${listSats.toLocaleString()}` : ""}
-                  </p>
-                ) : null}
-                <InvoiceQr value={invoice} />
-                <CopyField value={invoice} label="Copy invoice" />
-              </div>
-            ) : (
+            ) : canGrant || !invoice ? (
               <button
                 type="button"
                 className="btn btn-primary intel-pay-btn"
@@ -539,6 +516,17 @@ export default function SubscribePage() {
                       ? `Upgrade to ${plan.label}`
                       : "Create invoice"}
               </button>
+            ) : (
+              <div className="intel-invoice">
+                {preview || discounted ? (
+                  <p className="intel-plan-meta">
+                    {chargeSats.toLocaleString()} sats
+                    {discounted ? ` · was ${listSats.toLocaleString()}` : ""}
+                  </p>
+                ) : null}
+                <InvoiceQr value={invoice} />
+                <CopyField value={invoice} label="Copy invoice" />
+              </div>
             )}
             {status ? (
               <p className="intel-status" role="status">

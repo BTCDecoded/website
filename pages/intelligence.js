@@ -36,9 +36,7 @@ export default function IntelligencePage() {
           <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
           <h1>Bitcoin’s public coordination record, searchable.</h1>
           <p className="intel-hero__claim">
-            About {CORPUS.record} contemporaneous passages — IRC, mailing lists,
-            GitHub, forums, source — plus specs, maps, articles, whitepapers,
-            and select open-source books ({CORPUS.curated}).
+            {CORPUS.record} passages, plus {CORPUS.curated} curated.
           </p>
           <p className="intel-hero__lede">
             Not a live price desk. Not chain analytics. Pay with Lightning.

@@ -3375,7 +3375,8 @@ code {
 
 .intel-plan-toggle {
   display: flex;
-  gap: 0.4rem;
+  flex-wrap: wrap;
+  gap: 0.35rem;
   margin-bottom: 1rem;
   min-height: 2.1rem;
 }
@@ -3390,11 +3391,13 @@ code {
   border: 1px solid var(--border);
   background: #fff;
   border-radius: 6px;
-  padding: 0.4rem 0.7rem;
+  padding: 0.35rem 0.45rem;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-family: inherit;
+  flex: 1 1 auto;
+  min-width: 2.75rem;
 }
 
 .intel-plan-toggle button.is-on,

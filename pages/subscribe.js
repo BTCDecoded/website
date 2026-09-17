@@ -418,6 +418,23 @@ export default function SubscribePage() {
             {!canGrant && usd ? ` · ${usd}` : ""}
             {upgrading ? " · upgrade" : ""}
           </p>
+          {plan.options.length > 1 && !invoice && !paid ? (
+            <div className="intel-plan-toggle" role="group" aria-label="Term">
+              {plan.options.map((o) => (
+                <button
+                  key={o.id}
+                  type="button"
+                  className={o.id === pack ? "is-on" : ""}
+                  onClick={() => {
+                    setPack(o.id);
+                    if (preview) setPreview(null);
+                  }}
+                >
+                  {o.days}d
+                </button>
+              ))}
+            </div>
+          ) : null}
           {current && !invoice ? (
             <p className="intel-plan-meta">
               You have {planBySku(current).plan.label} until{" "}

@@ -102,7 +102,7 @@ export default function PricingPage() {
       <p className="intel-lede">
         {current
           ? "You already have a plan. Checkout will not sell you the same one again. Higher tiers are upgrades: same key, sat difference only."
-          : "Trial is a week on the full record — 20 queries a day. Longer plans buy more days and more queries. Same key when you upgrade."}
+          : "Trial is a week on the full record — 50 queries a day. Longer plans buy more days and more queries. Same key when you upgrade."}
       </p>
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (

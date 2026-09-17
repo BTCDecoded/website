@@ -73,7 +73,7 @@ export default function IntelligencePage() {
         <ul className="intel-hero__facts" aria-label="Corpus at a glance">
           <li>
             <span className="intel-hero__k">Curated {CORPUS.curatedShort}</span>
-            <span>specs, maps, articles, papers, books</span>
+            <span>specs, maps, books; ~800 papers</span>
           </li>
           <li>
             <span className="intel-hero__k">Record {CORPUS.recordShort}</span>
@@ -99,7 +99,7 @@ export default function IntelligencePage() {
         </p>
         <div className="intel-index__grid">
           <article>
-            <h3>Curated ({CORPUS.curatedShort})</h3>
+            <h3>Curated ({CORPUS.curatedShort} passages)</h3>
             <ul>
               {INDEX_CURATED.map((item) => (
                 <li key={item}>{item}</li>
@@ -107,7 +107,7 @@ export default function IntelligencePage() {
             </ul>
           </article>
           <article>
-            <h3>Record ({CORPUS.recordShort})</h3>
+            <h3>Record ({CORPUS.recordShort} passages)</h3>
             <ul>
               {INDEX_RECORD.map((item) => (
                 <li key={item}>{item}</li>

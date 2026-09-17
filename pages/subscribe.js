@@ -373,6 +373,7 @@ export default function SubscribePage() {
   const usd = usdApprox(chargeSats, btcUsd);
   const nextUp = current ? upgradeSkus(current) : [];
   const canGrant = Boolean(preview?.grant);
+  const grantLabel = (preview && preview.label) || plan.label;
   const discounted = Boolean(preview && !canGrant && listSats > chargeSats);
   const payDisabled = Boolean(busy) || (!canGrant && lnOk === false);
   const couponCode = canonicalCoupon(coupon);
@@ -381,7 +382,7 @@ export default function SubscribePage() {
     coupon,
     busy,
     preview,
-    planLabel: plan.label,
+    planLabel: grantLabel,
     canGrant,
     discounted,
     chargeSats,
@@ -395,9 +396,9 @@ export default function SubscribePage() {
       <div className="intel-split">
         <article className={`intel-plan${preview ? " intel-plan--coupon" : ""}`}>
           {preview ? (
-            <p className="intel-plan-badge">{canGrant ? "Grant" : "Coupon"}</p>
+            <p className="intel-plan-badge">{canGrant ? grantLabel : "Coupon"}</p>
           ) : null}
-          <h3>{plan.label}</h3>
+          <h3>{canGrant ? grantLabel : plan.label}</h3>
           <p className="intel-plan-blurb">{plan.blurb}</p>
           <p className="intel-plan-price">
             {canGrant ? (
@@ -516,7 +517,7 @@ export default function SubscribePage() {
                     ? "Redeeming…"
                     : "Creating invoice…"
                   : canGrant
-                    ? `Redeem ${plan.label}`
+                    ? `Redeem ${grantLabel}`
                     : upgrading
                       ? `Upgrade to ${plan.label}`
                       : "Create invoice"}

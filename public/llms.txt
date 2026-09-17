@@ -2,7 +2,7 @@
 
 > Cited search over Bitcoin’s public coordination record (Intelligence), plus the BLVM full node. Same chain as Bitcoin Core — not a new coin.
 
-BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~759k contemporaneous passages) plus a curated ~24k passages of specs, maps, textbooks, research, and ~800 academic papers. Pay with Lightning. Connect over MCP at `https://mcp.btcdecoded.org/mcp`. Claude uses OAuth; Cursor and other clients use a Bearer key. Sign in with GitHub or Nostr, then pay on this site so the key stays on the account.
+BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~759k contemporaneous passages) plus a curated ~24k passages of specs, maps, textbooks, research, and academic papers. Pay with Lightning. Connect over MCP at `https://mcp.btcdecoded.org/mcp`. Claude uses OAuth; Cursor and other clients use a Bearer key. Sign in with GitHub or Nostr, then pay on this site so the key stays on the account.
 
 The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node with the consensus rules written down. Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
 

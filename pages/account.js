@@ -21,14 +21,25 @@ function tierLabel(tier) {
   return "";
 }
 
-function expiryLabel(iso) {
-  const ms = Date.parse(iso);
-  if (!Number.isFinite(ms)) return "";
-  const date = new Date(ms).toLocaleDateString("en-GB", {
+function formatDate(iso) {
+  const raw = String(iso || "");
+  const parts = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  const d = parts
+    ? new Date(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3]))
+    : new Date(Date.parse(raw));
+  if (!Number.isFinite(d.getTime())) return "";
+  return d.toLocaleDateString("en-GB", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
+}
+
+function expiryLabel(iso) {
+  const date = formatDate(iso);
+  if (!date) return "";
+  const ms = Date.parse(iso);
+  if (!Number.isFinite(ms)) return date;
   const left = ms - Date.now();
   if (left <= 0) return `ended ${date}`;
   const days = Math.max(1, Math.ceil(left / 86400000));
@@ -104,7 +115,8 @@ export default function AccountPage() {
       const data = await fetchAccountKey();
       setKey(data.key || "");
       if (data.oauth_client_id) setConnector(data);
-      setStatus(data.expires_at ? `Expires ${String(data.expires_at).slice(0, 10)}` : "");
+      const until = formatDate(data.expires_at);
+      setStatus(until ? `Expires ${until}` : "");
     } catch (err) {
       if (err.status === 404) {
         setStatus("No key on this profile yet.");

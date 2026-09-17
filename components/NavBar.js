@@ -25,6 +25,7 @@ const NAV_GROUPS = [
       { href: "/install/", title: "Install" },
       { href: "/plugandplay/", title: "Pre-built nodes" },
       { href: "/faq/", title: "FAQ" },
+      { href: "https://commonspool.org", title: "Commons Pool", external: true },
     ],
   },
   {
@@ -202,14 +203,6 @@ export default function NavBar() {
               </div>
             );
           })}
-          <a
-            href="https://commonspool.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setDrawer(false)}
-          >
-            Commons Pool
-          </a>
           <Link
             href="/account/"
             className="nav-signin"

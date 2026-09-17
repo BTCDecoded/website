@@ -3360,9 +3360,9 @@ code {
   min-width: 0;
 }
 
-.intel-split .auth-card,
-.intel-split .auth-session,
-.intel-split .intel-panel {
+.intel-split > .auth-card,
+.intel-split > .auth-session,
+.intel-split > .intel-panel {
   max-width: none;
   height: 100%;
   margin-bottom: 0;
@@ -3656,6 +3656,7 @@ code {
   display: flex;
   gap: 0.45rem;
   align-items: stretch;
+  width: 100%;
   max-width: 28rem;
 }
 
@@ -3663,6 +3664,7 @@ code {
   margin: 0;
   flex: 1 1 auto;
   min-width: 0;
+  max-width: none;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   letter-spacing: 0.02em;
   text-transform: uppercase;
@@ -3728,7 +3730,10 @@ code {
 
 .intel-coupon-details {
   margin: 1.15rem 0 0;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--border);
   color: var(--text-secondary);
+  min-width: 0;
 }
 
 .intel-coupon-details summary {

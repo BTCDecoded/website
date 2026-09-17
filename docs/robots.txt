@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# llmstxt.org — site index, then Intelligence agent spec
+# https://btcdecoded.org/llms.txt
+# https://btcdecoded.org/intelligence/llms.txt

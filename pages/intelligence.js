@@ -37,8 +37,8 @@ export default function IntelligencePage() {
           <h1>Bitcoin’s public coordination record, searchable.</h1>
           <p className="intel-hero__claim">
             About {CORPUS.record} contemporaneous passages — IRC, mailing lists,
-            GitHub, forums, source — plus specs, maps, and select articles
-            ({CORPUS.curated}).
+            GitHub, forums, source — plus specs, maps, articles, whitepapers,
+            and select open-source books ({CORPUS.curated}).
           </p>
           <p className="intel-hero__lede">
             Not a live price desk. Not chain analytics. Pay with Lightning.
@@ -78,7 +78,7 @@ export default function IntelligencePage() {
         <ul className="intel-hero__facts" aria-label="Corpus at a glance">
           <li>
             <span className="intel-hero__k">Curated {CORPUS.curatedShort}</span>
-            <span>specs, maps, select articles</span>
+            <span>specs, maps, articles, books</span>
           </li>
           <li>
             <span className="intel-hero__k">Record {CORPUS.recordShort}</span>

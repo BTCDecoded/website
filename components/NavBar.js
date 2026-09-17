@@ -8,13 +8,12 @@ import {
 
 const NAV_GROUPS = [
   {
-    id: "project",
-    title: "Project",
+    id: "intelligence",
+    title: "Intelligence",
     items: [
-      { href: "/problem/", title: "Problem" },
-      { href: "/architecture/", title: "Architecture" },
-      { href: "/orangepaper/", title: "Orange Paper" },
-      { href: "/governance/", title: "Governance" },
+      { href: "/intelligence/", title: "Overview" },
+      { href: "/pricing/", title: "Plans" },
+      { href: "/subscribe/", title: "Checkout" },
     ],
   },
   {
@@ -28,11 +27,13 @@ const NAV_GROUPS = [
     ],
   },
   {
-    id: "intelligence",
-    title: "Record",
+    id: "project",
+    title: "Project",
     items: [
-      { href: "/intelligence/", title: "Overview" },
-      { href: "/pricing/", title: "Plans" },
+      { href: "/problem/", title: "Problem" },
+      { href: "/architecture/", title: "Architecture" },
+      { href: "/orangepaper/", title: "Orange Paper" },
+      { href: "/governance/", title: "Governance" },
     ],
   },
 ];

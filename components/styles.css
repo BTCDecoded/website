@@ -2992,6 +2992,10 @@ code {
   padding: 0 0 80px;
 }
 
+.intel-feature--home {
+  padding-top: 48px;
+}
+
 .section.intel-page {
   padding-top: 48px;
 }

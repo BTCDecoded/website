@@ -1,54 +1,42 @@
 # BTCDecoded (Bitcoin Decoded)
 
-> Marketing and operator entry point for BLVM: verified downloads, plug-and-play installs, and learning paths into Bitcoin Commons.
+> Cited search over Bitcoin’s public coordination record (Intelligence), plus the BLVM full node.
 
-BTCDecoded is the **reference implementation** brand for [Bitcoin Commons](https://thebitcoincommons.org). This site targets **operators and newcomers** choosing a node and downloading verified **`blvm`** binaries. Normative consensus specification lives on thebitcoincommons.org; APIs, configuration, and verification methodology live on docs.thebitcoincommons.org.
+BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~684k contemporaneous passages) plus a curated ~5k of specs, maps, and research. Pay with Lightning. Connect over MCP.
 
-**Two learning paths:** Developers start at Problem → Architecture → Orange Paper → Governance. Node operators start at Why BLVM → Pre-Built Nodes → Install → FAQ.
+The **node still ships here**: [BLVM](https://btcdecoded.org/install/) is a Bitcoin full node with the consensus rules written down (same chain as Bitcoin Core — not a new coin). Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
 
-## Downloads (canonical on this site)
+## Intelligence
 
-- [Install BLVM](https://btcdecoded.org/install/): Current release packages, checksums, Docker commands, release history (version data from GitHub Releases)
-- [Pre-built nodes](https://btcdecoded.org/plugandplay/): Start9, Umbrel, myNode, and Parmanode marketplace install paths
+- [Overview](https://btcdecoded.org/intelligence/): What is in the index
+- [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules
+- [Plans](https://btcdecoded.org/pricing/): Trial / Researcher / Developer in sats
+- [Checkout](https://btcdecoded.org/subscribe/): Lightning
+- [Account](https://btcdecoded.org/account/): Login, key, connector
 
-## Learning paths
+## Node (BLVM)
 
-### Developers
+- [Install BLVM](https://btcdecoded.org/install/): Current release packages, checksums, Docker, release history
+- [Pre-built nodes](https://btcdecoded.org/plugandplay/): Start9, Umbrel, myNode, Parmanode
+- [Why BLVM?](https://btcdecoded.org/whyblvm/): One spec, Z3-backed verification, Core differential
+- [FAQ](https://btcdecoded.org/faq/): Consensus safety and operator questions
 
-- [Problem](https://btcdecoded.org/problem/): Informal governance risk and the need for a shared mathematical spec
-- [Architecture](https://btcdecoded.org/architecture/): BLVM crate map and dependency flow into consensus and node layers
-- [Orange Paper (on-site intro)](https://btcdecoded.org/orangepaper/): Orientation and formal-proof overview; canonical math IR is off-site
-- [Governance](https://btcdecoded.org/governance/): Live YAML viewer, tiers, and Commons enforcement model
+## Spec and project
 
-### Node operators
+- [Problem](https://btcdecoded.org/problem/): Informal process vs a written spec
+- [Architecture](https://btcdecoded.org/architecture/): BLVM crate map
+- [Orange Paper (on-site intro)](https://btcdecoded.org/orangepaper/): Orientation; canonical math IR is off-site
+- [Governance](https://btcdecoded.org/governance/): Live YAML viewer and Commons enforcement
+- [Orange Paper (canonical)](https://thebitcoincommons.org/orange-paper.html)
+- [Consensus Spec register](https://thebitcoincommons.org/spec.html)
+- [BLVM documentation book](https://docs.thebitcoincommons.org/introduction.html)
+- [blvm releases](https://github.com/BTCDecoded/blvm/releases)
 
-- [Why BLVM?](https://btcdecoded.org/whyblvm/): One spec, Z3-backed verification, differential testing against Bitcoin Core
-- [FAQ](https://btcdecoded.org/faq/): Consensus safety, decentralization, support, and governance basics
+## Also
 
-## Normative specification (off-site)
-
-- [Orange Paper (canonical)](https://thebitcoincommons.org/orange-paper.html): Mathematical Bitcoin consensus IR (not generated from code)
-- [Consensus Spec register](https://thebitcoincommons.org/spec.html): Auditable rule register with visualizations
-
-## Technical documentation
-
-- [BLVM documentation book](https://docs.thebitcoincommons.org/introduction.html): Operators, developers, node config, SDK, security posture
-- [Book llms.txt](https://docs.thebitcoincommons.org/llms.txt): Machine-readable chapter index for the docs site
-- [Commons llms.txt](https://thebitcoincommons.org/llms.txt): Parent project machine-readable index
-
-## Implementation
-
-- [blvm releases](https://github.com/BTCDecoded/blvm/releases): Source of truth for install page version metadata
-- [blvm repository](https://github.com/BTCDecoded/blvm): Reference node CLI and release artifacts
-
-## Optional
-
-- [Intelligence](https://btcdecoded.org/intelligence/): Cited search over Bitcoin’s public coordination record (Lightning + MCP)
-- [Intelligence agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, and retrieval rules for agents
-- [Pricing](https://btcdecoded.org/pricing/): Sats packages for Trial / Researcher / Developer
-- [Subscribe](https://btcdecoded.org/subscribe/): Lightning key purchase
-- [Homepage](https://btcdecoded.org/): Latest release banner and project overview
-- [robots.txt](https://btcdecoded.org/robots.txt): Crawler policy (not access control)
-- [Bitcoin Commons](https://thebitcoincommons.org/): Umbrella project and spec hosting
-- [Updates](https://btccommons.substack.com/): Release notes and project newsletter
-- [Security contact](mailto:security@thebitcoincommons.org): Vulnerability reports
+- [Commons Pool](https://commonspool.org/): Mining without a custodian (signet)
+- [Plebly](https://plebly.fund/#projects): Fund listed Commons work
+- [Homepage](https://btcdecoded.org/)
+- [robots.txt](https://btcdecoded.org/robots.txt)
+- [Updates](https://btccommons.substack.com/)
+- [Security contact](mailto:security@thebitcoincommons.org)

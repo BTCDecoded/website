@@ -78,7 +78,15 @@ export default function Footer(){
           </div>
 
           <div class="footer-framework">
-            <h4>Projects</h4>
+            <h4>Products</h4>
+            <p>
+              <a href="/intelligence/">Intelligence</a>
+              {" "}— cited search over the public record
+            </p>
+            <p>
+              <a href="/install/">BLVM</a>
+              {" "}— Bitcoin full node
+            </p>
             <p>
               <a
                 href="https://commonspool.org"

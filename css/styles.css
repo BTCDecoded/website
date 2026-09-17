@@ -119,13 +119,17 @@ p {
 }
 
 .nav-logo a {
-  font-size: 1.5rem;
-  font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.nav-logo__img {
+  display: block;
+  height: 40px;
+  width: auto;
 }
 
 .nav-links {
@@ -1372,6 +1376,19 @@ code {
   background: var(--code-background);
   border-top: 1px solid var(--border);
   padding: 3rem 0;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+.footer-logo {
+  display: block;
+  height: 40px;
+  width: auto;
 }
 
 .footer-content {

@@ -123,7 +123,13 @@ export default function NavBar() {
       <div className="nav-bar">
         <div className="nav-logo">
           <Link href="/" onClick={() => setDrawer(false)}>
-            BTCDecoded
+            <img
+              src="/assets/logo.png"
+              alt="BTCDecoded"
+              className="nav-logo__img"
+              width={870}
+              height={285}
+            />
           </Link>
         </div>
 

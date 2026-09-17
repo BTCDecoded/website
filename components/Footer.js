@@ -3,6 +3,15 @@ export default function Footer(){
     
     <footer class="footer">
       <div class="container">
+        <a href="/" className="footer-brand">
+          <img
+            src="/assets/logo.png"
+            alt="BTCDecoded"
+            className="footer-logo"
+            width={870}
+            height={285}
+          />
+        </a>
         <div class="footer-content">
           <div class="footer-social">
             <h4>Follow</h4>

@@ -2,5 +2,6 @@
 User-agent: *
 Allow: /
 
-# Machine-readable context for LLM agents (llmstxt.org convention)
+# llmstxt.org — site index, then Intelligence agent spec
 # https://btcdecoded.org/llms.txt
+# https://btcdecoded.org/intelligence/llms.txt

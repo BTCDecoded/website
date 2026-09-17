@@ -1,60 +1,53 @@
 import React from "react";
+import Link from "next/link";
 
 const platforms = [
   {
     name: "Start9",
-    logo: null,
     description:
-      "Install Bitcoin Commons (blvm) directly from the Start9 marketplace. Start9 provides a sovereign personal server with a built-in app store — no command line required.",
+      "A sovereign personal server with a built-in app store. Planned path: install Bitcoin Commons (blvm) from the Start9 marketplace, no command line.",
     steps: [
-      "Open your Start9 dashboard and navigate to the Marketplace.",
+      "Open your Start9 dashboard and go to the Marketplace.",
       'Search for "Bitcoin Commons" and select the package.',
-      "Click Install and follow the on-screen prompts.",
-      "Once installed, configure your data directory and sync settings from the service properties panel.",
+      "Install and follow the on-screen prompts.",
+      "Configure the data directory and sync settings from the service panel.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://docs.start9.com",
   },
   {
     name: "Umbrel",
-    logo: null,
     description:
-      "Available in the Umbrel App Store as \"Bitcoin Commons\". Runs on a Raspberry Pi or any Linux machine and gives you a one-click node stack.",
+      "App Store on a Raspberry Pi or any Linux machine. Planned path: one-click Bitcoin Commons (blvm) from the Umbrel store.",
     steps: [
       "Open your Umbrel dashboard and go to the App Store.",
-      'Search for "Bitcoin Commons" and click Install.',
-      "Wait for the initial sync to complete — this may take several hours on first run.",
-      "Access node settings and RPC credentials from the app detail page.",
+      'Search for "Bitcoin Commons" and install.',
+      "Wait for the initial sync on first run.",
+      "Review node settings and RPC credentials from the app page.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://community.getumbrel.com",
   },
   {
     name: "myNode",
-    logo: null,
     description:
-      "myNode is a dedicated Bitcoin node device with a premium app store. blvm runs as a managed service alongside Bitcoin Core so you can compare both side by side.",
+      "A dedicated Bitcoin node device with a premium app store. Planned path: blvm as a managed service alongside Bitcoin Core.",
     steps: [
       "Log into your myNode dashboard.",
-      'Navigate to Apps and find "Bitcoin Commons".',
-      "Click Enable to install the service.",
-      "RPC and P2P ports are pre-configured; review them under the app settings.",
+      'Find "Bitcoin Commons" under Apps.',
+      "Enable the service.",
+      "Review pre-configured RPC and P2P ports in app settings.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://mynodebtc.com/support",
   },
   {
     name: "Parmanode",
-    logo: null,
     description:
-      "Parmanode is a terminal-based node manager. blvm integrates as a selectable node implementation during setup.",
+      "A terminal-based node manager. Planned path: blvm as a selectable node implementation during setup.",
     steps: [
-      "Run the Parmanode setup script on your Linux machine.",
-      "When prompted to select a Bitcoin node, choose Bitcoin Commons (blvm).",
-      "The installer handles dependencies, user creation, and service registration automatically.",
-      "Monitor logs with the built-in Parmanode log viewer.",
+      "Run the Parmanode setup script on Linux.",
+      "When prompted for a Bitcoin node, choose Bitcoin Commons (blvm).",
+      "The installer handles dependencies, user creation, and the service.",
+      "Monitor logs with the Parmanode log viewer.",
     ],
-    docsLink: "https://docs.thebitcoincommons.org/getting-started/installation.html",
     supportLink: "https://parmanode.com",
   },
 ];
@@ -66,18 +59,29 @@ export default function PlugAndPlay() {
   return (
     <section id="plug-and-play" className="section">
       <div className="container">
-        <h2>Pre-Built Node Packages</h2>
-        <p style={{ color: "var(--text-secondary)", marginBottom: "1rem" }}>
-          <strong>Coming soon.</strong> Managed marketplace installs (Start9, Umbrel, myNode, Parmanode) are not live yet.
-          Use <a href="/install/">GitHub Releases</a> or the{" "}
-          <a href="https://docs.thebitcoincommons.org/getting-started/installation.html" target="_blank" rel="noopener">
-            installation guide
-          </a>{" "}
-          for current packages.
-        </p>
-        <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>
-          Preview of planned one-click paths — not available for production use yet.
-        </p>
+        <header className="page-head">
+          <p className="page-kicker">The node</p>
+          <h1>Pre-built nodes</h1>
+          <p className="page-lede">
+            Marketplace installs for Start9, Umbrel, myNode, and Parmanode are
+            not live yet. Use GitHub Releases today. The steps below are a
+            preview of the planned paths.
+          </p>
+        </header>
+
+        <div className="home-ctas home-ctas--block">
+          <Link href="/install/" className="btn btn-primary">
+            Install from GitHub
+          </Link>
+          <a
+            href="https://docs.thebitcoincommons.org/getting-started/installation.html"
+            className="btn btn-outline"
+            target="_blank"
+            rel="noopener"
+          >
+            Installation guide
+          </a>
+        </div>
 
         <div className="platform-tabs">
           {platforms.map((p, i) => (
@@ -93,24 +97,16 @@ export default function PlugAndPlay() {
 
         <div className="platform-panel">
           <h3>{platform.name}</h3>
-          <p style={{ color: "var(--text-secondary)" }}>{platform.description}</p>
+          <p className="page-lede">{platform.description}</p>
 
-          <h4 style={{ marginTop: "1.5rem" }}>Installation steps</h4>
+          <h4>Planned steps</h4>
           <ol className="install-steps">
-            {platform.steps.map((step, i) => (
-              <li key={i}>{step}</li>
+            {platform.steps.map((step) => (
+              <li key={step}>{step}</li>
             ))}
           </ol>
 
-          <div className="platform-links">
-            <a
-              href={platform.docsLink}
-              className="btn btn-primary"
-              target="_blank"
-              rel="noopener"
-            >
-              Full documentation
-            </a>
+          <div className="home-ctas why-ctas">
             <a
               href={platform.supportLink}
               className="btn btn-outline"
@@ -120,21 +116,6 @@ export default function PlugAndPlay() {
               {platform.name} support
             </a>
           </div>
-        </div>
-
-        <div className="platform-note">
-          <p>
-            Don&apos;t see your platform?{" "}
-            <a
-              href="https://docs.thebitcoincommons.org/getting-started/installation.html"
-              target="_blank"
-              rel="noopener"
-            >
-              Manual install instructions
-            </a>{" "}
-            cover any Linux system. For Mac and Windows, see{" "}
-            <a href="/install/">the install page</a>.
-          </p>
         </div>
       </div>
     </section>

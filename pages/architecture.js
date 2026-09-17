@@ -34,24 +34,26 @@ export default function ArchitecturePage() {
       aria-labelledby="architecture-heading"
     >
       <div className="container">
-        <h2 id="architecture-heading">Architecture &amp; repositories</h2>
+        <header className="page-head">
+          <p className="page-kicker">The stack</p>
+          <h1 id="architecture-heading">Architecture</h1>
+          <p className="page-lede">
+            Write Bitcoin’s rules, implement them, run a node, and publish who
+            can change the software. Orange Paper → blvm-consensus (spec-lock) →
+            blvm-protocol → blvm-node → blvm → blvm-sdk → governance.{" "}
+            <a
+              href="https://docs.thebitcoincommons.org/architecture/system-overview.html"
+              target="_blank"
+              rel="noopener"
+            >
+              Architecture docs
+            </a>
+            .
+          </p>
+        </header>
         <div className="content">
           <div className="architecture-with-diagram">
             <div className="architecture-content">
-              <p>
-                Write Bitcoin’s rules, implement them, run a node, and publish
-                who can change the software. The path is Orange Paper →
-                blvm-consensus (spec-lock) → blvm-protocol → blvm-node → blvm
-                → blvm-sdk → governance.{" "}
-                <a
-                  href="https://docs.thebitcoincommons.org/architecture/system-overview.html"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Architecture docs
-                </a>
-                .
-              </p>
 
               <div className="architecture">
                 <div className="layer layer-foundation">
@@ -70,7 +72,7 @@ export default function ArchitecturePage() {
                     <p>
                       Complete mathematical specification of Bitcoin consensus
                       extracted from Bitcoin Core. Includes the 21 million
-                      supply convergence proof (Theorem 6.1).{" "}
+                      supply convergence proof (Theorem 6.2.3).{" "}
                       <Link href="/orangepaper/" className="architecture-inline-spec-link">
                         Orange Paper viewer on this site →
                       </Link>
@@ -248,7 +250,7 @@ export default function ArchitecturePage() {
               </div>
 
               <aside className="cp-on-stack" aria-labelledby="cp-on-stack-heading">
-                <p className="cp-kicker cp-kicker--light">Built by BTCDecoded</p>
+                <p className="cp-kicker cp-kicker--light">The Pool</p>
                 <h3 id="cp-on-stack-heading">Commons Pool</h3>
                 <p>
                   The mining product on this stack. No operator, no pool

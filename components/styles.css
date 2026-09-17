@@ -394,7 +394,78 @@ p {
 
 /* Sections */
 .section {
-  padding: 80px 0;
+  padding: 2rem 0 4rem;
+}
+
+.page-head {
+  margin: 0 0 1.75rem;
+}
+
+.page-kicker {
+  margin: 0 0 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bitcoin-orange);
+}
+
+.page-head h1,
+.page-head h2 {
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
+  letter-spacing: -0.03em;
+}
+
+.page-lede {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.page-lede a {
+  color: var(--bitcoin-orange);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page-lede a:hover {
+  text-decoration: underline;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faq-item {
+  border: 1px solid var(--panel-warm-border);
+  border-radius: 12px;
+  background: var(--panel-warm);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 1rem 1.15rem;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] summary {
+  padding-bottom: 0.45rem;
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 1.15rem 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
 }
 
 .hero {
@@ -524,15 +595,8 @@ p {
   gap: 0.75rem;
 }
 
-.home-ctas .btn,
-.hero-ctas .btn,
-.fund-ctas .btn,
-.cp-ctas .btn {
-  width: auto;
-  max-width: none;
-  margin: 0;
-  flex: 0 0 auto;
-  white-space: nowrap;
+.home-ctas--block {
+  margin-bottom: 1.75rem;
 }
 
 /* Architecture */
@@ -1532,11 +1596,23 @@ code {
   font-weight: 600;
 }
 
-.commons-cta {
+.commons-cta,
+.why-ctas,
+.governance-cta-row {
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+.commons-cta,
+.why-ctas {
   margin-top: 1.5rem;
+}
+
+.governance-cta-row {
+  margin-bottom: 2rem;
 }
 
 .commons-chart-fullwidth {
@@ -2264,10 +2340,10 @@ code {
 }
 
 .why-card {
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border: 1px solid var(--panel-warm-border);
+  border-radius: 12px;
   padding: 1.25rem 1.35rem;
-  background: var(--code-background);
+  background: var(--panel-warm);
 }
 
 .why-card h3 {
@@ -2285,13 +2361,6 @@ code {
 
 .why-card code {
   white-space: nowrap;
-}
-
-.why-ctas {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
 }
 
 /* ── Plug-and-play tabs ── */
@@ -2325,11 +2394,13 @@ code {
   color: white;
 }
 
-.platform-panel {
-  border: 1px solid var(--border);
-  border-radius: 8px;
+.platform-panel h4 {
+  margin-top: 1.5rem;
+}
+  border: 1px solid var(--panel-warm-border);
+  border-radius: 12px;
   padding: 1.75rem;
-  background: var(--code-background);
+  background: var(--panel-warm);
 }
 
 .install-steps {
@@ -2421,9 +2492,6 @@ code {
 }
 
 .governance-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
   margin-bottom: 2rem;
 }
 

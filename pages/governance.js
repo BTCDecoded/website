@@ -301,9 +301,10 @@ export default function GovernancePage() {
   return (
     <section id="governance" className="section governance-page">
       <div className="container">
-        <h2>Cryptographic commons governance</h2>
-        <div className="governance-lead">
-          <p>
+        <header className="page-head">
+          <p className="page-kicker">The rules</p>
+          <h1>Governance</h1>
+          <p className="page-lede">
             Forkable rules, multisig thresholds, and published processes for how
             BTCDecoded ships software under{" "}
             <a
@@ -313,7 +314,7 @@ export default function GovernancePage() {
             >
               Bitcoin Commons
             </a>
-            . Below, every variable from the live YAML in the public{" "}
+            . Every variable from the live YAML in the public{" "}
             <a
               href="https://github.com/BTCDecoded/governance"
               target="_blank"
@@ -321,14 +322,13 @@ export default function GovernancePage() {
             >
               governance
             </a>{" "}
-            repository is loaded in your browser and rendered in full (same
-            sources as CI and the governance designer).
+            repository is loaded in your browser.
           </p>
-        </div>
+        </header>
 
         <GovernanceSpectrumLight />
 
-        <div className="governance-cta-row">
+        <div className="home-ctas governance-cta-row">
           <a
             href="https://thebitcoincommons.org/governance-designer.html"
             className="btn btn-primary"

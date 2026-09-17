@@ -142,9 +142,10 @@ export default function Install() {
     <section id="install" className="section">
       <div className="container">
 
-        <div className="install-header">
-          <h2>{page.title}</h2>
-          <p className="install-lead">
+        <header className="page-head install-header">
+          <p className="page-kicker">The node</p>
+          <h1>{page.title}</h1>
+          <p className="page-lede">
             {page.lead} Current release:{" "}
             <a
               href={blvmReleasesTagUrl || release.releasesTagUrl}
@@ -154,7 +155,7 @@ export default function Install() {
               {blvmDisplayTag} on GitHub →
             </a>
           </p>
-        </div>
+        </header>
 
         <div className="install-pkg-sections">
           {groupedPackages.map((section) => (

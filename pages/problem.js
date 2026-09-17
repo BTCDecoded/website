@@ -5,14 +5,20 @@ export default function ProblemContentPage() {
     <>
       <section id="problem" className="section">
         <div className="container">
-          <h2>The Problem</h2>
+          <header className="page-head">
+            <p className="page-kicker">The project</p>
+            <h1>Problem</h1>
+            <p className="page-lede">
+              Bitcoin’s chain rules are hard to change. How the dominant client
+              is governed is mostly informal: a small group of maintainers,
+              little cryptographic accountability, and a high social cost if
+              you disagree.
+            </p>
+          </header>
           <div className="content problem-content">
             <p>
-              Bitcoin’s chain rules are hard to change. How the dominant client
-              is governed is mostly informal: a small group of maintainers, little
-              cryptographic accountability, and a high social cost if you
-              disagree. Hard rules on the chain, soft process above it — that
-              gap is what this project is for.
+              Hard rules on the chain, soft process above it — that gap is
+              what this project is for.
             </p>
             <p>
               Alternative implementations face two hard requirements. First,{" "}
@@ -43,26 +49,26 @@ export default function ProblemContentPage() {
       </section>
       <section id="about-commons" className="section">
         <div className="container">
-          <h2>Built on Bitcoin Commons</h2>
-          <div className="content">
-            <p>
-              Forkable governance framework applying Ostrom&apos;s commons
-              principles through cryptographic enforcement.
+          <header className="page-head">
+            <p className="page-kicker">The commons</p>
+            <h2>Built on Bitcoin Commons</h2>
+            <p className="page-lede">
+              Forkable governance applying Ostrom’s commons principles through
+              cryptographic enforcement.
             </p>
-
-            <div className="commons-cta">
-              <Link href="/governance/" className="btn btn-primary">
-                Our Governance
-              </Link>
-              <a
-                href="https://thebitcoincommons.org"
-                className="btn btn-outline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn About the Framework
-              </a>
-            </div>
+          </header>
+          <div className="home-ctas">
+            <Link href="/governance/" className="btn btn-primary">
+              Governance
+            </Link>
+            <a
+              href="https://thebitcoincommons.org"
+              className="btn btn-outline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bitcoin Commons
+            </a>
           </div>
         </div>
       </section>

@@ -1,45 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MathJax } from "better-react-mathjax";
 
 export default function OrangePaperContentPage() {
   const [activeTab, setActiveTab] = useState("math");
-  const [isAutoSwitching, setIsAutoSwitching] = useState(true);
-
-  useEffect(() => {
-    if (!isAutoSwitching) return;
-
-    const interval = setInterval(() => {
-      setActiveTab((prevTab) => (prevTab === "math" ? "formal" : "math"));
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isAutoSwitching]);
-
-  const handleTabClick = (tab) => {
-    setIsAutoSwitching(false);
-    setActiveTab(tab);
-  };
 
   return (
     <section id="orange-paper" className="section">
       <div className="container">
-        <h2>The Orange Paper (blvm-spec)</h2>
+        <header className="page-head">
+          <p className="page-kicker">The spec</p>
+          <h1>Orange Paper</h1>
+          <p className="page-lede">
+            The written consensus rules for Bitcoin — math and invariants
+            extracted from how Bitcoin Core behaves, so a second implementation
+            has something to implement against.
+          </p>
+        </header>
         <div className="content">
           <div className="orange-paper-with-diagram">
             <div className="orange-paper-content">
-              <p>
-                The written consensus rules for Bitcoin — math and invariants
-                extracted from how Bitcoin Core behaves, so a second
-                implementation has something to implement against.{" "}
-                <a
-                  href="https://thebitcoincommons.org/orange-paper.html"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Read the Orange Paper
-                </a>
-                .
-              </p>
 
               <div className="excerpt proof-showcase">
                 <h4>Supply Convergence Proof</h4>
@@ -48,14 +27,14 @@ export default function OrangePaperContentPage() {
                   <button
                     className={`proof-tab ${activeTab === "math" ? "active" : ""}`}
                     data-tab="math"
-                    onClick={() => handleTabClick("math")}
+                    onClick={() => setActiveTab("math")}
                   >
                     Math Proof
                   </button>
                   <button
                     className={`proof-tab ${activeTab === "formal" ? "active" : ""}`}
                     data-tab="formal"
-                    onClick={() => handleTabClick("formal")}
+                    onClick={() => setActiveTab("formal")}
                   >
                     Formal Proof
                   </button>
@@ -182,22 +161,24 @@ pub fn total_supply(height: Natural) -> Integer {
                 </div>
               </div>
 
-              <a
-                href="https://thebitcoincommons.org/orange-paper.html"
-                className="btn btn-primary"
-                target="_blank"
-                rel="noopener"
-              >
-                Read the Orange Paper
-              </a>
-              <a
-                href="https://github.com/BTCDecoded/blvm-spec"
-                className="btn btn-outline"
-                target="_blank"
-                rel="noopener"
-              >
-                View Source on GitHub
-              </a>
+              <div className="home-ctas">
+                <a
+                  href="https://thebitcoincommons.org/orange-paper.html"
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Read the Orange Paper
+                </a>
+                <a
+                  href="https://github.com/BTCDecoded/blvm-spec"
+                  className="btn btn-outline"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  View source
+                </a>
+              </div>
             </div>
 
             <div className="coverage-diagram">

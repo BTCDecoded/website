@@ -1,11 +1,12 @@
 # BTCDecoded Intelligence
 
 Cited search over Bitcoin’s public development record.
-Not market data. Not on-chain analytics.
+Not a live price desk. Not on-chain analytics.
 
 ## Layers
 - curated (~5k): specs, maps, findings, project docs, research writeups
 - record (~684k): contemporaneous public sources
+- price: CoinMetrics daily BTC/USD (2010–) for historical reference
 - total nearly 700k passages (4,935 + 683,718 ingest)
 
 Every plan searches both layers. Trial is 7 days and 20 queries/day. Researcher and Developer buy more days and more queries. Developer adds PR review.
@@ -21,6 +22,7 @@ Cite the record before citing analysis.
 - Bitcoin Core source: consensus, policy, script, validation, net, mempool, miner
 - Bitcointalk forum posts (~159k)
 - IRC review channel logs (~371k)
+- Historical BTC/USD daily close (CoinMetrics PriceUSD, 2010–)
 
 ## Curated (~5k)
 - Research findings and data
@@ -51,7 +53,7 @@ Cite the record before citing analysis.
 - MCP: Model Context Protocol. Claude = OAuth. Cursor and others = Bearer key.
 
 ## Out of scope
-Price, derivatives, ETF flows, chain analytics, wallet tracing, private chat, unpublished meetings.
+Live spot, ETF flows, derivatives, chain analytics, wallet tracing, private chat, unpublished meetings.
 
 ## Producer
 BTCDecoded / Bitcoin Commons. Maps, findings, and select articles are analysis.

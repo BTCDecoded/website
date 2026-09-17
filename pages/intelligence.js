@@ -41,8 +41,8 @@ export default function IntelligencePage() {
             ({CORPUS.curated}).
           </p>
           <p className="intel-hero__lede">
-            Not price data. Not chain analytics. Pay with Lightning. Connect over
-            MCP.
+            Not a live price desk. Not chain analytics. Pay with Lightning.
+            Connect over MCP.
           </p>
           <div className="hero-ctas">
             {hasKey ? (

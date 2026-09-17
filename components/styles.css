@@ -11,6 +11,11 @@ html {
   scroll-behavior: smooth;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
@@ -18,6 +23,7 @@ body {
   line-height: 1.6;
   color: #000000;
   background-color: #ffffff;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -33,13 +39,13 @@ h6 {
 }
 
 h1 {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.85rem, 5vw, 2.5rem);
+  margin-bottom: 1.25rem;
 }
 
 h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1.25rem;
 }
 
 h3 {
@@ -450,6 +456,7 @@ p {
   cursor: pointer;
   font-weight: 600;
   padding: 1rem 1.15rem;
+  min-height: 44px;
   list-style: none;
 }
 
@@ -533,8 +540,11 @@ p {
 
 /* Buttons */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px 24px;
+  min-height: 44px;
   border: 2px solid var(--bitcoin-orange);
   border-radius: 6px;
   text-decoration: none;
@@ -542,6 +552,7 @@ p {
   transition: all 0.3s ease;
   cursor: pointer;
   font-size: 1rem;
+  text-align: center;
 }
 
 .btn-primary {
@@ -593,6 +604,26 @@ p {
   align-items: center;
   justify-content: flex-start;
   gap: 0.75rem;
+}
+
+.home-ctas .btn,
+.hero-ctas .btn,
+.fund-ctas .btn,
+.cp-ctas .btn {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .home-ctas .btn,
+  .hero-ctas .btn,
+  .fund-ctas .btn,
+  .cp-ctas .btn {
+    white-space: normal;
+  }
 }
 
 .home-ctas--block {
@@ -1835,14 +1866,6 @@ code {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
   .layer {
     flex-direction: column;
     text-align: center;

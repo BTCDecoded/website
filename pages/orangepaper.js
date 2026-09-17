@@ -1,10 +1,22 @@
 import { useState } from "react";
-import { MathJax } from "better-react-mathjax";
+import { MathJax, MathJaxContext } from "better-react-mathjax";
+
+const mathJaxConfig = {
+  loader: { load: ["input/tex", "output/chtml"] },
+  tex: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+  },
+  output: {
+    font: "mathjax-stix2",
+  },
+};
 
 export default function OrangePaperContentPage() {
   const [activeTab, setActiveTab] = useState("math");
 
   return (
+    <MathJaxContext config={mathJaxConfig}>
     <section id="orange-paper" className="section">
       <div className="container">
         <header className="page-head">
@@ -218,5 +230,6 @@ pub fn total_supply(height: Natural) -> Integer {
         </div>
       </div>
     </section>
+    </MathJaxContext>
   );
 }

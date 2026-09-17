@@ -1,40 +1,14 @@
-import React, { useState } from "react";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import NavBar from "../components/NavBar";
-import "../components/styles.css";
-import Splash from "../components/Splash";
-import { MathJaxContext } from "better-react-mathjax";
+import SiteHead from "../components/SiteHead";
 import Footer from "../components/Footer";
-
-const mathJaxconfig = {
-  loader: { load: ["input/tex", "output/chtml"] },
-  tex: {
-    inlineMath: [["\\(", "\\)"]],
-    displayMath: [["\\[", "\\]"]],
-  },
-  output: {
-    font: "mathjax-stix2",
-  },
-};
-
-export const Workflow = {
-  Nodes: "Nodes",
-  Developers: "Developers",
-  Splash: "Splash",
-};
+import "../components/styles.css";
 
 export default function MyApp({ Component, pageProps }) {
-  const [selectedWorkflow, setSelectedWorkflow] = useState(Workflow.Developers);
-
   return (
-    <MathJaxContext config={mathJaxconfig}>
+    <>
       <Head>
-        <title>BTCDecoded</title>
-        <meta
-          name="description"
-          content="BTCDecoded Intelligence: cited search over Bitcoin’s public coordination record. Lightning. MCP. BLVM is the node."
-        />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="icon"
@@ -58,18 +32,12 @@ export default function MyApp({ Component, pageProps }) {
           referrerPolicy="no-referrer"
         />
       </Head>
+      <SiteHead />
       <Layout>
         <NavBar />
-        {selectedWorkflow === Workflow.Splash && (
-          <Splash
-            setSelectedWorkflow={setSelectedWorkflow}
-            Workflow={Workflow}
-          />
-        )}
-
-        {selectedWorkflow !== Workflow.Splash && <Component {...pageProps} />}
+        <Component {...pageProps} />
         <Footer />
       </Layout>
-    </MathJaxContext>
+    </>
   );
 }

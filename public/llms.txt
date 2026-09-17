@@ -4,7 +4,7 @@
 
 BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~684k contemporaneous passages) plus a curated ~19k of specs, maps, textbooks, and research. Pay with Lightning. Connect over MCP at `https://mcp.btcdecoded.org/mcp`. Claude uses OAuth; Cursor and other clients use a Bearer key. Sign in with GitHub or Nostr, then pay on this site so the key stays on the account.
 
-The **node still ships here**: [BLVM](https://btcdecoded.org/install/) is a Bitcoin full node with the consensus rules written down. Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
+The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node with the consensus rules written down. Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
 
 ## Intelligence
 
@@ -45,5 +45,6 @@ The **node still ships here**: [BLVM](https://btcdecoded.org/install/) is a Bitc
 - [Commons Pool](https://commonspool.org/): Mining without a custodian (signet today)
 - [Plebly](https://plebly.fund/#projects): Fund listed Commons work
 - [GitHub](https://github.com/BTCDecoded)
+- [X](https://x.com/DecodeBitcoin)
 - [Updates](https://btccommons.substack.com/)
 - [Security contact](mailto:security@thebitcoincommons.org)

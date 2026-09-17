@@ -41,7 +41,7 @@ export default function IndexPage() {
         <div className="container">
           <article className="fund-panel">
             <p className="fund-kicker">The node</p>
-            <h2 id="node-heading">BLVM still ships here</h2>
+            <h2 id="node-heading">BLVM</h2>
             <p className="fund-lede">
               A Bitcoin full node with the consensus rules written down. Same
               chain as Bitcoin Core — not a new coin. Spec-lock, Orange Paper,

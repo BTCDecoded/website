@@ -47,6 +47,7 @@ function checkoutStatus(error, extra = {}) {
 
 function CouponBox({
   apply,
+  locked = false,
   coupon,
   busy,
   preview,
@@ -59,6 +60,7 @@ function CouponBox({
   onClear,
 }) {
   const code = canonicalCoupon(coupon);
+  const disableField = Boolean(busy) || locked;
   return (
     <div className="intel-coupon">
       <label className="intel-panel-label" htmlFor="intel-coupon">
@@ -71,7 +73,7 @@ function CouponBox({
           value={coupon}
           onChange={(e) => onChange(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && apply && code) {
+            if (e.key === "Enter" && apply && !locked && code) {
               e.preventDefault();
               onApply(code);
             }
@@ -80,9 +82,9 @@ function CouponBox({
           autoComplete="off"
           autoCapitalize="characters"
           spellCheck={false}
-          disabled={Boolean(busy)}
+          disabled={disableField}
         />
-        {apply ? (
+        {apply && !locked ? (
           <button
             type="button"
             className="btn btn-secondary"
@@ -93,7 +95,19 @@ function CouponBox({
           </button>
         ) : null}
       </div>
-      {preview ? (
+      {locked ? (
+        <p className="intel-coupon-ok">
+          <span>
+            {code
+              ? canGrant
+                ? `Grants ${planLabel} · no invoice`
+                : discounted
+                  ? `${Number(chargeSats).toLocaleString()} sats after coupon`
+                  : "This invoice uses this code."
+              : "Pay or wait out this invoice before applying a code."}
+          </span>
+        </p>
+      ) : preview ? (
         <p className="intel-coupon-ok">
           <span>
             {canGrant
@@ -461,7 +475,7 @@ export default function SubscribePage() {
                   : "Pay with Lightning"}
             </h3>
             {lnNote && !canGrant ? <p className="intel-status">{lnNote}</p> : null}
-            {invoice ? null : <CouponBox apply {...couponProps} />}
+            <CouponBox apply locked={Boolean(invoice)} {...couponProps} />
             {blocked ? (
               <>
                 <p>

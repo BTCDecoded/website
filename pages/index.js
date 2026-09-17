@@ -187,9 +187,12 @@ export default function IndexPage() {
               <h2 id="intel-feature-heading">
                 The Bitcoin review record, on call
               </h2>
+              <p className="intel-hero__claim">
+                Curated findings first. {CORPUS.headline} records behind them.
+              </p>
               <p className="intel-hero__lede">
-                Curated findings first. {CORPUS.headline} passages behind them.
-                Lightning to start.
+                Protocol specs, governance maps, and the full development
+                record — indexed so every hit names the source.
               </p>
               <div className="hero-ctas">
                 <Link href="/intelligence/" className="btn btn-primary">
@@ -207,7 +210,7 @@ export default function IndexPage() {
               </li>
               <li>
                 <span className="intel-hero__k">Indexed</span>
-                <span>{CORPUS.headline} passages</span>
+                <span>{CORPUS.headline} records</span>
               </li>
               <li>
                 <span className="intel-hero__k">Pay</span>

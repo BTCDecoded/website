@@ -30,12 +30,12 @@ export default function IntelligencePage() {
         <div className="intel-hero__copy">
           <h2>The Bitcoin review record, on call</h2>
           <p className="intel-hero__claim">
-            Curated findings first. {CORPUS.headline} passages behind them.
+            Curated findings first. {CORPUS.headline} records behind them.
           </p>
           <p className="intel-hero__lede">
-            Specs, maps, and the arguments that got written down — indexed so
-            a hit names the passage. Paid search opens the rest of the archive.
-            Lightning. Any MCP client.
+            Protocol specs, governance maps, and the full development record —
+            indexed so every hit names the source. Paid search opens the rest of
+            the archive. Lightning. Any MCP client.
           </p>
           <div className="hero-ctas">
             {hasKey ? (
@@ -75,7 +75,7 @@ export default function IntelligencePage() {
           </li>
           <li>
             <span className="intel-hero__k">Indexed</span>
-            <span>{CORPUS.headline} passages</span>
+            <span>{CORPUS.headline} records</span>
           </li>
           <li>
             <span className="intel-hero__k">Pay</span>
@@ -131,7 +131,7 @@ export default function IntelligencePage() {
           <span className="intel-flow__n">4</span>
           <div>
             <strong>Ask</strong>
-            <p>The written argument, with the passage attached.</p>
+            <p>The answer, with the source attached.</p>
           </div>
         </li>
       </ol>

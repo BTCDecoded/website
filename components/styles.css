@@ -2397,6 +2397,8 @@ code {
 .platform-panel h4 {
   margin-top: 1.5rem;
 }
+
+.platform-panel {
   border: 1px solid var(--panel-warm-border);
   border-radius: 12px;
   padding: 1.75rem;

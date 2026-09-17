@@ -1,19 +1,13 @@
 import Link from "next/link";
 import { blvmDisplayTag } from "../lib/blvmReleaseMeta";
-import { CORPUS } from "../lib/api";
 
 export default function IndexPage() {
   return (
     <>
       <div className="release-banner">
-        <span className="release-banner-badge">Intelligence</span>
-        <span className="release-banner-text">
-          Cited search over the public record.{" "}
-          <Link href="/subscribe/?plan=trial">Start trial →</Link>
-        </span>
         <span className="release-banner-badge">{blvmDisplayTag}</span>
         <span className="release-banner-text">
-          Node.{" "}
+          Latest release.{" "}
           <a href="https://btcdecoded.org/install/">install →</a>
         </span>
       </div>
@@ -26,14 +20,9 @@ export default function IndexPage() {
               <h1 id="intel-feature-heading">
                 Bitcoin’s public coordination record, searchable.
               </h1>
-              <p className="intel-hero__claim">
-                IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs,
-                and Core source — about {CORPUS.record} contemporaneous passages
-                — plus specs, maps, and research ({CORPUS.curated}).
-              </p>
               <p className="intel-hero__lede">
-                Not price data. Not chain analytics. Lightning is how you pay.
-                Any MCP (Model Context Protocol) client.
+                Cited search over IRC, mailing lists, GitHub, and source. Pay
+                with Lightning.
               </p>
               <div className="hero-ctas">
                 <Link href="/subscribe/?plan=trial" className="btn btn-primary">
@@ -42,29 +31,8 @@ export default function IndexPage() {
                 <Link href="/intelligence/" className="btn btn-secondary">
                   See Intelligence
                 </Link>
-                <Link href="/pricing/" className="btn btn-secondary">
-                  See plans
-                </Link>
               </div>
             </div>
-            <ul className="intel-hero__facts" aria-label="Corpus at a glance">
-              <li>
-                <span className="intel-hero__k">Curated {CORPUS.curatedShort}</span>
-                <span>specs, maps, findings</span>
-              </li>
-              <li>
-                <span className="intel-hero__k">Record {CORPUS.recordShort}</span>
-                <span>IRC, lists, GitHub, forums, source</span>
-              </li>
-              <li>
-                <span className="intel-hero__k">Pay</span>
-                <span>Lightning</span>
-              </li>
-              <li>
-                <span className="intel-hero__k">Connect</span>
-                <span>MCP</span>
-              </li>
-            </ul>
           </article>
         </div>
       </section>

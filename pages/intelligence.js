@@ -162,8 +162,9 @@ export default function IntelligencePage() {
       </ol>
 
       <p className="intel-disclose">
-        The record is public source material. Maps, findings, and select articles
-        are analysis, not the record.{" "}
+        The record is public source material. Maps and findings are analysis,
+        not the record. Named precursor papers are source texts with author,
+        date, and URL.{" "}
         <a href="/intelligence/llms.txt">Agent spec</a>.
       </p>
     </IntelChrome>

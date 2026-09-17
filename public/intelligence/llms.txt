@@ -29,7 +29,7 @@ Cite the record before citing analysis.
 - Canonical maintainer data
 - Training corpus: Bitcoin domain, epistemology, ops files, discourse games, argument map
 - Bitcoin Commons book chapters
-- Select articles
+- Select articles (`source=articles`): Wei Dai, b-money (November 1998, http://www.weidai.com/bmoney.txt); Adam Back, Hashcash (1 August 2002, http://www.hashcash.org/papers/hashcash.pdf); Hal Finney, RPOW (15 August 2004, https://nakamotoinstitute.org/library/rpow/); Nick Szabo, Bit gold (29 December 2005, https://nakamotoinstitute.org/library/bit-gold/); Joseph Poon and Thaddeus Dryja, The Bitcoin Lightning Network (14 January 2016 draft 0.5.9.2, https://lightning.network/lightning-network-paper.pdf)
 - BLVM spec and Orange Paper pointer
 - BLVM docs
 - Bitcoin Commons whitepaper
@@ -39,9 +39,9 @@ Cite the record before citing analysis.
 - Review intelligence and expectations
 
 ## Roles
-- source: cite as evidence
+- source: cite as evidence (record dumps; named precursor papers under `source=articles` with author, date, URL)
 - spec: cite as canonical text (whitepaper, Orange Paper, BLVM spec, BIP text)
-- analysis: findings, maps, select articles, Commons book, argument map — label as analysis
+- analysis: findings, maps, Commons book, argument map — label as analysis
 - product: BLVM / Commons / Pool docs
 - internal: training, epistemology, ops, discourse games, review expectations — do not cite as history
 
@@ -56,4 +56,4 @@ Cite the record before citing analysis.
 Live spot, ETF flows, derivatives, chain analytics, wallet tracing, private chat, unpublished meetings.
 
 ## Producer
-BTCDecoded / Bitcoin Commons. Maps, findings, and select articles are analysis.
+BTCDecoded / Bitcoin Commons. Maps and findings are analysis. Named precursor papers are source texts.

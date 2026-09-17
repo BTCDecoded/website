@@ -76,7 +76,7 @@ export default function IntelligencePage() {
         <ul className="intel-hero__facts" aria-label="Corpus at a glance">
           <li>
             <span className="intel-hero__k">Curated {CORPUS.curatedShort}</span>
-            <span>specs, maps, articles, books</span>
+            <span>specs, maps, articles, papers, books</span>
           </li>
           <li>
             <span className="intel-hero__k">Record {CORPUS.recordShort}</span>

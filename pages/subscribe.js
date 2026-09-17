@@ -76,7 +76,7 @@ function CouponBox({
               onApply(code);
             }
           }}
-          placeholder="STRATEGYHUB"
+          placeholder="Coupon code"
           autoComplete="off"
           autoCapitalize="characters"
           spellCheck={false}

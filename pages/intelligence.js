@@ -30,12 +30,12 @@ export default function IntelligencePage() {
         <div className="intel-hero__copy">
           <h2>Bitcoin, with the footnote attached</h2>
           <p className="intel-hero__claim">
-            {CORPUS.headline} passages Claude can actually cite.
+            {CORPUS.headline} passages you can actually cite.
           </p>
           <p className="intel-hero__lede">
             IRC, Bitcointalk, and the written review record — indexed so an
-            answer names the passage, not a vibe. Pay Lightning. Connect Claude
-            in four fields. No card network, no API-key slot.
+            answer names the passage, not a vibe. Pay Lightning. Plug in any
+            MCP client.
           </p>
           <div className="hero-ctas">
             {hasKey ? (
@@ -83,7 +83,7 @@ export default function IntelligencePage() {
           </li>
           <li>
             <span className="intel-hero__k">Connect</span>
-            <span>Claude</span>
+            <span>MCP</span>
           </li>
         </ul>
       </article>
@@ -123,8 +123,8 @@ export default function IntelligencePage() {
         <li>
           <span className="intel-flow__n">3</span>
           <div>
-            <strong>Connect Claude</strong>
-            <p>Name, MCP URL, client id, client secret. Paste those four. Stop.</p>
+            <strong>Connect</strong>
+            <p>MCP. Claude uses OAuth; Cursor and others use a Bearer key.</p>
           </div>
         </li>
         <li>

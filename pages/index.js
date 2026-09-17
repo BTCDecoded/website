@@ -188,7 +188,7 @@ export default function IndexPage() {
                 Bitcoin, with the footnote attached
               </h2>
               <p className="intel-hero__lede">
-                {CORPUS.headline} passages Claude can cite — IRC, Bitcointalk,
+                {CORPUS.headline} passages you can cite — IRC, Bitcointalk,
                 and the written review record. Lightning to start.
               </p>
               <div className="hero-ctas">

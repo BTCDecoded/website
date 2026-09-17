@@ -1,18 +1,19 @@
-# BTCDecoded (Bitcoin Decoded)
+# BTCDecoded
 
-> Cited search over Bitcoin’s public coordination record (Intelligence), plus the BLVM full node.
+> Cited search over Bitcoin’s public coordination record (Intelligence), plus the BLVM full node. Same chain as Bitcoin Core — not a new coin.
 
-BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~684k contemporaneous passages) plus a curated ~5k of specs, maps, and research. Pay with Lightning. Connect over MCP.
+BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~684k contemporaneous passages) plus a curated ~12k of specs, maps, textbooks, and research. Pay with Lightning. Connect over MCP at `https://mcp.btcdecoded.org/mcp`. Claude uses OAuth; Cursor and other clients use a Bearer key. Sign in with GitHub or Nostr, then pay on this site so the key stays on the account.
 
-The **node still ships here**: [BLVM](https://btcdecoded.org/install/) is a Bitcoin full node with the consensus rules written down (same chain as Bitcoin Core — not a new coin). Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
+The **node still ships here**: [BLVM](https://btcdecoded.org/install/) is a Bitcoin full node with the consensus rules written down. Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
 
 ## Intelligence
 
 - [Overview](https://btcdecoded.org/intelligence/): What is in the index
-- [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules
-- [Plans](https://btcdecoded.org/pricing/): Trial / Researcher / Developer in sats
-- [Checkout](https://btcdecoded.org/subscribe/): Lightning
-- [Account](https://btcdecoded.org/account/): Login, key, connector
+- [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules, MCP
+- [MCP server](https://mcp.btcdecoded.org/mcp): Streamable HTTP. OAuth for Claude; Bearer key for Cursor and raw HTTP
+- [Plans](https://btcdecoded.org/pricing/): Trial 15k sats / 7 days / 20 queries per day; Researcher 100 qpd; Developer 500 qpd plus PR review
+- [Checkout](https://btcdecoded.org/subscribe/): Lightning. Same key on upgrade (sat difference only)
+- [Account](https://btcdecoded.org/account/): GitHub or Nostr login, connector fields, API key
 
 ## Node (BLVM)
 
@@ -32,11 +33,17 @@ The **node still ships here**: [BLVM](https://btcdecoded.org/install/) is a Bitc
 - [BLVM documentation book](https://docs.thebitcoincommons.org/introduction.html)
 - [blvm releases](https://github.com/BTCDecoded/blvm/releases)
 
-## Also
+## Optional
 
-- [Commons Pool](https://commonspool.org/): Mining without a custodian (signet)
-- [Plebly](https://plebly.fund/#projects): Fund listed Commons work
 - [Homepage](https://btcdecoded.org/)
+- [Logo](https://btcdecoded.org/assets/logo.png): Wordmark (₿ + Decoded), transparent PNG
+- [Mark](https://btcdecoded.org/assets/logo-mark.png): Orange ₿ circle, transparent PNG
+- [Favicon](https://btcdecoded.org/favicon.ico)
 - [robots.txt](https://btcdecoded.org/robots.txt)
+- [Bitcoin Commons llms.txt](https://thebitcoincommons.org/llms.txt): Normative spec site
+- [Docs llms.txt](https://docs.thebitcoincommons.org/llms.txt): Documentation book index
+- [Commons Pool](https://commonspool.org/): Mining without a custodian (signet today)
+- [Plebly](https://plebly.fund/#projects): Fund listed Commons work
+- [GitHub](https://github.com/BTCDecoded)
 - [Updates](https://btccommons.substack.com/)
 - [Security contact](mailto:security@thebitcoincommons.org)

@@ -185,11 +185,11 @@ export default function IndexPage() {
             <div className="intel-hero__copy">
               <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
               <h2 id="intel-feature-heading">
-                Bitcoin, with the footnote attached
+                The Bitcoin review record, on call
               </h2>
               <p className="intel-hero__lede">
-                {CORPUS.headline} passages you can cite — IRC, Bitcointalk,
-                and the written review record. Lightning to start.
+                Curated findings first. {CORPUS.headline} passages behind them.
+                Lightning to start.
               </p>
               <div className="hero-ctas">
                 <Link href="/intelligence/" className="btn btn-primary">
@@ -202,20 +202,20 @@ export default function IndexPage() {
             </div>
             <ul className="intel-hero__facts" aria-label="Corpus at a glance">
               <li>
+                <span className="intel-hero__k">Curated</span>
+                <span>Findings, specs, maps</span>
+              </li>
+              <li>
                 <span className="intel-hero__k">Indexed</span>
                 <span>{CORPUS.headline} passages</span>
               </li>
               <li>
-                <span className="intel-hero__k">IRC</span>
-                <span>{CORPUS.irc} review-chat lines</span>
-              </li>
-              <li>
-                <span className="intel-hero__k">Forums</span>
-                <span>{CORPUS.bitcointalk} Bitcointalk posts</span>
-              </li>
-              <li>
                 <span className="intel-hero__k">Pay</span>
                 <span>Lightning</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Connect</span>
+                <span>MCP</span>
               </li>
             </ul>
           </article>

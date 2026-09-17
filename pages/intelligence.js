@@ -28,14 +28,14 @@ export default function IntelligencePage() {
     <IntelChrome title="Intelligence" heading={false}>
       <article className="intel-hero">
         <div className="intel-hero__copy">
-          <h2>Bitcoin, with the footnote attached</h2>
+          <h2>The Bitcoin review record, on call</h2>
           <p className="intel-hero__claim">
-            {CORPUS.headline} passages you can actually cite.
+            Curated findings first. {CORPUS.headline} passages behind them.
           </p>
           <p className="intel-hero__lede">
-            IRC, Bitcointalk, and the written review record — indexed so an
-            answer names the passage, not a vibe. Pay Lightning. Plug in any
-            MCP client.
+            Specs, maps, and the arguments that got written down — indexed so
+            a hit names the passage. Paid search opens the rest of the archive.
+            Lightning. Any MCP client.
           </p>
           <div className="hero-ctas">
             {hasKey ? (
@@ -70,16 +70,16 @@ export default function IntelligencePage() {
         </div>
         <ul className="intel-hero__facts" aria-label="Corpus at a glance">
           <li>
+            <span className="intel-hero__k">Curated</span>
+            <span>Findings, specs, maps</span>
+          </li>
+          <li>
             <span className="intel-hero__k">Indexed</span>
             <span>{CORPUS.headline} passages</span>
           </li>
           <li>
-            <span className="intel-hero__k">IRC</span>
-            <span>{CORPUS.irc} lines</span>
-          </li>
-          <li>
-            <span className="intel-hero__k">Forums</span>
-            <span>{CORPUS.bitcointalk} Bitcointalk posts</span>
+            <span className="intel-hero__k">Pay</span>
+            <span>Lightning</span>
           </li>
           <li>
             <span className="intel-hero__k">Connect</span>
@@ -90,13 +90,13 @@ export default function IntelligencePage() {
 
       <div className="intel-uses">
         <article>
-          <h3>Receipts</h3>
-          <p>Every hit points at a passage. If it cannot cite, it does not belong here.</p>
+          <h3>Passages</h3>
+          <p>A hit names the document in the index. Weak match, or none, comes back empty.</p>
         </article>
         <article>
-          <h3>The archive</h3>
+          <h3>Primary first</h3>
           <p>
-            Trial is a week in the curated ~5k. Paid is ~700k, primary first.
+            Trial is a week in the curated ~5k. Paid is ~700k, written record first.
           </p>
         </article>
         <article>
@@ -130,8 +130,8 @@ export default function IntelligencePage() {
         <li>
           <span className="intel-flow__n">4</span>
           <div>
-            <strong>Ask with a cite</strong>
-            <p>Who said it, where, and in which era — not a confident shrug.</p>
+            <strong>Ask</strong>
+            <p>The written argument, with the passage attached.</p>
           </div>
         </li>
       </ol>

@@ -27,7 +27,7 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 
 - curated (~12k): specs, maps, findings, project docs, research writeups, open textbooks
 - record (~684k): contemporaneous public sources
-- price: CoinMetrics daily BTC/USD (2010–) for historical reference
+- price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
 - total nearly 700k passages (11,904 + 683,718 ingest)
 
 ## Full record (~684k)
@@ -41,7 +41,7 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 - Bitcoin Core source: consensus, policy, script, validation, net, mempool, miner
 - Bitcointalk forum posts (~159k)
 - IRC review channel logs (~371k)
-- Historical BTC/USD daily close (CoinMetrics PriceUSD, 2010–)
+- Historical BTC/USD every daily close (CoinMetrics PriceUSD, 2010-07-18–)
 
 ## Curated (~12k)
 

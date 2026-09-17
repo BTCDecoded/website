@@ -3147,6 +3147,37 @@ code {
   margin: 2rem 0;
 }
 
+.intel-uses {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .intel-uses {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.intel-uses article {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.15rem 1.2rem;
+  background: #fff;
+}
+
+.intel-uses h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.intel-uses p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 .intel-flow {
   list-style: none;
   margin: 0;

@@ -145,7 +145,7 @@ export default function IndexPage() {
       <section className="fund-feature" aria-labelledby="fund-heading">
         <div className="container">
           <article className="fund-panel">
-            <p className="fund-kicker">Funding</p>
+            <p className="fund-kicker">The Funding</p>
             <h2 id="fund-heading">Plebly</h2>
             <p className="fund-lede">
               Plebly lists public Bitcoin development work and takes donations

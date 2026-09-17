@@ -35,9 +35,6 @@ export default function IntelligencePage() {
         <div className="intel-hero__copy">
           <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
           <h1>Bitcoin’s public coordination record, searchable.</h1>
-          <p className="intel-hero__claim">
-            {CORPUS.record} passages, plus {CORPUS.curated} curated.
-          </p>
           <p className="intel-hero__lede">
             Not a live price desk. Not chain analytics. Pay with Lightning.
             Connect over MCP.

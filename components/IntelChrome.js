@@ -4,7 +4,7 @@ import IntelSubnav from "./IntelSubnav";
 
 export default function IntelChrome({
   title,
-  kicker = "Intelligence",
+  kicker = "Governance Intelligence",
   lede,
   heading = true,
   children,
@@ -19,7 +19,7 @@ export default function IntelChrome({
         <IntelSubnav />
         {heading ? (
           <>
-            <h2>{title}</h2>
+            <h1>{title}</h1>
             {lede ? <p className="intel-lede">{lede}</p> : null}
           </>
         ) : null}

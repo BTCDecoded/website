@@ -29,7 +29,7 @@ const NAV_GROUPS = [
   },
   {
     id: "intelligence",
-    title: "Intelligence",
+    title: "Record",
     items: [
       { href: "/intelligence/", title: "Overview" },
       { href: "/pricing/", title: "Plans" },

@@ -102,7 +102,7 @@ export default function PricingPage() {
       <p className="intel-lede">
         {current
           ? "You already have a plan. Checkout will not sell you the same one again. Higher tiers are upgrades: same key, sat difference only."
-          : "Start in the curated record. Open the full archive when you need it. Same key when you upgrade."}
+          : "Start in the curated layer. Open the full record when you need it. Same key when you upgrade."}
       </p>
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (

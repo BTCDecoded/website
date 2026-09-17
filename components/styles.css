@@ -3055,7 +3055,9 @@ code {
   color: #e8a54b;
 }
 
+.intel-page .intel-hero h1,
 .intel-page .intel-hero h2,
+.intel-hero h1,
 .intel-hero h2 {
   margin: 0 0 0.55rem;
   color: #eeeae3;
@@ -3131,6 +3133,7 @@ code {
   color: #eeeae3;
 }
 
+.intel-page h1,
 .intel-page h2 {
   margin-bottom: 0.75rem;
 }
@@ -3176,6 +3179,10 @@ code {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.5;
+}
+
+.intel-uses code {
+  font-size: 0.88em;
 }
 
 .intel-flow {
@@ -3225,6 +3232,90 @@ code {
 .intel-flow p {
   margin: 0;
   color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.intel-index {
+  margin: 0 0 1.75rem;
+}
+
+.intel-index > p {
+  max-width: 40rem;
+  color: var(--text-secondary);
+  margin: 0 0 1rem;
+}
+
+.intel-index__grid {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 1rem;
+}
+
+@media (min-width: 800px) {
+  .intel-index__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.intel-index article {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.15rem 1.2rem;
+  background: #fff;
+}
+
+.intel-index h2 {
+  font-size: 1.35rem;
+}
+
+.intel-index h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.05rem;
+}
+
+.intel-index ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.intel-index li {
+  margin-bottom: 0.3rem;
+}
+
+.intel-who {
+  margin: 1.75rem 0 0;
+}
+
+.intel-who h2 {
+  font-size: 1.35rem;
+}
+
+.intel-who ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 40rem;
+}
+
+.intel-who li {
+  margin-bottom: 0.4rem;
+}
+
+.intel-who p,
+.intel-disclose {
+  max-width: 40rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.intel-disclose {
+  margin: 1.5rem 0 0;
+}
   font-size: 0.92rem;
   line-height: 1.5;
 }

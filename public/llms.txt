@@ -43,8 +43,9 @@ BTCDecoded is the **reference implementation** brand for [Bitcoin Commons](https
 
 ## Optional
 
-- [Intelligence](https://btcdecoded.org/intelligence/): Paid MCP connector for governance history and Core record (publish after existence proof)
-- [Pricing](https://btcdecoded.org/pricing/): Sats packages for Researcher / Developer
+- [Intelligence](https://btcdecoded.org/intelligence/): Cited search over Bitcoin’s public coordination record (Lightning + MCP)
+- [Intelligence agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, and retrieval rules for agents
+- [Pricing](https://btcdecoded.org/pricing/): Sats packages for Trial / Researcher / Developer
 - [Subscribe](https://btcdecoded.org/subscribe/): Lightning key purchase
 - [Homepage](https://btcdecoded.org/): Latest release banner and project overview
 - [robots.txt](https://btcdecoded.org/robots.txt): Crawler policy (not access control)

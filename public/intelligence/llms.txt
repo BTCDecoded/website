@@ -1,0 +1,57 @@
+# BTCDecoded Intelligence
+
+Cited search over Bitcoin’s public development and governance record.
+Not market data. Not on-chain analytics.
+
+## Layers
+- curated (~5k): specs, maps, findings, project docs, research writeups
+- record (~694k): contemporaneous public sources
+- total ~700k passages
+
+Trial searches curated only. Paid searches the record.
+“Primary first” means cite the record before citing analysis.
+
+## Full record (~694k)
+- GitHub: PRs, issues, commits, merged-by map
+- bitcoin-dev and cryptography mailing lists
+- Delving Bitcoin posts and topics
+- Satoshi communications archive
+- BIP texts, BIP PRs and issues
+- Release tags and signers
+- Bitcoin Core source: consensus, policy, script, validation, net, mempool, miner
+- Bitcointalk forum posts (~159k)
+- IRC review channel logs (~371k)
+
+## Curated (~5k)
+- Governance research findings and data
+- Canonical maintainer data
+- Training corpus: Bitcoin domain, governance, epistemology, ops files, discourse games, argument map
+- Bitcoin Commons book chapters
+- Secsovereign articles and BIPs pages
+- BLVM spec and Orange Paper pointer
+- BLVM docs
+- Bitcoin Commons whitepaper
+- Bitcoin whitepaper
+- Commons ecosystem vision
+- Commons Pool docs
+- Governance review intelligence and expectations
+
+## Roles
+- source: cite as evidence
+- spec: cite as canonical text (whitepaper, Orange Paper, BLVM spec, BIP text)
+- analysis: findings, maps, secsov articles, Commons book, argument map — label as BTCDecoded/secsov analysis
+- product: BLVM / Commons / Pool docs
+- internal: training, epistemology, ops, discourse games, review expectations — do not cite as history
+
+## Behavior
+- Return passages with layer, role, source_name, date, speaker, locator.
+- Weak or no match → empty.
+- If source/spec and analysis conflict, return the source/spec and label the analysis.
+- Lightning is the payment rail, not part of the corpus.
+- MCP: Model Context Protocol. Claude = OAuth. Cursor and others = Bearer key.
+
+## Out of scope
+Price, derivatives, ETF flows, chain analytics, wallet tracing, private chat, unpublished meetings.
+
+## Producer
+BTCDecoded / Bitcoin Commons. Maps and assessments come from Bitcoin Governance Research (secsov).

@@ -183,16 +183,18 @@ export default function IndexPage() {
         <div className="container">
           <article className="intel-hero">
             <div className="intel-hero__copy">
-              <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
+              <p className="intel-hero__kicker">Governance Intelligence</p>
               <h2 id="intel-feature-heading">
-                The Bitcoin review record, on call
+                Bitcoin’s public coordination record, searchable.
               </h2>
               <p className="intel-hero__claim">
-                Curated findings first. {CORPUS.headline} records behind them.
+                IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs,
+                and Core source — about {CORPUS.record} contemporaneous passages
+                — plus a curated layer ({CORPUS.curated}).
               </p>
               <p className="intel-hero__lede">
-                Protocol specs, governance maps, and the full development
-                record — indexed so every hit names the source.
+                Not price data. Not chain analytics. Lightning is the payment
+                rail. Any MCP client.
               </p>
               <div className="hero-ctas">
                 <Link href="/intelligence/" className="btn btn-primary">
@@ -205,12 +207,12 @@ export default function IndexPage() {
             </div>
             <ul className="intel-hero__facts" aria-label="Corpus at a glance">
               <li>
-                <span className="intel-hero__k">Curated</span>
-                <span>Findings, specs, maps</span>
+                <span className="intel-hero__k">Curated {CORPUS.curatedShort}</span>
+                <span>specs, maps, findings</span>
               </li>
               <li>
-                <span className="intel-hero__k">Indexed</span>
-                <span>{CORPUS.headline} records</span>
+                <span className="intel-hero__k">Record {CORPUS.recordShort}</span>
+                <span>IRC, lists, GitHub, forums, source</span>
               </li>
               <li>
                 <span className="intel-hero__k">Pay</span>

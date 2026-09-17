@@ -105,11 +105,13 @@ export default function Footer(){
             <p>
               <a href="/intelligence/">Intelligence</a>
               {" · "}
-              <a href="/pricing/">Pricing</a>
+              <a href="/pricing/">Plans</a>
               {" · "}
               <a href="/subscribe/">Checkout</a>
               {" · "}
               <a href="/account/">Account</a>
+              {" · "}
+              <a href="/intelligence/llms.txt">Agent spec</a>
             </p>
             <p>
               <a

@@ -26,13 +26,13 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 ## Layers
 
 - curated (~19k): specs, maps, findings, project docs, research writeups, open textbooks
-- record (~684k): contemporaneous public sources
+- record (~759k): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
-- total nearly 700k passages (19,483 + 683,718 ingest)
+- total nearly 780k passages (19,482 + 758,543 ingest)
 
-## Full record (~684k)
+## Full record (~759k)
 
-- GitHub: PRs, issues, commits, merged-by map
+- GitHub: PRs, issues, commits, merged-by map, nested review/NACK threads
 - bitcoin-dev and cryptography mailing lists
 - Delving Bitcoin posts and topics
 - Satoshi communications archive

@@ -185,17 +185,18 @@ export default function IndexPage() {
             <div className="intel-hero__copy">
               <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
               <h2 id="intel-feature-heading">
-                {CORPUS.headline} passages of Bitcoin review history
+                Bitcoin, with the footnote attached
               </h2>
               <p className="intel-hero__lede">
-                Sign in, pay Lightning, connect Claude.
+                {CORPUS.headline} passages Claude can cite — IRC, Bitcointalk,
+                and the written review record. Lightning to start.
               </p>
               <div className="hero-ctas">
                 <Link href="/intelligence/" className="btn btn-primary">
                   See Intelligence
                 </Link>
-                <Link href="/pricing/" className="btn btn-secondary">
-                  Plans
+                <Link href="/subscribe/?plan=trial" className="btn btn-secondary">
+                  Start trial
                 </Link>
               </div>
             </div>
@@ -214,7 +215,7 @@ export default function IndexPage() {
               </li>
               <li>
                 <span className="intel-hero__k">Pay</span>
-                <span>Lightning, then a private key</span>
+                <span>Lightning</span>
               </li>
             </ul>
           </article>

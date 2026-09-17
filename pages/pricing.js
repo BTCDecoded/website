@@ -99,12 +99,11 @@ export default function PricingPage() {
   const current = activeSku(user);
   return (
     <IntelChrome title="Plans">
-      {current ? (
-        <p className="intel-lede">
-          You already have a plan. Checkout will not sell you the same one
-          again. Higher tiers are upgrades: same key, sat difference only.
-        </p>
-      ) : null}
+      <p className="intel-lede">
+        {current
+          ? "You already have a plan. Checkout will not sell you the same one again. Higher tiers are upgrades: same key, sat difference only."
+          : "Start in the curated record. Open the full archive when you need it. Same key when you upgrade."}
+      </p>
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (
           <PlanCard key={plan.id} plan={plan} btcUsd={btcUsd} current={current} />

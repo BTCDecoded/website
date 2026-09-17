@@ -28,15 +28,14 @@ export default function IntelligencePage() {
     <IntelChrome title="Intelligence" heading={false}>
       <article className="intel-hero">
         <div className="intel-hero__copy">
-          <h2>The Bitcoin review record, searchable</h2>
+          <h2>Bitcoin, with the footnote attached</h2>
           <p className="intel-hero__claim">
-            {CORPUS.headline} passages, cited.
+            {CORPUS.headline} passages Claude can actually cite.
           </p>
           <p className="intel-hero__lede">
-            Ask Claude over IRC, Bitcointalk, and the curated corpus. Hits
-            name the passage. Pay Lightning. Connect with Claude’s four
-            fields — name, MCP URL, OAuth client id, client secret. There is
-            no API-key slot.
+            IRC, Bitcointalk, and the written review record — indexed so an
+            answer names the passage, not a vibe. Pay Lightning. Connect Claude
+            in four fields. No card network, no API-key slot.
           </p>
           <div className="hero-ctas">
             {hasKey ? (
@@ -59,11 +58,11 @@ export default function IntelligencePage() {
               </>
             ) : (
               <>
-                <Link href="/pricing/" className="btn btn-primary">
-                  See plans
+                <Link href="/subscribe/?plan=trial" className="btn btn-primary">
+                  Start trial
                 </Link>
-                <Link href="/account/" className="btn btn-secondary">
-                  Sign in
+                <Link href="/pricing/" className="btn btn-secondary">
+                  See plans
                 </Link>
               </>
             )}
@@ -84,25 +83,25 @@ export default function IntelligencePage() {
           </li>
           <li>
             <span className="intel-hero__k">Connect</span>
-            <span>Claude MCP</span>
+            <span>Claude</span>
           </li>
         </ul>
       </article>
 
       <div className="intel-uses">
         <article>
-          <h3>Cited search</h3>
-          <p>Answers point at a passage in the record, not a bare summary.</p>
+          <h3>Receipts</h3>
+          <p>Every hit points at a passage. If it cannot cite, it does not belong here.</p>
         </article>
         <article>
-          <h3>Primary first</h3>
+          <h3>The archive</h3>
           <p>
-            Trial is the curated ~5k. Paid search is ~700k, primary first.
+            Trial is a week in the curated ~5k. Paid is ~700k, primary first.
           </p>
         </article>
         <article>
           <h3>PR review</h3>
-          <p>Developer adds analyze_pr on public GitHub pull requests.</p>
+          <p>Developer reads public GitHub pull requests against that same record.</p>
         </article>
       </div>
 
@@ -111,28 +110,28 @@ export default function IntelligencePage() {
           <span className="intel-flow__n">1</span>
           <div>
             <strong>Sign in</strong>
-            <p>GitHub or Nostr.</p>
+            <p>GitHub or Nostr. One login owns the key.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">2</span>
           <div>
             <strong>Pay Lightning</strong>
-            <p>Checkout. Upgrades keep the same key and charge the difference.</p>
+            <p>Sats in, access out. Upgrades keep the same key.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">3</span>
           <div>
             <strong>Connect Claude</strong>
-            <p>Account copies name, MCP URL, client id, and client secret.</p>
+            <p>Name, MCP URL, client id, client secret. Paste those four. Stop.</p>
           </div>
         </li>
         <li>
           <span className="intel-flow__n">4</span>
           <div>
-            <strong>Ask</strong>
-            <p>Search the record. Citations come back with the answer.</p>
+            <strong>Ask with a cite</strong>
+            <p>Who said it, where, and in which era — not a confident shrug.</p>
           </div>
         </li>
       </ol>

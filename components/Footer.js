@@ -81,9 +81,6 @@ export default function Footer() {
                   Docs
                 </a>
               </li>
-              <li>
-                <a href="/intelligence/llms.txt">Agent spec</a>
-              </li>
             </ul>
           </div>
 

@@ -33,17 +33,16 @@ export default function IntelligencePage() {
     <IntelChrome title="Intelligence" heading={false}>
       <article className="intel-hero">
         <div className="intel-hero__copy">
-          <p className="intel-hero__kicker">Governance Intelligence</p>
+          <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
           <h1>Bitcoin’s public coordination record, searchable.</h1>
           <p className="intel-hero__claim">
             IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and
-            Core source — about {CORPUS.record} contemporaneous passages — plus a
-            curated layer of specs, maps, and research ({CORPUS.curated}). Every
-            hit names the source. Weak match comes back empty.
+            Core source — about {CORPUS.record} contemporaneous passages — plus
+            specs, maps, and research ({CORPUS.curated}).
           </p>
           <p className="intel-hero__lede">
-            Not price data. Not chain analytics. Lightning is the payment rail.
-            Any MCP (Model Context Protocol) client.
+            Not price data. Not chain analytics. Lightning is how you pay. Any
+            MCP (Model Context Protocol) client.
           </p>
           <div className="hero-ctas">
             {hasKey ? (
@@ -100,16 +99,16 @@ export default function IntelligencePage() {
         <article>
           <h3>Passages</h3>
           <p>
-            A hit names the document, channel, date, and speaker when known. Weak
-            match, or none, comes back empty.
+            A hit names the document and date when known. If the index has
+            nothing, it comes back empty.
           </p>
         </article>
         <article>
           <h3>Two layers</h3>
           <p>
-            Trial is a week in the curated {CORPUS.curatedShort}. Paid search opens
-            the {CORPUS.recordShort} record. Maps are analysis. Logs, mails, PRs,
-            and source files are evidence.
+            Trial is a week in the curated {CORPUS.curatedShort}. Paid search
+            includes the {CORPUS.recordShort} record. Maps are analysis. Logs,
+            mails, PRs, and source files are evidence.
           </p>
         </article>
         <article>
@@ -212,10 +211,9 @@ export default function IntelligencePage() {
 
       <p className="intel-disclose">
         Built by BTCDecoded on the Bitcoin Commons stack. The full record is
-        public primary material (IRC, lists, GitHub, forums, source, Satoshi,
-        BIPs). Governance maps, findings, and argument assessments are research
-        from that same project (see secsov.com / Bitcoin Governance Research).
-        Treat them as analysis, not as the record.{" "}
+        public source material (IRC, lists, GitHub, forums, source, Satoshi,
+        BIPs). Maps, findings, and argument assessments are research from that
+        same project (secsov.com). Treat them as analysis, not as the record.{" "}
         <a href="/intelligence/llms.txt">Agent spec</a>.
       </p>
     </IntelChrome>

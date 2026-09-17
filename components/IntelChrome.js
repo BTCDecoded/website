@@ -4,7 +4,7 @@ import IntelSubnav from "./IntelSubnav";
 
 export default function IntelChrome({
   title,
-  kicker = "Governance Intelligence",
+  kicker = "BTCDecoded Intelligence",
   lede,
   heading = true,
   children,

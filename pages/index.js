@@ -183,18 +183,18 @@ export default function IndexPage() {
         <div className="container">
           <article className="intel-hero">
             <div className="intel-hero__copy">
-              <p className="intel-hero__kicker">Governance Intelligence</p>
+              <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
               <h2 id="intel-feature-heading">
                 Bitcoin’s public coordination record, searchable.
               </h2>
               <p className="intel-hero__claim">
                 IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs,
                 and Core source — about {CORPUS.record} contemporaneous passages
-                — plus a curated layer ({CORPUS.curated}).
+                — plus specs, maps, and research ({CORPUS.curated}).
               </p>
               <p className="intel-hero__lede">
-                Not price data. Not chain analytics. Lightning is the payment
-                rail. Any MCP client.
+                Not price data. Not chain analytics. Lightning is how you pay.
+                Any MCP client.
               </p>
               <div className="hero-ctas">
                 <Link href="/intelligence/" className="btn btn-primary">

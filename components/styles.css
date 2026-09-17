@@ -511,11 +511,26 @@ p {
   margin-bottom: 1rem;
 }
 
-.hero-ctas {
+.home-ctas,
+.hero-ctas,
+.fund-ctas,
+.cp-ctas {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+.home-ctas .btn,
+.hero-ctas .btn,
+.fund-ctas .btn,
+.cp-ctas .btn {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 /* Architecture */
@@ -1750,16 +1765,6 @@ code {
     font-size: 2rem;
   }
 
-  .hero-ctas {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-ctas .btn {
-    width: 100%;
-    max-width: 300px;
-  }
-
   .layer {
     flex-direction: column;
     text-align: center;
@@ -2807,7 +2812,7 @@ code {
 
 /* ── Plebly fund CTA ── */
 .fund-feature {
-  padding: 0 0 80px;
+  padding: 0 0 3rem;
 }
 
 .fund-panel {
@@ -2819,7 +2824,7 @@ code {
 
 @media (min-width: 720px) {
   .fund-panel {
-    padding: 2.5rem 2.5rem 2rem;
+    padding: 2.75rem 2.5rem 2rem;
   }
 }
 
@@ -2833,26 +2838,21 @@ code {
 }
 
 .fund-panel h2 {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  margin: 0 0 0.55rem;
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
+  letter-spacing: -0.03em;
 }
 
 .fund-lede {
   margin: 0 0 1.5rem;
-  max-width: 40rem;
+  max-width: 38rem;
   color: var(--text-secondary);
   line-height: 1.65;
 }
 
-.fund-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
 /* ── Commons Pool ── */
 .cp-feature {
-  padding: 0 0 80px;
+  padding: 0 0 3rem;
 }
 
 .cp-panel {
@@ -2891,10 +2891,7 @@ code {
   margin: 0 0 0.55rem;
   color: #eeeae3;
   letter-spacing: -0.03em;
-}
-
-.cp-panel h2 {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
 }
 
 .cp-claim {
@@ -2907,15 +2904,9 @@ code {
 
 .cp-lede {
   margin: 0 0 1.5rem;
-  max-width: 36rem;
+  max-width: 38rem;
   color: #a39e94;
   line-height: 1.65;
-}
-
-.cp-ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
 }
 
 .cp-panel .btn-secondary {
@@ -2995,12 +2986,26 @@ code {
 }
 
 /* ── Intelligence product ── */
-.intel-feature {
-  padding: 0 0 80px;
+.intel-feature,
+.fund-feature,
+.cp-feature {
+  padding: 0 0 3rem;
 }
 
 .intel-feature--home {
-  padding-top: 48px;
+  padding-top: 1.5rem;
+}
+
+.intel-feature--home .intel-hero {
+  margin-bottom: 0;
+}
+
+.intel-feature--home .intel-hero h1 {
+  font-size: clamp(1.85rem, 3.5vw, 2.35rem);
+}
+
+.fund-feature:last-of-type {
+  padding-bottom: 4.5rem;
 }
 
 .section.intel-page {
@@ -3086,7 +3091,7 @@ code {
 
 .intel-hero__lede {
   margin: 0 0 1.5rem;
-  max-width: 36rem;
+  max-width: 38rem;
   color: #a39e94;
   line-height: 1.65;
 }

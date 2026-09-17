@@ -16,15 +16,16 @@ export default function IndexPage() {
         <div className="container">
           <article className="intel-hero">
             <div className="intel-hero__copy">
-              <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
-              <h1 id="intel-feature-heading">
+              <p className="intel-hero__kicker">The index</p>
+              <h1 id="intel-feature-heading">Intelligence</h1>
+              <p className="intel-hero__claim">
                 Bitcoin’s public coordination record, searchable.
-              </h1>
+              </p>
               <p className="intel-hero__lede">
                 Cited search over IRC, mailing lists, GitHub, and source. Pay
                 with Lightning.
               </p>
-              <div className="hero-ctas">
+              <div className="home-ctas">
                 <Link href="/subscribe/?plan=trial" className="btn btn-primary">
                   Start trial
                 </Link>
@@ -33,6 +34,24 @@ export default function IndexPage() {
                 </Link>
               </div>
             </div>
+            <ul className="intel-hero__facts" aria-label="Intelligence at a glance">
+              <li>
+                <span className="intel-hero__k">Sources</span>
+                <span>IRC, lists, GitHub, source</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Pay</span>
+                <span>Lightning</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Access</span>
+                <span>Trial and Researcher</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Connect</span>
+                <span>Search and MCP</span>
+              </li>
+            </ul>
           </article>
         </div>
       </section>
@@ -47,7 +66,7 @@ export default function IndexPage() {
               chain as Bitcoin Core — not a new coin. Spec-lock, Orange Paper,
               verified downloads.
             </p>
-            <div className="fund-ctas">
+            <div className="home-ctas">
               <a
                 href="https://btcdecoded.org/install/"
                 className="btn btn-primary"
@@ -74,7 +93,7 @@ export default function IndexPage() {
         <div className="container">
           <article className="cp-panel">
             <div className="cp-panel__copy">
-              <p className="cp-kicker">Also from BTCDecoded</p>
+              <p className="cp-kicker">The Pool</p>
               <h2 id="cp-feature-heading">Commons Pool</h2>
               <p className="cp-claim">Mine without handing anyone your coins.</p>
               <p className="cp-lede">
@@ -82,7 +101,7 @@ export default function IndexPage() {
                 address. No pool wallet. No KYC. Same Bitcoin — on the BLVM
                 stack.
               </p>
-              <div className="cp-ctas">
+              <div className="home-ctas">
                 <a
                   href="https://commonspool.org"
                   className="btn btn-primary"
@@ -126,14 +145,14 @@ export default function IndexPage() {
       <section className="fund-feature" aria-labelledby="fund-heading">
         <div className="container">
           <article className="fund-panel">
-            <p className="fund-kicker">Fund the work</p>
-            <h2 id="fund-heading">Donate through Plebly</h2>
+            <p className="fund-kicker">Funding</p>
+            <h2 id="fund-heading">Plebly</h2>
             <p className="fund-lede">
               Plebly lists public Bitcoin development work and takes donations
               into on-chain escrow — not a custodial tip jar. Fund a listed
               Commons proposal, or donate to Commons directly.
             </p>
-            <div className="fund-ctas">
+            <div className="home-ctas">
               <a
                 href="https://plebly.fund/#projects"
                 className="btn btn-primary"

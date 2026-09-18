@@ -95,8 +95,7 @@ export default function IntelligencePage() {
         <p>
           Every plan searches both layers.{" "}
           <Link href="/pricing/">Plans</Link> differ by days, query cap, and
-          whether Developer public-PR review is included. Retrieval cites what
-          the index has — not every discussion.
+          public-PR review.
         </p>
         <div className="intel-index__grid">
           <article>

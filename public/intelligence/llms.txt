@@ -19,7 +19,7 @@ Every plan searches both layers. Same key on upgrade (sat difference only).
 
 - Trial: 15,000 sats, 7 days, 50 queries/day
 - Researcher: 50,000 / 128,000 / 240,000 / 456,000 sats for 30 / 90 / 180 / 365 days, 250 queries/day
-- Developer: 100,000 / 255,000 / 480,000 / 913,000 sats for 30 / 90 / 180 / 365 days, 500 queries/day, plus `analyze_pr` on public GitHub PRs (4000-char patch pack; private repos fail; 10 queries each) and Developer retrieval tools (`find_discourse`, `find_precedent`, `find_incident`, `find_spec_impl`). Those tools cite the index; they do not return every discussion.
+- Developer: 100,000 / 255,000 / 480,000 / 913,000 sats for 30 / 90 / 180 / 365 days, 500 queries/day, plus `analyze_pr` on public GitHub PRs (4000-char patch pack; private repos fail; 10 queries each) and Developer retrieval tools (`find_discourse`, `find_precedent`, `find_incident`, `find_spec_impl`).
 
 Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdecoded.org/subscribe/), [Account](https://btcdecoded.org/account/).
 

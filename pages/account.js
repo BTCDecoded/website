@@ -405,8 +405,15 @@ export default function AccountPage() {
       )}
       <p className="intel-plan-meta">
         Support:{" "}
-        <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a>
-        . Security:{" "}
+        <a
+          href="https://github.com/BTCDecoded/website/discussions/categories/q-a"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub Discussions
+        </a>
+        {" "}
+        (do not paste API keys). Security:{" "}
         <a href="mailto:security@thebitcoincommons.org">
           security@thebitcoincommons.org
         </a>

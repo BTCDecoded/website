@@ -5,17 +5,21 @@ export default function SiteBrand({ className = "", onClick }) {
     <Link
       href="/"
       className={`site-brand${className ? ` ${className}` : ""}`}
-      aria-label="BTCDecoded"
       onClick={onClick}
     >
-      <img
-        src="/assets/logo-mark.png"
-        alt=""
-        className="site-brand__mark"
-        width={276}
-        height={276}
-      />
-      <span className="site-brand__word">Decoded</span>
+      <picture>
+        <source
+          srcSet="/assets/logo-white.png"
+          media="(prefers-color-scheme: dark)"
+        />
+        <img
+          src="/assets/logo.png"
+          alt="BTCDecoded"
+          className="site-brand__img"
+          width={870}
+          height={285}
+        />
+      </picture>
     </Link>
   );
 }

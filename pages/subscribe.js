@@ -42,6 +42,16 @@ function checkoutStatus(error, extra = {}) {
     return "Lightning is off on this network. Do not send bitcoin.";
   }
   if (error === "use_invoice") return "This code is a discount. Create the invoice to use it.";
+  if (error === "coupon_xor_referral") {
+    return "Use a coupon or a referral code, not both.";
+  }
+  if (error === "unknown_referral") return "That referral code isn’t valid.";
+  if (error === "revoked_referral") return "That referral code was revoked.";
+  if (error === "self_referral") return "You can’t use your own referral code.";
+  if (error === "not_first_purchase") {
+    return "Referral discount applies to the first Lightning invoice only.";
+  }
+  if (error === "referral_used") return "This login already used a referral code.";
   return extra.fallback || error || "Something went wrong.";
 }
 
@@ -57,16 +67,22 @@ function CouponBox({
   onChange,
   onApply,
   onClear,
+  label = "Coupon",
+  placeholder = "Coupon code",
+  inputId = "intel-coupon",
+  note = "Optional. Apply to see the price before you pay.",
+  signedOut = "Sign in to apply this code.",
+  afterWord = "coupon",
 }) {
   const code = canonicalCoupon(coupon);
   return (
     <div className="intel-coupon">
-      <label className="intel-panel-label" htmlFor="intel-coupon">
-        Coupon
+      <label className="intel-panel-label" htmlFor={inputId}>
+        {label}
       </label>
       <div className="intel-coupon-row">
         <input
-          id="intel-coupon"
+          id={inputId}
           className="intel-input"
           value={coupon}
           onChange={(e) => onChange(e.target.value)}
@@ -76,7 +92,7 @@ function CouponBox({
               onApply(code);
             }
           }}
-          placeholder="Coupon code"
+          placeholder={placeholder}
           autoComplete="off"
           autoCapitalize="characters"
           spellCheck={false}
@@ -99,17 +115,17 @@ function CouponBox({
             {canGrant
               ? `Grants ${planLabel} · no invoice`
               : discounted
-                ? `${Number(chargeSats).toLocaleString()} sats after coupon`
-                : "Coupon applied"}
+                ? `${Number(chargeSats).toLocaleString()} sats after ${afterWord}`
+                : `${afterWord[0].toUpperCase()}${afterWord.slice(1)} applied`}
           </span>
           <button type="button" className="intel-coupon-clear" onClick={onClear}>
             Remove
           </button>
         </p>
       ) : apply ? (
-        <p className="intel-coupon-note">Optional. Apply to see the price before you pay.</p>
+        <p className="intel-coupon-note">{note}</p>
       ) : (
-        <p className="intel-coupon-note">Sign in to apply this code.</p>
+        <p className="intel-coupon-note">{signedOut}</p>
       )}
     </div>
   );
@@ -119,6 +135,7 @@ export default function SubscribePage() {
   const router = useRouter();
   const [pack, setPack] = useState("researcher");
   const [coupon, setCoupon] = useState("");
+  const [referral, setReferral] = useState("");
   const [preview, setPreview] = useState(null);
   const [user, setUser] = useState(null);
   const [busy, setBusy] = useState("");
@@ -155,7 +172,9 @@ export default function SubscribePage() {
     if (PACKAGES.some((p) => p.id === q)) setPack(q);
     const c = canonicalCoupon(router.query.coupon);
     if (c) setCoupon(c);
-  }, [router.isReady, router.query.plan, router.query.coupon, invoice, paid]);
+    const r = canonicalCoupon(router.query.ref);
+    if (r) setReferral(r);
+  }, [router.isReady, router.query.plan, router.query.coupon, router.query.ref, invoice, paid]);
 
   useEffect(() => {
     let cancelled = false;
@@ -244,9 +263,52 @@ export default function SubscribePage() {
     }
   }
 
+  async function applyReferral(raw) {
+    const code = canonicalCoupon(raw ?? referral);
+    if (!user || !code) return;
+    if (canonicalCoupon(coupon)) {
+      setStatus(checkoutStatus("coupon_xor_referral"));
+      return;
+    }
+    setReferral(code);
+    setBusy("referral");
+    setStatus("");
+    try {
+      const res = await authFetch(`${WORKER_ORIGIN}/lightning/invoice`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          package: pack,
+          referral: code,
+          preview: true,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setPreview(null);
+        setStatus(
+          checkoutStatus(data.error, { ...data, fallback: "Could not apply referral" }),
+        );
+        return;
+      }
+      setPreview(data);
+      setInvoice("");
+      setSwapId("");
+      setStatus("");
+    } catch {
+      setStatus("Could not reach the Worker.");
+    } finally {
+      setBusy("");
+    }
+  }
+
   async function applyCoupon(raw) {
     const code = canonicalCoupon(raw ?? coupon);
     if (!user || !code) return;
+    if (canonicalCoupon(referral)) {
+      setStatus(checkoutStatus("coupon_xor_referral"));
+      return;
+    }
     setCoupon(code);
     setBusy("coupon");
     setStatus("");
@@ -292,6 +354,7 @@ export default function SubscribePage() {
           body: JSON.stringify({
             package: pack,
             coupon: canonicalCoupon(coupon) || undefined,
+            referral: canonicalCoupon(referral) || undefined,
           }),
         },
       );
@@ -331,6 +394,16 @@ export default function SubscribePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, router.isReady, router.query.coupon]);
 
+  useEffect(() => {
+    if (!user || !router.isReady || invoice || paid) return;
+    const code = canonicalCoupon(router.query.ref);
+    if (!code || autoPreviewed.current === `ref:${code}`) return;
+    if (canonicalCoupon(router.query.coupon)) return;
+    autoPreviewed.current = `ref:${code}`;
+    applyReferral(code);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, router.isReady, router.query.ref]);
+
   function onCouponChange(value) {
     setCoupon(canonicalCoupon(value));
     if (preview) setPreview(null);
@@ -341,6 +414,17 @@ export default function SubscribePage() {
     setPreview(null);
     setStatus("");
     autoPreviewed.current = "";
+  }
+
+  function onReferralChange(value) {
+    setReferral(canonicalCoupon(value));
+    if (preview) setPreview(null);
+  }
+
+  function clearReferral() {
+    setReferral("");
+    setPreview(null);
+    setStatus("");
   }
 
   const { plan, opt } = planBySku(pack);
@@ -362,11 +446,13 @@ export default function SubscribePage() {
   const discounted = Boolean(preview && !canGrant && listSats > chargeSats);
   const payDisabled = Boolean(busy) || (!canGrant && lnOk === false);
   const couponCode = canonicalCoupon(coupon);
+  const referralCode = canonicalCoupon(referral);
   const queryCoupon = canonicalCoupon(router.query.coupon);
+  const queryRef = canonicalCoupon(router.query.ref);
   const couponProps = {
     coupon,
     busy,
-    preview,
+    preview: preview && !preview.referral ? preview : null,
     planLabel: grantLabel,
     canGrant,
     discounted,
@@ -374,6 +460,24 @@ export default function SubscribePage() {
     onChange: onCouponChange,
     onApply: applyCoupon,
     onClear: clearCoupon,
+    note: "Optional. Cannot combine with a referral code.",
+  };
+  const referralProps = {
+    coupon: referral,
+    busy,
+    preview: preview && preview.referral ? preview : null,
+    planLabel: grantLabel,
+    canGrant: false,
+    discounted,
+    chargeSats,
+    onChange: onReferralChange,
+    onApply: applyReferral,
+    onClear: clearReferral,
+    label: "Referral",
+    placeholder: "BDI-…",
+    inputId: "intel-referral",
+    note: "Optional. 5,000 sats off the first Lightning invoice. Cannot combine with a coupon.",
+    afterWord: "referral",
   };
 
   return (
@@ -435,11 +539,12 @@ export default function SubscribePage() {
         {!user ? (
           <div className="intel-panel">
             {queryCoupon ? <CouponBox apply={false} {...couponProps} /> : null}
+            {queryRef ? <CouponBox apply={false} {...referralProps} /> : null}
             <AuthCard
               title="Sign in"
               returnPath={`/subscribe/?plan=${encodeURIComponent(pack)}${
                 couponCode ? `&coupon=${encodeURIComponent(couponCode)}` : ""
-              }`}
+              }${referralCode ? `&ref=${encodeURIComponent(referralCode)}` : ""}`}
               onNostr={onNostr}
               error={loginErr}
             />
@@ -447,6 +552,12 @@ export default function SubscribePage() {
               <details className="intel-coupon-details">
                 <summary>Have a coupon?</summary>
                 <CouponBox apply={false} {...couponProps} />
+              </details>
+            )}
+            {queryRef ? null : (
+              <details className="intel-coupon-details">
+                <summary>Have a referral code?</summary>
+                <CouponBox apply={false} {...referralProps} />
               </details>
             )}
           </div>
@@ -473,6 +584,7 @@ export default function SubscribePage() {
             </h3>
             {lnNote && !canGrant ? <p className="intel-status">{lnNote}</p> : null}
             <CouponBox apply {...couponProps} />
+            <CouponBox apply {...referralProps} />
             {blocked ? (
               <>
                 <p>

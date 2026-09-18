@@ -9,8 +9,10 @@ import {
   consumeSessionFromHash,
   fetchAccountKey,
   fetchMe,
+  fetchReferral,
   loginWithNostr,
   logout,
+  revokeReferral,
 } from "../lib/auth";
 
 const CONNECTOR_NAME = "BTCDecoded Intelligence";
@@ -52,15 +54,27 @@ export default function AccountPage() {
   const [user, setUser] = useState(null);
   const [key, setKey] = useState("");
   const [connector, setConnector] = useState(null);
+  const [referral, setReferral] = useState(null);
   const [status, setStatus] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [busy, setBusy] = useState(false);
 
   async function refresh() {
     try {
-      setUser(await fetchMe());
+      const me = await fetchMe();
+      setUser(me);
+      if (me) {
+        try {
+          setReferral(await fetchReferral());
+        } catch {
+          setReferral(null);
+        }
+      } else {
+        setReferral(null);
+      }
     } catch {
       setUser(null);
+      setReferral(null);
     }
   }
 
@@ -131,8 +145,23 @@ export default function AccountPage() {
     await logout();
     setKey("");
     setConnector(null);
+    setReferral(null);
     setUser(null);
     setStatus("");
+  }
+
+  async function onRevokeReferral() {
+    setStatus("");
+    try {
+      const data = await revokeReferral();
+      setReferral((cur) => ({
+        ...(cur || { balance_sats: 0, ledger: [] }),
+        code: data.code,
+      }));
+      setStatus("New referral code issued.");
+    } catch (err) {
+      setStatus(err instanceof Error ? err.message : String(err));
+    }
   }
 
   const label =
@@ -227,6 +256,41 @@ export default function AccountPage() {
               </div>
             </div>
           )}
+
+          {referral?.code ? (
+            <div className="intel-panel">
+              <h3>Referral</h3>
+              <p className="intel-plan-blurb">
+                Share this code. First Lightning invoice gets 5,000 sats off.
+                You get 5,000 sats of Intelligence credit when that invoice
+                settles. Cannot combine with a coupon. Credit is not withdrawable.
+              </p>
+              <p className="intel-panel-label">Code</p>
+              <CopyField value={referral.code} label="Copy referral code" />
+              <p className="intel-plan-meta">
+                Credit {Number(referral.balance_sats || 0).toLocaleString()} sats
+              </p>
+              <div className="hero-ctas intel-ctas">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={onRevokeReferral}
+                >
+                  Revoke and issue new code
+                </button>
+              </div>
+              {Array.isArray(referral.ledger) && referral.ledger.length ? (
+                <ul className="intel-plan-meta">
+                  {referral.ledger.slice(0, 8).map((row, i) => (
+                    <li key={`${row.created_at}-${i}`}>
+                      {row.delta_sats > 0 ? "+" : ""}
+                      {Number(row.delta_sats).toLocaleString()} · {row.reason}
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ) : null}
 
           {user.has_key ? (
             <div className="intel-panel">

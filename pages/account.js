@@ -403,6 +403,15 @@ export default function AccountPage() {
           </div>
         </div>
       )}
+      <p className="intel-plan-meta">
+        Support:{" "}
+        <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a>
+        . Security:{" "}
+        <a href="mailto:security@thebitcoincommons.org">
+          security@thebitcoincommons.org
+        </a>
+        .
+      </p>
     </IntelChrome>
   );
 }

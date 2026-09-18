@@ -35,7 +35,18 @@ const faqs = [
   },
   {
     q: "Where do I get support?",
-    a: "Documentation lives at docs.thebitcoincommons.org. For current packages use Install. For bugs, GitHub at github.com/BTCDecoded. For project updates, btccommons.substack.com.",
+    a: (
+      <>
+        Email{" "}
+        <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a> for
+        Intelligence billing, keys, and checkout, and for node questions that
+        are not a security report. Security issues go to{" "}
+        <a href="mailto:security@thebitcoincommons.org">
+          security@thebitcoincommons.org
+        </a>
+        . Node docs: docs.thebitcoincommons.org. Bugs: github.com/BTCDecoded.
+      </>
+    ),
   },
 ];
 

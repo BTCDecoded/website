@@ -150,6 +150,38 @@ export default function AccountPage() {
     setStatus("");
   }
 
+  function referralShareUrl(code) {
+    const origin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : "https://btcdecoded.org";
+    return `${origin}/subscribe/?ref=${encodeURIComponent(code)}`;
+  }
+
+  async function onShareReferral() {
+    const url = referral.code ? referralShareUrl(referral.code) : "";
+    if (!url) return;
+    setStatus("");
+    try {
+      if (typeof navigator.share === "function") {
+        await navigator.share({
+          title: "BTCDecoded Intelligence",
+          text: "5,000 sats off your first Lightning invoice.",
+          url,
+        });
+        return;
+      }
+    } catch (err) {
+      if (err && err.name === "AbortError") return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setStatus("Link copied.");
+    } catch {
+      setStatus("Copy the link below.");
+    }
+  }
+
   async function onRevokeReferral() {
     setStatus("");
     try {
@@ -261,16 +293,23 @@ export default function AccountPage() {
             <div className="intel-panel">
               <h3>Referral</h3>
               <p className="intel-plan-blurb">
-                Share this code. First Lightning invoice gets 5,000 sats off.
+                Send this link. First Lightning invoice gets 5,000 sats off.
                 You get 5,000 sats of Intelligence credit when that invoice
                 settles. Cannot combine with a coupon. Credit is not withdrawable.
               </p>
-              <p className="intel-panel-label">Code</p>
-              <CopyField value={referral.code} label="Copy referral code" />
-              <p className="intel-plan-meta">
-                Credit {Number(referral.balance_sats || 0).toLocaleString()} sats
-              </p>
+              <p className="intel-panel-label">Link</p>
+              <CopyField
+                value={referralShareUrl(referral.code)}
+                label="Copy link"
+              />
               <div className="hero-ctas intel-ctas">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={onShareReferral}
+                >
+                  Share
+                </button>
                 <button
                   type="button"
                   className="btn btn-secondary"
@@ -279,6 +318,11 @@ export default function AccountPage() {
                   Revoke and issue new code
                 </button>
               </div>
+              <p className="intel-panel-label">Code</p>
+              <CopyField value={referral.code} label="Copy code" />
+              <p className="intel-plan-meta">
+                Credit {Number(referral.balance_sats || 0).toLocaleString()} sats
+              </p>
               {Array.isArray(referral.ledger) && referral.ledger.length ? (
                 <ul className="intel-plan-meta">
                   {referral.ledger.slice(0, 8).map((row, i) => (

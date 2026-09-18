@@ -13,7 +13,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [MCP server](https://mcp.btcdecoded.org/mcp): Streamable HTTP. OAuth for Claude; Bearer key for Cursor and raw HTTP
 - [Plans](https://btcdecoded.org/pricing/): Trial 15k sats / 7 days / 50 queries per day; Researcher 250 qpd; Developer 500 qpd plus PR review
 - [Checkout](https://btcdecoded.org/subscribe/): Lightning. Same key on upgrade (sat difference only)
-- [Account](https://btcdecoded.org/account/): GitHub or Nostr login, connector fields, API key
+- [Account](https://btcdecoded.org/account/): GitHub or Nostr login, Claude OAuth fields, Bearer key, and client config snippets (Cursor, Hermes, Claude Code, VS Code, Codex, curl)
 
 ## Node (BLVM)
 
@@ -37,6 +37,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 
 - [Homepage](https://btcdecoded.org/)
 - [Logo](https://btcdecoded.org/assets/logo.png): Wordmark (₿ + Decoded), transparent PNG
+- [Share image](https://btcdecoded.org/assets/og.png): Opaque 1200×630 card for unfurlers
 - [Mark](https://btcdecoded.org/assets/logo-mark.png): Orange ₿ circle, transparent PNG
 - [Favicon](https://btcdecoded.org/favicon.ico)
 - [robots.txt](https://btcdecoded.org/robots.txt)

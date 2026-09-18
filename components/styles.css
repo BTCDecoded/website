@@ -3673,6 +3673,33 @@ code {
   font-size: 0.85rem;
 }
 
+.intel-copy--block {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.intel-copy-value--block {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+}
+
+.intel-mcp-client {
+  margin: 0.85rem 0 0;
+  padding-top: 0.35rem;
+}
+
+.intel-mcp-client summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.intel-mcp-client p {
+  margin: 0.4rem 0 0.35rem;
+  font-size: 0.92rem;
+}
+
 .intel-invoice {
   margin-top: 1rem;
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MCP_URL, WORKER_ORIGIN, activeSku, upgradeSkus } from "../lib/api";
+import { mcpSnippets } from "../lib/mcpSnippets";
 import AuthCard from "../components/AuthCard";
 import CopyField from "../components/CopyField";
 import IntelChrome from "../components/IntelChrome";
@@ -152,6 +153,7 @@ export default function AccountPage() {
   const clientId = connector?.oauth_client_id || "";
   const clientSecret = connector?.oauth_client_secret || "";
   const connectorName = connector?.connector_name || CONNECTOR_NAME;
+  const snippets = mcpSnippets({ url: mcpUrl, key });
 
   return (
     <IntelChrome title={user ? "Account" : "Sign in"}>
@@ -231,7 +233,10 @@ export default function AccountPage() {
               <details className="intel-recover">
                 <summary>API key for other MCP clients</summary>
                 <p>
-                  Cursor and raw HTTP use a Bearer key. Claude does not.
+                  Streamable HTTP at the URL above. Send{" "}
+                  <code>Authorization: Bearer</code> plus this key. Claude.ai
+                  uses OAuth, not this key. A model provider key (OpenAI,
+                  Anthropic) is a different secret.
                 </p>
                 <div className="hero-ctas intel-ctas">
                   <button
@@ -247,8 +252,26 @@ export default function AccountPage() {
                     <p className="intel-panel-label">API key</p>
                     <CopyField value={key} label="Copy key" />
                   </>
-                ) : null}
+                ) : (
+                  <p className="intel-status">
+                    Snippets below use YOUR_API_KEY until you reveal the key.
+                  </p>
+                )}
                 {status ? <p className="intel-status">{status}</p> : null}
+                {snippets.map((snip) => (
+                  <details key={snip.id} className="intel-mcp-client">
+                    <summary>
+                      {snip.title}
+                      <span className="intel-plan-meta"> · {snip.where}</span>
+                    </summary>
+                    <p>{snip.note}</p>
+                    <CopyField
+                      value={snip.body}
+                      label="Copy config"
+                      multiline
+                    />
+                  </details>
+                ))}
               </details>
             </div>
           ) : null}

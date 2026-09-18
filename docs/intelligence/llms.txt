@@ -10,7 +10,7 @@ Pay with Lightning. Connect over MCP. Cite the record before citing analysis.
 - Sign in: GitHub or Nostr at https://btcdecoded.org/account/
 - Pay: Lightning at https://btcdecoded.org/subscribe/ — key stays on that account
 - Claude: OAuth custom connector. Settings → Connectors → Add custom connector. Paste name, MCP URL, client ID, and client secret from Account. After Connect, sign in on mcp.btcdecoded.org if asked, then Allow
-- Cursor and raw HTTP: Bearer key from Account (Claude does not use this key)
+- Cursor, Hermes, Claude Code, VS Code, Codex, curl: Bearer key from Account. Client config snippets are on Account after you reveal the key. Claude.ai does not use this key. The header must be `Authorization: Bearer`.
 - Site index: https://btcdecoded.org/llms.txt
 
 ## Plans

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CopyField({ value, label = "Copy" }) {
+export default function CopyField({ value, label = "Copy", multiline = false }) {
   const [done, setDone] = useState(false);
   if (!value) return null;
   async function copy() {
@@ -13,8 +13,12 @@ export default function CopyField({ value, label = "Copy" }) {
     }
   }
   return (
-    <div className="intel-copy">
-      <code className="intel-copy-value">{value}</code>
+    <div className={`intel-copy${multiline ? " intel-copy--block" : ""}`}>
+      <code
+        className={`intel-copy-value${multiline ? " intel-copy-value--block" : ""}`}
+      >
+        {value}
+      </code>
       <button type="button" className="btn btn-secondary intel-copy-btn" onClick={copy}>
         {done ? "Copied" : label}
       </button>

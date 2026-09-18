@@ -155,7 +155,7 @@ export default function AccountPage() {
       typeof window !== "undefined"
         ? window.location.origin
         : "https://btcdecoded.org";
-    return `${origin}/subscribe/?ref=${encodeURIComponent(code)}`;
+    return `${origin}/subscribe/?plan=trial&ref=${encodeURIComponent(code)}`;
   }
 
   async function onShareReferral() {

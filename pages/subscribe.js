@@ -49,6 +49,7 @@ function checkoutStatus(error, extra = {}) {
   if (error === "unknown_referral") return "That referral code isn’t valid.";
   if (error === "revoked_referral") return "That referral code was revoked.";
   if (error === "self_referral") return "You can’t use your own referral code.";
+  if (error === "flagged_referral") return "That referral code is disabled.";
   if (error === "not_first_purchase") {
     return "Referral discount applies to the first Lightning invoice only.";
   }

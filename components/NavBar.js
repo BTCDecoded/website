@@ -5,6 +5,7 @@ import {
   consumeSessionFromHash,
   fetchMe,
 } from "../lib/auth";
+import SiteBrand from "./SiteBrand";
 
 const NAV_GROUPS = [
   {
@@ -123,15 +124,7 @@ export default function NavBar() {
     >
       <div className="nav-bar">
         <div className="nav-logo">
-          <Link href="/" onClick={() => setDrawer(false)}>
-            <img
-              src="/assets/logo.png"
-              alt="BTCDecoded"
-              className="nav-logo__img"
-              width={870}
-              height={285}
-            />
-          </Link>
+          <SiteBrand onClick={() => setDrawer(false)} />
         </div>
 
         <button

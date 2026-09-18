@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta name="theme-color" content="#f7931a" />
+        <meta name="color-scheme" content="light" />
       </Head>
       <body>
         <Main />

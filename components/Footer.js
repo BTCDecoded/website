@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteBrand from "./SiteBrand";
 
 const XIcon = (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -22,15 +23,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container">
-        <Link href="/" className="footer-brand">
-          <img
-            src="/assets/logo.png"
-            alt="BTCDecoded"
-            className="footer-logo"
-            width={870}
-            height={285}
-          />
-        </Link>
+        <SiteBrand className="footer-brand" />
 
         <nav className="footer-nav" aria-label="Footer">
           <div className="footer-col">

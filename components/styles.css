@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 img {
@@ -115,22 +116,34 @@ p {
   gap: 1rem;
 }
 
-.nav-logo a {
+.nav-logo a,
+.site-brand {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   color: var(--text-primary);
   text-decoration: none;
 }
 
-.nav-logo__img {
+.site-brand__mark {
   display: block;
   height: 36px;
-  width: auto;
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.site-brand__word {
+  font-weight: 650;
+  font-size: 1.28rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: inherit;
 }
 
 @media (min-width: 480px) {
-  .nav-logo__img {
+  .site-brand__mark {
     height: 40px;
+    width: 40px;
   }
 }
 
@@ -1745,12 +1758,7 @@ code {
   align-items: center;
   margin-bottom: 2rem;
   text-decoration: none;
-}
-
-.footer-logo {
-  display: block;
-  height: 36px;
-  width: auto;
+  color: var(--text-primary);
 }
 
 .footer-nav {

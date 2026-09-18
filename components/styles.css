@@ -130,6 +130,18 @@ p {
   width: auto;
 }
 
+.site-brand__img--forced-dark {
+  display: none;
+}
+
+html.auto-dark .site-brand__img--light {
+  display: none;
+}
+
+html.auto-dark .site-brand__img--forced-dark {
+  display: block;
+}
+
 @media (min-width: 480px) {
   .site-brand__img {
     height: 40px;

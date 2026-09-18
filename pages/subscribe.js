@@ -11,6 +11,7 @@ import {
   authFetch,
   consumeSessionFromHash,
   fetchMe,
+  fetchReferral,
   loginWithNostr,
 } from "../lib/auth";
 
@@ -136,6 +137,7 @@ export default function SubscribePage() {
   const [pack, setPack] = useState("researcher");
   const [coupon, setCoupon] = useState("");
   const [referral, setReferral] = useState("");
+  const [ownReferral, setOwnReferral] = useState("");
   const [preview, setPreview] = useState(null);
   const [user, setUser] = useState(null);
   const [busy, setBusy] = useState("");
@@ -191,6 +193,25 @@ export default function SubscribePage() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!user) {
+      setOwnReferral("");
+      return undefined;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const data = await fetchReferral();
+        if (!cancelled) setOwnReferral(canonicalCoupon(data.code));
+      } catch {
+        if (!cancelled) setOwnReferral("");
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
 
   useEffect(() => {
     let cancelled = false;
@@ -266,6 +287,14 @@ export default function SubscribePage() {
   async function applyReferral(raw) {
     const code = canonicalCoupon(raw ?? referral);
     if (!user || !code) return;
+    if (user.paid_lightning) {
+      setStatus(checkoutStatus("not_first_purchase"));
+      return;
+    }
+    if (ownReferral && code === ownReferral) {
+      setStatus(checkoutStatus("self_referral"));
+      return;
+    }
     if (canonicalCoupon(coupon)) {
       setStatus(checkoutStatus("coupon_xor_referral"));
       return;
@@ -354,7 +383,11 @@ export default function SubscribePage() {
           body: JSON.stringify({
             package: pack,
             coupon: canonicalCoupon(coupon) || undefined,
-            referral: canonicalCoupon(referral) || undefined,
+            referral:
+              user.paid_lightning ||
+              (ownReferral && canonicalCoupon(referral) === ownReferral)
+                ? undefined
+                : canonicalCoupon(referral) || undefined,
           }),
         },
       );
@@ -396,13 +429,19 @@ export default function SubscribePage() {
 
   useEffect(() => {
     if (!user || !router.isReady || invoice || paid) return;
+    if (user.paid_lightning) return;
     const code = canonicalCoupon(router.query.ref);
     if (!code || autoPreviewed.current === `ref:${code}`) return;
     if (canonicalCoupon(router.query.coupon)) return;
+    if (ownReferral && code === ownReferral) {
+      autoPreviewed.current = `ref:${code}`;
+      setStatus(checkoutStatus("self_referral"));
+      return;
+    }
     autoPreviewed.current = `ref:${code}`;
     applyReferral(code);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, router.isReady, router.query.ref]);
+  }, [user, router.isReady, router.query.ref, ownReferral]);
 
   function onCouponChange(value) {
     setCoupon(canonicalCoupon(value));
@@ -445,6 +484,7 @@ export default function SubscribePage() {
   const grantLabel = (preview && preview.label) || plan.label;
   const discounted = Boolean(preview && !canGrant && listSats > chargeSats);
   const payDisabled = Boolean(busy) || (!canGrant && lnOk === false);
+  const offerReferral = Boolean(user) && !user.paid_lightning;
   const couponCode = canonicalCoupon(coupon);
   const referralCode = canonicalCoupon(referral);
   const queryCoupon = canonicalCoupon(router.query.coupon);
@@ -584,7 +624,7 @@ export default function SubscribePage() {
             </h3>
             {lnNote && !canGrant ? <p className="intel-status">{lnNote}</p> : null}
             <CouponBox apply {...couponProps} />
-            <CouponBox apply {...referralProps} />
+            {offerReferral ? <CouponBox apply {...referralProps} /> : null}
             {blocked ? (
               <>
                 <p>

@@ -38,7 +38,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Homepage](https://btcdecoded.org/)
 - [Logo](https://btcdecoded.org/assets/logo.png): Wordmark (₿ + Decoded), transparent PNG
 - [Logo (dark)](https://btcdecoded.org/assets/logo-white.png): Same wordmark, white type
-- [Share image](https://btcdecoded.org/assets/og.png): Opaque 1200×630 card for unfurlers
+- [Share image](https://btcdecoded.org/assets/og.jpg): Opaque 1200×630 card for unfurlers
 - [Mark](https://btcdecoded.org/assets/logo-mark.png): Orange ₿ circle, transparent PNG
 - [Favicon](https://btcdecoded.org/favicon.ico)
 - [robots.txt](https://btcdecoded.org/robots.txt)

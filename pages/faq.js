@@ -37,16 +37,10 @@ const faqs = [
     q: "Where do I get support?",
     a: (
       <>
-        <a
-          href="https://github.com/BTCDecoded/website/discussions/categories/q-a"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub Discussions
-        </a>{" "}
-        for Intelligence billing, keys, and checkout, and for node questions
-        that are not a security report. Do not paste API keys. Security issues
-        go to{" "}
+        Email{" "}
+        <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a> for
+        Intelligence billing, keys, and checkout, and for node questions that
+        are not a security report. Security issues go to{" "}
         <a href="mailto:security@thebitcoincommons.org">
           security@thebitcoincommons.org
         </a>

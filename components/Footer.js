@@ -66,13 +66,7 @@ export default function Footer() {
                 <Link href="/account/">Account</Link>
               </li>
               <li>
-                <a
-                  href="https://github.com/BTCDecoded/website/discussions/categories/q-a"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Support
-                </a>
+                <a href="mailto:support@btcdecoded.org">Support</a>
               </li>
               <li>
                 <a

@@ -3771,6 +3771,27 @@ code {
   font-size: 1rem;
 }
 
+.intel-input--area {
+  max-width: 36rem;
+  min-height: 8rem;
+  resize: vertical;
+  font: inherit;
+}
+
+.support-form label {
+  display: block;
+  font-weight: 600;
+  margin-top: 0.35rem;
+}
+
+.support-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .intel-coupon {
   margin: 0 0 1.15rem;
 }

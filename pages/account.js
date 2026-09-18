@@ -404,8 +404,7 @@ export default function AccountPage() {
         </div>
       )}
       <p className="intel-plan-meta">
-        Support:{" "}
-        <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a>
+        Support: <Link href="/support/">contact form</Link>
         . Security:{" "}
         <a href="mailto:security@thebitcoincommons.org">
           security@thebitcoincommons.org

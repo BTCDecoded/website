@@ -37,10 +37,10 @@ const faqs = [
     q: "Where do I get support?",
     a: (
       <>
-        Email{" "}
-        <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a> for
-        Intelligence billing, keys, and checkout, and for node questions that
-        are not a security report. Security issues go to{" "}
+        The{" "}
+        <Link href="/support/">Support</Link> form for Intelligence billing,
+        keys, and checkout, and for node questions that are not a security
+        report. Security issues go to{" "}
         <a href="mailto:security@thebitcoincommons.org">
           security@thebitcoincommons.org
         </a>

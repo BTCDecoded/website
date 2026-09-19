@@ -680,6 +680,10 @@ export default function SubscribePage() {
           </div>
         )}
       </div>
+      <p className="intel-fineprint">
+        Checkout is a Bitcoin Lightning payment.{" "}
+        <Link href="/terms/">Terms</Link>.
+      </p>
     </IntelChrome>
   );
 }

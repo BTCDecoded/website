@@ -69,6 +69,9 @@ export default function Footer() {
                 <Link href="/support/">Support</Link>
               </li>
               <li>
+                <Link href="/terms/">Terms</Link>
+              </li>
+              <li>
                 <a
                   href="https://docs.thebitcoincommons.org"
                   target="_blank"
@@ -122,6 +125,7 @@ export default function Footer() {
 
         <p className="footer-bar">
           <span>© 2026 BTCDecoded</span>
+          <Link href="/terms/">Terms</Link>
           <a
             href="https://thebitcoincommons.org"
             target="_blank"

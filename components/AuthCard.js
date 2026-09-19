@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { githubLoginUrl } from "../lib/auth";
 
 export default function AuthCard({
@@ -39,6 +40,9 @@ export default function AuthCard({
       >
         Continue with Nostr
       </button>
+      <p className="auth-card__hint">
+        Continue means you agree to the <Link href="/terms/">Terms</Link>.
+      </p>
       {error ? <p className="auth-card__error">{error}</p> : null}
     </div>
   );

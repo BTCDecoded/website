@@ -15,6 +15,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Checkout](https://btcdecoded.org/subscribe/): Lightning. Same key on upgrade (sat difference only). Referral links use `?plan=trial&ref=`; cannot combine with a coupon
 - [Account](https://btcdecoded.org/account/): GitHub or Nostr login, Claude OAuth fields, Bearer key, client config snippets, and a referral share link / credit
 - [Support](https://btcdecoded.org/support/): Form emails support@btcdecoded.org. Intelligence billing, keys, checkout, and general help
+- [Terms](https://btcdecoded.org/terms/): Lightning plans, accounts, MCP use, and privacy for Intelligence
 - [Security contact](mailto:security@thebitcoincommons.org)
 
 ## Node (BLVM)

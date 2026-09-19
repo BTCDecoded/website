@@ -644,22 +644,28 @@ export default function SubscribePage() {
                 </div>
               </>
             ) : canGrant || !invoice ? (
-              <button
-                type="button"
-                className="btn btn-primary intel-pay-btn"
-                onClick={startPay}
-                disabled={payDisabled}
-              >
-                {busy === "invoice"
-                  ? canGrant
-                    ? "Redeeming…"
-                    : "Creating invoice…"
-                  : canGrant
-                    ? `Redeem ${grantLabel}`
-                    : upgrading
-                      ? `Upgrade to ${plan.label}`
-                      : "Create invoice"}
-              </button>
+              <>
+                <button
+                  type="button"
+                  className="btn btn-primary intel-pay-btn"
+                  onClick={startPay}
+                  disabled={payDisabled}
+                >
+                  {busy === "invoice"
+                    ? canGrant
+                      ? "Redeeming…"
+                      : "Creating invoice…"
+                    : canGrant
+                      ? `Redeem ${grantLabel}`
+                      : upgrading
+                        ? `Upgrade to ${plan.label}`
+                        : "Create invoice"}
+                </button>
+                <p className="intel-fineprint">
+                  Paying or redeeming this plan is agreeing to the{" "}
+                  <Link href="/terms/">Terms</Link>.
+                </p>
+              </>
             ) : (
               <div className="intel-invoice">
                 {preview || discounted ? (
@@ -670,6 +676,10 @@ export default function SubscribePage() {
                 ) : null}
                 <InvoiceQr value={invoice} />
                 <CopyField value={invoice} label="Copy invoice" />
+                <p className="intel-fineprint">
+                  Paying this invoice is agreeing to the{" "}
+                  <Link href="/terms/">Terms</Link>.
+                </p>
               </div>
             )}
             {status ? (
@@ -681,7 +691,7 @@ export default function SubscribePage() {
         )}
       </div>
       <p className="intel-fineprint">
-        Checkout is a Bitcoin Lightning payment.{" "}
+        Paying or redeeming a plan is agreeing to the{" "}
         <Link href="/terms/">Terms</Link>.
       </p>
     </IntelChrome>

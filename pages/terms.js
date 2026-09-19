@@ -48,7 +48,8 @@ export default function TermsPage() {
             Plans are prepaid: a number of days and a daily query cap, as listed
             on <Link href="/pricing/">Plans</Link>. Checkout is a Bitcoin
             Lightning invoice. Once that invoice settles, the payment is on
-            Bitcoin and we cannot reverse it.
+            Bitcoin and we cannot reverse it. Paying that invoice or redeeming
+            a plan is agreeing to this page.
           </p>
           <p>
             If a settled invoice does not activate a key, use{" "}

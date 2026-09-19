@@ -26,6 +26,25 @@ export default function IndexPage() {
                 </Link>
               </div>
             </div>
+            <figure className="intel-hero__media">
+              <video
+                controls
+                playsInline
+                preload="none"
+                poster="/assets/intelligence-recap.jpg"
+                width={1280}
+                height={720}
+                aria-label="The Recap vs. The Passage"
+              >
+                <source
+                  src="/assets/intelligence-recap.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              <figcaption className="visually-hidden">
+                The Recap vs. The Passage — BTCDecoded Intelligence
+              </figcaption>
+            </figure>
             <ul className="intel-hero__facts" aria-label="Intelligence at a glance">
               <li>
                 <span className="intel-hero__k">Sources</span>

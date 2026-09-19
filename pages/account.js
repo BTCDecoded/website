@@ -50,7 +50,17 @@ function expiryLabel(iso) {
   return `until ${date} (${wait})`;
 }
 
+function Field({ label, value, copy }) {
+  return (
+    <div className="intel-field">
+      <p className="intel-panel-label">{label}</p>
+      <CopyField value={value} label={copy} />
+    </div>
+  );
+}
+
 export default function AccountPage() {
+  const [ready, setReady] = useState(false);
   const [user, setUser] = useState(null);
   const [key, setKey] = useState("");
   const [connector, setConnector] = useState(null);
@@ -84,6 +94,7 @@ export default function AccountPage() {
       await consumeSessionFromHash();
       if (!cancelled) {
         await refresh();
+        setReady(true);
       }
     })();
     return () => {
@@ -215,22 +226,28 @@ export default function AccountPage() {
   const clientSecret = connector?.oauth_client_secret || "";
   const connectorName = connector?.connector_name || CONNECTOR_NAME;
   const snippets = mcpSnippets({ url: mcpUrl, key });
+  const title = !ready || user ? "Account" : "Sign in";
+  const lede = !ready
+    ? undefined
+    : user
+      ? user.has_key
+        ? undefined
+        : "Pay while signed in. The key stays on this account."
+      : "GitHub or Nostr. A paid key is stored on this account.";
 
   return (
-    <IntelChrome title={user ? "Account" : "Sign in"}>
-      {user ? (
+    <IntelChrome title={title} lede={lede}>
+      {!ready ? (
+        <p className="intel-status">Loading…</p>
+      ) : user ? (
         <div className="intel-account">
-          <div className="auth-session">
+          <header className="account-id">
             <span className="auth-session__avatar" aria-hidden="true">
               {initial}
             </span>
             <div className="auth-session__who">
               <p className="auth-session__name">{label}</p>
-              <p className="auth-session__meta">
-                {provider}
-                {user.has_key && plan ? ` · ${plan}` : ""}
-                {user.has_key && until ? ` ${until}` : ""}
-              </p>
+              <p className="auth-session__meta">{provider || "Signed in"}</p>
             </div>
             <button
               type="button"
@@ -239,27 +256,59 @@ export default function AccountPage() {
             >
               Sign out
             </button>
-          </div>
+          </header>
+
+          <ul className="account-facts" aria-label="Plan">
+            <li>
+              <span className="account-facts__k">Plan</span>
+              <span>{plan || "None"}</span>
+            </li>
+            <li>
+              <span className="account-facts__k">Access</span>
+              <span>
+                {user.has_key ? until || "Active" : "No subscription"}
+              </span>
+            </li>
+            <li>
+              <span className="account-facts__k">
+                {user.has_key ? (canUpgrade ? "Upgrade" : "Status") : "Next"}
+              </span>
+              {user.has_key && !canUpgrade ? (
+                <span>Active</span>
+              ) : (
+                <Link href="/pricing/">See plans</Link>
+              )}
+            </li>
+          </ul>
+
+          {status ? (
+            <p className="account-flash" role="status">
+              {status}
+            </p>
+          ) : null}
 
           {user.has_key ? (
             <div className="intel-panel intel-panel--ok">
-              <p className="intel-plan-badge">Active</p>
               <h3>Claude connector</h3>
               <p className="intel-plan-blurb">
                 Claude asks for OAuth, not an API key. Settings → Connectors →
                 Add custom connector, then paste these four fields.
               </p>
               {clientId ? (
-                <>
-                  <p className="intel-panel-label">Name</p>
-                  <CopyField value={connectorName} label="Copy name" />
-                  <p className="intel-panel-label">MCP server URL</p>
-                  <CopyField value={mcpUrl} label="Copy URL" />
-                  <p className="intel-panel-label">OAuth client ID</p>
-                  <CopyField value={clientId} label="Copy client ID" />
-                  <p className="intel-panel-label">OAuth client secret</p>
-                  <CopyField value={clientSecret} label="Copy secret" />
-                </>
+                <div className="intel-fields">
+                  <Field label="Name" value={connectorName} copy="Copy name" />
+                  <Field label="MCP server URL" value={mcpUrl} copy="Copy URL" />
+                  <Field
+                    label="OAuth client ID"
+                    value={clientId}
+                    copy="Copy client ID"
+                  />
+                  <Field
+                    label="OAuth client secret"
+                    value={clientSecret}
+                    copy="Copy secret"
+                  />
+                </div>
               ) : (
                 <p className="intel-status">Loading connector fields…</p>
               )}
@@ -267,134 +316,121 @@ export default function AccountPage() {
                 After Connect, sign in on mcp.btcdecoded.org if asked, then Allow
                 Claude.
               </p>
-              {canUpgrade ? (
-                <div className="hero-ctas intel-ctas">
-                  <Link href="/pricing/" className="btn btn-secondary">
-                    Upgrade plan
-                  </Link>
-                </div>
-              ) : null}
             </div>
           ) : (
-            <div className="intel-panel">
-              <h3>No subscription on this login</h3>
-              <p className="intel-plan-blurb">
-                Pay while signed in. The key stays on this account.
-              </p>
-              <div className="hero-ctas intel-ctas">
-                <Link href="/pricing/" className="btn btn-primary">
-                  See plans
-                </Link>
-              </div>
+            <div className="home-ctas intel-ctas">
+              <Link href="/pricing/" className="btn btn-primary">
+                See plans
+              </Link>
             </div>
           )}
 
-          {referral?.code ? (
-            <div className="intel-panel">
-              <h3>Referral</h3>
-              <p className="intel-plan-blurb">
-                Send this link. First Lightning invoice gets 5,000 sats off.
-                You get 5,000 sats of Intelligence credit when that invoice
-                settles. Cannot combine with a coupon. Credit is not withdrawable.
-              </p>
-              <p className="intel-panel-label">Link</p>
-              <CopyField
-                value={referralShareUrl(referral.code)}
-                label="Copy link"
-              />
-              <div className="hero-ctas intel-ctas">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={onShareReferral}
-                >
-                  Share
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={onRevokeReferral}
-                >
-                  Revoke and issue new code
-                </button>
-              </div>
-              <p className="intel-panel-label">Code</p>
-              <CopyField value={referral.code} label="Copy code" />
-              <p className="intel-plan-meta">
-                Credit {Number(referral.balance_sats || 0).toLocaleString()} sats
-              </p>
-              {Array.isArray(referral.ledger) && referral.ledger.length ? (
-                <ul className="intel-plan-meta">
-                  {referral.ledger.slice(0, 8).map((row, i) => (
-                    <li key={`${row.created_at}-${i}`}>
-                      {row.delta_sats > 0 ? "+" : ""}
-                      {Number(row.delta_sats).toLocaleString()} · {row.reason}
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </div>
-          ) : null}
-
-          {user.has_key ? (
-            <div className="intel-panel">
-              <details className="intel-recover">
-                <summary>API key for other MCP clients</summary>
-                <p>
-                  Streamable HTTP at the URL above. Send{" "}
-                  <code>Authorization: Bearer</code> plus this key. Claude.ai
-                  uses OAuth, not this key. A model provider key (OpenAI,
-                  Anthropic) is a different secret.
+          <div className="account-secondary">
+            {referral?.code ? (
+              <div className="intel-panel">
+                <h3>Referral</h3>
+                <p className="intel-plan-blurb">
+                  Send this link. First Lightning invoice gets 5,000 sats off.
+                  You get 5,000 sats of Intelligence credit when that invoice
+                  settles. Cannot combine with a coupon. Credit is not
+                  withdrawable.
                 </p>
-                <div className="hero-ctas intel-ctas">
+                <Field
+                  label="Link"
+                  value={referralShareUrl(referral.code)}
+                  copy="Copy link"
+                />
+                <div className="home-ctas intel-ctas">
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={onShareReferral}
+                  >
+                    Share
+                  </button>
                   <button
                     type="button"
                     className="btn btn-secondary"
-                    onClick={onReveal}
+                    onClick={onRevokeReferral}
                   >
-                    Show API key
+                    Revoke and issue new code
                   </button>
                 </div>
-                {key ? (
-                  <>
-                    <p className="intel-panel-label">API key</p>
-                    <CopyField value={key} label="Copy key" />
-                  </>
-                ) : (
-                  <p className="intel-status">
-                    Snippets below use YOUR_API_KEY until you reveal the key.
+                <Field
+                  label="Code"
+                  value={referral.code}
+                  copy="Copy code"
+                />
+                <p className="intel-plan-meta">
+                  Credit {Number(referral.balance_sats || 0).toLocaleString()}{" "}
+                  sats
+                </p>
+                {Array.isArray(referral.ledger) && referral.ledger.length ? (
+                  <ul className="account-ledger">
+                    {referral.ledger.slice(0, 8).map((row, i) => (
+                      <li key={`${row.created_at}-${i}`}>
+                        <span>
+                          {row.delta_sats > 0 ? "+" : ""}
+                          {Number(row.delta_sats).toLocaleString()}
+                        </span>
+                        <span>{row.reason}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </div>
+            ) : null}
+
+            {user.has_key ? (
+              <div className="intel-panel">
+                <details className="intel-recover">
+                  <summary>API key for other MCP clients</summary>
+                  <p>
+                    Streamable HTTP at the URL above. Send{" "}
+                    <code>Authorization: Bearer</code> plus this key. Claude.ai
+                    uses OAuth, not this key. A model provider key (OpenAI,
+                    Anthropic) is a different secret.
                   </p>
-                )}
-                {status ? <p className="intel-status">{status}</p> : null}
-                {snippets.map((snip) => (
-                  <details key={snip.id} className="intel-mcp-client">
-                    <summary>
-                      {snip.title}
-                      <span className="intel-plan-meta"> · {snip.where}</span>
-                    </summary>
-                    <p>{snip.note}</p>
-                    <CopyField
-                      value={snip.body}
-                      label="Copy config"
-                      multiline
-                    />
-                  </details>
-                ))}
-              </details>
-            </div>
-          ) : null}
+                  <div className="home-ctas intel-ctas">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={onReveal}
+                    >
+                      Show API key
+                    </button>
+                  </div>
+                  {key ? (
+                    <Field label="API key" value={key} copy="Copy key" />
+                  ) : (
+                    <p className="intel-status">
+                      Snippets below use YOUR_API_KEY until you reveal the key.
+                    </p>
+                  )}
+                  {snippets.map((snip) => (
+                    <details key={snip.id} className="intel-mcp-client">
+                      <summary>
+                        {snip.title}
+                        <span className="intel-plan-meta"> · {snip.where}</span>
+                      </summary>
+                      <p>{snip.note}</p>
+                      <CopyField
+                        value={snip.body}
+                        label="Copy config"
+                        multiline
+                      />
+                    </details>
+                  ))}
+                </details>
+              </div>
+            ) : null}
+          </div>
         </div>
       ) : (
-        <div className="intel-split">
-          <article className="intel-plan">
-            <h3>Your profile</h3>
-            <p className="intel-plan-blurb">
-              GitHub or Nostr. A paid key is stored on this account.
-            </p>
-          </article>
+        <div className="intel-account intel-account--guest">
           <div className="intel-panel">
             <AuthCard
-              title="Sign in"
+              title={null}
               returnPath="/account/"
               onNostr={onNostr}
               error={loginErr}
@@ -403,7 +439,7 @@ export default function AccountPage() {
           </div>
         </div>
       )}
-      <p className="intel-plan-meta">
+      <p className="intel-fineprint">
         Support: <Link href="/support/">contact form</Link>
         . Security:{" "}
         <a href="mailto:security@thebitcoincommons.org">

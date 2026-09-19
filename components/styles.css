@@ -3985,8 +3985,8 @@ code {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px;
-  background: #08080b;
-  color: #eeeae3;
+  background: var(--bitcoin-orange);
+  color: #fff;
   font-weight: 700;
   letter-spacing: 0;
 }
@@ -4023,7 +4023,11 @@ code {
 }
 
 .intel-account {
-  max-width: 40rem;
+  max-width: 52rem;
+}
+
+.intel-account--guest {
+  max-width: 24rem;
 }
 
 .intel-account .auth-session,
@@ -4036,5 +4040,140 @@ code {
 }
 
 .intel-account .intel-ctas {
-  margin-top: 0.75rem;
+  margin-top: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.intel-account .intel-plan-meta {
+  margin-bottom: 0;
+}
+
+.account-id {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 0 1.15rem;
+  padding: 0 0 1.05rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.account-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem 1.25rem;
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 1rem 1.15rem;
+  background: var(--panel-warm);
+  border: 1px solid var(--panel-warm-border);
+  border-radius: 12px;
+}
+
+@media (min-width: 560px) {
+  .account-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.account-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.account-facts__k {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.account-facts a {
+  font-weight: 600;
+  color: var(--bitcoin-orange);
+  text-decoration: none;
+}
+
+.account-facts a:hover {
+  text-decoration: underline;
+}
+
+.account-flash {
+  margin: 0 0 1.15rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--code-background);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.intel-fields {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0 0 1rem;
+}
+
+.intel-field .intel-copy {
+  margin: 0;
+}
+
+.intel-account .intel-copy {
+  flex-wrap: nowrap;
+}
+
+.intel-account .intel-copy-value {
+  min-width: 0;
+}
+
+@media (max-width: 520px) {
+  .intel-account .intel-copy {
+    flex-wrap: wrap;
+  }
+}
+
+.account-secondary {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 840px) {
+  .account-secondary {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .account-secondary:has(> :only-child) {
+    grid-template-columns: 1fr;
+  }
+
+  .account-secondary .intel-panel {
+    margin-bottom: 0;
+  }
+}
+
+.account-ledger {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.account-ledger li {
+  display: flex;
+  gap: 0.65rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.account-ledger li span:first-child {
+  flex: 0 0 4.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.intel-page .intel-fineprint {
+  margin-top: 1.5rem;
 }

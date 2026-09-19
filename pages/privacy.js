@@ -29,7 +29,9 @@ export default function PrivacyPage() {
             . This page is the privacy policy for those products.{" "}
             <Link href="/terms/">Terms</Link> cover payment and use.{" "}
             <Link href="/third-party/">Third-party services</Link> lists who
-            else can see data.
+            else can see data.{" "}
+            <Link href="/security/">Security and safety</Link> is the GitHub
+            Marketplace overview.
           </p>
 
           <h2>What we keep</h2>

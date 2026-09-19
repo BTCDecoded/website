@@ -18,6 +18,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Terms](https://btcdecoded.org/terms/): Lightning plans, accounts, MCP use
 - [Privacy](https://btcdecoded.org/privacy/): Account, GitHub App, and live-only private review
 - [Third-party services](https://btcdecoded.org/third-party/): GitHub, Cloudflare, Lightning, MCP clients
+- [Security](https://btcdecoded.org/security/): GitHub App bounds, data governance, no audit reports
 - [Security contact](mailto:security@thebitcoincommons.org)
 
 ## Node (BLVM)

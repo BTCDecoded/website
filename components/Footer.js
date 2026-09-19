@@ -78,6 +78,9 @@ export default function Footer() {
                 <Link href="/third-party/">Third-party</Link>
               </li>
               <li>
+                <Link href="/security/">Security</Link>
+              </li>
+              <li>
                 <a
                   href="https://docs.thebitcoincommons.org"
                   target="_blank"
@@ -134,6 +137,7 @@ export default function Footer() {
           <Link href="/terms/">Terms</Link>
           <Link href="/privacy/">Privacy</Link>
           <Link href="/third-party/">Third-party</Link>
+          <Link href="/security/">Security</Link>
           <a
             href="https://thebitcoincommons.org"
             target="_blank"

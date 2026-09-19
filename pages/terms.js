@@ -9,7 +9,7 @@ export default function TermsPage() {
           <h1>Terms</h1>
           <p className="page-lede">
             Paying for Intelligence or signing in to use it is agreeing to this
-            page. Last updated 18 September 2026.
+            page. Last updated 19 September 2026.
           </p>
         </header>
 
@@ -64,8 +64,11 @@ export default function TermsPage() {
             Use the MCP connector and the key for your own research and tools,
             within the daily cap. Do not share, sell, or rotate keys around a
             cap; do not attack the service; do not use it to break other
-            people’s systems. Developer <code>analyze_pr</code> is for public
-            GitHub pull requests only.
+            people’s systems. MCP <code>analyze_pr</code> and{" "}
+            <code>analyze_issue</code> stay on public GitHub URLs. The GitHub
+            App may read installed private repositories. A private draft may be
+            sent to Workers AI for that review. We do not add that code to the
+            public index. The App never posts a merge verdict.
           </p>
           <p>
             We can suspend a login that is abusing the service or the referral
@@ -81,15 +84,9 @@ export default function TermsPage() {
 
           <h2 id="privacy">Privacy</h2>
           <p>
-            We keep what the product needs: GitHub or Nostr identity, plan and
-            key metadata, Lightning payment data used to credit that login, and
-            support mail you send. Query counts enforce the daily cap. We do
-            not sell that.
-          </p>
-          <p>
-            Sign out from <Link href="/account/">Account</Link>. To close a
-            login, email{" "}
-            <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a>.
+            The policy is on <Link href="/privacy/">Privacy</Link>. Third
+            parties that can receive data are on{" "}
+            <Link href="/third-party/">Third-party services</Link>.
           </p>
 
           <h2>No warranty</h2>

@@ -10,6 +10,8 @@ import {
   fetchAccountKey,
   fetchMe,
   fetchReferral,
+  fetchGithubInstalls,
+  armGithubInstall,
   loginWithNostr,
   logout,
   revokeReferral,
@@ -65,6 +67,7 @@ export default function AccountPage() {
   const [key, setKey] = useState("");
   const [connector, setConnector] = useState(null);
   const [referral, setReferral] = useState(null);
+  const [ghApp, setGhApp] = useState(null);
   const [status, setStatus] = useState("");
   const [loginErr, setLoginErr] = useState("");
   const [busy, setBusy] = useState(false);
@@ -79,12 +82,19 @@ export default function AccountPage() {
         } catch {
           setReferral(null);
         }
+        try {
+          setGhApp(await fetchGithubInstalls());
+        } catch {
+          setGhApp(null);
+        }
       } else {
         setReferral(null);
+        setGhApp(null);
       }
     } catch {
       setUser(null);
       setReferral(null);
+      setGhApp(null);
     }
   }
 
@@ -190,6 +200,17 @@ export default function AccountPage() {
       setStatus("Link copied.");
     } catch {
       setStatus("Copy the link below.");
+    }
+  }
+
+  async function onArmInstall(id) {
+    setStatus("");
+    try {
+      await armGithubInstall(id);
+      setGhApp(await fetchGithubInstalls());
+      setStatus("Install armed.");
+    } catch (err) {
+      setStatus(err instanceof Error ? err.message : String(err));
     }
   }
 
@@ -324,6 +345,62 @@ export default function AccountPage() {
               </Link>
             </div>
           )}
+
+          <div className="intel-panel">
+            <h3>GitHub App</h3>
+            <p className="intel-plan-blurb">
+              Install on repos you want the bot to comment on, including private
+              ones. MCP still reviews public PRs and issues only. Not a merge
+              check. Arming needs an unexpired Developer plan and the GitHub
+              login that installed the App.
+            </p>
+            {ghApp?.install_url ? (
+              <p>
+                <a
+                  className="btn btn-primary"
+                  href={ghApp.install_url}
+                  rel="noopener noreferrer"
+                >
+                  Install on GitHub
+                </a>
+              </p>
+            ) : null}
+            {!user.github ? (
+              <p className="intel-status">
+                Continue with GitHub on this account to arm installs.
+              </p>
+            ) : !ghApp?.developer ? (
+              <p className="intel-status">
+                Developer plan required to arm the bot.
+              </p>
+            ) : null}
+            {ghApp?.installs?.length ? (
+              <ul className="account-facts" aria-label="GitHub installs">
+                {ghApp.installs.map((row) => (
+                  <li key={row.installation_id}>
+                    <span className="account-facts__k">
+                      {row.account_login || row.installation_id}
+                    </span>
+                    {row.armed ? (
+                      <span>Armed</span>
+                    ) : ghApp.developer && user.github ? (
+                      <button
+                        type="button"
+                        className="auth-session__out"
+                        onClick={() => onArmInstall(row.installation_id)}
+                      >
+                        Arm
+                      </button>
+                    ) : (
+                      <span>Unarmed</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="intel-plan-meta">No installs on this GitHub login yet.</p>
+            )}
+          </div>
 
           <div className="account-secondary">
             {referral?.code ? (

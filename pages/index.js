@@ -4,14 +4,6 @@ import { blvmDisplayTag } from "../lib/blvmReleaseMeta";
 export default function IndexPage() {
   return (
     <>
-      <div className="release-banner">
-        <span className="release-banner-badge">{blvmDisplayTag}</span>
-        <span className="release-banner-text">
-          Latest release.{" "}
-          <a href="https://btcdecoded.org/install/">install →</a>
-        </span>
-      </div>
-
       <section className="intel-feature intel-feature--home" aria-labelledby="intel-feature-heading">
         <div className="container">
           <article className="intel-hero">
@@ -67,12 +59,9 @@ export default function IndexPage() {
               verified downloads.
             </p>
             <div className="home-ctas">
-              <a
-                href="https://btcdecoded.org/install/"
-                className="btn btn-primary"
-              >
+              <Link href="/install/" className="btn btn-primary">
                 Download {blvmDisplayTag}
-              </a>
+              </Link>
               <Link href="/whyblvm/" className="btn btn-secondary">
                 Why BLVM?
               </Link>
@@ -85,6 +74,13 @@ export default function IndexPage() {
                 Orange Paper
               </a>
             </div>
+            <p className="release-note">
+              <span className="release-note__badge">{blvmDisplayTag}</span>
+              <span>
+                Latest release.{" "}
+                <Link href="/install/">install →</Link>
+              </span>
+            </p>
           </article>
         </div>
       </section>

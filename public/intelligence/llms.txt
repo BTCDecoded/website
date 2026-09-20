@@ -26,7 +26,7 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 
 ## Layers
 
-- curated (~28k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs
+- curated (~28k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs
 - record (~759k passages): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
 - total nearly 787k passages (28,356 + 758,543 ingest)
@@ -52,10 +52,10 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 - Bitcoin Commons book chapters
 - Select articles (`source=articles`): Wei Dai, b-money (November 1998, http://www.weidai.com/bmoney.txt); Adam Back, Hashcash (1 August 2002, http://www.hashcash.org/papers/hashcash.pdf); Hal Finney, RPOW (15 August 2004, https://nakamotoinstitute.org/library/rpow/); Nick Szabo, Bit gold (29 December 2005, https://nakamotoinstitute.org/library/bit-gold/); Joseph Poon and Thaddeus Dryja, The Bitcoin Lightning Network (14 January 2016 draft 0.5.9.2, https://lightning.network/lightning-network-paper.pdf)
 - Academic publications (`source=papers`): protocol and security papers. OA fulltext where licensed (arXiv / IACR / Ledger); bibliographic stubs for paywalled keep. Pin with `source=papers`. Cite author, year, DOI or arXiv. Not mixed into `source=articles`.
-- Open textbooks (`source=textbooks`): Learning Bitcoin from the Command Line (Allen/Appelcline/Blockchain Commons, CC BY 4.0, v2.2.2); Bitcoin Programming Textbook (Karasavvas, CC BY-SA 4.0); Bitcoin Developer Reference (minium, CC BY-SA 4.0); Elementary Bitcoin (Carvalho, CC BY-SA 4.0); Programming the Blockchain in C# (Dorier, CC BY-SA 3.0); Book of Bitcoin preface and commentary (asherp, CC BY 4.0 — not chain-rendered pages); Mastering Bitcoin 2nd ed print 3 (Antonopoulos, CC BY-SA 4.0); Mastering Bitcoin 3rd ed (Antonopoulos/Harding, CC BY-SA 4.0); Mastering the Lightning Network 1st ed (Antonopoulos/Osuntokun/Pickhardt, CC BY-SA 4.0); Lightning BOLTs (CC BY 4.0); Mastering Taproot (Zhang, CC BY-SA 4.0); bitcoin.org developer docs including RPC reference (MIT); Bitcoin Optech English topics and newsletters (public domain per Optech README)
+- Open textbooks (`source=textbooks`): Learning Bitcoin from the Command Line (Allen/Appelcline/Blockchain Commons, CC BY 4.0, v2.2.2); Bitcoin Programming Textbook (Karasavvas, CC BY-SA 4.0); Bitcoin Developer Reference (minium, CC BY-SA 4.0); Elementary Bitcoin (Carvalho, CC BY-SA 4.0); Programming the Blockchain in C# (Dorier, CC BY-SA 3.0); Book of Bitcoin preface and commentary (asherp, CC BY 4.0 — not chain-rendered pages); Mastering Bitcoin 2nd ed print 3 (Antonopoulos, CC BY-SA 4.0); Mastering Bitcoin 3rd ed (Antonopoulos/Harding, CC BY-SA 4.0); Mastering the Lightning Network 1st ed (Antonopoulos/Osuntokun/Pickhardt, CC BY-SA 4.0); Mastering Taproot (Zhang, CC BY-SA 4.0); bitcoin.org developer docs including RPC reference (MIT); Bitcoin Optech English topics and newsletters (public domain per Optech README)
 - Nostr NIPs (`source=nips`): protocol NIPs from nostr-protocol/nips
 - Stratum V2 (`source=sv2`): mining protocol spec from stratum-mining/sv2-spec
-- Lightning extras (`source=ln-spec`): BLIPs, LNURL LUDs, LSP spec
+- Lightning extras (`source=ln-spec`): Lightning BOLTs, BLIPs, LNURL LUDs, LSP spec
 - Tooling docs (`source=tooling`): BDK book, HWI, LDK site, LND docs, CLN doc, miniscript README, Sparrow Wallet docs
 - Footnotes include domain: protocol, lightning, mining, tooling, security, nostr, governance
 - BLVM spec and Orange Paper pointer

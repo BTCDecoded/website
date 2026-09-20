@@ -81,12 +81,15 @@ export default function Footer() {
                 <Link href="/security/">Security</Link>
               </li>
               <li>
+                <Link href="/docs/">Intelligence docs</Link>
+              </li>
+              <li>
                 <a
                   href="https://docs.thebitcoincommons.org"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Docs
+                  Node docs
                 </a>
               </li>
             </ul>

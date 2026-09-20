@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 const ITEMS = [
   { href: "/intelligence/", label: "Overview" },
+  { href: "/docs/", label: "Docs" },
   { href: "/pricing/", label: "Plans" },
   { href: "/subscribe/", label: "Checkout" },
   { href: "/account/", label: "Account" },

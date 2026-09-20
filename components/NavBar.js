@@ -34,6 +34,7 @@ const NAV_GROUPS = [
     title: "Intelligence",
     items: [
       { href: "/intelligence/", title: "Overview" },
+      { href: "/docs/", title: "Docs" },
       { href: "/pricing/", title: "Plans" },
     ],
   },

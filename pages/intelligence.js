@@ -48,6 +48,9 @@ export default function IntelligencePage() {
                 <Link href="/pricing/" className="btn btn-secondary">
                   See plans
                 </Link>
+                <Link href="/docs/" className="btn btn-outline">
+                  Docs
+                </Link>
               </>
             ) : signedIn ? (
               <>
@@ -57,6 +60,9 @@ export default function IntelligencePage() {
                 <Link href="/pricing/" className="btn btn-secondary">
                   See plans
                 </Link>
+                <Link href="/docs/" className="btn btn-outline">
+                  Docs
+                </Link>
               </>
             ) : (
               <>
@@ -65,6 +71,9 @@ export default function IntelligencePage() {
                 </Link>
                 <Link href="/pricing/" className="btn btn-secondary">
                   See plans
+                </Link>
+                <Link href="/docs/" className="btn btn-outline">
+                  Docs
                 </Link>
               </>
             )}

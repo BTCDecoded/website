@@ -24,6 +24,9 @@ export default function IndexPage() {
                 <Link href="/intelligence/" className="btn btn-secondary">
                   See Intelligence
                 </Link>
+                <Link href="/docs/" className="btn btn-outline">
+                  Docs
+                </Link>
               </div>
             </div>
             <figure className="intel-hero__media">
@@ -56,7 +59,7 @@ export default function IndexPage() {
               </li>
               <li>
                 <span className="intel-hero__k">Access</span>
-                <span>Trial and Researcher</span>
+                <span>Trial through Developer</span>
               </li>
               <li>
                 <span className="intel-hero__k">Connect</span>
@@ -85,12 +88,12 @@ export default function IndexPage() {
                 Why BLVM?
               </Link>
               <a
-                href="https://thebitcoincommons.org/orange-paper.html"
+                href="https://docs.thebitcoincommons.org"
                 className="btn btn-outline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Orange Paper
+                Docs
               </a>
             </div>
             <p className="release-note">

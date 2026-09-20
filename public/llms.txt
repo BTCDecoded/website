@@ -9,6 +9,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 ## Intelligence
 
 - [Overview](https://btcdecoded.org/intelligence/): What is in the index
+- [Docs](https://btcdecoded.org/docs/): MCP, tools, GitHub App
 - [Recap vs the Passage](https://btcdecoded.org/assets/intelligence-recap.mp4): 3:37 homepage recap on the Intelligence card
 - [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules, MCP
 - [MCP server](https://mcp.btcdecoded.org/mcp): Streamable HTTP. OAuth for Claude; Bearer key for Cursor and raw HTTP

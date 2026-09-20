@@ -51,7 +51,8 @@ export default function PrivacyPage() {
             including private ones, to write one cited review comment and a
             neutral check. It does not post a merge verdict. MCP{" "}
             <code>analyze_pr</code> and <code>analyze_issue</code> stay on
-            public GitHub URLs.
+            public GitHub URLs. MCP <code>analyze_submission</code> may pack an
+            optional public GitHub PR; it does not fetch arbitrary URLs.
           </p>
           <p>
             Private review is live-only. We do not put those patches or issue

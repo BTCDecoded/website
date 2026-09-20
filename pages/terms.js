@@ -65,10 +65,14 @@ export default function TermsPage() {
             within the daily cap. Do not share, sell, or rotate keys around a
             cap; do not attack the service; do not use it to break other
             people’s systems. MCP <code>analyze_pr</code> and{" "}
-            <code>analyze_issue</code> stay on public GitHub URLs. The GitHub
-            App may read installed private repositories. A private draft may be
-            sent to Workers AI for that review. We do not add that code to the
-            public index. The App never posts a merge verdict.
+            <code>analyze_issue</code> stay on public GitHub URLs. MCP{" "}
+            <code>analyze_submission</code> is an advisory spec-versus-submission
+            check for Bearer automation. It does not fetch arbitrary URLs. An
+            optional <code>github_pr</code> must be a public GitHub pull
+            request. It is not a merge or payout verdict. The GitHub App may
+            read installed private repositories. A private draft may be sent to
+            Workers AI for that review. We do not add that code to the public
+            index. The App never posts a merge verdict.
           </p>
           <p>
             We can suspend a login that is abusing the service or the referral

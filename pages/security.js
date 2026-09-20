@@ -27,7 +27,9 @@ export default function SecurityPage() {
             <strong>neutral</strong> check on installed repositories. It does
             not approve, reject, or merge. Humans keep merge authority. MCP{" "}
             <code>analyze_pr</code> / <code>analyze_issue</code> stay on public
-            GitHub URLs. Private review is the App webhook path only.
+            GitHub URLs. MCP <code>analyze_submission</code> is advisory. An
+            optional <code>github_pr</code> must be a public GitHub pull
+            request. Private review is the App webhook path only.
           </p>
 
           <h2>Risk management</h2>

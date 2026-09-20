@@ -94,8 +94,8 @@ export default function IntelligencePage() {
         <h2 id="intel-index-heading">What’s in the index</h2>
         <p>
           Every plan searches both layers.{" "}
-          <Link href="/pricing/">Plans</Link> differ by days, query cap, and
-          public-PR review.
+          <Link href="/pricing/">Plans</Link> differ by days, query cap,
+          public-PR review, and Bearer automation tools.
         </p>
         <div className="intel-index__grid">
           <article>

@@ -3891,19 +3891,35 @@ code {
 .intel-qr {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin: 0 0 1rem;
   padding: 0.85rem;
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 8px;
-  width: fit-content;
+  width: 220px;
+  min-width: 220px;
+  box-sizing: content-box;
 }
 
 .intel-qr img {
   display: block;
   width: 220px;
   height: 220px;
+  max-width: none;
   image-rendering: pixelated;
+}
+
+.intel-qr__fallback {
+  margin: 0;
+  width: 220px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
 }
 
 .intel-status {

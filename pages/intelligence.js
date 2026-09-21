@@ -7,6 +7,7 @@ import {
   INDEX_RECORD,
 } from "../lib/api";
 import IntelChrome from "../components/IntelChrome";
+import IntelRecap from "../components/IntelRecap";
 import { consumeSessionFromHash, fetchMe } from "../lib/auth";
 
 export default function IntelligencePage() {
@@ -79,6 +80,7 @@ export default function IntelligencePage() {
             )}
           </div>
         </div>
+        <IntelRecap />
         <ul className="intel-hero__facts" aria-label="Corpus at a glance">
           <li>
             <span className="intel-hero__k">Curated {CORPUS.curatedShort}</span>

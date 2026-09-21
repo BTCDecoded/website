@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { blvmDisplayTag } from "../lib/blvmReleaseMeta";
+import IntelRecap from "../components/IntelRecap";
 
 export default function IndexPage() {
   return (
@@ -29,25 +30,7 @@ export default function IndexPage() {
                 </Link>
               </div>
             </div>
-            <figure className="intel-hero__media">
-              <video
-                controls
-                playsInline
-                preload="none"
-                poster="/assets/intelligence-recap.jpg"
-                width={1280}
-                height={720}
-                aria-label="BTCDecoded Intelligence"
-              >
-                <source
-                  src="/assets/intelligence-recap.mp4"
-                  type="video/mp4"
-                />
-              </video>
-              <figcaption className="visually-hidden">
-                BTCDecoded Intelligence
-              </figcaption>
-            </figure>
+            <IntelRecap />
             <ul className="intel-hero__facts" aria-label="Intelligence at a glance">
               <li>
                 <span className="intel-hero__k">Sources</span>

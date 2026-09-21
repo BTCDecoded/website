@@ -3271,14 +3271,16 @@ code {
 }
 
 @media (min-width: 900px) {
-  .intel-feature--home .intel-hero {
+  .intel-feature--home .intel-hero,
+  .intel-page .intel-hero {
     display: grid;
     grid-template-columns: minmax(16rem, 1fr) minmax(20rem, 1.15fr);
     align-items: center;
     gap: 1.75rem 2rem;
   }
 
-  .intel-feature--home .intel-hero__facts {
+  .intel-feature--home .intel-hero__facts,
+  .intel-page .intel-hero__facts {
     grid-column: 1 / -1;
   }
 }

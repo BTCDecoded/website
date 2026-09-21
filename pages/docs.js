@@ -7,7 +7,7 @@ const APP_INSTALL =
 
 const SEARCH_TOOLS = [
   ["search", "Cited passages. If the reply says the index had no passage, stop there."],
-  ["assess_argument", "Match a claim to a documented discourse pattern, with cites."],
+  ["assess_argument", "Named game, numbered claim, or monopoly fallacy from stored policy docs."],
   ["get_contributor_profile", "Public-record facts for a GitHub login. Unknown logins are not found."],
   ["get_passage", "The stored excerpt for a cite. Not a live crawl."],
   ["get_snapshot", "Replay a dated report. Free. A new date is a new tool call."],

@@ -5,8 +5,8 @@ description: >-
   Bitcoin actor, pull proposal precedent, score a spec-versus-submission with
   clause ids, and arm the GitHub App for a gated PR comment. Use when the user
   names Intelligence, MCP cites, analyze_submission, find_precedent,
-  get_contributor_profile, get_snapshot, intel:// locators, or a Developer App
-  review comment.
+  get_contributor_profile, get_snapshot, assess_argument, intel:// locators,
+  discourse game, fallacy, or a Developer App review comment.
 ---
 
 # BTCDecoded Intelligence
@@ -28,6 +28,12 @@ MCP: `POST https://mcp.btcdecoded.org/mcp` (Streamable HTTP). Never call TypeSaf
 
 1. `find_precedent` with the proposal title, BIP number, or change description.
 2. Gold is a heading or URL token already on a cite. There is no disposition field. Do not emit merged/rejected/stalled unless that string is already on the cite.
+
+## Argument
+
+1. `assess_argument` with the claim or thread excerpt.
+2. Pass through `kind` (`game` | `claim` | `fallacy`) and `pattern` (the stored heading). Filename stays on the cite `doc`.
+3. Pass through cite `uri` and `layer`. Do not invent a game, claim number, or fallacy. Do not call TypeSafe. These files are product policy, not the historical record.
 
 ## Spec verdict
 

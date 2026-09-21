@@ -37,7 +37,7 @@ export default function IndexPage() {
                 poster="/assets/intelligence-recap.jpg"
                 width={1280}
                 height={720}
-                aria-label="The Recap vs. The Passage"
+                aria-label="BTCDecoded Intelligence"
               >
                 <source
                   src="/assets/intelligence-recap.mp4"
@@ -45,7 +45,7 @@ export default function IndexPage() {
                 />
               </video>
               <figcaption className="visually-hidden">
-                The Recap vs. The Passage — BTCDecoded Intelligence
+                BTCDecoded Intelligence
               </figcaption>
             </figure>
             <ul className="intel-hero__facts" aria-label="Intelligence at a glance">

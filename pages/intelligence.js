@@ -37,7 +37,7 @@ export default function IntelligencePage() {
           <h1>Bitcoin’s public coordination record, searchable.</h1>
           <p className="intel-hero__lede">
             Not a live price desk. Not chain analytics. Pay with Lightning.
-            Connect over MCP.
+            Connect over Model Context Protocol (MCP).
           </p>
           <div className="hero-ctas">
             {hasKey ? (
@@ -94,7 +94,7 @@ export default function IntelligencePage() {
           </li>
           <li>
             <span className="intel-hero__k">Connect</span>
-            <span>MCP</span>
+            <span>Model Context Protocol (MCP)</span>
           </li>
         </ul>
       </article>
@@ -153,7 +153,7 @@ export default function IntelligencePage() {
           <span className="intel-flow__n">3</span>
           <div>
             <strong>Connect</strong>
-            <p>MCP. Claude uses OAuth; others use a Bearer key.</p>
+            <p>Model Context Protocol (MCP). Claude uses OAuth; others use a Bearer key.</p>
           </div>
         </li>
         <li>

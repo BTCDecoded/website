@@ -63,7 +63,7 @@ export default function IndexPage() {
               </li>
               <li>
                 <span className="intel-hero__k">Connect</span>
-                <span>Search and MCP</span>
+                <span>Search and Model Context Protocol (MCP)</span>
               </li>
             </ul>
           </article>

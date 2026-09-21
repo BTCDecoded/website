@@ -11,25 +11,42 @@ import {
 export default function SiteHead() {
   const router = useRouter();
   const meta = pageMeta(router.pathname);
+  const path = (router.pathname || "/").replace(/\/$/, "") || "/";
+  const graph = [
+    {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_ORIGIN,
+      logo: ORG_LOGO,
+      sameAs: [
+        "https://x.com/DecodeBitcoin",
+        "https://github.com/BTCDecoded",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_ORIGIN,
+    },
+  ];
+  if (path === "/intelligence") {
+    graph.push({
+      "@type": "SoftwareApplication",
+      name: "BTCDecoded Intelligence",
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "Web",
+      url: meta.url,
+      description: meta.description,
+      offers: {
+        "@type": "Offer",
+        url: `${SITE_ORIGIN}/pricing/`,
+        priceCurrency: "BTC",
+      },
+    });
+  }
   const jsonLd = {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        name: SITE_NAME,
-        url: SITE_ORIGIN,
-        logo: ORG_LOGO,
-        sameAs: [
-          "https://x.com/DecodeBitcoin",
-          "https://github.com/BTCDecoded",
-        ],
-      },
-      {
-        "@type": "WebSite",
-        name: SITE_NAME,
-        url: SITE_ORIGIN,
-      },
-    ],
+    "@graph": graph,
   };
 
   return (

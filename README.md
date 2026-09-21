@@ -9,6 +9,7 @@ Static marketing site for [btcdecoded.org](https://btcdecoded.org), published to
 - **MathJax** on the Orange Paper page via `better-react-mathjax`
 - **Assets** live under `public/` (e.g. `public/assets/images/spec-map.jpg`) and are served at `/assets/...` after export
 - **`public/llms.txt`** and **`public/robots.txt`** — machine-readable site index ([llmstxt.org](https://llmstxt.org/) convention), copied to the site root on export
+- **`public/intelligence/SKILL.md`** — agent skill (actor / precedent / spec / App). Served at `/intelligence/SKILL.md`
 
 ## Install page (`/install`)
 

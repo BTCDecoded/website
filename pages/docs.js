@@ -10,6 +10,7 @@ const SEARCH_TOOLS = [
   ["assess_argument", "Match a claim to a documented discourse pattern, with cites."],
   ["get_contributor_profile", "Public-record facts for a GitHub login. Unknown logins are not found."],
   ["get_passage", "The stored excerpt for a cite. Not a live crawl."],
+  ["get_snapshot", "Replay a dated report. Free. A new date is a new tool call."],
   ["verify_claim", "Whether a stored excerpt supports a claim."],
 ];
 
@@ -66,7 +67,8 @@ export default function IntelligenceDocsPage() {
           </div>
           <p>
             <code>tools/list</code> is public. <code>tools/call</code> needs
-            the key.
+            the key. Agents: fetch{" "}
+            <a href="/intelligence/SKILL.md">/intelligence/SKILL.md</a>.
           </p>
           <pre className="intel-docs-pre">{`curl -s ${MCP_URL} \\
   -H "Authorization: Bearer YOUR_API_KEY" \\

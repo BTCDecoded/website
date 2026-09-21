@@ -4,6 +4,7 @@ Allow: /
 
 Sitemap: https://btcdecoded.org/sitemap.xml
 
-# llmstxt.org — site index, then Intelligence agent spec
+# llmstxt.org — site index, then Intelligence agent spec and skill
 # https://btcdecoded.org/llms.txt
 # https://btcdecoded.org/intelligence/llms.txt
+# https://btcdecoded.org/intelligence/SKILL.md

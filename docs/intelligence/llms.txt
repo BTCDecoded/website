@@ -12,6 +12,7 @@ Pay with Lightning. Connect over MCP. Cite the record before citing analysis.
 - Claude: OAuth custom connector. Settings → Connectors → Add custom connector. Paste name, MCP URL, client ID, and client secret from Account. After Connect, sign in on mcp.btcdecoded.org if asked, then Allow
 - Cursor, Hermes, Claude Code, VS Code, Codex, curl: Bearer key from Account. Client config snippets are on Account after you reveal the key. Claude.ai does not use this key. The header must be `Authorization: Bearer`.
 - Site index: https://btcdecoded.org/llms.txt
+- Agent skill: https://btcdecoded.org/intelligence/SKILL.md
 - Support: https://btcdecoded.org/support/ (form emails support@btcdecoded.org). Security: mailto:security@thebitcoincommons.org
 
 ## Plans
@@ -20,16 +21,16 @@ Every plan searches both layers. Same key on upgrade (sat difference only).
 
 - Trial: 15,000 sats, 7 days, 50 queries/day
 - Researcher: 50,000 / 128,000 / 240,000 / 456,000 sats for 30 / 90 / 180 / 365 days, 250 queries/day
-- Developer: 100,000 / 255,000 / 480,000 / 913,000 sats for 30 / 90 / 180 / 365 days, 500 queries/day, plus `analyze_pr` on public GitHub PRs (4000-char patch pack; private repos fail; 10 queries each) and Developer retrieval tools (`find_discourse`, `find_precedent`, `find_incident`, `find_spec_impl`).
+- Developer: 100,000 / 255,000 / 480,000 / 913,000 sats for 30 / 90 / 180 / 365 days, 500 queries/day, plus MCP `analyze_pr` / `analyze_issue` on public GitHub URLs (private repos fail; 10 queries each), MCP `analyze_submission` (advisory spec-versus-submission for Bearer automation; `met` / `not_met` / `ambiguous`; optional public GitHub PR only; 10 queries), App comments on installed repos including private (live-only; 10 queries each), and Developer retrieval tools (`find_discourse`, `find_precedent`, `find_incident`, `find_spec_impl`).
 
 Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdecoded.org/subscribe/), [Account](https://btcdecoded.org/account/).
 
 ## Layers
 
-- curated (~24k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers
+- curated (~28k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs
 - record (~759k passages): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
-- total nearly 783k passages (24,181 + 758,543 ingest)
+- total nearly 787k passages (28,356 + 758,543 ingest)
 
 ## Full record (~759k)
 
@@ -44,7 +45,7 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 - IRC review channel logs (~371k)
 - Historical BTC/USD every daily close
 
-## Curated (~24k passages)
+## Curated (~28k passages)
 
 - Research findings and data
 - Canonical maintainer data
@@ -53,6 +54,11 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 - Select articles (`source=articles`): Wei Dai, b-money (November 1998, http://www.weidai.com/bmoney.txt); Adam Back, Hashcash (1 August 2002, http://www.hashcash.org/papers/hashcash.pdf); Hal Finney, RPOW (15 August 2004, https://nakamotoinstitute.org/library/rpow/); Nick Szabo, Bit gold (29 December 2005, https://nakamotoinstitute.org/library/bit-gold/); Joseph Poon and Thaddeus Dryja, The Bitcoin Lightning Network (14 January 2016 draft 0.5.9.2, https://lightning.network/lightning-network-paper.pdf)
 - Academic publications (`source=papers`): protocol and security papers. OA fulltext where licensed (arXiv / IACR / Ledger); bibliographic stubs for paywalled keep. Pin with `source=papers`. Cite author, year, DOI or arXiv. Not mixed into `source=articles`.
 - Open textbooks (`source=textbooks`): Learning Bitcoin from the Command Line (Allen/Appelcline/Blockchain Commons, CC BY 4.0, v2.2.2); Bitcoin Programming Textbook (Karasavvas, CC BY-SA 4.0); Bitcoin Developer Reference (minium, CC BY-SA 4.0); Elementary Bitcoin (Carvalho, CC BY-SA 4.0); Programming the Blockchain in C# (Dorier, CC BY-SA 3.0); Book of Bitcoin preface and commentary (asherp, CC BY 4.0 — not chain-rendered pages); Mastering Bitcoin 2nd ed print 3 (Antonopoulos, CC BY-SA 4.0); Mastering Bitcoin 3rd ed (Antonopoulos/Harding, CC BY-SA 4.0); Mastering the Lightning Network 1st ed (Antonopoulos/Osuntokun/Pickhardt, CC BY-SA 4.0); Lightning BOLTs (CC BY 4.0); Mastering Taproot (Zhang, CC BY-SA 4.0); bitcoin.org developer docs including RPC reference (MIT); Bitcoin Optech English topics and newsletters (public domain per Optech README)
+- Nostr NIPs (`source=nips`): protocol NIPs from nostr-protocol/nips
+- Stratum V2 (`source=sv2`): mining protocol spec from stratum-mining/sv2-spec
+- Lightning extras (`source=ln-spec`): BLIPs, LNURL LUDs, LSP spec
+- Tooling docs (`source=tooling`): BDK book, HWI, LDK site, LND docs, CLN doc, miniscript README, Sparrow Wallet docs
+- Footnotes include domain: protocol, lightning, mining, tooling, security, nostr, governance
 - BLVM spec and Orange Paper pointer
 - BLVM docs
 - Bitcoin Commons whitepaper

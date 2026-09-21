@@ -12,6 +12,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Docs](https://btcdecoded.org/docs/): MCP, tools, GitHub App
 - [Recap vs the Passage](https://btcdecoded.org/assets/intelligence-recap.mp4): 3:37 homepage recap on the Intelligence card
 - [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules, MCP
+- [Agent skill](https://btcdecoded.org/intelligence/SKILL.md): Actor, precedent, spec verdict, App comment, cite URIs, snapshots
 - [MCP server](https://mcp.btcdecoded.org/mcp): Streamable HTTP. OAuth for Claude; Bearer key for Cursor and raw HTTP
 - [Plans](https://btcdecoded.org/pricing/): Trial 15k sats / 7 days / 50 queries per day; Researcher 250 qpd; Developer 500 qpd plus public GitHub PR review, advisory spec checks over Bearer MCP (`analyze_submission`), and cited retrieval tools
 - [Checkout](https://btcdecoded.org/subscribe/): Lightning. Same key on upgrade (sat difference only). Referral links use `?plan=trial&ref=`; cannot combine with a coupon

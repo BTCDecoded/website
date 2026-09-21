@@ -2,19 +2,25 @@
 
 > Cited search over Bitcoin’s public coordination record (Intelligence), plus the BLVM full node. Same chain as Bitcoin Core — not a new coin.
 
-BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~759k contemporaneous passages) plus a curated ~24k passages of specs, maps, textbooks, research, and academic papers. Pay with Lightning. Connect over MCP at `https://mcp.btcdecoded.org/mcp`. Claude uses OAuth; Cursor and other clients use a Bearer key. Sign in with GitHub or Nostr, then pay on this site so the key stays on the account.
+BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, Delving, Bitcointalk, Satoshi, BIPs, and Core source (~759k contemporaneous passages) plus a curated ~28k passages of specs, maps, textbooks, research, academic papers, Nostr NIPs, Stratum V2, Lightning extras, and tooling docs. Pay with Lightning. Connect over MCP at `https://mcp.btcdecoded.org/mcp`. Claude uses OAuth; Cursor and other clients use a Bearer key. Sign in with GitHub or Nostr, then pay on this site so the key stays on the account.
 
 The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node with the consensus rules written down. Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
 
 ## Intelligence
 
 - [Overview](https://btcdecoded.org/intelligence/): What is in the index
+- [Recap vs the Passage](https://btcdecoded.org/assets/intelligence-recap.mp4): 3:37 homepage recap on the Intelligence card
 - [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules, MCP
+- [Agent skill](https://btcdecoded.org/intelligence/SKILL.md): Actor, precedent, spec verdict, App comment, cite URIs, snapshots
 - [MCP server](https://mcp.btcdecoded.org/mcp): Streamable HTTP. OAuth for Claude; Bearer key for Cursor and raw HTTP
-- [Plans](https://btcdecoded.org/pricing/): Trial 15k sats / 7 days / 50 queries per day; Researcher 250 qpd; Developer 500 qpd plus public GitHub PR review and cited retrieval tools
+- [Plans](https://btcdecoded.org/pricing/): Trial 15k sats / 7 days / 50 queries per day; Researcher 250 qpd; Developer 500 qpd plus public GitHub PR review, advisory spec checks over Bearer MCP (`analyze_submission`), and cited retrieval tools
 - [Checkout](https://btcdecoded.org/subscribe/): Lightning. Same key on upgrade (sat difference only). Referral links use `?plan=trial&ref=`; cannot combine with a coupon
 - [Account](https://btcdecoded.org/account/): GitHub or Nostr login, Claude OAuth fields, Bearer key, client config snippets, and a referral share link / credit
 - [Support](https://btcdecoded.org/support/): Form emails support@btcdecoded.org. Intelligence billing, keys, checkout, and general help
+- [Terms](https://btcdecoded.org/terms/): Lightning plans, accounts, MCP use
+- [Privacy](https://btcdecoded.org/privacy/): Account, GitHub App, and live-only private review
+- [Third-party services](https://btcdecoded.org/third-party/): GitHub, Cloudflare, Lightning, MCP clients
+- [Security](https://btcdecoded.org/security/): GitHub App bounds, data governance, no audit reports
 - [Security contact](mailto:security@thebitcoincommons.org)
 
 ## Node (BLVM)
@@ -39,7 +45,8 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 
 - [Homepage](https://btcdecoded.org/)
 - [Logo](https://btcdecoded.org/assets/logo.png): Wordmark (₿ + Decoded), transparent PNG
-- [Share image](https://btcdecoded.org/assets/og.png): Opaque 1200×630 card for unfurlers
+- [Logo (dark)](https://btcdecoded.org/assets/logo-white.png): Same wordmark, white type
+- [Share image](https://btcdecoded.org/assets/og.jpg): Opaque 1200×630 card for unfurlers
 - [Mark](https://btcdecoded.org/assets/logo-mark.png): Orange ₿ circle, transparent PNG
 - [Favicon](https://btcdecoded.org/favicon.ico)
 - [robots.txt](https://btcdecoded.org/robots.txt)

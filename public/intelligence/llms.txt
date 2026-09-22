@@ -27,7 +27,7 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 
 ## Layers
 
-- curated (~28k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs
+- curated (~28k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs, SeedSigner / Bitkey / Passport docs
 - record (~759k passages): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
 - total nearly 787k passages (28,356 + 758,543 ingest)
@@ -58,6 +58,7 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 - Stratum V2 (`source=sv2`): mining protocol spec from stratum-mining/sv2-spec
 - Lightning extras (`source=ln-spec`): Lightning BOLTs, BLIPs, LNURL LUDs, LSP spec
 - Tooling docs (`source=tooling`): BDK book, HWI, LDK site, LND docs, CLN doc, miniscript README, Sparrow Wallet docs
+- Hardware docs (`source=hw`): SeedSigner firmware `docs/` + README and seedsigner-os `docs/`; Bitkey Zendesk help plus published repo READMEs; Foundation Passport project markdown, KeyOS docs, and Envoy README. Coldcard firmware is not in the index. `docs.foundation.xyz` is not a git dump.
 - Footnotes include domain: protocol, lightning, mining, tooling, security, nostr, governance
 - BLVM spec and Orange Paper pointer
 - BLVM docs

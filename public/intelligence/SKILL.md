@@ -27,7 +27,7 @@ MCP: `POST https://mcp.btcdecoded.org/mcp` (Streamable HTTP). Never call TypeSaf
 ## Precedent
 
 1. `find_precedent` with the proposal title, BIP number, or change description.
-2. Gold is a heading or URL token already on a cite. There is no disposition field. Do not emit merged/rejected/stalled unless that string is already on the cite.
+2. Gold is a heading or URL token already on a cite. There is no disposition field. Do not emit merged/rejected/stalled unless that string is already on the cite. Wiki Status, Type, and Layer are on the cite header; PR State and Merged are on `bips_prs` chunks; catalog counts are on `bips-index.md`. Closed is a dump Status string, not rejected.
 
 ## Argument
 
@@ -37,7 +37,7 @@ MCP: `POST https://mcp.btcdecoded.org/mcp` (Streamable HTTP). Never call TypeSaf
 
 ## Spec verdict
 
-1. `analyze_submission` with `spec`, `submission`, and `requirements` as **caller clause-id strings** (e.g. `["BIP341-sighash"]`). Those strings become `req_N`. Do not regex headings for clause ids.
+1. `analyze_submission` with `spec`, `submission`, and `requirements` as **caller clause-id strings** (e.g. `["BIP341-sighash"]`). Those strings become `req_N`. Do not regex headings for clause ids. For a bitcoin/bips preamble / BIP-3 completeness check the caller may pass `["BIP3-bip","BIP3-title","BIP3-authors","BIP3-status","BIP3-type","BIP3-layer","BIP3-created","BIP3-license","BIP3-comments-uri"]` (optional `BIP3-requires`, `BIP3-replaces`). Suggested ids only — the caller still owns `requirements[]`.
 2. `overall` is `met` | `not_met` | `ambiguous`. Empty cite pack is `ambiguous`.
 3. Pass through each cite's `uri` and `layer`. `get_passage` with `uri` (intel://) when you need the stored excerpt.
 

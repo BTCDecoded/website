@@ -38,7 +38,7 @@ MCP: `POST https://mcp.btcdecoded.org/mcp` (Streamable HTTP). Never call TypeSaf
 ## Spec verdict
 
 1. `analyze_submission` with `spec`, `submission`, and `requirements` as **caller clause-id strings** (e.g. `["BIP341-sighash"]`). Those strings become `req_N`. Do not regex headings for clause ids. For a bitcoin/bips preamble / BIP-3 completeness check the caller may pass `["BIP3-bip","BIP3-title","BIP3-authors","BIP3-status","BIP3-type","BIP3-layer","BIP3-created","BIP3-license","BIP3-comments-uri"]` (optional `BIP3-requires`, `BIP3-replaces`). Suggested ids only — the caller still owns `requirements[]`.
-2. `overall` is `met` | `not_met` | `ambiguous`. Empty cite pack is `ambiguous`.
+2. `overall` is `met` | `not_met` | `ambiguous`. Empty **or off-topic** cite pack is `ambiguous`. `not_met` only when a packed cite that bears on the spec shows a requirement unmet. `structuredContent.rationale` names met / unmet / unaddressed requirements. It does not paste excerpts. Omit a requirement `score` when no cite bears on that requirement.
 3. Pass through each cite's `uri` and `layer`. `get_passage` with `uri` (intel://) when you need the stored excerpt.
 
 ## PR comment

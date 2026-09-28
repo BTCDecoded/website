@@ -27,12 +27,12 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 
 ## Layers
 
-- curated (~28k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs, SeedSigner / Bitkey / Passport docs
-- record (~759k passages): contemporaneous public sources
+- curated (~30k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs, SeedSigner / Bitkey / Passport docs
+- record (~773k passages): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
-- total nearly 787k passages (28,356 + 758,543 ingest)
+- total about 803k passages (30,232 + 772,963 ingest)
 
-## Full record (~759k)
+## Full record (~773k)
 
 - GitHub: PRs, issues, commits, merged-by map, nested review/NACK threads
 - bitcoin-dev and cryptography mailing lists
@@ -45,7 +45,7 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 - IRC review channel logs (~371k)
 - Historical BTC/USD every daily close
 
-## Curated (~28k passages)
+## Curated (~30k passages)
 
 - Research findings and data
 - Canonical maintainer data

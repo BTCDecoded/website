@@ -28,11 +28,11 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 ## Layers
 
 - curated (~30k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs, SeedSigner / Bitkey / Passport docs
-- record (~773k passages): contemporaneous public sources
+- record (~856k passages): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
-- total about 803k passages (30,232 + 772,963 ingest)
+- total about 886k passages (30,232 + 855,902 ingest)
 
-## Full record (~773k)
+## Full record (~856k)
 
 - GitHub: PRs, issues, commits, merged-by map, nested review/NACK threads
 - bitcoin-dev and cryptography mailing lists
@@ -43,6 +43,7 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 - Bitcoin Core source: consensus, policy, script, validation, net, mempool, miner
 - Bitcointalk forum posts (~159k)
 - IRC review channel logs (~371k)
+- Attributed Bitcoin talk transcripts (`source=transcripts`)
 - Historical BTC/USD every daily close
 
 ## Curated (~30k passages)

@@ -83,7 +83,8 @@ export default function TermsPage() {
           <p>
             The corpus is an index of public sources with citations. It can be
             incomplete or wrong. Read the original. Third-party copyright stays
-            with those authors.
+            with those authors. To ask for a removal, email{" "}
+            <a href="mailto:support@btcdecoded.org">support@btcdecoded.org</a>.
           </p>
 
           <h2 id="privacy">Privacy</h2>

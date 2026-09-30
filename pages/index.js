@@ -15,8 +15,8 @@ export default function IndexPage() {
                 Bitcoin’s public coordination record, searchable.
               </p>
               <p className="intel-hero__lede">
-                Cited search over IRC, mailing lists, GitHub, source, and
-                academic papers. Pay with Lightning.
+                Cited search over IRC, mailing lists, GitHub, podcast
+                transcripts, source, and academic papers. Pay with Lightning.
               </p>
               <div className="home-ctas">
                 <Link href="/subscribe/?plan=trial" className="btn btn-primary">

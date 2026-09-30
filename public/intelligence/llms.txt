@@ -43,7 +43,7 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 - Bitcoin Core source: consensus, policy, script, validation, net, mempool, miner
 - Bitcointalk forum posts (~159k)
 - IRC review channel logs (~371k)
-- Attributed Bitcoin talk transcripts (`source=transcripts`)
+- Podcast transcripts (`source=transcripts`)
 - Historical BTC/USD every daily close
 
 ## Curated (~30k passages)

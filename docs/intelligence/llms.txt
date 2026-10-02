@@ -23,18 +23,19 @@ Every plan searches both layers. Same key on upgrade (sat difference only).
 - Researcher: 50,000 / 128,000 / 240,000 / 456,000 sats for 30 / 90 / 180 / 365 days, 250 queries/day
 - Developer: 100,000 / 255,000 / 480,000 / 913,000 sats for 30 / 90 / 180 / 365 days, 500 queries/day, plus MCP `analyze_pr` / `analyze_issue` on public GitHub URLs (private repos fail; 10 queries each), MCP `analyze_submission` (advisory spec-versus-submission for Bearer automation; `met` / `not_met` / `ambiguous`; optional public GitHub PR only; 10 queries), App comments on installed repos including private (live-only; 10 queries each), and Developer retrieval tools (`find_discourse`, `find_precedent`, `find_incident`, `find_spec_impl`).
 
-Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdecoded.org/subscribe/), [Account](https://btcdecoded.org/account/).
+Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdecoded.org/subscribe/), [Account](https://btcdecoded.org/account/).
 
 ## Layers
 
-- curated (~28k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs
-- record (~759k passages): contemporaneous public sources
+- curated (~30k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs, SeedSigner / Bitkey / Passport docs
+- record (~903k passages): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
-- total nearly 787k passages (28,356 + 758,543 ingest)
+- total about 933k passages (30,232 + 902,812 ingest)
 
-## Full record (~759k)
+## Full record (~903k)
 
 - GitHub: PRs, issues, commits, merged-by map, nested review/NACK threads
+- Project-repo discussions (`source=project`, ~48k): pull requests and issues for bitcoin-core/secp256k1, bitcoindevkit/bdk, lightningdevkit/rust-lightning, lightningnetwork/lnd, ElementsProject/lightning, ACINQ/eclair, lightning/bolts, bitcoin-core/HWI, rust-bitcoin/rust-bitcoin, rust-bitcoin/rust-miniscript, sparrowwallet/sparrow, SeedSigner/seedsigner, foundation-devices/passport-firmware, stratum-mining/stratum, stratum-mining/sv2-spec, and bitcoin-core/bitcoin-maintainer-tools. Docs for those projects stay in the curated layer.
 - bitcoin-dev and cryptography mailing lists
 - Delving Bitcoin posts and topics
 - Satoshi communications archive
@@ -43,9 +44,10 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 - Bitcoin Core source: consensus, policy, script, validation, net, mempool, miner
 - Bitcointalk forum posts (~159k)
 - IRC review channel logs (~371k)
+- Podcast transcripts (`source=transcripts`)
 - Historical BTC/USD every daily close
 
-## Curated (~28k passages)
+## Curated (~30k passages)
 
 - Research findings and data
 - Canonical maintainer data
@@ -53,11 +55,12 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 - Bitcoin Commons book chapters
 - Select articles (`source=articles`): Wei Dai, b-money (November 1998, http://www.weidai.com/bmoney.txt); Adam Back, Hashcash (1 August 2002, http://www.hashcash.org/papers/hashcash.pdf); Hal Finney, RPOW (15 August 2004, https://nakamotoinstitute.org/library/rpow/); Nick Szabo, Bit gold (29 December 2005, https://nakamotoinstitute.org/library/bit-gold/); Joseph Poon and Thaddeus Dryja, The Bitcoin Lightning Network (14 January 2016 draft 0.5.9.2, https://lightning.network/lightning-network-paper.pdf)
 - Academic publications (`source=papers`): protocol and security papers. OA fulltext where licensed (arXiv / IACR / Ledger); bibliographic stubs for paywalled keep. Pin with `source=papers`. Cite author, year, DOI or arXiv. Not mixed into `source=articles`.
-- Open textbooks (`source=textbooks`): Learning Bitcoin from the Command Line (Allen/Appelcline/Blockchain Commons, CC BY 4.0, v2.2.2); Bitcoin Programming Textbook (Karasavvas, CC BY-SA 4.0); Bitcoin Developer Reference (minium, CC BY-SA 4.0); Elementary Bitcoin (Carvalho, CC BY-SA 4.0); Programming the Blockchain in C# (Dorier, CC BY-SA 3.0); Book of Bitcoin preface and commentary (asherp, CC BY 4.0 — not chain-rendered pages); Mastering Bitcoin 2nd ed print 3 (Antonopoulos, CC BY-SA 4.0); Mastering Bitcoin 3rd ed (Antonopoulos/Harding, CC BY-SA 4.0); Mastering the Lightning Network 1st ed (Antonopoulos/Osuntokun/Pickhardt, CC BY-SA 4.0); Lightning BOLTs (CC BY 4.0); Mastering Taproot (Zhang, CC BY-SA 4.0); bitcoin.org developer docs including RPC reference (MIT); Bitcoin Optech English topics and newsletters (public domain per Optech README)
+- Open textbooks (`source=textbooks`): Learning Bitcoin from the Command Line (Allen/Appelcline/Blockchain Commons, CC BY 4.0, v2.2.2); Bitcoin Programming Textbook (Karasavvas, CC BY-SA 4.0); Bitcoin Developer Reference (minium, CC BY-SA 4.0); Elementary Bitcoin (Carvalho, CC BY-SA 4.0); Programming the Blockchain in C# (Dorier, CC BY-SA 3.0); Book of Bitcoin preface and commentary (asherp, CC BY 4.0 — not chain-rendered pages); Mastering Bitcoin 2nd ed print 3 (Antonopoulos, CC BY-SA 4.0); Mastering Bitcoin 3rd ed (Antonopoulos/Harding, CC BY-SA 4.0); Mastering the Lightning Network 1st ed (Antonopoulos/Osuntokun/Pickhardt, CC BY-SA 4.0); Mastering Taproot (Zhang, CC BY-SA 4.0); bitcoin.org developer docs including RPC reference (MIT); Bitcoin Optech English topics and newsletters (public domain per Optech README)
 - Nostr NIPs (`source=nips`): protocol NIPs from nostr-protocol/nips
 - Stratum V2 (`source=sv2`): mining protocol spec from stratum-mining/sv2-spec
-- Lightning extras (`source=ln-spec`): BLIPs, LNURL LUDs, LSP spec
+- Lightning extras (`source=ln-spec`): Lightning BOLTs, BLIPs, LNURL LUDs, LSP spec
 - Tooling docs (`source=tooling`): BDK book, HWI, LDK site, LND docs, CLN doc, miniscript README, Sparrow Wallet docs
+- Hardware docs (`source=hw`): SeedSigner firmware `docs/` + README and seedsigner-os `docs/`; Bitkey Zendesk help plus published repo READMEs; Foundation Passport project markdown, KeyOS docs, and Envoy README. Coldcard firmware is not in the index. `docs.foundation.xyz` is not a git dump.
 - Footnotes include domain: protocol, lightning, mining, tooling, security, nostr, governance
 - BLVM spec and Orange Paper pointer
 - BLVM docs
@@ -79,7 +82,7 @@ Human pages: [Plans](https://btcdecoded.org/pricing/), [Checkout](https://btcdec
 
 - Hits include role, source, document, and date when known.
 - Unpinned mix: lead (spec / whitepapers / articles / academic papers) then contemporaneous record, then labeled analysis. Findings are unioned into that pool and the page is reranked by query-token overlap (markdown before JSON dumps when overlap ties; at most two findings JSON dumps). Tied IRC loses to a non-IRC cite with the same overlap. Empty unpinned iff no cite shares a query token. Optional `when` pin (YYYY / YYYY-MM / YYYY-MM-DD) keeps cites whose passage date starts with that prefix. `get_passage` returns the stored excerpt for a cite id. Nested GitHub review/NACK threads are in the github record. Price only if pinned or the query landed on price. Spec/articles/papers are queried on their own so Optech cannot hide them. IRC is capped in the record band when GitHub/mail/BIP hits exist. Core `src/` copyright file-prefix chunks are dropped when a later split of the same file is in the page.
-- GitHub PRs/issues/commits, bitcoin-dev mail, Core `src/` paths, BIP PRs/issues, Delving dump URLs, Core release tags, and `Source:` headers include an openable URL when the dump id, metadata, or excerpt is enough to build one.
+- GitHub PRs/issues/commits, project-repo pull requests and issues, bitcoin-dev mail, Core `src/` paths, BIP PRs/issues, Delving dump URLs, Core release tags, and `Source:` headers include an openable URL when the dump id, metadata, or excerpt is enough to build one.
 - Empty if the index has no passage.
 - If source/spec and analysis conflict, return the source/spec and label the analysis.
 - Lightning is how you pay, not part of the corpus.

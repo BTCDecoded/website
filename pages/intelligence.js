@@ -88,7 +88,7 @@ export default function IntelligencePage() {
           </li>
           <li>
             <span className="intel-hero__k">Record {CORPUS.recordShort}</span>
-            <span>IRC, lists, GitHub, forums, podcast transcripts, source</span>
+            <span>IRC, lists, GitHub, project repos, forums, podcast transcripts, source</span>
           </li>
           <li>
             <span className="intel-hero__k">Pay</span>

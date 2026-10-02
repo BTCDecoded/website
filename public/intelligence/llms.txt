@@ -28,13 +28,14 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 ## Layers
 
 - curated (~30k passages): specs, maps, findings, project docs, research writeups, open textbooks, academic papers, Nostr NIPs, Stratum V2 spec, Lightning BOLTs, BLIPs, LNURL LUDs, LSP, BDK/HWI/LDK/LND/CLN docs, Sparrow Wallet docs, SeedSigner / Bitkey / Passport docs
-- record (~856k passages): contemporaneous public sources
+- record (~903k passages): contemporaneous public sources
 - price: CoinMetrics community PriceUSD, every daily close from 2010-07-18 through the last dated row (ISO-week passages)
-- total about 886k passages (30,232 + 855,902 ingest)
+- total about 933k passages (30,232 + 902,812 ingest)
 
-## Full record (~856k)
+## Full record (~903k)
 
 - GitHub: PRs, issues, commits, merged-by map, nested review/NACK threads
+- Project-repo discussions (`source=project`, ~48k): pull requests and issues for bitcoin-core/secp256k1, bitcoindevkit/bdk, lightningdevkit/rust-lightning, lightningnetwork/lnd, ElementsProject/lightning, ACINQ/eclair, lightning/bolts, bitcoin-core/HWI, rust-bitcoin/rust-bitcoin, rust-bitcoin/rust-miniscript, sparrowwallet/sparrow, SeedSigner/seedsigner, foundation-devices/passport-firmware, stratum-mining/stratum, stratum-mining/sv2-spec, and bitcoin-core/bitcoin-maintainer-tools. Docs for those projects stay in the curated layer.
 - bitcoin-dev and cryptography mailing lists
 - Delving Bitcoin posts and topics
 - Satoshi communications archive
@@ -81,7 +82,7 @@ Human pages: [Docs](https://btcdecoded.org/docs/), [Plans](https://btcdecoded.or
 
 - Hits include role, source, document, and date when known.
 - Unpinned mix: lead (spec / whitepapers / articles / academic papers) then contemporaneous record, then labeled analysis. Findings are unioned into that pool and the page is reranked by query-token overlap (markdown before JSON dumps when overlap ties; at most two findings JSON dumps). Tied IRC loses to a non-IRC cite with the same overlap. Empty unpinned iff no cite shares a query token. Optional `when` pin (YYYY / YYYY-MM / YYYY-MM-DD) keeps cites whose passage date starts with that prefix. `get_passage` returns the stored excerpt for a cite id. Nested GitHub review/NACK threads are in the github record. Price only if pinned or the query landed on price. Spec/articles/papers are queried on their own so Optech cannot hide them. IRC is capped in the record band when GitHub/mail/BIP hits exist. Core `src/` copyright file-prefix chunks are dropped when a later split of the same file is in the page.
-- GitHub PRs/issues/commits, bitcoin-dev mail, Core `src/` paths, BIP PRs/issues, Delving dump URLs, Core release tags, and `Source:` headers include an openable URL when the dump id, metadata, or excerpt is enough to build one.
+- GitHub PRs/issues/commits, project-repo pull requests and issues, bitcoin-dev mail, Core `src/` paths, BIP PRs/issues, Delving dump URLs, Core release tags, and `Source:` headers include an openable URL when the dump id, metadata, or excerpt is enough to build one.
 - Empty if the index has no passage.
 - If source/spec and analysis conflict, return the source/spec and label the analysis.
 - Lightning is how you pay, not part of the corpus.

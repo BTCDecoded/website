@@ -16,7 +16,8 @@ export default function IndexPage() {
               </p>
               <p className="intel-hero__lede">
                 Cited search over IRC, mailing lists, GitHub, project-repo
-                discussions, podcast transcripts, source, and academic papers.
+                discussions, Core announcements, podcast transcripts, source,
+                and academic papers.
                 Pay with Lightning.
               </p>
               <div className="home-ctas">
@@ -35,7 +36,7 @@ export default function IndexPage() {
             <ul className="intel-hero__facts" aria-label="Intelligence at a glance">
               <li>
                 <span className="intel-hero__k">Sources</span>
-                <span>IRC, lists, GitHub, project repos, papers, source</span>
+                <span>IRC, lists, GitHub, project repos, Core announcements, papers, source</span>
               </li>
               <li>
                 <span className="intel-hero__k">Pay</span>

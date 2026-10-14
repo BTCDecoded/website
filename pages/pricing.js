@@ -101,8 +101,8 @@ export default function PricingPage() {
     <IntelChrome title="Plans">
       <p className="intel-lede">
         {current
-          ? "You already have a plan. Checkout will not sell you the same one again. Higher tiers are upgrades: same key, sat difference only."
-          : "Trial is a week on the full record — 50 queries a day. Longer plans buy more days and more queries. Same key when you upgrade."}
+          ? "You already have a plan. Checkout will not sell you the same one again. Higher tiers are upgrades: same key, sat difference only. The payment is added to the query balance. Top up on Account without changing the plan."
+          : "Trial is a week on the full record — 50 queries a day. Longer plans buy more days and a higher daily cap. The sats you pay are query credits. Each query spends sats after it runs, and Account can top the balance up with Lightning. Same key when you upgrade."}
       </p>
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (

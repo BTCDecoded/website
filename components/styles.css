@@ -4281,6 +4281,20 @@ code {
   text-decoration: underline;
 }
 
+.account-usage {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 0;
+  font-size: 0.92rem;
+}
+
+.account-usage th,
+.account-usage td {
+  text-align: left;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
 .account-flash {
   margin: 0 0 1.15rem;
   padding: 0.65rem 0.9rem;

@@ -9,7 +9,7 @@ export default function PrivacyPage() {
           <h1>Privacy</h1>
           <p className="page-lede">
             How BTCDecoded Intelligence and the GitHub App handle account and
-            repository data. Last updated 19 September 2026.
+            repository data. Last updated 15 October 2026.
           </p>
         </header>
 
@@ -36,8 +36,8 @@ export default function PrivacyPage() {
 
           <h2>What we keep</h2>
           <p>
-            GitHub or Nostr identity for the login. Plan, key, and query-count
-            metadata so the daily cap works. Lightning payment data used to
+            GitHub or Nostr identity for the login. Plan, key, and query
+            records so the sat balance can be charged. Lightning payment data used to
             credit that login. GitHub App installation id, installer login, and
             whether the install is armed. Support mail you send. A session
             token in this browser’s session storage, and a session cookie on
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
           <p>
             Queries you send to{" "}
             <code>https://mcp.btcdecoded.org/mcp</code> are processed to answer
-            you and to count against the daily cap. If you paste the connector
+            you and to charge the sat balance. If you paste the connector
             into Claude or another client, that client’s vendor also sees what
             you send there. That is their product, not ours.
           </p>

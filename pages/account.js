@@ -128,8 +128,8 @@ function QueryBalance({ apiKey }) {
     <div className="intel-panel">
       <h3>Credits</h3>
       <p className="intel-plan-blurb">
-        Sats left on this key. The daily cap still applies. Top up with Lightning.
-        Each query spends sats after it runs.
+        Sats left on this key. Top up with Lightning to keep querying, including
+        past what you already used today. Each query spends sats after it runs.
       </p>
       {low ? (
         <p className="account-flash">

@@ -80,7 +80,7 @@ export default function IntelligenceDocsPage() {
           <h2>Tools</h2>
           <p>
             Use <code>tools/list</code> for the live catalog. Developer tools
-            need a Developer plan. Analyze calls use more of the daily cap.
+            need a Developer plan. Analyze calls spend sats like any other query.
           </p>
           <div className="intel-index__grid">
             <article>

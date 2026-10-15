@@ -9,7 +9,7 @@ export default function TermsPage() {
           <h1>Terms</h1>
           <p className="page-lede">
             Paying for Intelligence or signing in to use it is agreeing to this
-            page. Last updated 19 September 2026.
+            page. Last updated 15 October 2026.
           </p>
         </header>
 
@@ -61,9 +61,9 @@ export default function TermsPage() {
 
           <h2>Use of the service</h2>
           <p>
-            Use the MCP connector and the key for your own research and tools,
-            within the daily cap. Do not share, sell, or rotate keys around a
-            cap; do not attack the service; do not use it to break other
+            Use the MCP connector and the key for your own research and tools
+            while the key has query credits. Do not share or sell keys; do not
+            attack the service; do not use it to break other
             people’s systems. MCP <code>analyze_pr</code> and{" "}
             <code>analyze_issue</code> stay on public GitHub URLs. MCP{" "}
             <code>analyze_submission</code> is an advisory spec-versus-submission

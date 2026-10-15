@@ -101,8 +101,8 @@ export default function PricingPage() {
     <IntelChrome title="Plans">
       <p className="intel-lede">
         {current
-          ? "This key already has a plan. An upgrade charges only the sat difference and adds those sats to the same balance. Top up on Account whenever you want more credits. The daily cap stays with the plan."
-          : "Pay once, get a key, and the sats on the invoice become query credits. Every query spends a little of that balance. Each plan also has a daily cap, so heavy days pause even when credits remain."}
+          ? "This key already has a plan. An upgrade charges only the sat difference and adds those sats to the same balance. Top up on Account whenever you want more queries. There is no daily cap while the balance lasts."
+          : "Pay once, get a key, and the sats on the invoice become query credits. Every query spends a little of that balance. Keep going the same day for as long as the sats last."}
       </p>
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (
@@ -120,11 +120,11 @@ export default function PricingPage() {
           </p>
         </article>
         <article>
-          <h3>The daily cap is separate</h3>
+          <h3>No daily cutoff</h3>
           <p>
-            Trial is 50 queries a day, Researcher 250, Developer 500. At the
-            cap, queries wait until midnight UTC. A top-up does not raise
-            the cap.
+            Paid queries are not counted against a daily cap. A heavy day
+            just spends more of the balance. A top-up buys more queries,
+            including more the same day.
           </p>
         </article>
         <article>

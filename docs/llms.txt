@@ -14,7 +14,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules, MCP
 - [Agent skill](https://btcdecoded.org/intelligence/SKILL.md): Actor, precedent, spec verdict, App comment, cite URIs, snapshots
 - [MCP server](https://mcp.btcdecoded.org/mcp): Streamable HTTP. OAuth for Claude; Bearer key for Cursor and raw HTTP
-- [Plans](https://btcdecoded.org/pricing/): Trial 15k sats / 7 days / 50 queries per day; Researcher 250 qpd; Developer 500 qpd plus public GitHub PR review, advisory spec checks over Bearer MCP (`analyze_submission`), and cited retrieval tools. Plan payments and Lightning top-ups are query credits. A query is refused when the sat balance is zero. The daily cap still applies.
+- [Plans](https://btcdecoded.org/pricing/): Trial 15k sats / 7 days; Researcher 50k–456k sats; Developer 100k–913k sats plus public GitHub PR review, advisory spec checks over Bearer MCP (`analyze_submission`), and cited retrieval tools. Plan payments and Lightning top-ups are query credits. A query is refused when the sat balance is zero. There is no daily cap while sats remain. A top-up buys more queries the same day.
 - [Checkout](https://btcdecoded.org/subscribe/): Lightning. Same key on upgrade (sat difference only). Referral links use `?plan=trial&ref=`; cannot combine with a coupon
 - [Account](https://btcdecoded.org/account/): GitHub or Nostr login, Claude OAuth fields, Bearer key, client config snippets, and a referral share link / credit
 - [Support](https://btcdecoded.org/support/): Form emails support@btcdecoded.org. Intelligence billing, keys, checkout, and general help

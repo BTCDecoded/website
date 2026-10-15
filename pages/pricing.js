@@ -101,14 +101,46 @@ export default function PricingPage() {
     <IntelChrome title="Plans">
       <p className="intel-lede">
         {current
-          ? "You already have a plan. Checkout will not sell you the same one again. Higher tiers are upgrades: same key, sat difference only. The payment is added to the query balance. Top up on Account without changing the plan."
-          : "Trial is a week on the full record — 50 queries a day. Longer plans buy more days and a higher daily cap. The sats you pay are query credits. Each query spends sats after it runs, and Account can top the balance up with Lightning. Same key when you upgrade."}
+          ? "This key already has a plan. An upgrade charges only the sat difference and adds those sats to the same balance. Top up on Account whenever you want more credits. The daily cap stays with the plan."
+          : "Pay once, get a key, and the sats on the invoice become query credits. Every query spends a little of that balance. Each plan also has a daily cap, so heavy days pause even when credits remain."}
       </p>
       <div className="intel-plan-grid">
         {PLANS.map((plan) => (
           <PlanCard key={plan.id} plan={plan} btcUsd={btcUsd} current={current} />
         ))}
       </div>
+      <h2>How usage works</h2>
+      <div className="intel-uses">
+        <article>
+          <h3>The price is your balance</h3>
+          <p>
+            The sats on the card are loaded onto your key. A query spends a
+            few of them after it runs. Account shows the balance and about
+            how many queries that covers at your recent rate.
+          </p>
+        </article>
+        <article>
+          <h3>The daily cap is separate</h3>
+          <p>
+            Trial is 50 queries a day, Researcher 250, Developer 500. At the
+            cap, queries wait until midnight UTC. A top-up does not raise
+            the cap.
+          </p>
+        </article>
+        <article>
+          <h3>Out of sats, top up</h3>
+          <p>
+            At zero sats, queries stop until you pay a Lightning invoice on
+            Account. That adds credits to this key. It does not add days or
+            change the plan.
+          </p>
+        </article>
+      </div>
+      <p className="intel-lede">
+        When the plan date ends, queries stop until you renew. Sats still on
+        the key stay on it. Show the key on <Link href="/account/">Account</Link>{" "}
+        to see credits, recent queries, and the top-up.
+      </p>
     </IntelChrome>
   );
 }

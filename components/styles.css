@@ -67,6 +67,10 @@ p {
 /* Colors */
 :root {
   --bitcoin-orange: #f7931a;
+  /* Text on an orange fill: #111 on #f7931a = 8.22:1, on #e6820a = 6.80:1 (white was 2.29:1). */
+  --on-orange: #111111;
+  /* Orange as text on white / #fff8f0: 5.45:1 / 5.21:1 (#f7931a was 2.29:1 / 2.18:1). */
+  --orange-text-on-light: #a35400;
   --text-primary: #000000;
   --text-secondary: #333333;
   --text-muted: #666666;
@@ -721,7 +725,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .btn-primary {
   background: var(--bitcoin-orange);
-  color: white;
+  color: var(--on-orange);
 }
 
 .btn-primary:hover {
@@ -732,12 +736,12 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .btn-secondary {
   background: transparent;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text-on-light);
 }
 
 .btn-secondary:hover {
   background: var(--bitcoin-orange);
-  color: white;
+  color: var(--on-orange);
   transform: translateY(-2px);
 }
 
@@ -1140,7 +1144,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .book-cover {
   background: linear-gradient(135deg, var(--bitcoin-orange) 0%, #e6820a 100%);
-  color: white;
+  color: var(--on-orange);
   padding: 3rem 2rem;
   border-radius: 8px;
   margin-bottom: 2rem;
@@ -2574,7 +2578,7 @@ code {
 .platform-tab.active {
   background: var(--bitcoin-orange);
   border-color: var(--bitcoin-orange);
-  color: white;
+  color: var(--on-orange);
 }
 
 .platform-panel h4 {
@@ -2632,7 +2636,7 @@ code {
 .release-badge {
   white-space: nowrap;
   background: var(--bitcoin-orange);
-  color: white;
+  color: var(--on-orange);
   border-radius: 4px;
   padding: 0.2rem 0.6rem;
   font-size: 0.8rem;
@@ -2735,7 +2739,7 @@ code {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   background: var(--bitcoin-orange);
-  color: white;
+  color: var(--on-orange);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
 }
@@ -4167,7 +4171,7 @@ code {
   height: 2.5rem;
   border-radius: 999px;
   background: var(--bitcoin-orange);
-  color: #fff;
+  color: var(--on-orange);
   font-weight: 700;
   letter-spacing: 0;
 }

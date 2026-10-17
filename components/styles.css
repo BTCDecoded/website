@@ -82,6 +82,14 @@ p {
   --panel-warm-border: #ecd9b8;
 }
 
+/* Chrome Auto Dark (html.auto-dark, set in pages/_document.js) darkens the page behind
+   transparent .btn-secondary text. #a35400 is only ~2.9-3.8:1 there; #f7931a is
+   7.0-9.1:1 on #000-#202124. The site has no prefers-color-scheme theme (color-scheme: light),
+   so OS dark mode keeps the white page and keeps #a35400. */
+html.auto-dark {
+  --orange-text-on-light: #f7931a;
+}
+
 /* Container */
 .container {
   max-width: 1200px;

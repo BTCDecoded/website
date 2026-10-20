@@ -187,8 +187,8 @@
                         <div class="layer-number">8</div>
                         <div class="layer-content">
                             <h3><a href="https://github.com/BTCDecoded/blvm-commons" target="_blank" rel="noopener">blvm-commons</a></h3>
-                            <p class="layer-type">Cryptographic Enforcement</p>
-                            <p>GitHub App enforcing governance rules through signature verification and review periods. Uses blvm-sdk for cryptographic operations. <strong>Phase 1:</strong> Infrastructure complete, enforcement not yet activated.</p>
+                            <p class="layer-type">Governance tooling</p>
+                            <p>GitHub App client and signature checks. Enforcement is off. Branch-protection updates send enforce_admins: false, and a rejected update is returned as success. </p>
                         </div>
                     </div>
                 </div>
@@ -279,19 +279,20 @@
                                 </div>
                                 
                                 <div class="proof-panel" data-panel="formal">
-                                    <p class="formal-proof-description">This Rust code is formally verified using blvm-spec-lock with Z3 to prove the supply convergence property.</p>
+                                    <p class="formal-proof-description">Theorem 6.2.3 is the spec statement. Production total_supply is spec-locked to section 6.2. Z3 does not evaluate its 64-epoch loop, so the cap is an axiom at 2,100,000,000,000,000 satoshis. The exact issued supply, 2,099,999,997,690,000, is a witness in spec_witnesses.rs that does not call total_supply.</p>
                                     <div class="code-container">
                                         <div class="code-header">
                                             <span class="code-filename">blvm-consensus/src/economic.rs</span>
-                                            <a href="https://github.com/BTCDecoded/blvm-consensus/blob/main/src/economic.rs#L55" target="_blank" rel="noopener" class="code-link">View on GitHub →</a>
+                                            <a href="https://github.com/BTCDecoded/blvm-consensus/blob/main/src/economic.rs" target="_blank" rel="noopener" class="code-link">View on GitHub →</a>
                                         </div>
                                         <pre><code class="language-rust">/// TotalSupply: ℕ → ℤ
 ///
 /// Calculate the total Bitcoin supply at a given height.
 /// This is the sum of all block subsidies up to that height.
-#[spec_locked("6.2")]
+#[spec_locked("6.2", "TotalSupply")]
+#[blvm_spec_lock::axiom(result <= 2100000000000000)]
 pub fn total_supply(height: Natural) -> Integer {
-    // Implementation verified with blvm-spec-lock and Z3
+    // 64-epoch loop. Z3 does not evaluate it.
 }</code></pre>
                                     </div>
                                 </div>

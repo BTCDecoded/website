@@ -28,11 +28,14 @@ export default function WhyBLVM() {
           <div className="why-card">
             <h3>Verified, not just tested</h3>
             <p>
-              BLVM consensus code carries <code>#[spec_locked]</code>{" "}
-              annotations that tie every consensus-critical function back to
-              the Orange Paper section it implements. Z3 discharges proof
-              obligations automatically. If the code drifts from the spec, CI
-              catches it before merge.
+              Annotated functions carry <code>#[spec_locked]</code> ties to
+              Orange Paper sections, and CI runs Z3 on those annotations.
+              Mutation-validated obligations cover three functions (
+              <code>check_transaction</code>, <code>is_strict_der</code>,{" "}
+              <code>merkle_tree_from_hashes</code>
+              ). A green verify job is a wider check than that gate, and{" "}
+              <code>connect_block</code> inner has no{" "}
+              <code>#[spec_locked]</code> attribute.
             </p>
           </div>
 
@@ -50,10 +53,10 @@ export default function WhyBLVM() {
           <div className="why-card">
             <h3>Governance you can fork</h3>
             <p>
-              Bitcoin Commons governance publishes every rule: who can merge,
-              what thresholds are required, how long review windows last.
-              Cryptographic multisig enforces it. If you disagree with a rule
-              you fork the governance, not the chain.
+              Bitcoin Commons publishes who can merge, which thresholds apply,
+              and how long review windows last. Those rules are in a public
+              repository. Merge enforcement is off. Disagreeing with a rule
+              means forking the governance document, not the chain.
             </p>
           </div>
 
@@ -61,9 +64,10 @@ export default function WhyBLVM() {
             <h3>Not a new coin</h3>
             <p>
               BLVM implements the same Bitcoin consensus rules as Bitcoin
-              Core. Same chain, same UTXO set, same 21 million supply
-              convergence — formally proven in Theorem 6.2.3. The goal is a
-              safer, more diverse Bitcoin network, not a new one.
+              Core: the same chain and the same UTXO set. Theorem 6.2.3 in the
+              Orange Paper states supply convergence. The Z3 witness for the
+              exact satoshi total does not call production{" "}
+              <code>total_supply</code>.
             </p>
           </div>
 
@@ -72,7 +76,7 @@ export default function WhyBLVM() {
             <p>
               Packaged installs on GitHub Releases. Marketplace packages for
               Start9, Umbrel, myNode, and Parmanode are coming. You should not
-              need a Rust compiler to run a verified Bitcoin node.
+              need a Rust compiler to run this node.
             </p>
           </div>
         </div>

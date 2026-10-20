@@ -29,9 +29,9 @@ export default function ProblemContentPage() {
               around whichever client wins the narrative.
             </p>
             <p>
-              <strong>BTCDecoded</strong> targets both: an Orange Paper-grade
-              specification with a formally verified consensus path (Z3-backed
-              spec-lock on blvm-consensus), plus the{" "}
+              <strong>BTCDecoded</strong> targets both: an Orange Paper
+              specification, with spec-lock annotations on blvm-consensus
+              checked by Z3 in CI, plus the{" "}
               <a
                 href="https://thebitcoincommons.org"
                 target="_blank"
@@ -39,10 +39,10 @@ export default function ProblemContentPage() {
               >
                 Bitcoin Commons
               </a>{" "}
-              model: published tiers, multisig thresholds, and enforcement
-              tooling (blvm-commons) that users and operators can review or
-              fork. Same Bitcoin rules; clearer rules for how the software that
-              enforces them evolves.
+              model: published tiers and multisig thresholds in a public
+              repository. blvm-commons holds the GitHub App client. Merge
+              enforcement is off. Same Bitcoin rules, with the process written
+              down so it can be reviewed or forked.
             </p>
           </div>
         </div>

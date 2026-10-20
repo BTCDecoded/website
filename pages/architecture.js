@@ -92,7 +92,7 @@ export default function ArchitecturePage() {
                         blvm-consensus
                       </a>
                     </h3>
-                    <p className="layer-type">Formally Verified Implementation</p>
+                    <p className="layer-type">Spec-locked implementation</p>
                     <p>
                       Rust implementation of the Orange Paper functions.{" "}
                       <strong>blvm-spec-lock</strong> binds those functions to
@@ -100,11 +100,12 @@ export default function ArchitecturePage() {
                       the code drifts from the spec, the build fails.
                     </p>
                     <p className="tech-detail">
-                      <strong>Spec-lock:</strong> chain selection, block subsidy
-                      (21M proof), proof-of-work, and transaction validation
-                      carry contracts discharged by Z3. This is the consensus
-                      path the node must call — it is not a claim that every
-                      runtime path is a finished theorem.
+                      <strong>Spec-lock:</strong> chain selection, block subsidy,
+                      proof-of-work, and transaction validation carry contracts.
+                      Z3 runs on the annotations in CI. Mutation-validated
+                      obligations cover three functions. The production{" "}
+                      <code>total_supply</code> cap is an axiom, because Z3 does
+                      not evaluate its loop.
                     </p>
                   </div>
                 </div>
@@ -124,8 +125,8 @@ export default function ArchitecturePage() {
                     <p className="layer-type">Protocol Abstraction</p>
                     <p>
                       Bitcoin variant abstraction (mainnet, testnet, regtest)
-                      built on blvm-consensus. All consensus calls go through
-                      the formally verified layer.
+                      built on blvm-consensus. Consensus calls go through that
+                      crate.
                     </p>
                   </div>
                 </div>
@@ -229,12 +230,12 @@ export default function ArchitecturePage() {
                         blvm-commons
                       </a>
                     </h3>
-                    <p className="layer-type">Cryptographic Enforcement</p>
+                    <p className="layer-type">Governance tooling</p>
                     <p>
-                      GitHub App enforcing governance rules through signature
-                      verification and review periods. Uses blvm-sdk for
-                      cryptographic operations. <strong>Phase 1:</strong>{" "}
-                      Infrastructure complete, enforcement not yet activated.
+                      GitHub App client and signature checks. Enforcement is
+                      off. Branch-protection updates send{" "}
+                      <code>enforce_admins: false</code>, and a rejected update
+                      is returned as success.
                     </p>
                   </div>
                 </div>
@@ -243,8 +244,9 @@ export default function ArchitecturePage() {
               <div className="architecture-note">
                 <p>
                   <strong>
-                    All consensus decisions flow through the formally verified
-                    blvm-consensus layer.
+                    Consensus decisions are made in blvm-consensus. Spec-lock
+                    checks annotated functions in CI. That check is not a
+                    finished theorem for every runtime path.
                   </strong>
                 </p>
               </div>

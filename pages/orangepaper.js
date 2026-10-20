@@ -139,8 +139,13 @@ export default function OrangePaperContentPage() {
                     style={{ display: activeTab === "formal" ? "block" : "none" }}
                   >
                     <p className="formal-proof-description">
-                      This Rust code is formally verified using blvm-spec-lock
-                      with Z3 to prove the supply convergence property.
+                      Theorem 6.2.3 is the spec statement. Production{" "}
+                      <code>total_supply</code> is spec-locked to section 6.2.
+                      Z3 does not evaluate its 64-epoch loop, so the cap is an
+                      axiom at 2,100,000,000,000,000 satoshis. The exact issued
+                      supply, 2,099,999,997,690,000, is a witness in{" "}
+                      <code>spec_witnesses.rs</code> that does not call{" "}
+                      <code>total_supply</code>.
                     </p>
                     <div className="code-container">
                       <div className="code-header">
@@ -148,7 +153,7 @@ export default function OrangePaperContentPage() {
                           blvm-consensus/src/economic.rs
                         </span>
                         <a
-                          href="https://github.com/BTCDecoded/blvm-consensus/blob/main/src/economic.rs#L55"
+                          href="https://github.com/BTCDecoded/blvm-consensus/blob/main/src/economic.rs"
                           target="_blank"
                           rel="noopener"
                           className="code-link"
@@ -158,13 +163,10 @@ export default function OrangePaperContentPage() {
                       </div>
                       <pre>
                         <code className="language-rust">
-                          {`/// TotalSupply: ℕ → ℤ
-///
-/// Calculate the total Bitcoin supply at a given height.
-/// This is the sum of all block subsidies up to that height.
-#[spec_locked("6.2")]
+                          {`#[spec_locked("6.2", "TotalSupply")]
+#[blvm_spec_lock::axiom(result <= 2100000000000000)]
 pub fn total_supply(height: Natural) -> Integer {
-    // Implementation verified with blvm-spec-lock and Z3
+    // 64-epoch loop. Z3 does not evaluate it.
 }`}
                         </code>
                       </pre>

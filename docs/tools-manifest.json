@@ -1,0 +1,18 @@
+{
+  "guide": "https://btcdecoded.org/for-agents.md",
+  "page": "https://btcdecoded.org/for-agents/",
+  "mcp": "https://mcp.btcdecoded.org/mcp",
+  "holding": "https://ownandkeep.com",
+  "support": "https://ownandkeep.com/support/",
+  "public_tools": [
+    {
+      "name": "hold",
+      "auth": "none",
+      "arguments": {
+        "situation": ["start", "kit", "signer", "backup", "estate", "support"]
+      },
+      "refuses": ["seed", "private-key"]
+    }
+  ],
+  "record_tools": "tools/list is public. tools/call for every tool except hold needs a key from https://btcdecoded.org/account/."
+}

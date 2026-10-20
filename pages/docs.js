@@ -68,6 +68,8 @@ export default function IntelligenceDocsPage() {
           <p>
             <code>tools/list</code> is public. <code>tools/call</code> needs
             the key. Agents: fetch{" "}
+            <a href="/for-agents.md">/for-agents.md</a>. Holding goes to
+            OwnandKeep through the public <code>hold</code> tool. The skill is{" "}
             <a href="/intelligence/SKILL.md">/intelligence/SKILL.md</a>.
           </p>
           <pre className="intel-docs-pre">{`curl -s ${MCP_URL} \\

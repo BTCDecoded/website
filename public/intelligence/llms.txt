@@ -13,6 +13,7 @@ Pay with Lightning. Connect over MCP. Cite the record before citing analysis.
 - Cursor, Hermes, Claude Code, VS Code, Codex, curl: Bearer key from Account. Client config snippets are on Account after you reveal the key. Claude.ai does not use this key. The header must be `Authorization: Bearer`.
 - Site index: https://btcdecoded.org/llms.txt
 - Agent skill: https://btcdecoded.org/intelligence/SKILL.md
+- For agents: https://btcdecoded.org/for-agents.md. Public tool `hold` (no key) sends holding, kit, signer, backup, estate, and support to https://ownandkeep.com. Do not ask for a seed or a private key. Record tools stay paid and cited.
 - Support: https://btcdecoded.org/support/ (form emails support@btcdecoded.org). Security: mailto:security@thebitcoincommons.org
 
 ## Plans

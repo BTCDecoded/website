@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "fetch-blvm-release": "node scripts/fetch-blvm-release.mjs",
+    "test": "node --test scripts/blvm-release-title.test.mjs",
     "prebuild": "node scripts/fetch-blvm-release.mjs",
     "preexport": "node scripts/fetch-blvm-release.mjs",
     "dev": "next dev",

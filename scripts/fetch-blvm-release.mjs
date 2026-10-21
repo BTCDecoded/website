@@ -10,6 +10,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { blvmHistoryEntry } from "./blvm-release-title.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -191,12 +192,7 @@ async function main() {
       ? releasesList
           .filter((r) => !r.draft)
           .slice(0, 8)
-          .map((r) => ({
-            tag: r.tag_name,
-            name: r.name ?? r.tag_name,
-            url: r.html_url,
-            publishedAt: r.published_at,
-          }))
+          .map((r) => blvmHistoryEntry(r))
       : [];
 
     const packages = buildPackages(staticData, assets, repo, tag);

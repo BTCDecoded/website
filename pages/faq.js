@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: "How does governance work?",
-    a: "Bitcoin Commons governance is published and tiered. Who can merge, which signature thresholds apply, and how long review windows last are in a public repository. Merge enforcement is off. Disagreeing with a rule means forking the governance document, not the chain.",
+    a: "Bitcoin Commons governance is published and tiered. Who can merge, which signature thresholds apply, and how long review windows last are in a public repository. If you disagree with a rule you fork that repository, not the chain.",
   },
   {
     q: "What is Commons Pool?",

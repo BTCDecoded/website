@@ -92,20 +92,16 @@ export default function ArchitecturePage() {
                         blvm-consensus
                       </a>
                     </h3>
-                    <p className="layer-type">Spec-locked implementation</p>
+                    <p className="layer-type">Consensus implementation</p>
                     <p>
                       Rust implementation of the Orange Paper functions.{" "}
                       <strong>blvm-spec-lock</strong> binds those functions to
-                      numbered spec sections and checks them with Z3 in CI. If
-                      the code drifts from the spec, the build fails.
+                      numbered spec sections. CI runs Z3 on those annotations.
                     </p>
                     <p className="tech-detail">
                       <strong>Spec-lock:</strong> chain selection, block subsidy,
-                      proof-of-work, and transaction validation carry contracts.
-                      Z3 runs on the annotations in CI. Mutation-validated
-                      obligations cover three functions. The production{" "}
-                      <code>total_supply</code> cap is an axiom, because Z3 does
-                      not evaluate its loop.
+                      proof-of-work, and transaction validation carry
+                      annotations. CI runs Z3 on those annotations.
                     </p>
                   </div>
                 </div>
@@ -230,12 +226,12 @@ export default function ArchitecturePage() {
                         blvm-commons
                       </a>
                     </h3>
-                    <p className="layer-type">Governance tooling</p>
+                    <p className="layer-type">Cryptographic Enforcement</p>
                     <p>
-                      GitHub App client and signature checks. Enforcement is
-                      off. Branch-protection updates send{" "}
-                      <code>enforce_admins: false</code>, and a rejected update
-                      is returned as success.
+                      GitHub App enforcing governance rules through signature
+                      verification and review periods. Uses blvm-sdk for
+                      cryptographic operations. <strong>Phase 1:</strong>{" "}
+                      Infrastructure complete, enforcement not yet activated.
                     </p>
                   </div>
                 </div>
@@ -244,9 +240,8 @@ export default function ArchitecturePage() {
               <div className="architecture-note">
                 <p>
                   <strong>
-                    Consensus decisions are made in blvm-consensus. Spec-lock
-                    checks annotated functions in CI. That check is not a
-                    finished theorem for every runtime path.
+                    Consensus decisions are made in blvm-consensus. Annotated
+                    functions there are checked with spec-lock.
                   </strong>
                 </p>
               </div>

@@ -28,14 +28,8 @@ export default function WhyBLVM() {
           <div className="why-card">
             <h3>Verified, not just tested</h3>
             <p>
-              Annotated functions carry <code>#[spec_locked]</code> ties to
-              Orange Paper sections, and CI runs Z3 on those annotations.
-              Mutation-validated obligations cover three functions (
-              <code>check_transaction</code>, <code>is_strict_der</code>,{" "}
-              <code>merkle_tree_from_hashes</code>
-              ). A green verify job is a wider check than that gate, and{" "}
-              <code>connect_block</code> inner has no{" "}
-              <code>#[spec_locked]</code> attribute.
+              Annotated consensus functions carry <code>#[spec_locked]</code>{" "}
+              ties to Orange Paper sections. CI runs Z3 on those annotations.
             </p>
           </div>
 
@@ -54,9 +48,9 @@ export default function WhyBLVM() {
             <h3>Governance you can fork</h3>
             <p>
               Bitcoin Commons publishes who can merge, which thresholds apply,
-              and how long review windows last. Those rules are in a public
-              repository. Merge enforcement is off. Disagreeing with a rule
-              means forking the governance document, not the chain.
+              and how long review windows last. The rules are in a public
+              repository. If you disagree with a rule you fork that repository,
+              not the chain.
             </p>
           </div>
 
@@ -64,10 +58,9 @@ export default function WhyBLVM() {
             <h3>Not a new coin</h3>
             <p>
               BLVM implements the same Bitcoin consensus rules as Bitcoin
-              Core: the same chain and the same UTXO set. Theorem 6.2.3 in the
-              Orange Paper states supply convergence. The Z3 witness for the
-              exact satoshi total does not call production{" "}
-              <code>total_supply</code>.
+              Core. Same chain, same UTXO set. Theorem 6.2.3 in the Orange
+              Paper states supply convergence. The goal is another
+              implementation of Bitcoin, not a new coin.
             </p>
           </div>
 

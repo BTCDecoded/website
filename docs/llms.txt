@@ -37,7 +37,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Problem](https://btcdecoded.org/problem/): Informal process vs a written spec
 - [Architecture](https://btcdecoded.org/architecture/): BLVM crate map
 - [Orange Paper (on-site intro)](https://btcdecoded.org/orangepaper/): Orientation; canonical math IR is off-site
-- [Governance](https://btcdecoded.org/governance/): Live YAML viewer. Merge enforcement is off
+- [Governance](https://btcdecoded.org/governance/): Live YAML viewer for the published rules
 - [Orange Paper (canonical)](https://thebitcoincommons.org/orange-paper.html)
 - [Consensus Spec register](https://thebitcoincommons.org/spec.html)
 - [BLVM documentation book](https://docs.thebitcoincommons.org/introduction.html)

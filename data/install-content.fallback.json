@@ -164,6 +164,6 @@
     "packageUrl": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
     "packageLinkLabel": "View on GHCR →"
   },
-  "comingSoonNote": "Umbrel App Store — coming soon.",
+  "comingSoonNote": "Umbrel App Store: https://github.com/BTCDecoded/commons-umbrel-store (app 0.2.3).",
   "markdownDoc": {}
 }

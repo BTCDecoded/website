@@ -27,9 +27,12 @@ export default function IndexPage() {
                 <Link href="/intelligence/" className="btn btn-secondary">
                   See Intelligence
                 </Link>
-                <Link href="/docs/" className="btn btn-outline">
+                <a
+                  href="https://docs.btcdecoded.org/intelligence/"
+                  className="btn btn-outline"
+                >
                   Docs
-                </Link>
+                </a>
               </div>
             </div>
             <IntelRecap />
@@ -73,12 +76,10 @@ export default function IndexPage() {
                 Why BLVM?
               </Link>
               <a
-                href="https://docs.thebitcoincommons.org"
+                href="https://docs.btcdecoded.org/blvm/"
                 className="btn btn-outline"
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                Docs
+                Manual
               </a>
             </div>
             <p className="release-note">

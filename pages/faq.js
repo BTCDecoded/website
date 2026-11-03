@@ -44,7 +44,7 @@ const faqs = [
         <a href="mailto:security@thebitcoincommons.org">
           security@thebitcoincommons.org
         </a>
-        . Node docs: docs.thebitcoincommons.org.
+        . Node docs: docs.btcdecoded.org/blvm.
       </>
     ),
   },

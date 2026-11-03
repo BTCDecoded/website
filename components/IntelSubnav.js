@@ -3,7 +3,11 @@ import { useRouter } from "next/router";
 
 const ITEMS = [
   { href: "/intelligence/", label: "Overview" },
-  { href: "/docs/", label: "Docs" },
+  {
+    href: "https://docs.btcdecoded.org/intelligence/",
+    label: "Docs",
+    external: true,
+  },
   { href: "/for-agents/", label: "For agents" },
   { href: "/pricing/", label: "Plans" },
   { href: "/subscribe/", label: "Checkout" },
@@ -20,20 +24,26 @@ export default function IntelSubnav() {
   const router = useRouter();
   return (
     <nav className="intel-subnav" aria-label="Intelligence">
-      {ITEMS.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={
-            active(router.pathname, item.href) ? "is-on" : undefined
-          }
-          aria-current={
-            active(router.pathname, item.href) ? "page" : undefined
-          }
-        >
-          {item.label}
-        </Link>
-      ))}
+      {ITEMS.map((item) =>
+        item.external ? (
+          <a key={item.href} href={item.href}>
+            {item.label}
+          </a>
+        ) : (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={
+              active(router.pathname, item.href) ? "is-on" : undefined
+            }
+            aria-current={
+              active(router.pathname, item.href) ? "page" : undefined
+            }
+          >
+            {item.label}
+          </Link>
+        ),
+      )}
     </nav>
   );
 }

@@ -338,7 +338,7 @@ export default function GovernancePage() {
             Design your own governance
           </a>
           <a
-            href="https://docs.thebitcoincommons.org/governance/overview.html"
+            href="https://docs.btcdecoded.org/blvm/governance/overview.html"
             className="btn btn-outline"
             target="_blank"
             rel="noopener noreferrer"

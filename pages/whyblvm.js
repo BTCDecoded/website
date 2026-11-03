@@ -84,7 +84,7 @@ export default function WhyBLVM() {
             Read the Orange Paper
           </a>
           <a
-            href="https://docs.thebitcoincommons.org/development/differential-testing.html"
+            href="https://docs.btcdecoded.org/blvm/development/differential-testing.html"
             className="btn btn-outline"
             target="_blank"
             rel="noopener"

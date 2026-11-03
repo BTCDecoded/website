@@ -66,6 +66,9 @@ export default function Footer() {
                 <Link href="/account/">Account</Link>
               </li>
               <li>
+                <a href="https://docs.btcdecoded.org/">Documentation</a>
+              </li>
+              <li>
                 <Link href="/support/">Support</Link>
               </li>
               <li>

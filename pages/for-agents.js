@@ -1,4 +1,3 @@
-import Link from "next/link";
 import IntelChrome from "../components/IntelChrome";
 import { MCP_URL } from "../lib/api";
 
@@ -29,7 +28,7 @@ export default function ForAgentsPage() {
           <p>
             Search, profiles, precedent, and spec checks are the paid tools.
             They return cites. If the index has no passage, stop.{" "}
-            <Link href="/docs/">Docs</Link> and{" "}
+            <a href="https://docs.btcdecoded.org/intelligence/">Docs</a> and{" "}
             <a href="/intelligence/SKILL.md">the skill</a>.
           </p>
         </article>

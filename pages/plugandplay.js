@@ -74,7 +74,7 @@ export default function PlugAndPlay() {
             Install from GitHub
           </Link>
           <a
-            href="https://docs.thebitcoincommons.org/getting-started/installation.html"
+            href="https://docs.btcdecoded.org/blvm/getting-started/installation.html"
             className="btn btn-outline"
             target="_blank"
             rel="noopener"

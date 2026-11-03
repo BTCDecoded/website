@@ -36,5 +36,5 @@ The `export` script runs `next build`, copies `out/*` into `docs/`, copies `docs
 
 - Umbrella project and spec hosting: [thebitcoincommons.org](https://thebitcoincommons.org)
 - Commons Pool (built by BTCDecoded): [commonspool.org](https://commonspool.org)
-- Technical docs: [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org)
+- Technical docs: [docs.btcdecoded.org/blvm](https://docs.btcdecoded.org/blvm)
 - Updates: [btccommons.substack.com](https://btccommons.substack.com)

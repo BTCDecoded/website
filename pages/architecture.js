@@ -42,7 +42,7 @@ export default function ArchitecturePage() {
             can change the software. Orange Paper → blvm-consensus (spec-lock) →
             blvm-protocol → blvm-node → blvm → blvm-sdk → governance.{" "}
             <a
-              href="https://docs.thebitcoincommons.org/architecture/system-overview.html"
+              href="https://docs.btcdecoded.org/blvm/architecture/system-overview.html"
               target="_blank"
               rel="noopener"
             >

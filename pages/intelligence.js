@@ -49,9 +49,12 @@ export default function IntelligencePage() {
                 <Link href="/pricing/" className="btn btn-secondary">
                   See plans
                 </Link>
-                <Link href="/docs/" className="btn btn-outline">
+                <a
+                  href="https://docs.btcdecoded.org/intelligence/"
+                  className="btn btn-outline"
+                >
                   Docs
-                </Link>
+                </a>
               </>
             ) : signedIn ? (
               <>
@@ -61,9 +64,12 @@ export default function IntelligencePage() {
                 <Link href="/pricing/" className="btn btn-secondary">
                   See plans
                 </Link>
-                <Link href="/docs/" className="btn btn-outline">
+                <a
+                  href="https://docs.btcdecoded.org/intelligence/"
+                  className="btn btn-outline"
+                >
                   Docs
-                </Link>
+                </a>
               </>
             ) : (
               <>
@@ -73,9 +79,12 @@ export default function IntelligencePage() {
                 <Link href="/pricing/" className="btn btn-secondary">
                   See plans
                 </Link>
-                <Link href="/docs/" className="btn btn-outline">
+                <a
+                  href="https://docs.btcdecoded.org/intelligence/"
+                  className="btn btn-outline"
+                >
                   Docs
-                </Link>
+                </a>
               </>
             )}
           </div>

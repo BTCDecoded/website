@@ -9,16 +9,6 @@ import SiteBrand from "./SiteBrand";
 
 const NAV_GROUPS = [
   {
-    id: "project",
-    title: "Project",
-    items: [
-      { href: "/problem/", title: "Problem" },
-      { href: "/architecture/", title: "Architecture" },
-      { href: "/orangepaper/", title: "Orange Paper" },
-      { href: "/governance/", title: "Governance" },
-    ],
-  },
-  {
     id: "node",
     title: "Node",
     items: [
@@ -26,7 +16,11 @@ const NAV_GROUPS = [
       { href: "/install/", title: "Install" },
       { href: "/plugandplay/", title: "Pre-built nodes" },
       { href: "/faq/", title: "FAQ" },
-      { href: "https://commonspool.org", title: "Commons Pool", external: true },
+      {
+        href: "https://docs.btcdecoded.org/blvm/",
+        title: "Manual",
+        external: true,
+      },
     ],
   },
   {
@@ -34,7 +28,11 @@ const NAV_GROUPS = [
     title: "Intelligence",
     items: [
       { href: "/intelligence/", title: "Overview" },
-      { href: "/docs/", title: "Docs" },
+      {
+        href: "https://docs.btcdecoded.org/intelligence/",
+        title: "Docs",
+        external: true,
+      },
       { href: "/pricing/", title: "Plans" },
     ],
   },

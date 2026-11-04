@@ -54,7 +54,6 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [robots.txt](https://btcdecoded.org/robots.txt)
 - [Bitcoin Commons llms.txt](https://thebitcoincommons.org/llms.txt): Normative spec site
 - [Docs llms.txt](https://docs.thebitcoincommons.org/llms.txt): Documentation book index
-- [Commons Pool](https://commonspool.org/): Mining without a custodian (signet today)
 - [Plebly](https://plebly.fund/#projects): Fund listed Commons work
 - [GitHub](https://github.com/BTCDecoded)
 - [X](https://x.com/DecodeBitcoin)

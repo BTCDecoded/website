@@ -37,15 +37,6 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://commonspool.org"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Commons Pool
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://plebly.fund/#projects"
                   target="_blank"
                   rel="noopener noreferrer"

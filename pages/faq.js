@@ -26,10 +26,6 @@ const faqs = [
     a: "Bitcoin Commons governance is published and tiered. Who can merge, which signature thresholds apply, and how long review windows last are in a public repository. If you disagree with a rule you fork that repository, not the chain.",
   },
   {
-    q: "What is Commons Pool?",
-    a: "Commons Pool is BTCDecoded’s mining pool: no operator, no pool wallet, no KYC. Coinbase outputs pay miner addresses from a shared snapshot of work. It runs on BLVM. Signet today; not on mainnet. Site: commonspool.org.",
-  },
-  {
     q: "How can I fund the project?",
     a: "Through Plebly (plebly.fund): on-chain escrow, not a custodial tip jar. Fund a listed Commons proposal, or donate to Commons directly.",
   },

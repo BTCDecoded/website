@@ -246,21 +246,6 @@ export default function ArchitecturePage() {
                 </p>
               </div>
 
-              <aside className="cp-on-stack" aria-labelledby="cp-on-stack-heading">
-                <p className="cp-kicker cp-kicker--light">The Pool</p>
-                <h3 id="cp-on-stack-heading">Commons Pool</h3>
-                <p>
-                  The mining product on this stack. No operator, no pool
-                  wallet. Signet today.{" "}
-                  <a
-                    href="https://commonspool.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Visit the pool →
-                  </a>
-                </p>
-              </aside>
             </div>
 
             <div className="architecture-diagram">

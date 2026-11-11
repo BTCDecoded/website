@@ -4,12 +4,12 @@
 
 BTCDecoded’s **main offering** is [Intelligence](https://btcdecoded.org/intelligence/): a cited index of IRC, mailing lists, GitHub, project-repo discussions, Delving, Bitcointalk, Satoshi, BIPs, Core source, Core announcements and security advisories, and podcast transcripts (~922k contemporaneous passages) plus a curated ~30k passages of specs, maps, textbooks, research, academic papers, Nostr NIPs, Stratum V2, Lightning extras, and tooling docs. Pay with Lightning. Connect over MCP at `https://mcp.btcdecoded.org/mcp`. Claude uses OAuth; Cursor and other clients use a Bearer key. Sign in with GitHub or Nostr, then pay on this site so the key stays on the account.
 
-The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node with the consensus rules written down. Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.thebitcoincommons.org](https://docs.thebitcoincommons.org).
+The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node with the consensus rules written down. Normative spec lives on [thebitcoincommons.org](https://thebitcoincommons.org); operator docs on [docs.btcdecoded.org/blvm](https://docs.btcdecoded.org/blvm).
 
 ## Intelligence
 
 - [Overview](https://btcdecoded.org/intelligence/): What is in the index
-- [Docs](https://btcdecoded.org/docs/): MCP, tools, GitHub App
+- [Docs](https://docs.btcdecoded.org/intelligence/): MCP, tools, GitHub App
 - [BTCDecoded Intelligence recap](https://btcdecoded.org/assets/intelligence-recap.mp4): 7:45 recap on the home Intelligence card and `/intelligence/`
 - [Agent spec](https://btcdecoded.org/intelligence/llms.txt): Layers, sources, roles, retrieval rules, MCP
 - [Agent skill](https://btcdecoded.org/intelligence/SKILL.md): Actor, precedent, spec verdict, App comment, cite URIs, snapshots
@@ -40,7 +40,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Governance](https://btcdecoded.org/governance/): Live YAML viewer for the published rules
 - [Orange Paper (canonical)](https://thebitcoincommons.org/orange-paper.html)
 - [Consensus Spec register](https://thebitcoincommons.org/spec.html)
-- [BLVM documentation book](https://docs.thebitcoincommons.org/introduction.html)
+- [BLVM documentation book](https://docs.btcdecoded.org/blvm/introduction.html)
 - [blvm releases](https://github.com/BTCDecoded/blvm/releases)
 
 ## Optional
@@ -53,7 +53,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 - [Favicon](https://btcdecoded.org/favicon.ico)
 - [robots.txt](https://btcdecoded.org/robots.txt)
 - [Bitcoin Commons llms.txt](https://thebitcoincommons.org/llms.txt): Normative spec site
-- [Docs llms.txt](https://docs.thebitcoincommons.org/llms.txt): Documentation book index
+- [Docs llms.txt](https://docs.btcdecoded.org/llms.txt): Documentation host index
 - [Plebly](https://plebly.fund/#projects): Fund listed Commons work
 - [GitHub](https://github.com/BTCDecoded)
 - [X](https://x.com/DecodeBitcoin)

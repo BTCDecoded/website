@@ -52,8 +52,8 @@ export default function ProblemContentPage() {
             <p className="page-kicker">The commons</p>
             <h2>Built on Bitcoin Commons</h2>
             <p className="page-lede">
-              Forkable governance applying Ostrom’s commons principles through
-              cryptographic enforcement.
+              Forkable governance applying Ostrom’s commons principles. The
+              cryptographic check is Designed. Enforcement is off.
             </p>
           </header>
           <div className="home-ctas">

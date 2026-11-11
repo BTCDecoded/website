@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: "How does governance work?",
-    a: "Bitcoin Commons governance is published and tiered. Who can merge, which signature thresholds apply, and how long review windows last are in a public repository. If you disagree with a rule you fork that repository, not the chain.",
+    a: "Bitcoin Commons governance is published and tiered. Who can merge, which signature thresholds apply, and how long review windows last are in a public repository. Phase 1 is current. Enforcement is off and the keys are test keys. If you disagree with a rule you fork that repository, not the chain.",
   },
   {
     q: "How can I fund the project?",

@@ -226,12 +226,13 @@ export default function ArchitecturePage() {
                         blvm-commons
                       </a>
                     </h3>
-                    <p className="layer-type">Cryptographic Enforcement</p>
+                    <p className="layer-type">Governance App, Designed</p>
                     <p>
-                      GitHub App enforcing governance rules through signature
-                      verification and review periods. Uses blvm-sdk for
-                      cryptographic operations. <strong>Phase 1:</strong>{" "}
-                      Infrastructure complete, enforcement not yet activated.
+                      One host for a quorum of governance nodes. The quorum is
+                      Designed and is not Running. The client posts checks. It
+                      does not reverse a non-conforming action.{" "}
+                      <strong>Phase 1:</strong> enforcement is off, and the keys
+                      in use are test keys.
                     </p>
                   </div>
                 </div>

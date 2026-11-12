@@ -60,6 +60,8 @@ p {
 /* Colors */
 :root {
   --bitcoin-orange: #f7931a;
+  --on-orange: #111111; /* 8.22:1 on #f7931a (white was 2.29:1) */
+  --orange-text-on-light: #a35400; /* 5.45:1 on white */
   --text-primary: #000000;
   --text-secondary: #333333;
   --text-muted: #666666;
@@ -262,7 +264,7 @@ p {
 
 .btn-primary {
   background: var(--bitcoin-orange);
-  color: white;
+  color: var(--on-orange);
 }
 
 .btn-primary:hover {
@@ -273,12 +275,12 @@ p {
 
 .btn-secondary {
   background: transparent;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text-on-light);
 }
 
 .btn-secondary:hover {
   background: var(--bitcoin-orange);
-  color: white;
+  color: var(--on-orange);
   transform: translateY(-2px);
 }
 
@@ -653,7 +655,7 @@ p {
 
 .book-cover {
   background: linear-gradient(135deg, var(--bitcoin-orange) 0%, #e6820a 100%);
-  color: white;
+  color: var(--on-orange);
   padding: 3rem 2rem;
   border-radius: 8px;
   margin-bottom: 2rem;

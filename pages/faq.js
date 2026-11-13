@@ -3,7 +3,7 @@ import Link from "next/link";
 const faqs = [
   {
     q: "Will I stay in consensus with the Bitcoin network?",
-    a: "Yes. This node implements the same consensus rules as Bitcoin Core: same chain, same UTXO set. Consensus-critical functions are bound to the Orange Paper (spec-lock, Z3 in CI). Compatibility is checked in layers — property tests, libFuzzer, golden vectors, and a differential against Core / libbitcoinkernel — not by a single block-count slogan.",
+    a: "This node is written to Bitcoin’s consensus rules and binds consensus-critical functions to the Orange Paper. A passing Z3 check is not a body proof. Compatibility is checked in layers — property tests, libFuzzer, golden vectors, and a differential against Core / libbitcoinkernel. No signed log covers the chain from genesis to the tip.",
   },
   {
     q: "How does this help decentralize Bitcoin?",
@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Is this a fork of Bitcoin?",
-    a: "No. BTCDecoded does not fork Bitcoin’s blockchain, change its consensus rules, or introduce a new coin. It implements the same rules, formally specified in the Orange Paper. The goal is a second reference-grade full node on the existing Bitcoin network.",
+    a: "No. BTCDecoded does not fork Bitcoin’s blockchain, change its consensus rules, or introduce a new coin. The Orange Paper is the written specification. The goal is a second full node on the existing Bitcoin network.",
   },
   {
     q: "Do I need technical knowledge to run a node?",

@@ -305,16 +305,11 @@ export default function GovernancePage() {
           <p className="page-kicker">The rules</p>
           <h1>Governance</h1>
           <p className="page-lede">
-            Forkable rules, multisig thresholds, and published processes for how
-            BTCDecoded ships software under{" "}
-            <a
-              href="https://thebitcoincommons.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Bitcoin Commons
-            </a>
-            . Every variable from the live YAML in the public{" "}
+            Forkable rules and multisig thresholds, published as YAML. The
+            numbers below are the written schedule. They are not enforced on
+            the repositories. The merge record is separate and starts when
+            branch protection is on. Every variable from the live YAML in the
+            public{" "}
             <a
               href="https://github.com/BTCDecoded/governance"
               target="_blank"

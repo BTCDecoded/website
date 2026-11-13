@@ -3,7 +3,7 @@ import Link from "next/link";
 const faqs = [
   {
     q: "Will I stay in consensus with the Bitcoin network?",
-    a: "This node is written to Bitcoin’s consensus rules and binds consensus-critical functions to the Orange Paper. A passing Z3 check is not a body proof. Compatibility is checked in layers — property tests, libFuzzer, golden vectors, and a differential against Core / libbitcoinkernel. No signed log covers the chain from genesis to the tip.",
+    a: "This node is written to Bitcoin’s consensus rules and binds consensus-critical functions to the Orange Paper. A passing Z3 check means the spec-lock prover and Z3 accepted that function’s contract. Compatibility is checked in layers — property tests, libFuzzer, golden vectors, and a differential against Core / libbitcoinkernel. No signed log covers the chain from genesis to the tip.",
   },
   {
     q: "How does this help decentralize Bitcoin?",

@@ -1,3 +1,19 @@
+const GATES = [
+  ["Full chain", "unknown"],
+  ["Spec lock", "met"],
+  ["Tests", "met"],
+  ["Genesis", "met"],
+  ["Crash", "met"],
+  ["Bounds", "open"],
+  ["Artifacts", "met"],
+  ["Soak", "open"],
+  ["Security", "open"],
+  ["Version", "open"],
+  ["Minimal", "open"],
+];
+
+const GATE_WORD = { met: "Cleared", open: "Open", unknown: "Unknown" };
+
 export default function WhyBLVM() {
   return (
     <section id="why-blvm" className="section">
@@ -12,6 +28,22 @@ export default function WhyBLVM() {
             source and hopes they got it right. BLVM fixes that.
           </p>
         </header>
+
+        <div className="gate-board">
+          <p className="gate-kicker">The beta run</p>
+          <p className="gate-lede">
+            Eleven gates. Cleared means the proof is in.
+          </p>
+          <ol className="gate-track">
+            {GATES.map(([name, state], index) => (
+              <li key={name} data-state={state}>
+                <span className="gate-num">{String(index + 1).padStart(2, "0")}</span>
+                <span className="gate-name">{name}</span>
+                <span className="gate-state">{GATE_WORD[state]}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
 
         <div className="why-grid">
           <div className="why-card">

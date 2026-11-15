@@ -2502,6 +2502,84 @@ code {
   margin-bottom: 0.5rem;
 }
 
+/* ── Beta gate board ── */
+.gate-board {
+  max-width: 42rem;
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.1rem 0.85rem;
+  border: 1px solid var(--panel-warm-border);
+  border-radius: 12px;
+  background: var(--panel-warm);
+}
+
+.gate-kicker {
+  margin: 0 0 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bitcoin-orange);
+}
+
+.gate-lede {
+  margin: 0 0 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.gate-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.2rem;
+}
+
+@media (min-width: 640px) {
+  .gate-track {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1.25rem;
+  }
+}
+
+.gate-track li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0.28rem 0;
+}
+
+.gate-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.gate-track li[data-state="met"] .gate-num {
+  color: var(--bitcoin-orange);
+}
+
+.gate-name {
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.gate-state {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.gate-track li[data-state="met"] .gate-state {
+  color: var(--bitcoin-orange);
+}
+
 /* ── Why-BLVM grid ── */
 .why-grid {
   display: grid;

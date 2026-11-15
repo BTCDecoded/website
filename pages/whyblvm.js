@@ -9,7 +9,7 @@ const GATES = [
   ["Soak", "open"],
   ["Security", "open"],
   ["Version", "open"],
-  ["Minimal", "open"],
+  ["Minimal", "met"],
 ];
 
 const GATE_WORD = { met: "Cleared", open: "Open", unknown: "Unknown" };

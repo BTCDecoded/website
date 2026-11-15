@@ -83,6 +83,9 @@ export default function WhyBLVM() {
           >
             Read the Orange Paper
           </a>
+          <a href="/install/" className="btn btn-outline">
+            Install
+          </a>
           <a
             href="https://docs.btcdecoded.org/blvm/development/differential-testing.html"
             className="btn btn-outline"

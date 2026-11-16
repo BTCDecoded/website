@@ -8,8 +8,9 @@ export default function IndexPage() {
       <section className="home-products" aria-labelledby="home-line">
         <div className="container">
           <p className="home-line" id="home-line">
-            A Bitcoin node with the rules written down, and a cited index of
-            the record those rules come from.
+            A Bitcoin node with the rules written down,{" "}
+            <br className="home-line__break" />
+            and a cited index of the record those rules come from.
           </p>
           <div className="home-pair">
           <article className="intel-hero">

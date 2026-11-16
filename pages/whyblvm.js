@@ -7,8 +7,8 @@ const GATES = [
   ["Bounds", "open"],
   ["Artifacts", "met"],
   ["Soak", "open"],
-  ["Security", "open"],
-  ["Version", "open"],
+  ["Security", "met"],
+  ["Version", "met"],
   ["Minimal", "met"],
 ];
 

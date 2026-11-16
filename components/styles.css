@@ -3251,6 +3251,20 @@ code {
   align-items: start;
 }
 
+.fund-lede a,
+.home-pair .intel-hero__facts a {
+  color: var(--bitcoin-orange);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.fund-lede a:hover,
+.fund-lede a:focus,
+.home-pair .intel-hero__facts a:hover,
+.home-pair .intel-hero__facts a:focus {
+  text-decoration: underline;
+}
+
 .home-pair .intel-hero,
 .home-pair .fund-panel {
   margin: 0;
@@ -3271,13 +3285,24 @@ code {
 
   .home-pair {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .home-pair .fund-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .home-pair .fund-panel .intel-hero__facts {
+    margin-top: auto;
   }
 
   .home-pair .intel-hero__facts {
     grid-template-columns: 1fr 1fr;
   }
 
-  .home-pair .intel-hero h1,
+  .home-pair .intel-hero h2,
   .home-pair .fund-panel h2 {
     font-size: clamp(1.7rem, 2.2vw, 2.05rem);
   }

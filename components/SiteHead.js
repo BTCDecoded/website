@@ -21,14 +21,33 @@ export default function SiteHead() {
       sameAs: [
         "https://x.com/DecodeBitcoin",
         "https://github.com/BTCDecoded",
+        "https://thebitcoincommons.org/",
+        "https://docs.btcdecoded.org/",
       ],
     },
     {
       "@type": "WebSite",
       name: SITE_NAME,
       url: SITE_ORIGIN,
+      ...(path === "/" ? { description: meta.description } : {}),
     },
   ];
+  if (path === "/") {
+    const node = pageMeta("/whyblvm");
+    const index = pageMeta("/intelligence");
+    graph.push({
+      "@type": "SoftwareApplication",
+      name: "BLVM",
+      url: `${SITE_ORIGIN}/install/`,
+      description: node.description,
+    });
+    graph.push({
+      "@type": "SoftwareApplication",
+      name: "BTCDecoded Intelligence",
+      url: `${SITE_ORIGIN}/intelligence/`,
+      description: index.description,
+    });
+  }
   if (path === "/intelligence") {
     graph.push({
       "@type": "SoftwareApplication",

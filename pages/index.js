@@ -7,16 +7,16 @@ export default function IndexPage() {
     <>
       <section className="home-products" aria-labelledby="home-line">
         <div className="container">
-          <p className="home-line" id="home-line">
+          <h1 className="home-line" id="home-line">
             A Bitcoin node with the rules written down,{" "}
             <br className="home-line__break" />
             and a cited index of the record those rules come from.
-          </p>
+          </h1>
           <div className="home-pair">
           <article className="intel-hero">
             <div className="intel-hero__copy">
               <p className="intel-hero__kicker">The index</p>
-              <h1 id="intel-feature-heading">Intelligence</h1>
+              <h2 id="intel-feature-heading">Intelligence</h2>
               <p className="intel-hero__claim">
                 Bitcoin’s public coordination record, searchable.
               </p>
@@ -66,8 +66,8 @@ export default function IndexPage() {
             <h2 id="node-heading">BLVM</h2>
             <p className="fund-lede">
               A Bitcoin full node with the consensus rules written down. Same
-              chain as Bitcoin Core — not a new coin. Spec-lock, Orange Paper,
-              verified downloads.
+              chain as Bitcoin Core — not a new coin. Spec-lock,{" "}
+              <a href="https://thebitcoincommons.org/orange-paper.html">Orange Paper</a>{", verified downloads."}
             </p>
             <div className="home-ctas">
               <Link href="/install/" className="btn btn-primary">
@@ -83,6 +83,30 @@ export default function IndexPage() {
                 Manual
               </a>
             </div>
+            <ul className="intel-hero__facts" aria-label="BLVM at a glance">
+              <li>
+                <span className="intel-hero__k">Chain</span>
+                <span>Same chain as Bitcoin Core</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Rules</span>
+                <span>
+                  <a href="https://thebitcoincommons.org/orange-paper.html">
+                    Orange Paper
+                  </a>
+                </span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Checks</span>
+                <span>Spec-lock</span>
+              </li>
+              <li>
+                <span className="intel-hero__k">Releases</span>
+                <span>
+                  <Link href="/install/">Verified downloads</Link>
+                </span>
+              </li>
+            </ul>
             <p className="release-note">
               <span className="release-note__badge">{blvmDisplayTag}</span>
               <span>

@@ -1,4 +1,8 @@
+import Head from "next/head";
 import Link from "next/link";
+
+const SUPPORT_ANSWER =
+  "The Support form for Intelligence billing, keys, and checkout, and for node questions that are not a security report. Security issues go to security@thebitcoincommons.org. Node docs: docs.btcdecoded.org/blvm.";
 
 const faqs = [
   {
@@ -46,9 +50,31 @@ const faqs = [
   },
 ];
 
+function answerText(item) {
+  return typeof item.a === "string" ? item.a : SUPPORT_ANSWER;
+}
+
 export default function FAQ() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answerText(item),
+      },
+    })),
+  };
   return (
     <section id="faq" className="section">
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      </Head>
       <div className="container">
         <header className="page-head">
           <p className="page-kicker">The node</p>

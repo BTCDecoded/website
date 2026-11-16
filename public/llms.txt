@@ -29,7 +29,7 @@ The **node** is [BLVM](https://btcdecoded.org/install/): a Bitcoin full node wit
 
 - [Install BLVM](https://btcdecoded.org/install/): Current release packages, checksums, Docker, release history
 - [Pre-built nodes](https://btcdecoded.org/plugandplay/): Start9, Umbrel, myNode, Parmanode
-- [Why BLVM?](https://btcdecoded.org/whyblvm/): One spec, Z3-backed verification, Core differential
+- [Why BLVM?](https://btcdecoded.org/whyblvm/): A Bitcoin full node with consensus rules written down. A passing Z3 check means the spec-lock prover and Z3 accepted that function’s contract.
 - [FAQ](https://btcdecoded.org/faq/): Consensus safety and operator questions
 
 ## Spec and project

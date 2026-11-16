@@ -10,6 +10,113 @@ const GOV_BLOB = "https://github.com/BTCDecoded/governance/blob/main";
 const GOV_SPECTRUM_SRC =
   "https://thebitcoincommons.org/node-charts/governance-spectrum-line.html?theme=light";
 
+function rowFrom(key, value) {
+  if (!value || typeof value !== "object") return null;
+  const sig = value.signatures;
+  if (!sig || typeof sig !== "object") return null;
+  const required = Number(sig.required);
+  const total = Number(sig.total);
+  if (!Number.isFinite(required) || !Number.isFinite(total) || total < 1 || total > 12) {
+    return null;
+  }
+  const days = Number(value.review_period_days);
+  const repos = Array.isArray(value.repositories)
+    ? value.repositories.filter((name) => typeof name === "string")
+    : [];
+  return {
+    key,
+    name: typeof value.name === "string" ? value.name : key,
+    required: Math.min(required, total),
+    total,
+    days: Number.isFinite(days) ? days : null,
+    repos,
+  };
+}
+
+function rowsFrom(group) {
+  if (!group || typeof group !== "object" || Array.isArray(group)) return [];
+  return Object.entries(group)
+    .map(([key, value]) => rowFrom(key, value))
+    .filter(Boolean)
+    .sort((a, b) => a.key.localeCompare(b.key));
+}
+
+function SignatureDots({ required, total }) {
+  return (
+    <span className="gov-dots" aria-hidden="true">
+      {Array.from({ length: total }, (_, i) => (
+        <span
+          key={i}
+          className={i < required ? "gov-dot gov-dot--sign" : "gov-dot"}
+        />
+      ))}
+    </span>
+  );
+}
+
+function ScheduleList({ rows }) {
+  return (
+    <ol className="gov-track">
+      {rows.map((row, index) => (
+        <li key={row.key}>
+          <span className="gov-num">{String(index + 1).padStart(2, "0")}</span>
+          <span className="gov-name">
+            {row.name}
+            {row.repos.length > 0 ? (
+              <span className="gov-repos">{row.repos.join(", ")}</span>
+            ) : null}
+          </span>
+          <span className="gov-meter">
+            <SignatureDots required={row.required} total={row.total} />
+            <span className="gov-count">
+              {row.required} of {row.total}
+              {row.days === null ? "" : ` · ${row.days}-day review`}
+            </span>
+          </span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function WrittenSchedule({ fileResults }) {
+  const layers = rowsFrom(fileResults["config/repository-layers.yml"]?.data?.layers);
+  const tierRows = rowsFrom(fileResults["config/action-tiers.yml"]?.data?.tiers);
+  const tiers = tierRows.filter((row) => /^tier_[1-5]_/.test(row.key));
+  const security = tierRows.filter((row) => !/^tier_[1-5]_/.test(row.key));
+  if (layers.length === 0 && tiers.length === 0) return null;
+
+  return (
+    <div className="gov-board">
+      <p className="gate-kicker">The written schedule</p>
+      <p className="gate-lede">
+        Repository layers and action tiers, read from the live YAML. An orange
+        dot must sign. A gray dot is another key in that set. This is the
+        schedule. It is not enforced on the repositories.
+      </p>
+      {layers.length > 0 ? (
+        <>
+          <h2 className="gov-board-title">Repository layers</h2>
+          <ScheduleList rows={layers} />
+        </>
+      ) : null}
+      {tiers.length > 0 ? (
+        <>
+          <h2 className="gov-board-title">Action tiers</h2>
+          <ScheduleList rows={tiers} />
+        </>
+      ) : null}
+      {security.length > 0 ? (
+        <>
+          <h2 className="gov-board-title">Security-specific keys</h2>
+          <p className="gov-board-note">Same file. Separate from the five action tiers.</p>
+          <ScheduleList rows={security} />
+        </>
+      ) : null}
+    </div>
+  );
+}
+
 function GovernanceSpectrumLight() {
   const iframeRef = useRef(null);
   const [iframeHeight, setIframeHeight] = useState(200);
@@ -323,7 +430,17 @@ export default function GovernancePage() {
 
         <GovernanceSpectrumLight />
 
+        <WrittenSchedule fileResults={fileResults} />
+
         <div className="home-ctas governance-cta-row">
+          <a
+            href="https://thebitcoincommons.org/ecosystem.html"
+            className="btn btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            How the nodes compare
+          </a>
           <a
             href="https://thebitcoincommons.org/governance-designer.html"
             className="btn btn-primary"

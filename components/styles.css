@@ -2922,6 +2922,100 @@ code {
   margin-bottom: 0;
 }
 
+.gov-board {
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.1rem 0.85rem;
+  border: 1px solid var(--panel-warm-border);
+  border-radius: 12px;
+  background: var(--panel-warm);
+}
+
+.gov-board-title {
+  margin: 1rem 0 0.35rem;
+  font-size: 0.95rem;
+}
+
+.gov-board-note {
+  margin: 0 0 0.35rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.gov-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.gov-track li {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(8rem, 1fr) auto;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.gov-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--bitcoin-orange);
+}
+
+.gov-name {
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.gov-repos {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.gov-meter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.gov-dots {
+  display: flex;
+  gap: 0.28rem;
+}
+
+.gov-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #c5c5c5;
+}
+
+.gov-dot--sign {
+  background: var(--bitcoin-orange);
+}
+
+.gov-count {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .gov-track li {
+    grid-template-columns: 1.6rem 1fr;
+  }
+
+  .gov-meter {
+    grid-column: 2;
+    align-items: flex-start;
+  }
+}
+
 /* ── Governance YAML tree viewer ── */
 .gov-yml-files {
   display: flex;

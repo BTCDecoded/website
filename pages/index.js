@@ -39,9 +39,6 @@ export default function IndexPage() {
                   Docs
                 </a>
               </div>
-              <p className="home-cross">
-                <Link href="/install/">The node, BLVM</Link>
-              </p>
             </div>
             <IntelRecap />
             <ul className="intel-hero__facts" aria-label="Intelligence at a glance">
@@ -85,9 +82,6 @@ export default function IndexPage() {
                 Manual
               </a>
             </div>
-            <p className="home-cross">
-              <Link href="/intelligence/">The index, Intelligence</Link>
-            </p>
             <p className="release-note">
               <span className="release-note__badge">{blvmDisplayTag}</span>
               <span>

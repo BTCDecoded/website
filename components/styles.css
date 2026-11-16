@@ -3226,9 +3226,72 @@ code {
   white-space: nowrap;
 }
 
+/* ── Homepage: node and index ── */
+.home-products {
+  padding: 2.5rem 0 1rem;
+}
+
+.home-line {
+  margin: 0 0 1.35rem;
+  max-width: 34rem;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  color: var(--text-primary);
+}
+
+.home-pair {
+  display: grid;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.home-pair .intel-hero,
+.home-pair .fund-panel {
+  margin: 0;
+  height: 100%;
+}
+
+.home-pair .fund-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-pair .release-note {
+  margin-top: auto;
+}
+
+.home-cross {
+  margin: 0.15rem 0 0;
+  font-size: 0.92rem;
+}
+
+.home-cross a {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+@media (min-width: 1040px) {
+  .home-pair {
+    grid-template-columns: minmax(0, 1.4fr) minmax(17rem, 0.72fr);
+  }
+
+  .home-pair .intel-hero__facts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-pair .intel-hero h1,
+  .home-pair .fund-panel h2 {
+    font-size: clamp(1.7rem, 2.2vw, 2.05rem);
+  }
+}
+
 /* ── Plebly fund CTA ── */
 .fund-feature {
-  padding: 0 0 3rem;
+  padding: 1.25rem 0 3rem;
 }
 
 .fund-panel {

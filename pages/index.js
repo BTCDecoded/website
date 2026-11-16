@@ -5,8 +5,13 @@ import IntelRecap from "../components/IntelRecap";
 export default function IndexPage() {
   return (
     <>
-      <section className="intel-feature intel-feature--home" aria-labelledby="intel-feature-heading">
+      <section className="home-products" aria-labelledby="home-line">
         <div className="container">
+          <p className="home-line" id="home-line">
+            A Bitcoin node with the rules written down, and a cited index of
+            the record those rules come from.
+          </p>
+          <div className="home-pair">
           <article className="intel-hero">
             <div className="intel-hero__copy">
               <p className="intel-hero__kicker">The index</p>
@@ -34,6 +39,9 @@ export default function IndexPage() {
                   Docs
                 </a>
               </div>
+              <p className="home-cross">
+                <Link href="/install/">The node, BLVM</Link>
+              </p>
             </div>
             <IntelRecap />
             <ul className="intel-hero__facts" aria-label="Intelligence at a glance">
@@ -55,12 +63,7 @@ export default function IndexPage() {
               </li>
             </ul>
           </article>
-        </div>
-      </section>
-
-      <section className="fund-feature" aria-labelledby="node-heading">
-        <div className="container">
-          <article className="fund-panel">
+          <article className="fund-panel" aria-labelledby="node-heading">
             <p className="fund-kicker">The node</p>
             <h2 id="node-heading">BLVM</h2>
             <p className="fund-lede">
@@ -82,6 +85,9 @@ export default function IndexPage() {
                 Manual
               </a>
             </div>
+            <p className="home-cross">
+              <Link href="/intelligence/">The index, Intelligence</Link>
+            </p>
             <p className="release-note">
               <span className="release-note__badge">{blvmDisplayTag}</span>
               <span>
@@ -90,6 +96,7 @@ export default function IndexPage() {
               </span>
             </p>
           </article>
+          </div>
         </div>
       </section>
 

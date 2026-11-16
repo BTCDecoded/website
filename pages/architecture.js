@@ -3,28 +3,44 @@ import Link from "next/link";
 
 const BLVM_FLOW_EMBED_SRC =
   "https://thebitcoincommons.org/node-charts/bllvm-dependency-flow.html?embed=1&theme=light";
+const SUNBURST_EMBED_SRC =
+  "https://thebitcoincommons.org/spec-viz/sunburst.html?embed=1";
+
+function bindEmbedHeight(frame, type) {
+  function onMessage(e) {
+    if (!e.data || e.data.type !== type) return;
+    if (!frame || e.source !== frame.contentWindow) return;
+    const h = e.data.height;
+    if (typeof h !== "number" || !isFinite(h) || h <= 0) return;
+    const cap = Math.round(window.innerHeight * 0.92);
+    const slack = 2;
+    const next = Math.min(
+      Math.max(Math.round(h + slack), 200),
+      Math.max(cap, 200)
+    );
+    frame.style.height = `${next}px`;
+  }
+  window.addEventListener("message", onMessage);
+  return () => window.removeEventListener("message", onMessage);
+}
 
 export default function ArchitecturePage() {
   const blvmFlowRef = useRef(null);
+  const sunburstRef = useRef(null);
 
   useEffect(() => {
-    const frame = blvmFlowRef.current;
-    if (!frame) return;
-    function onMessage(e) {
-      if (!e.data || e.data.type !== "btcc-bllvm-embed-height") return;
-      if (e.source !== frame.contentWindow) return;
-      const h = e.data.height;
-      if (typeof h !== "number" || !isFinite(h) || h <= 0) return;
-      const cap = Math.round(window.innerHeight * 0.92);
-      const slack = 2;
-      const next = Math.min(
-        Math.max(Math.round(h + slack), 200),
-        Math.max(cap, 200)
-      );
-      frame.style.height = `${next}px`;
-    }
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
+    const unbindFlow = bindEmbedHeight(
+      blvmFlowRef.current,
+      "btcc-bllvm-embed-height"
+    );
+    const unbindSunburst = bindEmbedHeight(
+      sunburstRef.current,
+      "btcc-sunburst-embed-height"
+    );
+    return () => {
+      unbindFlow();
+      unbindSunburst();
+    };
   }, []);
 
   return (
@@ -36,7 +52,7 @@ export default function ArchitecturePage() {
       <div className="container">
         <header className="page-head">
           <p className="page-kicker">The stack</p>
-          <h1 id="architecture-heading">Architecture</h1>
+          <h1 id="architecture-heading">Stack</h1>
           <p className="page-lede">
             Write Bitcoin’s rules, implement them, run a node, and publish who
             can change the software. Orange Paper → blvm-consensus (spec-lock) →
@@ -48,7 +64,10 @@ export default function ArchitecturePage() {
             >
               Architecture docs
             </a>
-            .
+            {" · "}
+            <Link href="/governance/">Governance</Link>
+            {" · "}
+            <Link href="/problem/">Problem</Link>
           </p>
         </header>
         <div className="content">
@@ -70,11 +89,35 @@ export default function ArchitecturePage() {
                     </h3>
                     <p className="layer-type">Mathematical Specification</p>
                     <p>
-                      Complete mathematical specification of Bitcoin consensus
-                      extracted from Bitcoin Core. Includes the 21 million
-                      supply convergence proof (Theorem 6.2.3).{" "}
+                      Mathematical specification of Bitcoin consensus extracted
+                      from Bitcoin Core. Includes the 21 million supply
+                      convergence proof (Theorem 6.2.3).{" "}
+                      <a
+                        href="https://thebitcoincommons.org/orange-paper.html"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        Orange Paper
+                      </a>
+                      {" · "}
+                      <a
+                        href="https://thebitcoincommons.org/spec.html"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        Consensus register
+                      </a>
+                      {" · "}
+                      <a
+                        href="https://thebitcoincommons.org/architecture.html"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        ARCHITECTURE.md
+                      </a>
+                      {" · "}
                       <Link href="/orangepaper/" className="architecture-inline-spec-link">
-                        Orange Paper viewer on this site →
+                        Supply proof on this site
                       </Link>
                     </p>
                   </div>
@@ -97,11 +140,6 @@ export default function ArchitecturePage() {
                       Rust implementation of the Orange Paper functions.{" "}
                       <strong>blvm-spec-lock</strong> binds those functions to
                       numbered spec sections. CI runs Z3 on those annotations.
-                    </p>
-                    <p className="tech-detail">
-                      <strong>Spec-lock:</strong> chain selection, block subsidy,
-                      proof-of-work, and transaction validation carry
-                      annotations. CI runs Z3 on those annotations.
                     </p>
                   </div>
                 </div>
@@ -141,11 +179,10 @@ export default function ArchitecturePage() {
                     </h3>
                     <p className="layer-type">Full Node Library</p>
                     <p>
-                      Complete Bitcoin node library using blvm-protocol and
-                      blvm-consensus. Adds storage, networking, and RPC.{" "}
-                      <strong>Optional features:</strong> Iroh QUIC transport
-                      (NAT traversal), Quinn QUIC transport, UTXO commitments
-                      (faster initial sync).
+                      Bitcoin node library on blvm-protocol and blvm-consensus.
+                      Adds storage, networking, and RPC. Optional features:
+                      Iroh QUIC transport (NAT traversal), Quinn QUIC transport,
+                      and UTXO commitments.
                     </p>
                   </div>
                 </div>
@@ -261,6 +298,24 @@ export default function ArchitecturePage() {
               <p className="diagram-caption">
                 Orange Paper → blvm-consensus (spec-lock + tests) → protocol,
                 node, SDK, governance.
+              </p>
+              <iframe
+                ref={sunburstRef}
+                title="Orange Paper specification map"
+                src={SUNBURST_EMBED_SRC}
+                loading="lazy"
+                height={360}
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <p className="diagram-caption">
+                Orange Paper sections.{" "}
+                <a
+                  href="https://thebitcoincommons.org/orange-paper.html"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Open the paper
+                </a>
               </p>
             </div>
           </div>

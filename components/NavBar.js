@@ -10,11 +10,11 @@ import SiteBrand from "./SiteBrand";
 const NAV_GROUPS = [
   {
     id: "node",
-    title: "Node",
+    title: "BLVM",
     items: [
       { href: "/whyblvm/", title: "Why BLVM?" },
       { href: "/install/", title: "Install" },
-      { href: "/plugandplay/", title: "Pre-built nodes" },
+      { href: "/architecture/", title: "Stack" },
       { href: "/faq/", title: "FAQ" },
       {
         href: "https://docs.btcdecoded.org/blvm/",

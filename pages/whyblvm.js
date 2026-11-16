@@ -47,61 +47,46 @@ export default function WhyBLVM() {
 
         <div className="why-grid">
           <div className="why-card">
-            <h3>One spec, many implementations</h3>
+            <h3>The Orange Paper</h3>
             <p>
-              The Orange Paper is a formal mathematical specification of
-              Bitcoin consensus extracted from Bitcoin Core. Instead of each
-              node team guessing at the rules, they implement against the spec
-              and prove compatibility. Divergence becomes detectable before it
-              hits mainnet.
+              The written consensus rules, extracted from how Bitcoin Core
+              behaves. Implementations target that document.{" "}
+              <a
+                href="https://thebitcoincommons.org/orange-paper.html"
+                target="_blank"
+                rel="noopener"
+              >
+                Read the paper
+              </a>
+              {" · "}
+              <a href="/orangepaper/">Supply proof on this site</a>
             </p>
           </div>
 
           <div className="why-card">
-            <h3>Verified, not just tested</h3>
+            <h3>Checked in layers</h3>
             <p>
-              Annotated consensus functions carry <code>#[spec_locked]</code>{" "}
-              ties to Orange Paper sections. CI runs Z3 on those annotations.
-            </p>
-          </div>
-
-          <div className="why-card">
-            <h3>Checked against Core, in layers</h3>
-            <p>
-              A single chain replay is not enough. Compatibility is exercised
-              by property tests, libFuzzer on consensus, protocol, and node,
-              golden vectors from mainnet wire bytes and Core script fixtures,
-              and a differential against Bitcoin Core / libbitcoinkernel. Each
-              layer is meant to catch a different class of mistake.
+              Property tests, libFuzzer, golden vectors, and a differential
+              against Bitcoin Core / libbitcoinkernel. A passing Z3 check means
+              the spec-lock prover and Z3 accepted that function’s contract.{" "}
+              <a
+                href="https://docs.btcdecoded.org/blvm/development/differential-testing.html"
+                target="_blank"
+                rel="noopener"
+              >
+                How testing is layered
+              </a>
             </p>
           </div>
 
           <div className="why-card">
             <h3>Governance you can fork</h3>
             <p>
-              Bitcoin Commons publishes who can merge, which thresholds apply,
-              and how long review windows last. The rules are in a public
-              repository. If you disagree with a rule you fork that repository,
-              not the chain.
-            </p>
-          </div>
-
-          <div className="why-card">
-            <h3>Not a new coin</h3>
-            <p>
-              BLVM implements the same Bitcoin consensus rules as Bitcoin
-              Core. Same chain, same UTXO set. Theorem 6.2.3 in the Orange
-              Paper states supply convergence. The goal is another
-              implementation of Bitcoin, not a new coin.
-            </p>
-          </div>
-
-          <div className="why-card">
-            <h3>Built for operators</h3>
-            <p>
-              Packaged installs on GitHub Releases. Marketplace packages for
-              Start9, Umbrel, myNode, and Parmanode are coming. You should not
-              need a Rust compiler to run this node.
+              Who can merge, which thresholds apply, and how long review
+              windows last are in a public repository. Phase 1 is current.
+              Enforcement is off and the keys are test keys. If you disagree
+              with a rule you fork that repository, not the chain.{" "}
+              <a href="/governance/">Governance</a>
             </p>
           </div>
         </div>
@@ -118,13 +103,8 @@ export default function WhyBLVM() {
           <a href="/install/" className="btn btn-outline">
             Install
           </a>
-          <a
-            href="https://docs.btcdecoded.org/blvm/development/differential-testing.html"
-            className="btn btn-outline"
-            target="_blank"
-            rel="noopener"
-          >
-            How testing is layered
+          <a href="/architecture/" className="btn btn-outline">
+            Stack
           </a>
         </div>
       </div>

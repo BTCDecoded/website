@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import installContent from "../data/install-content.json";
 import {
   blvmDisplayTag,
@@ -154,6 +155,10 @@ export default function Install() {
             >
               {blvmDisplayTag} on GitHub →
             </a>
+          </p>
+          <p className="install-coming-soon">
+            Marketplace installs for Start9, Umbrel, myNode, and Parmanode are
+            not live yet. <Link href="/plugandplay/">Preview the planned paths</Link>
           </p>
         </header>
 

@@ -215,16 +215,6 @@ pub fn total_supply(height: Natural) -> Integer {
                   read the full spec →
                 </a>
               </p>
-              <img
-                src="https://thebitcoincommons.org/assets/images/Consensus-Coverage-Comparison.png"
-                alt="Consensus Coverage Comparison"
-                style={{ marginTop: "1.5rem" }}
-              />
-              <p className="diagram-caption">
-                Comparison of consensus coverage between Bitcoin Core
-                (testing-based) and Bitcoin Commons (formal verification plus
-                testing).
-              </p>
             </div>
           </div>
         </div>

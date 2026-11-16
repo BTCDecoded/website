@@ -36,6 +36,12 @@ export default function Footer() {
                 <Link href="/install/">BLVM</Link>
               </li>
               <li>
+                <Link href="/whyblvm/">Why BLVM</Link>
+              </li>
+              <li>
+                <Link href="/architecture/">Stack</Link>
+              </li>
+              <li>
                 <a
                   href="https://plebly.fund/#projects"
                   target="_blank"

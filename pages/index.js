@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { blvmDisplayTag } from "../lib/blvmReleaseMeta";
+import { blvmDisplayTag, blvmPrereleaseTag, blvmPrereleaseUrl } from "../lib/blvmReleaseMeta";
 import IntelRecap from "../components/IntelRecap";
 
 export default function IndexPage() {
@@ -113,6 +113,17 @@ export default function IndexPage() {
                 Latest release.{" "}
                 <Link href="/install/">install →</Link>
               </span>
+              {blvmPrereleaseTag ? (
+                <>
+                  <span className="release-note__badge release-note__badge--pre">
+                    {blvmPrereleaseTag}
+                  </span>
+                  <span>
+                    Pre-release.{" "}
+                    <a href={blvmPrereleaseUrl}>GitHub →</a>
+                  </span>
+                </>
+              ) : null}
             </p>
           </article>
           </div>

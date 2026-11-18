@@ -10,7 +10,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { blvmHistoryEntry } from "./blvm-release-title.mjs";
+import { blvmHistoryEntry, latestPrerelease } from "./blvm-release-title.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -117,6 +117,11 @@ function runForPackage(slot, filename) {
   return null;
 }
 
+// docker.runCmd has to match the Dockerfile of the tag this fetch will write.
+// Images through the `WORKDIR /app` / `useradd -r` Dockerfile store data in
+// /app/data as user blvm. The image that pins uid 61100 stores it in
+// /var/lib/blvm. Change install-content.static.json in that same release,
+// including the .deb/.rpm text once those packages install blvm.service.
 function substituteDocker(docker, semver) {
   if (!docker) return null;
   const sub = (s) => (s ?? "").replaceAll("{{VERSION}}", semver);
@@ -186,14 +191,16 @@ async function main() {
     const semver = semverFromTag(tag);
     const assets = latest.assets ?? [];
 
-    const releasesList = await ghFetch(`https://api.github.com/repos/${repo}/releases?per_page=12`).catch(() => []);
+    const releasesList = await ghFetch(
+      `https://api.github.com/repos/${repo}/releases?per_page=30`,
+    ).catch(() => []);
 
-    const releaseHistory = Array.isArray(releasesList)
-      ? releasesList
-          .filter((r) => !r.draft)
-          .slice(0, 8)
-          .map((r) => blvmHistoryEntry(r))
+    const published = Array.isArray(releasesList)
+      ? releasesList.filter((r) => !r.draft)
       : [];
+    const releaseHistory = published.slice(0, 8).map((r) => blvmHistoryEntry(r));
+    const pre = latestPrerelease(published);
+    const prerelease = pre && pre.tag !== tag ? pre : null;
 
     const packages = buildPackages(staticData, assets, repo, tag);
 
@@ -209,6 +216,7 @@ async function main() {
         body: latest.body ?? "",
       },
       releaseHistory,
+      prerelease,
       packageGroups: staticData.packageGroups ?? [],
       page: staticData.page,
       packages,

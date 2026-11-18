@@ -2129,6 +2129,13 @@ code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
   font-size: 0.85rem;
 }
+.install-history-kind {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
 .install-history-name {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -2477,6 +2484,10 @@ code {
   background: #fff;
   border: 1px solid var(--panel-warm-border);
   color: var(--text-primary);
+}
+
+.release-note__badge--pre {
+  border-style: dashed;
 }
 
 .network-warning {

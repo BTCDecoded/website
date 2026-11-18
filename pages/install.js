@@ -3,6 +3,8 @@ import Link from "next/link";
 import installContent from "../data/install-content.json";
 import {
   blvmDisplayTag,
+  blvmPrereleaseTag,
+  blvmPrereleaseUrl,
   blvmReleasesLatestUrl,
   blvmReleasesTagUrl,
 } from "../lib/blvmReleaseMeta";
@@ -155,6 +157,15 @@ export default function Install() {
             >
               {blvmDisplayTag} on GitHub →
             </a>
+            {blvmPrereleaseTag ? (
+              <>
+                {" "}
+                Pre-release:{" "}
+                <a href={blvmPrereleaseUrl} target="_blank" rel="noopener">
+                  {blvmPrereleaseTag}
+                </a>
+              </>
+            ) : null}
           </p>
           <p className="install-coming-soon">
             Marketplace installs for Start9, Umbrel, myNode, and Parmanode are
@@ -278,6 +289,9 @@ export default function Install() {
                 <li key={r.tag}>
                   <a href={r.url} target="_blank" rel="noopener">
                     <span className="install-history-tag">{r.tag}</span>
+                    {r.prerelease ? (
+                      <span className="install-history-kind">pre-release</span>
+                    ) : null}
                     <span className="install-history-name">{r.name}</span>
                     {r.publishedAt ? (
                       <span className="install-history-date">

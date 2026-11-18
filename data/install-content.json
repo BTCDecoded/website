@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-18T14:23:37.852Z",
+  "generatedAt": "2026-11-18T17:31:11.301Z",
   "source": "github://BTCDecoded/blvm",
   "release": {
     "tag": "v0.1.81",
@@ -96,7 +96,7 @@
       "ext": ".deb",
       "icon": "fa-brands fa-debian",
       "group": "linux-pkg",
-      "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro.",
+      "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro. Installs the systemd unit and leaves it disabled.",
       "filename": "blvm_0.1.81_amd64.deb",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm_0.1.81_amd64.deb",
       "installCmd": "sudo dpkg -i blvm_0.1.81_amd64.deb\nsudo apt-get install -f    # pull in any missing deps",
@@ -109,7 +109,7 @@
       "ext": ".rpm",
       "icon": "fa-brands fa-fedora",
       "group": "linux-pkg",
-      "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros.",
+      "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros. Installs the systemd unit and leaves it disabled.",
       "filename": "blvm-0.1.81-1.x86_64.rpm",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-1.x86_64.rpm",
       "installCmd": "sudo rpm -i blvm-0.1.81-1.x86_64.rpm\n# or via dnf:\nsudo dnf install ./blvm-0.1.81-1.x86_64.rpm",
@@ -122,7 +122,7 @@
       "ext": ".pkg.tar.gz",
       "icon": "fa-solid fa-cubes",
       "group": "linux-pkg",
-      "description": "Arch and other pacman-based distros (x86_64). Installs the binary only.",
+      "description": "Arch and other pacman-based distros (x86_64). Installs the systemd unit and leaves it disabled.",
       "filename": "blvm-0.1.81-x86_64.pkg.tar.gz",
       "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-x86_64.pkg.tar.gz",
       "installCmd": "sudo pacman -U blvm-0.1.81-x86_64.pkg.tar.gz",
@@ -172,9 +172,9 @@
   "docker": {
     "title": "Docker",
     "icon": "fa-brands fa-docker",
-    "description": "Image on GHCR for this published tag. It runs as user blvm and stores data in /app/data. RPC stays on loopback, so the command does not publish 8332. If the container cannot write the mount, chown the host directory to the uid printed by `docker run --rm --entrypoint id` on this image.",
+    "description": "Image on GHCR for this tag. It runs as uid 61100 and stores data in /var/lib/blvm. RPC stays on loopback, so the command does not publish 8332. chown the host directory to 61100:61100 before the first start.",
     "pullCmd": "docker pull ghcr.io/btcdecoded/blvm:0.1.81",
-    "runCmd": "mkdir -p blvm-data\ndocker run -d --name blvm --stop-timeout 240 \\\n  -p 8333:8333 \\\n  -v \"$PWD/blvm-data:/app/data\" \\\n  ghcr.io/btcdecoded/blvm:0.1.81 \\\n  --network mainnet --listen-addr 0.0.0.0:8333",
+    "runCmd": "mkdir -p blvm-data && sudo chown 61100:61100 blvm-data\ndocker run -d --name blvm --stop-timeout 240 \\\n  -p 8333:8333 \\\n  -v \"$PWD/blvm-data:/var/lib/blvm\" \\\n  ghcr.io/btcdecoded/blvm:0.1.81 \\\n  --network mainnet --listen-addr 0.0.0.0:8333",
     "packageUrl": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
     "packageLinkLabel": "View on GHCR →"
   },

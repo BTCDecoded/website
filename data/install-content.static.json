@@ -18,7 +18,7 @@
       "label": "Debian / Ubuntu",
       "ext": ".deb",
       "icon": "fa-brands fa-debian",
-      "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro.",
+      "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro. Installs the systemd unit and leaves it disabled.",
       "pick": { "suffix": ".deb", "includes": ["amd64"] },
       "installCmdTemplate": "sudo dpkg -i {{FILENAME}}\nsudo apt-get install -f    # pull in any missing deps",
       "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
@@ -29,7 +29,7 @@
       "label": "Fedora / RHEL",
       "ext": ".rpm",
       "icon": "fa-brands fa-fedora",
-      "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros.",
+      "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros. Installs the systemd unit and leaves it disabled.",
       "pick": { "suffix": ".rpm", "includes": ["x86_64"] },
       "installCmdTemplate": "sudo rpm -i {{FILENAME}}\n# or via dnf:\nsudo dnf install ./{{FILENAME}}",
       "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
@@ -40,7 +40,7 @@
       "label": "Arch Linux",
       "ext": ".pkg.tar.gz",
       "icon": "fa-solid fa-cubes",
-      "description": "Arch and other pacman-based distros (x86_64). Installs the binary only.",
+      "description": "Arch and other pacman-based distros (x86_64). Installs the systemd unit and leaves it disabled.",
       "pick": { "suffix": ".pkg.tar.gz", "includes": ["x86_64"] },
       "installCmdTemplate": "sudo pacman -U {{FILENAME}}",
       "verifyTemplate": "sha256sum --check {{CHECKFILE}}"
@@ -82,9 +82,9 @@
   "docker": {
     "title": "Docker",
     "icon": "fa-brands fa-docker",
-    "description": "Image on GHCR for this published tag. It runs as user blvm and stores data in /app/data. RPC stays on loopback, so the command does not publish 8332. If the container cannot write the mount, chown the host directory to the uid printed by `docker run --rm --entrypoint id` on this image.",
+    "description": "Image on GHCR for this tag. It runs as uid 61100 and stores data in /var/lib/blvm. RPC stays on loopback, so the command does not publish 8332. chown the host directory to 61100:61100 before the first start.",
     "pullCmd": "docker pull ghcr.io/btcdecoded/blvm:{{VERSION}}",
-    "runCmd": "mkdir -p blvm-data\ndocker run -d --name blvm --stop-timeout 240 \\\n  -p 8333:8333 \\\n  -v \"$PWD/blvm-data:/app/data\" \\\n  ghcr.io/btcdecoded/blvm:{{VERSION}} \\\n  --network mainnet --listen-addr 0.0.0.0:8333",
+    "runCmd": "mkdir -p blvm-data && sudo chown 61100:61100 blvm-data\ndocker run -d --name blvm --stop-timeout 240 \\\n  -p 8333:8333 \\\n  -v \"$PWD/blvm-data:/var/lib/blvm\" \\\n  ghcr.io/btcdecoded/blvm:{{VERSION}} \\\n  --network mainnet --listen-addr 0.0.0.0:8333",
     "packageUrl": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
     "packageLinkLabel": "View on GHCR →"
   },

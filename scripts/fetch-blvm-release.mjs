@@ -117,11 +117,8 @@ function runForPackage(slot, filename) {
   return null;
 }
 
-// docker.runCmd has to match the Dockerfile of the tag this fetch will write.
-// Images through the `WORKDIR /app` / `useradd -r` Dockerfile store data in
-// /app/data as user blvm. The image that pins uid 61100 stores it in
-// /var/lib/blvm. Change install-content.static.json in that same release,
-// including the .deb/.rpm text once those packages install blvm.service.
+// docker.runCmd is the image in the blvm tree: uid 61100, data in /var/lib/blvm.
+// The Linux .deb, .rpm, and Arch packages install blvm.service and do not enable it.
 function substituteDocker(docker, semver) {
   if (!docker) return null;
   const sub = (s) => (s ?? "").replaceAll("{{VERSION}}", semver);

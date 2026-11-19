@@ -61,7 +61,8 @@ p {
 :root {
   --bitcoin-orange: #f7931a;
   --on-orange: #111111; /* 8.22:1 on #f7931a (white was 2.29:1) */
-  --orange-text-on-light: #a35400; /* 5.45:1 on white */
+  --orange-text: #a35400; /* 5.49:1 on #fff, 5.21:1 on #fff8f0, 5.04:1 on #f5f5f5 */
+  --orange-text-on-light: var(--orange-text);
   --text-primary: #000000;
   --text-secondary: #333333;
   --text-muted: #666666;
@@ -154,7 +155,7 @@ p {
 }
 
 .nav-links a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .layout-main {
@@ -199,7 +200,7 @@ p {
 
 .tagline {
   font-size: 1.5rem;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -213,9 +214,9 @@ p {
 }
 
 .hero-lead a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .hero-lead a:hover {
@@ -240,7 +241,7 @@ p {
 }
 
 .framework-badge a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: none;
   font-weight: 600;
 }
@@ -292,7 +293,7 @@ p {
 
 .btn-outline:hover {
   border-color: var(--bitcoin-orange);
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .btn-large {
@@ -385,7 +386,7 @@ p {
 .layer-number {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   min-width: 80px;
   text-align: center;
 }
@@ -402,7 +403,7 @@ p {
 
 .layer-content .layer-type {
   font-weight: 600;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -416,20 +417,20 @@ p {
 }
 
 .layer-content h3 a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .layer-content .architecture-inline-spec-link {
   font-weight: 600;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: none;
-  border-bottom: 1px solid rgba(247, 147, 26, 0.35);
+  border-bottom: 1px solid rgba(163, 84, 0, 0.35);
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .layer-content .architecture-inline-spec-link:hover {
-  color: #e6820a;
-  border-bottom-color: rgba(230, 130, 10, 0.6);
+  color: #7a3e00;
+  border-bottom-color: rgba(163, 84, 0, 0.6);
 }
 
 .layer-content .tech-detail {
@@ -567,7 +568,7 @@ p {
 }
 
 .governance-item h3 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -611,7 +612,7 @@ p {
 
 .book-tagline {
   font-size: 1.1rem;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 500;
   margin-bottom: 2rem;
 }
@@ -623,7 +624,7 @@ p {
 
 .book-toc h4,
 .book-learn h4 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -674,7 +675,7 @@ p {
 .price {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin: 2rem 0;
 }
 
@@ -706,7 +707,7 @@ code {
 }
 
 .excerpt h4 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -752,7 +753,7 @@ code {
 }
 
 .proof-tab.active {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   border-bottom-color: var(--bitcoin-orange);
 }
 
@@ -891,8 +892,8 @@ code {
 }
 
 .proof-source a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
 }
 
 .proof-source a:hover {
@@ -936,7 +937,7 @@ code {
 }
 
 .code-link {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -1041,7 +1042,7 @@ code {
 
 .status-badge {
   font-weight: 600;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin: 0 0 0.5rem 0;
   font-size: 1rem;
 }
@@ -1054,7 +1055,7 @@ code {
 }
 
 .status-note a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: underline;
 }
 
@@ -1133,8 +1134,8 @@ code {
 }
 
 .download-note a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
 }
 
 .download-note a:hover {
@@ -1207,8 +1208,8 @@ code {
 }
 
 .commons-intro a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
   font-weight: 600;
 }
 
@@ -1237,7 +1238,7 @@ code {
 }
 
 .commons-content h3 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
@@ -1365,7 +1366,7 @@ code {
 }
 
 .feature-item h3 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -1430,7 +1431,7 @@ code {
 }
 
 .footer-col a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .footer-social {
@@ -1466,7 +1467,7 @@ code {
 }
 
 .footer-bar a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 /* Modal */
@@ -1677,7 +1678,7 @@ code {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   background: rgba(247, 147, 26, 0.1);
   border-radius: 4px;
   padding: 0.15rem 0.5rem;
@@ -1971,7 +1972,7 @@ code {
 
 .platform-tab:hover {
   border-color: var(--bitcoin-orange);
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .platform-tab.active {
@@ -2012,8 +2013,8 @@ code {
 }
 
 .platform-note a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
 }
 
 /* ── Desktop / release notice ── */
@@ -2050,9 +2051,9 @@ code {
 }
 
 .release-notice a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .release-notice a:hover {
@@ -2066,9 +2067,9 @@ code {
 }
 
 .governance-page .governance-lead a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .governance-page .governance-lead a:hover {

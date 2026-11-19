@@ -71,8 +71,10 @@ p {
   --bitcoin-orange: #f7931a;
   /* Text on an orange fill: #111 on #f7931a = 8.22:1, on #e6820a = 6.80:1 (white was 2.29:1). */
   --on-orange: #111111;
-  /* Orange as text on white / #fff8f0: 5.45:1 / 5.21:1 (#f7931a was 2.29:1 / 2.18:1). */
-  --orange-text-on-light: #a35400;
+  /* Orange text on #fff / #fff8f0 / #f5f5f5: 5.49:1 / 5.21:1 / 5.04:1
+     (#f7931a was 2.29:1 / 2.18:1 / 2.10:1). Fills, borders, and icons keep --bitcoin-orange. */
+  --orange-text: #a35400;
+  --orange-text-on-light: var(--orange-text);
   --text-primary: #000000;
   --text-secondary: #333333;
   --text-muted: #666666;
@@ -173,7 +175,7 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .nav-links a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .nav-links a[aria-current="page"] {
@@ -203,7 +205,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .nav-item__btn:hover,
 .nav-item.is-open > .nav-item__btn {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .nav-item__btn[aria-current="true"] {
@@ -453,7 +455,7 @@ html.auto-dark .site-brand__img--forced-dark {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .page-head h1,
@@ -471,9 +473,9 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .page-lede a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .page-lede a:hover {
@@ -528,7 +530,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .tagline {
   font-size: 1.5rem;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -542,9 +544,9 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .hero-lead a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .hero-lead a:hover {
@@ -576,7 +578,7 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .legal-content a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
 }
 
@@ -607,7 +609,7 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .intel-docs-toc a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .intel-docs-block {
@@ -699,7 +701,7 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .framework-badge a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: none;
   font-weight: 600;
 }
@@ -755,7 +757,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .btn-outline:hover {
   border-color: var(--bitcoin-orange);
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .btn-large {
@@ -876,7 +878,7 @@ html.auto-dark .site-brand__img--forced-dark {
 .layer-number {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   min-width: 80px;
   text-align: center;
 }
@@ -893,7 +895,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .layer-content .layer-type {
   font-weight: 600;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -907,20 +909,20 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .layer-content h3 a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .layer-content .architecture-inline-spec-link {
   font-weight: 600;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: none;
-  border-bottom: 1px solid rgba(247, 147, 26, 0.35);
+  border-bottom: 1px solid rgba(163, 84, 0, 0.35);
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .layer-content .architecture-inline-spec-link:hover {
-  color: #e6820a;
-  border-bottom-color: rgba(230, 130, 10, 0.6);
+  color: #7a3e00;
+  border-bottom-color: rgba(163, 84, 0, 0.6);
 }
 
 .layer-content .tech-detail {
@@ -1058,7 +1060,7 @@ html.auto-dark .site-brand__img--forced-dark {
 }
 
 .governance-item h3 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -1102,7 +1104,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .book-tagline {
   font-size: 1.1rem;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 500;
   margin-bottom: 2rem;
 }
@@ -1114,7 +1116,7 @@ html.auto-dark .site-brand__img--forced-dark {
 
 .book-toc h4,
 .book-learn h4 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -1165,7 +1167,7 @@ html.auto-dark .site-brand__img--forced-dark {
 .price {
   font-size: 2.5rem;
   font-weight: 700;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin: 2rem 0;
 }
 
@@ -1197,7 +1199,7 @@ code {
 }
 
 .excerpt h4 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -1243,7 +1245,7 @@ code {
 }
 
 .proof-tab.active {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   border-bottom-color: var(--bitcoin-orange);
 }
 
@@ -1382,8 +1384,8 @@ code {
 }
 
 .proof-source a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
 }
 
 .proof-source a:hover {
@@ -1427,7 +1429,7 @@ code {
 }
 
 .code-link {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
@@ -1454,7 +1456,7 @@ code {
 
 .code-copy-btn:hover {
   border-color: var(--bitcoin-orange);
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   background: #fff8f0;
 }
 
@@ -1559,7 +1561,7 @@ code {
 
 .status-badge {
   font-weight: 600;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin: 0 0 0.5rem 0;
   font-size: 1rem;
 }
@@ -1572,7 +1574,7 @@ code {
 }
 
 .status-note a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: underline;
 }
 
@@ -1651,8 +1653,8 @@ code {
 }
 
 .download-note a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
 }
 
 .download-note a:hover {
@@ -1725,8 +1727,8 @@ code {
 }
 
 .commons-intro a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
   font-weight: 600;
 }
 
@@ -1755,7 +1757,7 @@ code {
 }
 
 .commons-content h3 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
 }
@@ -1895,7 +1897,7 @@ code {
 }
 
 .feature-item h3 {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   margin-bottom: 1rem;
 }
 
@@ -1955,7 +1957,7 @@ code {
 }
 
 .footer-col a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .footer-social {
@@ -1991,7 +1993,7 @@ code {
 }
 
 .footer-bar a:hover {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 /* Modal */
@@ -2473,8 +2475,8 @@ code {
 
 .release-note a {
   font-weight: 600;
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
 }
 
 .release-note a:hover {
@@ -2535,7 +2537,7 @@ code {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .gate-lede {
@@ -2577,7 +2579,7 @@ code {
 }
 
 .gate-track li[data-state="met"] .gate-num {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .gate-name {
@@ -2594,7 +2596,7 @@ code {
 }
 
 .gate-track li[data-state="met"] .gate-state {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 /* ── Why-BLVM grid ── */
@@ -2652,7 +2654,7 @@ code {
 
 .platform-tab:hover {
   border-color: var(--bitcoin-orange);
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .platform-tab.active {
@@ -2697,8 +2699,8 @@ code {
 }
 
 .platform-note a {
-  color: var(--bitcoin-orange);
-  text-decoration: none;
+  color: var(--orange-text);
+  text-decoration: underline;
 }
 
 /* ── Desktop / release notice ── */
@@ -2735,9 +2737,9 @@ code {
 }
 
 .release-notice a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .release-notice a:hover {
@@ -2751,9 +2753,9 @@ code {
 }
 
 .governance-page .governance-lead a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .governance-page .governance-lead a:hover {
@@ -2978,7 +2980,7 @@ code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .gov-name {
@@ -3270,9 +3272,9 @@ code {
 
 .fund-lede a,
 .home-pair .intel-hero__facts a {
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .fund-lede a:hover,
@@ -3350,7 +3352,7 @@ code {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .fund-panel h2 {
@@ -3483,7 +3485,7 @@ code {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .intel-page .intel-hero h1,
@@ -3836,7 +3838,7 @@ code {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
 }
 
 .intel-plan-badge--quiet {
@@ -4406,7 +4408,7 @@ code {
 
 .account-facts a {
   font-weight: 600;
-  color: var(--bitcoin-orange);
+  color: var(--orange-text);
   text-decoration: none;
 }
 

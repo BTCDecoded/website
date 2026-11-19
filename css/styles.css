@@ -1736,6 +1736,13 @@ code {
   overflow-x: auto;
   background: #fff;
 }
+.install-code-block pre:focus {
+  outline: none;
+}
+.install-code-block pre:focus-visible {
+  outline: 2px solid var(--orange-text);
+  outline-offset: -2px;
+}
 .install-code-verify {
   margin-top: 0;
 }

@@ -2305,6 +2305,15 @@ code {
   white-space: pre;
   tab-size: 2;
 }
+/* Inset so the outline is not clipped by .install-code-block { overflow: hidden }.
+   --orange-text (#a35400) on #fff is 5.49:1, above the 3:1 non-text minimum. */
+.install-code-pre:focus {
+  outline: none;
+}
+.install-code-pre:focus-visible {
+  outline: 2px solid var(--orange-text);
+  outline-offset: -2px;
+}
 .install-code-block pre code {
   background: none;
   padding: 0;

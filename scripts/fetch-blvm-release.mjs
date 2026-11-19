@@ -180,6 +180,14 @@ async function main() {
     return;
   }
 
+  // In CI the workflow runs this script once with GITHUB_TOKEN and --strict.
+  // The npm preexport/prebuild hooks then run it again without a token, which
+  // can hit the unauthenticated rate limit. Keep the file the first run wrote.
+  if (process.env.CI === "true" && !process.env.GITHUB_TOKEN && !args.has("--strict") && fs.existsSync(DEST)) {
+    console.log("fetch-blvm-release: CI without GITHUB_TOKEN, keeping existing install-content.json");
+    return;
+  }
+
   try {
     const latest = await ghFetch(`https://api.github.com/repos/${repo}/releases/latest`);
     const tag = latest.tag_name ?? "unknown";

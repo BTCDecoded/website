@@ -101,8 +101,9 @@ async function copyText(text) {
   if (!ok) throw new Error("copy failed");
 }
 
-function CopyCodeBlock({ label, code, className = "" }) {
+function CopyCodeBlock({ label, code, className = "", regionLabel }) {
   const [copied, setCopied] = useState(false);
+  const accessibleName = regionLabel || `${label} command`;
 
   async function handleCopy() {
     try {
@@ -131,7 +132,14 @@ function CopyCodeBlock({ label, code, className = "" }) {
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <pre className="install-code-pre">{code}</pre>
+      <pre
+        className="install-code-pre"
+        tabIndex={0}
+        role="region"
+        aria-label={accessibleName}
+      >
+        {code}
+      </pre>
     </div>
   );
 }
@@ -220,6 +228,7 @@ export default function Install() {
               key={`${pkg.id}-install`}
               label="Install"
               code={pkg.installCmd}
+              regionLabel={`${pkg.label} install command`}
             />
           ) : null}
 
@@ -228,6 +237,7 @@ export default function Install() {
             label="Verify checksum"
             code={pkg.verify}
             className="install-code-verify"
+            regionLabel={`${pkg.label} checksum verification command`}
           />
 
           {pkg.runCmd ? (
@@ -236,6 +246,7 @@ export default function Install() {
               label="Run"
               code={pkg.runCmd}
               className="install-code-run"
+              regionLabel={`${pkg.label} run command`}
             />
           ) : null}
 
@@ -272,8 +283,18 @@ export default function Install() {
               </a>
             </div>
 
-            <CopyCodeBlock key="docker-pull" label="Pull" code={docker.pullCmd} />
-            <CopyCodeBlock key="docker-run" label="Run" code={docker.runCmd} />
+            <CopyCodeBlock
+              key="docker-pull"
+              label="Pull"
+              code={docker.pullCmd}
+              regionLabel={`${docker.title} pull command`}
+            />
+            <CopyCodeBlock
+              key="docker-run"
+              label="Run"
+              code={docker.runCmd}
+              regionLabel={`${docker.title} run command`}
+            />
 
             {comingSoonNote ? (
               <p className="install-coming-soon">{comingSoonNote}</p>

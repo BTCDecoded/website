@@ -33,6 +33,7 @@ const NAV_GROUPS = [
         title: "Docs",
         external: true,
       },
+      { href: "/skills/", title: "Skills" },
       { href: "/pricing/", title: "Plans" },
     ],
   },

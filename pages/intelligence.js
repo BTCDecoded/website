@@ -38,7 +38,9 @@ export default function IntelligencePage() {
           <h1>Bitcoin’s public coordination record, searchable.</h1>
           <p className="intel-hero__lede">
             Not a live price desk. Not chain analytics. Pay with Lightning.
-            Connect over Model Context Protocol (MCP).
+            Connect over Model Context Protocol (MCP).{" "}
+            <Link href="/skills/">Install the skill</Link> so a connected agent
+            calls the index on Bitcoin Core, BIP, PR, and governance questions.
           </p>
           <div className="hero-ctas">
             {hasKey ? (

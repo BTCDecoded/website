@@ -46,7 +46,8 @@ These search the public coordination record and return cites. If the reply says 
 
 `analyze_pr` and `analyze_issue` do not post. A GitHub comment is the armed Developer App only.
 
-Skill: https://btcdecoded.org/intelligence/SKILL.md
+Skill: https://btcdecoded.org/skills/SKILL.md
+Install: https://btcdecoded.org/skills/
 
 ## Hard rules
 

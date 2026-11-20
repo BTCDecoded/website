@@ -9,6 +9,7 @@ const ITEMS = [
     external: true,
   },
   { href: "/for-agents/", label: "For agents" },
+  { href: "/skills/", label: "Skills" },
   { href: "/pricing/", label: "Plans" },
   { href: "/subscribe/", label: "Checkout" },
   { href: "/account/", label: "Account" },

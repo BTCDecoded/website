@@ -50,7 +50,7 @@ export default function SkillsPage() {
             On Bitcoin Core, BIPs, a GitHub PR or issue, a contributor,
             consensus, spec versus implementation, a CVE or incident, soft fork
             activation, governance precedent, or a mailing-list or forum claim:
-            call this MCP first. Search or find_* , then get_passage before a
+            call this MCP first. Search or a find_* tool, then get_passage before a
             quote, verify_claim before a specific fact, analyze_pr or
             analyze_issue for a GitHub URL. Cite snapshot ids and as_of dates.
           </p>
@@ -125,13 +125,13 @@ export default function SkillsPage() {
         One install loads the skill and the MCP server. Claude Code prompts for
         the Account key (<code>userConfig.api_key</code>).
       </p>
-      <pre className="intel-docs-pre">{`claude plugin marketplace add BTCDecoded/website
+      <pre className="intel-docs-pre" tabIndex={0}>{`claude plugin marketplace add BTCDecoded/website
 claude plugin install btcdecoded-intelligence@btcdecoded`}</pre>
       <p>
         One step, Claude Code v2.1.292 or later in the shell (v2.1.275 in a
         session):
       </p>
-      <pre className="intel-docs-pre">{`claude plugin install btcdecoded-intelligence --marketplace BTCDecoded/website`}</pre>
+      <pre className="intel-docs-pre" tabIndex={0}>{`claude plugin install btcdecoded-intelligence --marketplace BTCDecoded/website`}</pre>
       <p>
         Paste the Bearer key from Account when asked. The plugin sends{" "}
         <code>Authorization: Bearer ${"{"}user_config.api_key{"}"}</code> to{" "}
@@ -149,7 +149,7 @@ claude plugin install btcdecoded-intelligence@btcdecoded`}</pre>
         <code>~/.cursor/skills/</code> (user) or <code>.cursor/skills/</code>{" "}
         (project).
       </p>
-      <pre className="intel-docs-pre">{`{
+      <pre className="intel-docs-pre" tabIndex={0}>{`{
   "mcpServers": {
     "btcdecoded": {
       "url": "${MCP_URL}",
@@ -161,10 +161,10 @@ claude plugin install btcdecoded-intelligence@btcdecoded`}</pre>
 }`}</pre>
       <p>
         Put that in <code>~/.cursor/mcp.json</code> (every project) or{" "}
-        <code>.cursor/mcp.json</code> (this repo). Then copy{" "}
-        <a href="/skills/btcdecoded-intelligence.zip">the zip</a> or clone{" "}
-        <code>btcdecoded-intelligence/SKILL.md</code> into{" "}
-        <code>~/.cursor/skills/btcdecoded-intelligence/</code>.
+        <code>.cursor/mcp.json</code> (this repo). Then unzip{" "}
+        <a href="/skills/btcdecoded-intelligence.zip">the zip</a> into{" "}
+        <code>~/.cursor/skills/</code> so the path is{" "}
+        <code>~/.cursor/skills/btcdecoded-intelligence/SKILL.md</code>.
       </p>
 
       <h2>Codex and AGENTS.md</h2>
@@ -181,14 +181,14 @@ claude plugin install btcdecoded-intelligence@btcdecoded`}</pre>
         </a>
         ).
       </p>
-      <pre className="intel-docs-pre">{`[mcp_servers.btcdecoded]
+      <pre className="intel-docs-pre" tabIndex={0}>{`[mcp_servers.btcdecoded]
 url = "${MCP_URL}"
 bearer_token_env_var = "BTCDECODED_API_KEY"`}</pre>
       <p>
         Drop this snippet into the Bitcoin repo’s <code>AGENTS.md</code> (or
         download <a href="/skills/AGENTS.md">/skills/AGENTS.md</a>):
       </p>
-      <pre className="intel-docs-pre">{AGENTS_SNIPPET}</pre>
+      <pre className="intel-docs-pre" tabIndex={0}>{AGENTS_SNIPPET}</pre>
 
       <h2>Generic MCP clients</h2>
       <p>
@@ -200,7 +200,7 @@ bearer_token_env_var = "BTCDECODED_API_KEY"`}</pre>
         <code>Authorization: Bearer</code>. <code>hold</code> is public, cost
         0, and is not a record search.
       </p>
-      <pre className="intel-docs-pre">{`curl -sS -X POST '${MCP_URL}' \\
+      <pre className="intel-docs-pre" tabIndex={0}>{`curl -sS -X POST '${MCP_URL}' \\
   -H 'content-type: application/json' \\
   -H 'Authorization: Bearer YOUR_API_KEY' \\
   -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"example","version":"0"}}}'`}</pre>

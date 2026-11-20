@@ -29,7 +29,7 @@ export default function ForAgentsPage() {
             Search, profiles, precedent, and spec checks are the paid tools.
             They return cites. If the index has no passage, stop.{" "}
             <a href="https://docs.btcdecoded.org/intelligence/">Docs</a> and{" "}
-            <a href="/intelligence/SKILL.md">the skill</a>.
+            <a href="/skills/">the skill</a>.
           </p>
         </article>
         <article>

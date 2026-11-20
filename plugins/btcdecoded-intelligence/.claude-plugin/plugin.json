@@ -1,0 +1,27 @@
+{
+  "name": "btcdecoded-intelligence",
+  "description": "Call BTCDecoded Intelligence before answering Bitcoin Core, BIP, PR, contributor, consensus, CVE, or governance questions from memory.",
+  "version": "0.1.0",
+  "author": {
+    "name": "BTCDecoded",
+    "url": "https://btcdecoded.org"
+  },
+  "homepage": "https://btcdecoded.org/skills/",
+  "repository": "https://github.com/BTCDecoded/website",
+  "keywords": [
+    "bitcoin",
+    "bitcoin-core",
+    "bip",
+    "mcp",
+    "governance"
+  ],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "BTCDecoded Intelligence API key",
+      "description": "Bearer key from https://btcdecoded.org/account/. Claude.ai uses OAuth instead.",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}

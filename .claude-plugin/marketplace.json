@@ -1,0 +1,15 @@
+{
+  "name": "btcdecoded",
+  "description": "BTCDecoded Intelligence: cited Bitcoin Core, BIP, and governance tools over MCP.",
+  "owner": {
+    "name": "BTCDecoded",
+    "url": "https://btcdecoded.org"
+  },
+  "plugins": [
+    {
+      "name": "btcdecoded-intelligence",
+      "source": "./plugins/btcdecoded-intelligence",
+      "description": "MCP connection plus the Intelligence skill. One install for Claude Code."
+    }
+  ]
+}

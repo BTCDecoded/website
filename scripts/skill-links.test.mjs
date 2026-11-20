@@ -13,6 +13,11 @@ const skillFiles = [
   "plugins/btcdecoded-intelligence/skills/btcdecoded-intelligence/SKILL.md",
 ];
 
+test("skills page does not surface llms.txt", () => {
+  const text = readFileSync(join(root, "pages/skills.js"), "utf8");
+  assert.equal(text.includes("llms.txt"), false);
+});
+
 test("SKILL.md relative references exist on disk next to the file", () => {
   const re = /\]\((references\/[^)]+)\)/g;
   for (const rel of skillFiles) {

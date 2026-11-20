@@ -105,7 +105,7 @@ p {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.96);
+  background: #ffffff;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
@@ -298,10 +298,10 @@ html.auto-dark .site-brand__img--forced-dark {
     height: 44px;
     margin-right: -8px;
     padding: 0;
-    border: 1px solid var(--border);
+    border: 1px solid #d0d0d0;
     border-radius: 8px;
-    background: #fff;
-    color: var(--text-primary);
+    background: #ffffff;
+    color: #111111;
     cursor: pointer;
   }
 
@@ -311,7 +311,7 @@ html.auto-dark .site-brand__img--forced-dark {
     display: block;
     width: 18px;
     height: 2px;
-    background: currentColor;
+    background: #111111;
     border-radius: 1px;
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
@@ -349,8 +349,7 @@ html.auto-dark .site-brand__img--forced-dark {
     transform: rotate(-45deg);
   }
 
-  /* Auto Dark inverts #fff chip → dark, but not var()/currentColor bars.
-     White SVG is an image, so it stays visible (same as the wordmark). */
+  /* Auto Dark inverts the #fff chip, not CSS bars. White SVG is an image. */
   html.auto-dark .nav-toggle {
     background-color: #fff;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14'%3E%3Cpath fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='square' d='M1 2h16M1 7h16M1 12h16'/%3E%3C/svg%3E");
@@ -379,7 +378,7 @@ html.auto-dark .site-brand__img--forced-dark {
     align-items: stretch;
     gap: 0;
     padding: 0.5rem 0.75rem 1rem;
-    background: #fff;
+    background: #ffffff;
     border-bottom: 1px solid var(--border);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
   }
@@ -626,6 +625,17 @@ html.auto-dark .site-brand__img--forced-dark {
   color: var(--text-secondary);
   line-height: 1.65;
   margin: 0 0 1rem;
+}
+
+.intel-docs-block ol {
+  margin: 0 0 1rem 1.25rem;
+  max-width: 42rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.intel-docs-block li + li {
+  margin-top: 0.45rem;
 }
 
 .intel-docs .intel-uses {

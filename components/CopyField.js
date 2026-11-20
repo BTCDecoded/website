@@ -16,6 +16,7 @@ export default function CopyField({ value, label = "Copy", multiline = false }) 
     <div className={`intel-copy${multiline ? " intel-copy--block" : ""}`}>
       <code
         className={`intel-copy-value${multiline ? " intel-copy-value--block" : ""}`}
+        tabIndex={multiline ? 0 : undefined}
       >
         {value}
       </code>

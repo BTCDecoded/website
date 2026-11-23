@@ -35,10 +35,11 @@ export default function IntelligencePage() {
       <article className="intel-hero">
         <div className="intel-hero__copy">
           <p className="intel-hero__kicker">BTCDecoded Intelligence</p>
-          <h1>Bitcoin’s public coordination record, searchable.</h1>
+          <h1>Cited answers from Bitcoin’s public record.</h1>
           <p className="intel-hero__lede">
-            Not a live price desk. Not chain analytics. Pay with Lightning.
-            Connect over Model Context Protocol (MCP).{" "}
+            Search IRC, mailing lists, GitHub, Core announcements, papers, and
+            the rest of the index. Every hit carries a passage. Pay with
+            Lightning. Connect over Model Context Protocol (MCP).{" "}
             <Link href="/skills/">Install the skill</Link> so a connected agent
             calls the index on Bitcoin Core, BIP, PR, and governance questions.
           </p>
@@ -113,11 +114,11 @@ export default function IntelligencePage() {
       </article>
 
       <section className="intel-index" aria-labelledby="intel-index-heading">
-        <h2 id="intel-index-heading">What’s in the index</h2>
+        <h2 id="intel-index-heading">What you can search</h2>
         <p>
-          Every plan searches both layers.{" "}
-          <Link href="/pricing/">Plans</Link> differ by days, query cap,
-          public-PR review, and Bearer automation tools.
+          Two layers, one search: curated specs and papers, plus the living
+          record. <Link href="/pricing/">Plans</Link> differ by days, query
+          cap, public-PR review, and Bearer automation tools.
         </p>
         <div className="intel-index__grid">
           <article>
@@ -138,7 +139,7 @@ export default function IntelligencePage() {
           </article>
         </div>
         <article className="intel-index__out">
-          <h3>Not in the index</h3>
+          <h3>The public record only</h3>
           <ul>
             {INDEX_OUT.map((item) => (
               <li key={item}>{item}</li>
@@ -159,7 +160,7 @@ export default function IntelligencePage() {
           <span className="intel-flow__n">2</span>
           <div>
             <strong>Pay Lightning</strong>
-            <p>Sats in, access out. Same key on upgrade.</p>
+            <p>Lightning checkout. Same key on upgrade.</p>
           </div>
         </li>
         <li>

@@ -5,26 +5,21 @@ import IntelRecap from "../components/IntelRecap";
 export default function IndexPage() {
   return (
     <>
-      <section className="home-products" aria-labelledby="home-line">
+      <section className="home-products" aria-label="BTCDecoded">
         <div className="container">
-          <h1 className="home-line" id="home-line">
-            A Bitcoin node with the rules written down,{" "}
-            <br className="home-line__break" />
-            and a cited index of the record those rules come from.
-          </h1>
+          <h1 className="visually-hidden">BTCDecoded</h1>
           <div className="home-pair">
           <article className="intel-hero">
             <div className="intel-hero__copy">
               <p className="intel-hero__kicker">The index</p>
               <h2 id="intel-feature-heading">Intelligence</h2>
               <p className="intel-hero__claim">
-                Bitcoin’s public coordination record, searchable.
+                Cited answers from Bitcoin’s public record.
               </p>
               <p className="intel-hero__lede">
-                Cited search over IRC, mailing lists, GitHub, project-repo
-                discussions, Core announcements, podcast transcripts, source,
-                and academic papers.
-                Pay with Lightning.
+                Search IRC, mailing lists, GitHub, Core announcements, papers,
+                and the rest of the index. Every hit carries a passage. Pay
+                with Lightning.
               </p>
               <div className="home-ctas">
                 <Link href="/subscribe/?plan=trial" className="btn btn-primary">

@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-18T17:31:11.301Z",
+  "generatedAt": "2026-11-27T02:35:50.139Z",
   "source": "github://BTCDecoded/blvm",
   "release": {
     "tag": "v0.1.81",
@@ -11,67 +11,67 @@
   },
   "releaseHistory": [
     {
-      "tag": "v0.2.0-beta.2",
-      "name": "blvm v0.2.0-beta.2",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.2.0-beta.2",
-      "publishedAt": "2026-11-17T21:43:57Z",
+      "tag": "v0.3.0-beta.9",
+      "name": "blvm v0.3.0-beta.9",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.9",
+      "publishedAt": "2026-11-24T15:00:55Z",
       "prerelease": true
     },
     {
-      "tag": "v0.1.81",
-      "name": "blvm v0.1.81",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.81",
-      "publishedAt": "2026-11-14T02:02:22Z",
-      "prerelease": false
+      "tag": "v0.3.0-beta.8",
+      "name": "blvm v0.3.0-beta.8",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.8",
+      "publishedAt": "2026-11-23T14:25:20Z",
+      "prerelease": true
     },
     {
-      "tag": "v0.1.80",
-      "name": "blvm v0.1.80",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.80",
-      "publishedAt": "2026-11-11T09:37:35Z",
-      "prerelease": false
+      "tag": "v0.3.0-beta.7",
+      "name": "blvm v0.3.0-beta.7",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.7",
+      "publishedAt": "2026-11-22T21:09:39Z",
+      "prerelease": true
     },
     {
-      "tag": "v0.1.79",
-      "name": "blvm v0.1.79",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.79",
-      "publishedAt": "2026-11-09T09:12:13Z",
-      "prerelease": false
+      "tag": "v0.3.0-beta.6",
+      "name": "blvm v0.3.0-beta.6",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.6",
+      "publishedAt": "2026-11-22T02:48:45Z",
+      "prerelease": true
     },
     {
-      "tag": "v0.1.78",
-      "name": "blvm v0.1.78",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.78",
-      "publishedAt": "2026-11-08T16:44:26Z",
-      "prerelease": false
+      "tag": "v0.3.0-beta.5",
+      "name": "blvm v0.3.0-beta.5",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.5",
+      "publishedAt": "2026-11-20T22:08:40Z",
+      "prerelease": true
     },
     {
-      "tag": "v0.1.77",
-      "name": "blvm v0.1.77",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.77",
-      "publishedAt": "2026-11-08T15:00:52Z",
-      "prerelease": false
+      "tag": "v0.3.0-beta.4",
+      "name": "blvm v0.3.0-beta.4",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.4",
+      "publishedAt": "2026-11-20T00:15:04Z",
+      "prerelease": true
     },
     {
-      "tag": "v0.1.76",
-      "name": "blvm v0.1.76",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.76",
-      "publishedAt": "2026-11-06T18:07:59Z",
-      "prerelease": false
+      "tag": "v0.3.0-beta.3",
+      "name": "blvm v0.3.0-beta.3",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.3",
+      "publishedAt": "2026-11-19T23:19:46Z",
+      "prerelease": true
     },
     {
-      "tag": "v0.1.75",
-      "name": "blvm v0.1.75",
-      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.75",
-      "publishedAt": "2026-11-05T21:59:46Z",
-      "prerelease": false
+      "tag": "v0.3.0-beta.2",
+      "name": "blvm v0.3.0-beta.2",
+      "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.2",
+      "publishedAt": "2026-11-19T06:42:48Z",
+      "prerelease": true
     }
   ],
   "prerelease": {
-    "tag": "v0.2.0-beta.2",
-    "name": "blvm v0.2.0-beta.2",
-    "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.2.0-beta.2",
-    "publishedAt": "2026-11-17T21:43:57Z"
+    "tag": "v0.3.0-beta.9",
+    "name": "blvm v0.3.0-beta.9",
+    "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.9",
+    "publishedAt": "2026-11-24T15:00:55Z"
   },
   "packageGroups": [
     {

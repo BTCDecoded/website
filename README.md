@@ -15,7 +15,7 @@ Static marketing site for [btcdecoded.org](https://btcdecoded.org), published to
 
 Structured fields (packages, managed-install previews, release links) come from **`data/install-content.json`**, consumed by `pages/install.js` (do not hand-edit release-driven values in JS).
 
-**Default build path:** **`prebuild`** / **`preexport`** and CI run **`scripts/fetch-blvm-release.mjs`**, which refreshes **`data/install-content.json`** from the **[`blvm` GitHub Releases](https://github.com/BTCDecoded/blvm/releases)** API (optional `GITHUB_TOKEN`; static/fallback if fetch is skipped). This keeps the marketing **`/install`** page aligned with **shipped binaries**. The mdBook chapter [`getting-started/installation.md`](https://github.com/BTCDecoded/blvm-docs/blob/main/src/getting-started/installation.md) is timeless and links here for downloads.
+**Default build path:** **`prebuild`** / **`preexport`** and CI run **`scripts/fetch-blvm-release.mjs`**, which refreshes **`data/install-content.json`** and **`data/install-content.fallback.json`** from the same **[`blvm` GitHub Releases](https://github.com/BTCDecoded/blvm/releases)** response (optional `GITHUB_TOKEN`). A failed fetch, or `--fallback`, copies the fallback file back over the install file. `npm test` fails if the two committed files differ. This keeps the marketing **`/install`** page aligned with **shipped binaries**. The mdBook chapter [`getting-started/installation.md`](https://github.com/BTCDecoded/blvm-docs/blob/main/src/getting-started/installation.md) is timeless and links here for downloads.
 
 ## Commands
 

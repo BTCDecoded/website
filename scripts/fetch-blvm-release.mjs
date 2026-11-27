@@ -3,6 +3,8 @@
  * Fetches BTCDecoded/blvm latest (and recent) GitHub releases and writes
  * data/install-content.json for the Install page and for lib/blvmReleaseMeta.js
  * (badges / CTAs on other pages read the same artifact at build time).
+ * The same bytes are written to data/install-content.fallback.json. That file
+ * is what --fallback and a failed fetch copy back. The two files must match.
  *
  * Auth: set GITHUB_TOKEN in CI for reliable rate limits (public read is enough).
  * Local: unauthenticated works for occasional runs; use --fallback to skip fetch.
@@ -230,9 +232,13 @@ async function main() {
       markdownDoc: staticData.markdownDoc ?? {},
     };
 
+    const body = JSON.stringify(out, null, 2) + "\n";
     fs.mkdirSync(path.dirname(DEST), { recursive: true });
-    fs.writeFileSync(DEST, JSON.stringify(out, null, 2) + "\n", "utf8");
-    console.log(`fetch-blvm-release: wrote ${DEST} (tag ${tag}, ${packages.length} packages)`);
+    fs.writeFileSync(DEST, body, "utf8");
+    fs.writeFileSync(FALLBACK, body, "utf8");
+    console.log(
+      `fetch-blvm-release: wrote ${DEST} and ${FALLBACK} (tag ${tag}, ${packages.length} packages)`,
+    );
   } catch (e) {
     console.error("fetch-blvm-release:", e.message ?? e);
     if (process.env.CI === "true" || args.has("--strict")) {

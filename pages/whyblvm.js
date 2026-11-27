@@ -4,7 +4,7 @@ const GATES = [
   ["Tests", "met"],
   ["Genesis", "met"],
   ["Crash", "met"],
-  ["Bounds", "open"],
+  ["Bounds", "met"],
   ["Artifacts", "met"],
   ["Soak", "open"],
   ["Security", "met"],

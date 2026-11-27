@@ -15,3 +15,6 @@ jobs:
       - uses: actions/checkout@v6
       - name: Reject status phrases that have no evidence
         run: python3 scripts/check-public-claims.py
+
+      - name: The install fallback matches the install file
+        run: node --test scripts/install-content-fallback.test.mjs

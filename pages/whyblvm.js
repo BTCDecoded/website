@@ -1,5 +1,5 @@
 const GATES = [
-  ["Full chain", "unknown"],
+  ["Full chain", "met"],
   ["Spec lock", "met"],
   ["Tests", "met"],
   ["Genesis", "met"],

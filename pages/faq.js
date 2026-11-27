@@ -7,7 +7,7 @@ const SUPPORT_ANSWER =
 const faqs = [
   {
     q: "Will I stay in consensus with the Bitcoin network?",
-    a: "This node is written to Bitcoin’s consensus rules and binds consensus-critical functions to the Orange Paper. A passing Z3 check means the spec-lock prover and Z3 accepted that function’s contract. Compatibility is checked in layers — property tests, libFuzzer, golden vectors, and a differential against Core / libbitcoinkernel. No signed log covers the chain from genesis to the tip.",
+    a: "This node is written to Bitcoin’s consensus rules and binds consensus-critical functions to the Orange Paper. A passing Z3 check means the spec-lock prover and Z3 accepted that function’s contract. Compatibility is checked in layers — property tests, libFuzzer, golden vectors, and a differential against Core / libbitcoinkernel. The beta full-chain gate covers an operator Phase 1 + Phase 2 run through the Extra cache tip (~912723); it is not a continuous attestation of every later mainnet tip.",
   },
   {
     q: "How does this help decentralize Bitcoin?",

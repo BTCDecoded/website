@@ -1,13 +1,13 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-27T02:35:50.139Z",
+  "generatedAt": "2026-11-28T03:15:43.340Z",
   "source": "github://BTCDecoded/blvm",
   "release": {
-    "tag": "v0.1.81",
-    "semver": "0.1.81",
-    "releasesLatestUrl": "https://github.com/BTCDecoded/blvm/releases/latest",
-    "releasesTagUrl": "https://github.com/BTCDecoded/blvm/releases/tag/v0.1.81",
-    "body": "**Bitcoin Commons BLVM** — Bitcoin node CLI.\n\n> [!NOTE]\n> Verify your download against `checksums.sha256` before running.\n\n## Downloads\n\n| Platform | File | Notes |\n|---|---|---|\n| **Linux x86_64** (binary) | `blvm-0.1.81-linux-x86_64` | Default `cargo build --release` feature set |\n| **Linux aarch64** (binary) | `blvm-0.1.81-linux-aarch64` | Raspberry Pi 4/5 (64-bit OS); same features as Linux x86_64 |\n| **Linux x86_64** (tarball) | `blvm-v0.1.81-linux-x86_64.tar.gz` | `blvm` + governance CLIs (+ checksum file inside) |\n| **Linux aarch64** (tarball) | `blvm-v0.1.81-linux-aarch64.tar.gz` | `blvm` for 64-bit ARM Linux (+ checksum file inside) |\n| **Linux x86_64** (Arch / pacman) | `blvm-0.1.81-x86_64.pkg.tar.gz` | `pacman -U` |\n| **Linux aarch64** (Arch / pacman) | `blvm-0.1.81-aarch64.pkg.tar.gz` | Raspberry Pi 4/5 (64-bit OS); `pacman -U` |\n| **Linux x86_64** (Debian/Ubuntu) | `blvm_0.1.81_amd64.deb` | `cargo deb` (matches standalone binary) |\n| **Linux aarch64** (Debian/Ubuntu) | `blvm_0.1.81_arm64.deb` | Raspberry Pi 4/5 (64-bit OS) |\n| **Linux x86_64** (RHEL/Fedora) | `blvm-0.1.81-1.x86_64.rpm` | `cargo generate-rpm` |\n| **Windows x86_64** | `blvm-0.1.81-windows-x86_64.exe` | Linux defaults minus Unix-only nix/libc |\n| **Windows x86_64** (zip) | `blvm-v0.1.81-windows-x86_64.zip` | Same as .exe in archive form |\n| **Checksums** | `checksums.sha256`, `SHA256SUMS-blvm-*`, `SHA256SUMS-linux-packages.txt` | Verify downloads |\n\n## Verify\n\n```bash\nsha256sum -c checksums.sha256\n```\n\n## Install\n\n**Linux (single binary):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.81-linux-x86_64\nsudo mv blvm-0.1.81-linux-x86_64 /usr/local/bin/blvm\n```\n\n**Linux aarch64 (Raspberry Pi 4/5, 64-bit OS):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256\nsha256sum -c checksums.sha256\nchmod +x blvm-0.1.81-linux-aarch64\nsudo mv blvm-0.1.81-linux-aarch64 /usr/local/bin/blvm\n```\n\n**Linux (tarball):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-v0.1.81-linux-x86_64.tar.gz\ntar -xzf blvm-v0.1.81-linux-x86_64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Linux aarch64 (tarball, Raspberry Pi 4/5):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-v0.1.81-linux-aarch64.tar.gz\ntar -xzf blvm-v0.1.81-linux-aarch64.tar.gz\nsudo mv blvm /usr/local/bin/\n```\n\n**Debian/Ubuntu (x86_64):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm_0.1.81_amd64.deb\nsudo dpkg -i blvm_0.1.81_amd64.deb\n```\n\n**Debian/Ubuntu (Raspberry Pi 4/5, 64-bit OS):**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm_0.1.81_arm64.deb\nsudo dpkg -i blvm_0.1.81_arm64.deb\n```\n\n**RHEL/Fedora:**\n```bash\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-1.x86_64.rpm\nsudo rpm -i blvm-0.1.81-1.x86_64.rpm\n```\n\n**Nix / NixOS:** this tag includes `flake.nix` (heed3 package and a NixOS module for x86_64 and aarch64).\n```bash\nnix build github:BTCDecoded/blvm/v0.1.81\n```\n\n**Windows:** Download `blvm-0.1.81-windows-x86_64.exe`, verify checksum, and run from a terminal.\n\n## Linked crates\n\nThe binary linked these crates.io versions: consensus `0.1.83`, protocol `0.1.52`, node `0.1.94`, sdk `0.1.24`.\n\n## Changes\n\nSee [commit history](https://github.com/BTCDecoded/blvm/compare/bc07bd2b3f252947ebeea162331f852b458d8334...38ed36753877acd031f927f566caafed8f982fc9)\n"
+    "tag": "v0.3.0-beta.9",
+    "semver": "0.3.0-beta.9",
+    "releasesLatestUrl": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.9",
+    "releasesTagUrl": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.9",
+    "body": "## [0.3.0-beta.9] - 2026-11-24\n\nPrevious tag: v0.3.0-beta.8\nDIFFERENTIAL_RECORD_ID: pending\n\n### Linked crates\n\nVersions read from `Cargo.lock` at this revision.\n\n- `blvm-node` 0.1.106\n- `blvm-consensus` 0.1.86\n- `blvm-protocol` 0.1.55\n- `blvm-sdk` 0.1.28\n- `blvm-primitives` 0.1.39\n- `blvm-secp256k1` 0.1.19\n\n### Checksums\n\n```\n82813df890f34d709a2f611d31d779c9f96e804b2fdc5867d855c527ce200ada  blvm-0.3.0-beta.9-linux-x86_64\n180e6b34de643b0dde69762c110cb048b7d2f8026b0dcc2ddab0f5ed845650f4  blvm-0.3.0-beta.9-linux-aarch64\ncc7124c25eb24cf55f0de88a227264c6a0a2345af3f5edb2966b77c3deef6b53  blvm-0.3.0-beta.9-windows-x86_64.exe\nde8a1267ed4094861014ed88fb285a6094a1fe42a6c025481f07530ede8e3ba7  blvm-minimal-0.3.0-beta.9-linux-x86_64\n```\n\n### Consensus\n\n- None in this range.\n\n### Breaking changes\n\n- None in this range.\n\n### Security\n\nIds copied from the advisory JSON at this revision.\n\n#### Closed\n\n- BLVM-2026-0001 (consensus, closed, blvm-consensus, fixed version 0.1.80, crate release 0.1.80): An overflowing output sum was an internal error instead of an invalid block ([e58e0ad2003a](https://github.com/BTCDecoded/blvm-consensus/commit/e58e0ad2003a0474d0bb7d9751af29f6b426d3c1))\n- BLVM-2026-0002 (consensus, closed, blvm-node, fixed version 0.1.92, crate release 0.1.92): A failed reorg left the coin set rewound ([76f2b437ceed](https://github.com/BTCDecoded/blvm-node/commit/76f2b437ceed005da0d5b26365b06e952e6d4cc8))\n- BLVM-2026-0003 (resource exhaustion, closed, blvm-node, fixed version 0.1.88, crate release 0.1.88): Inbound TCP connections were not capped per address ([ca0b77e3e9f0](https://github.com/BTCDecoded/blvm-node/commit/ca0b77e3e9f016d06113590896a667b55a925efd))\n- BLVM-2026-0004 (local-only, closed, blvm-node, fixed version 0.1.88, crate release 0.1.88): Module processes were not confined ([6230a225e259](https://github.com/BTCDecoded/blvm-node/commit/6230a225e2592211be4f1a32395441a4844f7808))\n\n#### Open\n\n- BLVM-2026-0101 (resource exhaustion, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0118 still applies to the dependency tree\n- BLVM-2026-0102 (resource exhaustion, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0119 still applies to the dependency tree\n- BLVM-2026-0103 (remote crash, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0338 still applies to the dependency tree\n- BLVM-2026-0104 (resource exhaustion, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0339 still applies to the dependency tree\n- BLVM-2026-0105 (remote crash, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0340 still applies to the dependency tree\n- BLVM-2026-0106 (resource exhaustion, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0341 still applies to the dependency tree\n- BLVM-2026-0107 (resource exhaustion, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0342 still applies to the dependency tree\n- BLVM-2026-0108 (remote crash, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0424 still applies to the dependency tree\n- BLVM-2026-0109 (resource exhaustion, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0491 still applies to the dependency tree\n- BLVM-2026-0110 (informational, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0504 still applies to the dependency tree\n- BLVM-2026-0111 (remote crash, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0487 still applies to the dependency tree\n- BLVM-2026-0112 (remote crash, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0489 still applies to the dependency tree\n- BLVM-2026-0113 (informational, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0512 still applies to the dependency tree\n- BLVM-2026-0114 (informational, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0511 still applies to the dependency tree\n- BLVM-2026-0115 (informational, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0505 still applies to the dependency tree\n- BLVM-2026-0116 (remote crash, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0490 still applies to the dependency tree\n- BLVM-2026-0117 (informational, open, blvm, blvm-node, fixed version unset, crate release unset): RUSTSEC-2026-0514 still applies to the dependency tree\n- BLVM-2026-0118 (remote crash, open, blvm-node, fixed version unset, crate release unset): A compact-filter length that overflows the cursor aborts the parser ([9096b8414777](https://github.com/BTCDecoded/blvm-node/commit/9096b8414777f8718de1264ba9ac81dcd00d1dfc))\n- BLVM-2026-0119 (local-only, open, blvm-node, fixed version unset, crate release unset): The module spawn log printed MODULE_CONFIG values ([140bbeb9f984](https://github.com/BTCDecoded/blvm-node/commit/140bbeb9f98479b5bed1feb83824b98a56c79d57))\n- BLVM-2026-0120 (local-only, open, blvm-node, fixed version unset, crate release unset): A module manifest key was accepted as the publisher ([277cf3b8c663](https://github.com/BTCDecoded/blvm-node/commit/277cf3b8c6638df974e9566e1adf49588199b1ba))\n- BLVM-2026-0121 (local-only, open, blvm-node, fixed version unset, crate release unset): A module handshake accepted an id the node did not mint ([d0649ea0bba2](https://github.com/BTCDecoded/blvm-node/commit/d0649ea0bba23e59b42c0c51568a6e00960f69b5))\n- BLVM-2026-0122 (informational, open, blvm, blvm-node, fixed version unset, crate release unset): The working-tree lock no longer matches BLVM-2026-0101 through BLVM-2026-0117\n\n### Features\n\n- None in this range.\n\n### Fixes\n\n- None in this range.\n\n### Internal\n\n- docs: record the 0.3.0-beta.8 release notes ([c065cc0a7c7b](https://github.com/BTCDecoded/blvm/commit/c065cc0a7c7bcb2d7d7321f3a00a6b3605515f5f))\n- chore: lock blvm-sdk 0.1.28 ([817ae6ff7483](https://github.com/BTCDecoded/blvm/commit/817ae6ff74831a7409376ea8c8d6acf1e8a60e68))\n- docs: manifest and checksums for 0.3.0-beta.9 ([e521c718eed2](https://github.com/BTCDecoded/blvm/commit/e521c718eed2f8c06853262d3c0953e275774a99))\n"
   },
   "releaseHistory": [
     {
@@ -67,12 +67,7 @@
       "prerelease": true
     }
   ],
-  "prerelease": {
-    "tag": "v0.3.0-beta.9",
-    "name": "blvm v0.3.0-beta.9",
-    "url": "https://github.com/BTCDecoded/blvm/releases/tag/v0.3.0-beta.9",
-    "publishedAt": "2026-11-24T15:00:55Z"
-  },
+  "prerelease": null,
   "packageGroups": [
     {
       "id": "linux-pkg",
@@ -91,56 +86,17 @@
   },
   "packages": [
     {
-      "id": "deb",
-      "label": "Debian / Ubuntu",
-      "ext": ".deb",
-      "icon": "fa-brands fa-debian",
-      "group": "linux-pkg",
-      "description": "Ubuntu 22.04+, Debian 11+, and any dpkg-based distro. Installs the systemd unit and leaves it disabled.",
-      "filename": "blvm_0.1.81_amd64.deb",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm_0.1.81_amd64.deb",
-      "installCmd": "sudo dpkg -i blvm_0.1.81_amd64.deb\nsudo apt-get install -f    # pull in any missing deps",
-      "runCmd": null,
-      "verify": "# Run in the folder where you saved blvm_0.1.81_amd64.deb\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256\ngrep 'blvm_0.1.81_amd64.deb' checksums.sha256 | sha256sum --check"
-    },
-    {
-      "id": "rpm",
-      "label": "Fedora / RHEL",
-      "ext": ".rpm",
-      "icon": "fa-brands fa-fedora",
-      "group": "linux-pkg",
-      "description": "Fedora 38+, RHEL 9, CentOS Stream 9, and RPM-based distros. Installs the systemd unit and leaves it disabled.",
-      "filename": "blvm-0.1.81-1.x86_64.rpm",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-1.x86_64.rpm",
-      "installCmd": "sudo rpm -i blvm-0.1.81-1.x86_64.rpm\n# or via dnf:\nsudo dnf install ./blvm-0.1.81-1.x86_64.rpm",
-      "runCmd": null,
-      "verify": "# Run in the folder where you saved blvm-0.1.81-1.x86_64.rpm\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256\ngrep 'blvm-0.1.81-1.x86_64.rpm' checksums.sha256 | sha256sum --check"
-    },
-    {
-      "id": "pacman",
-      "label": "Arch Linux",
-      "ext": ".pkg.tar.gz",
-      "icon": "fa-solid fa-cubes",
-      "group": "linux-pkg",
-      "description": "Arch and other pacman-based distros (x86_64). Installs the systemd unit and leaves it disabled.",
-      "filename": "blvm-0.1.81-x86_64.pkg.tar.gz",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-x86_64.pkg.tar.gz",
-      "installCmd": "sudo pacman -U blvm-0.1.81-x86_64.pkg.tar.gz",
-      "runCmd": null,
-      "verify": "# Run in the folder where you saved blvm-0.1.81-x86_64.pkg.tar.gz\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256\ngrep 'blvm-0.1.81-x86_64.pkg.tar.gz' checksums.sha256 | sha256sum --check"
-    },
-    {
       "id": "linux-x86_64",
       "label": "Linux x86_64",
       "ext": "binary",
       "icon": "fa-solid fa-microchip",
       "group": "binaries",
       "description": "64-bit Linux binary (glibc). Default release features. No package manager and no service unit.",
-      "filename": "blvm-0.1.81-linux-x86_64",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-linux-x86_64",
-      "installCmd": "chmod +x blvm-0.1.81-linux-x86_64\nsudo mv blvm-0.1.81-linux-x86_64 /usr/local/bin/blvm",
+      "filename": "blvm-0.3.0-beta.9-linux-x86_64",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.3.0-beta.9/blvm-0.3.0-beta.9-linux-x86_64",
+      "installCmd": "chmod +x blvm-0.3.0-beta.9-linux-x86_64\nsudo mv blvm-0.3.0-beta.9-linux-x86_64 /usr/local/bin/blvm",
       "runCmd": null,
-      "verify": "# Run in the folder where you saved blvm-0.1.81-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256\ngrep 'blvm-0.1.81-linux-x86_64' checksums.sha256 | sha256sum --check"
+      "verify": "# Run in the folder where you saved blvm-0.3.0-beta.9-linux-x86_64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.3.0-beta.9/SHA256SUMS\ngrep 'blvm-0.3.0-beta.9-linux-x86_64' SHA256SUMS | sha256sum --check"
     },
     {
       "id": "linux-aarch64",
@@ -149,11 +105,11 @@
       "icon": "fa-brands fa-raspberry-pi",
       "group": "binaries",
       "description": "64-bit ARM Linux binary (Raspberry Pi 4/5 with 64-bit OS, Apple Silicon Linux VMs). The binary only.",
-      "filename": "blvm-0.1.81-linux-aarch64",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-linux-aarch64",
-      "installCmd": "chmod +x blvm-0.1.81-linux-aarch64\nsudo mv blvm-0.1.81-linux-aarch64 /usr/local/bin/blvm",
+      "filename": "blvm-0.3.0-beta.9-linux-aarch64",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.3.0-beta.9/blvm-0.3.0-beta.9-linux-aarch64",
+      "installCmd": "chmod +x blvm-0.3.0-beta.9-linux-aarch64\nsudo mv blvm-0.3.0-beta.9-linux-aarch64 /usr/local/bin/blvm",
       "runCmd": null,
-      "verify": "# Run in the folder where you saved blvm-0.1.81-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256\ngrep 'blvm-0.1.81-linux-aarch64' checksums.sha256 | sha256sum --check"
+      "verify": "# Run in the folder where you saved blvm-0.3.0-beta.9-linux-aarch64\ncurl -LO https://github.com/BTCDecoded/blvm/releases/download/v0.3.0-beta.9/SHA256SUMS\ngrep 'blvm-0.3.0-beta.9-linux-aarch64' SHA256SUMS | sha256sum --check"
     },
     {
       "id": "exe",
@@ -162,19 +118,19 @@
       "icon": "fa-brands fa-windows",
       "group": "binaries",
       "description": "Portable Windows 10 / 11 build (64-bit). The download is the binary. The WinSW sample is in the blvm repository under contrib/init/, not in this download.",
-      "filename": "blvm-0.1.81-windows-x86_64.exe",
-      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/blvm-0.1.81-windows-x86_64.exe",
+      "filename": "blvm-0.3.0-beta.9-windows-x86_64.exe",
+      "downloadUrl": "https://github.com/BTCDecoded/blvm/releases/download/v0.3.0-beta.9/blvm-0.3.0-beta.9-windows-x86_64.exe",
       "installCmd": null,
-      "runCmd": "# PowerShell — after download + verify\n.\\blvm-0.1.81-windows-x86_64.exe --help",
-      "verify": "# PowerShell — same folder as blvm-0.1.81-windows-x86_64.exe\nInvoke-WebRequest -Uri 'https://github.com/BTCDecoded/blvm/releases/download/v0.1.81/checksums.sha256' -OutFile checksums.sha256\n$expected = ((Get-Content checksums.sha256 | Select-String -SimpleMatch 'blvm-0.1.81-windows-x86_64.exe').Line -split '\\s+')[0]\n$actual = (Get-FileHash blvm-0.1.81-windows-x86_64.exe -Algorithm SHA256).Hash\nif ($expected.ToUpper() -eq $actual) { 'Checksum OK' } else { throw 'Checksum MISMATCH' }"
+      "runCmd": "# PowerShell — after download + verify\n.\\blvm-0.3.0-beta.9-windows-x86_64.exe --help",
+      "verify": "# PowerShell — same folder as blvm-0.3.0-beta.9-windows-x86_64.exe\nInvoke-WebRequest -Uri 'https://github.com/BTCDecoded/blvm/releases/download/v0.3.0-beta.9/SHA256SUMS' -OutFile checksums.sha256\n$expected = ((Get-Content checksums.sha256 | Select-String -SimpleMatch 'blvm-0.3.0-beta.9-windows-x86_64.exe').Line -split '\\s+')[0]\n$actual = (Get-FileHash blvm-0.3.0-beta.9-windows-x86_64.exe -Algorithm SHA256).Hash\nif ($expected.ToUpper() -eq $actual) { 'Checksum OK' } else { throw 'Checksum MISMATCH' }"
     }
   ],
   "docker": {
     "title": "Docker",
     "icon": "fa-brands fa-docker",
     "description": "Image on GHCR for this tag. It runs as uid 61100 and stores data in /var/lib/blvm. RPC stays on loopback, so the command does not publish 8332. chown the host directory to 61100:61100 before the first start.",
-    "pullCmd": "docker pull ghcr.io/btcdecoded/blvm:0.1.81",
-    "runCmd": "mkdir -p blvm-data && sudo chown 61100:61100 blvm-data\ndocker run -d --name blvm --stop-timeout 240 \\\n  -p 8333:8333 \\\n  -v \"$PWD/blvm-data:/var/lib/blvm\" \\\n  ghcr.io/btcdecoded/blvm:0.1.81 \\\n  --network mainnet --listen-addr 0.0.0.0:8333",
+    "pullCmd": "docker pull ghcr.io/btcdecoded/blvm:0.3.0-beta.9",
+    "runCmd": "mkdir -p blvm-data && sudo chown 61100:61100 blvm-data\ndocker run -d --name blvm --stop-timeout 240 \\\n  -p 8333:8333 \\\n  -v \"$PWD/blvm-data:/var/lib/blvm\" \\\n  ghcr.io/btcdecoded/blvm:0.3.0-beta.9 \\\n  --network mainnet --listen-addr 0.0.0.0:8333",
     "packageUrl": "https://github.com/BTCDecoded/blvm/pkgs/container/blvm",
     "packageLinkLabel": "View on GHCR →"
   },

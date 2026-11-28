@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { blvmHistoryEntry, blvmReleaseTitle, latestPrerelease } from "./blvm-release-title.mjs";
+import {
+  blvmHistoryEntry,
+  blvmReleaseTitle,
+  latestPrerelease,
+  selectDisplayedReleases,
+} from "./blvm-release-title.mjs";
 
 test("a versioned release is titled blvm plus the tag", () => {
   assert.equal(blvmReleaseTitle("v0.1.62"), "blvm v0.1.62");
@@ -53,4 +58,49 @@ test("the newest pre-release is the first published pre-release in the list", ()
     publishedAt: "",
   });
   assert.equal(latestPrerelease([{ tag_name: "v0.1.81", prerelease: false }]), null);
+});
+
+function rel(tag, extra = {}) {
+  return { tag_name: tag, draft: false, prerelease: false, ...extra };
+}
+
+test("with no real project release, the newest beta is the only headline", () => {
+  const picked = selectDisplayedReleases([
+    rel("v0.3.0-beta.9", { prerelease: true }),
+    rel("nightly", { prerelease: true }),
+    rel("v0.1.81"),
+  ]);
+  assert.equal(picked.phase, "pre-release");
+  assert.equal(picked.primary.tag_name, "v0.3.0-beta.9");
+  assert.equal(picked.secondary, null);
+});
+
+test("an unchecked release-candidate tag stays a pre-release", () => {
+  const picked = selectDisplayedReleases([
+    rel("v0.3.0-rc.1", { prerelease: false }),
+    rel("v0.1.81"),
+  ]);
+  assert.equal(picked.phase, "pre-release");
+  assert.equal(picked.primary.tag_name, "v0.3.0-rc.1");
+  assert.equal(picked.secondary, null);
+});
+
+test("a real project release is the headline and the newest beta stays beside it", () => {
+  const picked = selectDisplayedReleases([
+    rel("v0.3.0-beta.10", { prerelease: true }),
+    rel("v0.3.0"),
+    rel("v0.1.81"),
+  ]);
+  assert.equal(picked.phase, "release");
+  assert.equal(picked.primary.tag_name, "v0.3.0");
+  assert.equal(picked.secondary.tag_name, "v0.3.0-beta.10");
+});
+
+test("a draft and the 0.1 line do not become the real release", () => {
+  const picked = selectDisplayedReleases([
+    rel("v1.0.0", { draft: true }),
+    rel("v0.1.90"),
+  ]);
+  assert.equal(picked.primary.tag_name, "v0.1.90");
+  assert.equal(picked.secondary, null);
 });

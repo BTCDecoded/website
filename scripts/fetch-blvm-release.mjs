@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Fetches BTCDecoded/blvm latest (and recent) GitHub releases and writes
+ * Fetches BTCDecoded/blvm GitHub releases and writes
  * data/install-content.json for the Install page and for lib/blvmReleaseMeta.js
  * (badges / CTAs on other pages read the same artifact at build time).
  * The same bytes are written to data/install-content.fallback.json. That file
@@ -12,7 +12,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { blvmHistoryEntry, latestPrerelease } from "./blvm-release-title.mjs";
+import { blvmHistoryEntry, selectDisplayedReleases } from "./blvm-release-title.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -57,7 +57,10 @@ function pickAsset(assets, slot) {
 }
 
 function aggregateChecksumFilename(assets) {
-  const hit = assets.find((a) => a.name.toLowerCase() === "checksums.sha256");
+  const hit = assets.find((a) => {
+    const name = a.name.toLowerCase();
+    return name === "checksums.sha256" || name === "sha256sums";
+  });
   return hit?.name ?? null;
 }
 
@@ -131,12 +134,12 @@ function substituteDocker(docker, semver) {
   };
 }
 
-function buildPackages(staticData, assets, repo, tag) {
+function buildPackages(staticData, assets, repo, tag, requireAll) {
   const packages = [];
   for (const slot of staticData.packageSlots) {
     const asset = pickAsset(assets, slot);
     if (!asset) {
-      if (slot.optional) continue;
+      if (slot.optional || !requireAll) continue;
       throw new Error(`No release asset matches slot "${slot.id}" (${JSON.stringify(slot.pick)})`);
     }
     const filename = asset.name;
@@ -191,25 +194,33 @@ async function main() {
   }
 
   try {
-    const latest = await ghFetch(`https://api.github.com/repos/${repo}/releases/latest`);
-    const tag = latest.tag_name ?? "unknown";
-    const releasesLatestUrl = `https://github.com/${repo}/releases/latest`;
-    const releasesTagUrl = latest.html_url ?? `https://github.com/${repo}/releases/tag/${tag}`;
-    const semver = semverFromTag(tag);
-    const assets = latest.assets ?? [];
-
     const releasesList = await ghFetch(
       `https://api.github.com/repos/${repo}/releases?per_page=30`,
-    ).catch(() => []);
-
+    );
     const published = Array.isArray(releasesList)
       ? releasesList.filter((r) => !r.draft)
       : [];
+    const picked = selectDisplayedReleases(published);
+    const primary = picked.primary;
+    if (!primary) throw new Error("No published GitHub release to display");
+    const tag = primary.tag_name ?? "unknown";
+    const releasesTagUrl = primary.html_url ?? `https://github.com/${repo}/releases/tag/${tag}`;
+    const releasesLatestUrl = releasesTagUrl;
+    const semver = semverFromTag(tag);
+    const assets = primary.assets ?? [];
     const releaseHistory = published.slice(0, 8).map((r) => blvmHistoryEntry(r));
-    const pre = latestPrerelease(published);
-    const prerelease = pre && pre.tag !== tag ? pre : null;
+    const secondary = picked.secondary;
+    const prerelease =
+      secondary && secondary.tag_name && secondary.tag_name !== tag
+        ? {
+            tag: secondary.tag_name.trim(),
+            name: `blvm ${secondary.tag_name.trim()}`,
+            url: typeof secondary.html_url === "string" ? secondary.html_url : "",
+            publishedAt: secondary.published_at ?? "",
+          }
+        : null;
 
-    const packages = buildPackages(staticData, assets, repo, tag);
+    const packages = buildPackages(staticData, assets, repo, tag, picked.phase === "release");
 
     const out = {
       version: 3,
@@ -220,7 +231,7 @@ async function main() {
         semver,
         releasesLatestUrl,
         releasesTagUrl,
-        body: latest.body ?? "",
+        body: primary.body ?? "",
       },
       releaseHistory,
       prerelease,
